@@ -1,0 +1,254 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class="panel panel-default panel-dataexplorer-sidebar">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class='glyphicon glyphicon-record'></i>&nbsp;
+			<span translate-cloak translate>DATA_EXPLORER_DETAIL_PANEL_TITLE</span>
+			<a href ng-click="close()" class='panel-hide-button'>&times;</a>
+		</h3>
+	</div>
+	<div class="panel-body">
+		<accordion close-others="false">
+			<accordion-group is-open="!status0.open">
+			 	<accordion-heading>
+		 			<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_GENERAL_INFO</span>
+		 			<i class="pull-right glyphicon hide" ng-class="{'glyphicon-minus': status0.open, 'glyphicon-plus': !status0.open}"></i>
+				</accordion-heading>
+				<div class='panel-content'>
+					<p>					
+						<strong><span translate-cloak translate>DATASET_FIELD_METADATA_DESCRIPTION</span></strong>
+						<span class='multiline-panel'>{{metadata.description}}</span>
+					</p>
+					<p>
+						<strong><span translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</span></strong>
+						<span >{{metadata.domainCode|translate}}</span>
+					</p>	
+					<p>
+						<strong><span translate-cloak translate>DATASET_FIELD_METADATA_TAGS</span></strong>
+						<span ng-repeat="tag in metadata.tags"><span class="label label-tag label-custom"><span ng-bind-html="tag|translate"></span></span>&nbsp;</span>
+					</p>
+					<p>
+						<strong><span ng-bind-html="'DATASET_FIELD_METADATA_VISIBILITY'|translate"></span></strong>
+						{{metadata.visibility}}
+					</p>
+					<p>
+						<strong><span ng-bind-html="'DATASET_FIELD_METADATA_TENANT'|translate"></span></strong>
+						{{metadata.tenantCode}}
+					</p>
+					<p>
+						<strong><span translate-cloak translate>DATASET_FIELD_METADATA_EXTERNAL_REFERENCE</span></strong>
+						{{metadata.externalreference}}
+					</p>
+				</div>	
+			</accordion-group>
+			<accordion-group is-open="statusOpendata.open" ng-if="metadata.opendata.isOpendata==true">
+			 	<accordion-heading>
+		 			<span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA'|translate"></span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': statusOpendata.open, 'glyphicon-plus': !statusOpendata.open}"></i>
+				</accordion-heading>
+				<p>
+					<strong><span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA_AUTHOR'|translate"></span></strong>
+					{{metadata.opendata.author}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_LANG</span></strong>
+					{{metadata.opendata.language}} - {{metadata.opendata.language|translate}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_DATE</span></strong>
+					{{metadata.opendata.dataUpdateDate|date}}
+				</p>
+				<p>
+					<strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_FREQUENCY</span></strong>
+					<span ng-repeat="updatefrequency in metadata.opendata.updateFrequency">{{'OPENDATA_UPDATE_FREQUENCY_'+updatefrequency|translate}}</span>
+				</p>				
+			</accordion-group>
+			<accordion-group is-open="status1.open">
+			 	<accordion-heading>
+		 			<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_LEGAL_INFO</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status1.open, 'glyphicon-plus': !status1.open}"></i>
+				</accordion-heading>
+				<p>
+					<strong><span translate-cloak translate>DATASET_FIELD_METADATA_LICENSE</span></strong>
+					{{metadata.license|nvl:' -'}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>DATASET_FIELD_METADATA_DISCLAIMER</span></strong>
+					{{metadata.disclaimer|nvl:' -'}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>DATASET_FIELD_METADATA_COPYRIGHT</span></strong>
+					{{metadata.copyright|nvl:' -'}}
+				</p>	
+			</accordion-group>
+			<accordion-group is-open="status2.open" ng-if="metadata.stream">
+				<accordion-heading>
+					<span translate-cloak translate>VIRTUALENTITY</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status2.open, 'glyphicon-plus': !status2.open}"></i>
+				</accordion-heading>
+				<p>
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span></strong>
+					{{metadata.stream.smartobject.name|nvl:''}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CODE</span></strong>
+					{{metadata.stream.smartobject.code|nvl:''}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_DESCRIPTION</span></strong>
+					{{metadata.stream.smartobject.description|nvl:''}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_TYPE</span></strong>
+					{{metadata.stream.smartobject.type|nvl:''}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CATEGORY</span></strong>
+					{{metadata.stream.smartobject.category|nvl:''}}
+				</p>	
+				<p ng-show="metadata.stream.smartobject.latitude && metadata.stream.smartobject.longitude">
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION</span></strong>
+					[{{metadata.stream.smartobject.latitude}};{{metadata.stream.smartobject.longitude}}]
+				</p>	
+				<p ng-show="metadata.stream.smartobject.latitude && metadata.stream.smartobject.altitude">
+					<strong><span translate-cloak translate>VIRTUALENTITY_FIELD_ELEVATION</span></strong>
+					{{metadata.stream.smartobject.altitude|nvl:' -'}}
+				</p>	
+			</accordion-group>
+			<accordion-group is-open="status3.open" ng-show="metadata.stream">
+				<accordion-heading>
+					<span translate-cloak translate>STREAM</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status3.open, 'glyphicon-plus': !status3.open}"></i>
+				</accordion-heading>
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_NAME</span></strong>
+					{{metadata.stream.name|nvl:' -'}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_CODE</span></strong>
+					{{metadata.stream.code|nvl:' -'}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_FPS</span></strong>
+					{{metadata.stream.fps|nvl:' -'}}
+				</p>	
+			</accordion-group>
+			<accordion-group is-open="status4.open" ng-if="metadata.stream.twitter">
+				<accordion-heading>
+		 			<span translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWITTER_DATA</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status4.open, 'glyphicon-plus': !status4.open}"></i>
+				</accordion-heading>
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_TWT_QUERY</span></strong>
+					{{metadata.stream.twitter.twtQuery}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_TWT_LANG</span></strong>
+					{{metadata.stream.twitter.twtLang}}
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>MANAGEMENT_NEW_STREAM_GEO_COORDINATES</span></strong>
+					<span ng-show="stream.twtGeolocLat!=0 || stream.twtGeolocLon!=0">[{{metadata.stream.twitter.twtGeolocLat}},{{metadata.stream.twitter.twtGeolocLon}}]</span>
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_TWT_GEO_RADIUS</span></strong>
+					<span ng-show="stream.twtGeolocRadius!=0">{{metadata.stream.twitter.twtGeolocRadius}} {{metadata.stream.twitter.twtUnit}}</span>
+				</p>	
+				<p>
+					<strong><span translate-cloak translate>STREAM_FIELD_TWT_RATE</span></strong>
+					{{metadata.stream.twitter.twtRatePercentage}}
+				</p>	
+			</accordion-group>
+			<accordion-group is-open="status5.open">
+				<accordion-heading>
+					<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_COLUMNS</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status5.open, 'glyphicon-plus': !status5.open}"></i>
+				</accordion-heading>
+			
+				<p>
+					<div class='table-supercondensed-container'>
+						<table class="table table-supercondensed">
+							<thead>
+								<tr>
+									<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</th>
+									<th translate-cloak translate ng-if='metadata.dataset'>DATASET_FIELD_METADATA_FIELD_ALIAS</th>
+									<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_UNIT</th>
+									<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_DATATYPE</th>
+									<th translate-cloak translate ng-if='metadata.stream'>STREAM_FIELD_COMPONENTS_TOLERANCE</th>
+									<th translate-cloak translate ng-if='metadata.stream'>STREAM_FIELD_COMPONENTS_PHENOMENON</th>
+									<th translate-cloak translate ng-if='metadata.stream'>STREAM_FIELD_COMPONENTS_SINCE_VERSION</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="component in metadata.components">
+									<td>{{component.name}}</td>
+									<td ng-if='metadata.dataset'>{{component.alias}}</td>
+									<td>{{component.measureUnitCategory|nvl:' - '}}:{{component.measureUnit|nvl:' - '}}</td>
+									<td>{{component.datatype|nvl:' - '}}</td>
+									<td ng-if='metadata.stream'>{{component.tolerance|nvl:' - '}}</td>
+									<td ng-if='metadata.stream'>{{component.phenomenonCategory|nvl:' - '}}: {{component.phenomenon|nvl:' - '}}</td>
+									<td ng-if='metadata.stream'>{{component.sinceVersion|nvl:' - '}}</td>
+									
+							</tbody>
+						</table>
+					</div>
+				</p>
+			</accordion-group>
+			<accordion-group is-open="status6.open">
+				<accordion-heading>
+					<span translate-cloak translate>MANAGEMENT_VIEW_DATASET_DATA_URLS</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status6.open, 'glyphicon-plus': !status6.open}"></i>
+				</accordion-heading>
+				<p>
+					<strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_API_URL</span></strong><br/><br/>
+					<a ng-href="#/dataexplorer/detail/{{metadata.tenantCode}}/{{metadata.dataset.code}}" ><span translate-cloak translate>DATA_EXPLORER_DETAIL_BACK_TO_DATASET_CARD</span></a>
+				</p>	
+			</accordion-group>
+			<accordion-group is-open="status7.open" ng-if="metadata.dcat">
+				<accordion-heading>
+					<span translate-cloak translate>MANAGEMENT_NEW_DATASET_DCAT</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status7.open, 'glyphicon-plus': !status7.open}"></i>
+				</accordion-heading>
+				<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORNAME</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatCreatorName}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORTYPE</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatCreatorType}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORID</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatCreatorId}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatRightsHolderName}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERTYPE</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatRightsHolderType}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERID</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatRightsHolderId}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatNomeOrg}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span></strong></div>
+					<div class='col-sm-10'>{{metadata.dcat.dcatEmailOrg}}</div>
+				</div>	
+			</div>
+			</accordion-group>
+		</accordion>
+	</div>
+</div>
+

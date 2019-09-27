@@ -1,0 +1,122 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementVirtualentityListCtrl as virtualentitiesCtrl">
+	<div class='container' ng-cloak>
+		<!-- <h3><span translate-cloak translate>MANAGEMENT_VIRTUALENTITY_SUBTITLE</span></h3>-->
+		<div class='content table-toolbar table-toolbar-border'>
+			<div class='row'>
+				<div class="col-sm-12">
+					<a  href="#/management/newVirtualentity/{{tenantCode}}" class="btn btn-new" ng-disabled="!isAuthorized('management/smartobjects/update') || !isOwner()">
+						<span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate-cloak translate>MANAGEMENT_VIRTUALENTITY_LIST_NEW_VIRTUALENTITY</span>
+					</a>
+					<a href="javascript:void(0)" ng-click='editSo()' class="btn btn-edit" ng-disabled="!isAuthorized('management/smartobjects/update') || !isOwner() || selectedSo.length!=1" title="{{'MANAGEMENT_VIRTUALENTITY_LIST_EDIT_VIRTUALENTITY_BUTTON_HINT'|translate}}">
+						<span class="glyphicon glyphicon-pencil "></span>&nbsp;<span translate-cloak translate>MANAGEMENT_VIRTUALENTITY_LIST_EDIT_VIRTUALENTITY</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class='content management-filter-panel'>
+			<div class='clearfix'>
+				<form class="form form-horizontal-compact pull-right" role="form">   
+					<div class="form-group">
+						<input type="text" class="form-control col-xs-2" ng-model="codeFilter" placeholder="{{'VIRTUALENTITY_LIST_CODE_FILTER'|translate}}" />
+					</div>
+				</form>
+			</div>
+			<div class='text-right'>
+				<span class='text-right management-datasetList-total-label'>
+					<small><span translate translate-cloack>VIRTUALENTITY_LIST_COUNT_TOTAL_LABEL</span>: <strong>{{soList.length}}</strong></small>
+				</span>
+				<span class='text-right management-datasetList-total-label'>
+					<small><span translate translate-cloack>VIRTUALENTITY_LIST_COUNT_FILTERED_LABEL</span>: <strong>{{filteredSoList.length}}</strong></small>
+				</span>	
+			</div>
+	
+			<div class="table-responsive management-datasourceList-table">
+				<table class="table text-left">
+					<thead>
+						<tr>
+							<th>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'socode'; reverse=!reverse"><span translate-cloak translate>VIRTUALENTITY_FIELD_CODE</span> 
+								<span ng-show="predicate=='socode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='socode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'name'; reverse=!reverse"><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span> 
+								<span ng-show="predicate=='name' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='name' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'soType.description'; reverse=!reverse"><span translate-cloak translate>VIRTUALENTITY_FIELD_TYPE</span> 
+								<span ng-show="predicate=='soType.description' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='soType.description' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'creationdate'; reverse=!reverse"><span translate-cloak translate>VIRTUALENTITY_FIELD_CREATION_DATE</span> 
+								<span ng-show="predicate=='creationdate' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='creationdate' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-if="showLoading && !unexpectedError">
+							<td colspan='7' >
+								<div class='ajax-loading-container'>
+									<span class='ajax-loading-big'></span>
+									<h4>Loading...</h4>
+								</div>
+							</td>
+						</tr>
+						<tr ng-if="!showLoading && soList.length==0 && !unexpectedError">
+							<td colspan='7' >
+								<div class='alert alert-info'>
+									<span ng-bind-html="'UNEXPECTED_ERROR'|translate"></span> 
+								</div>
+							</td>
+						</tr>
+						<tr ng-if="unexpectedError">
+							<td colspan='7' >
+								<div class='alert alert-danger'>
+									<span ng-bind-html="'UNEXPECTED_ERROR'|translate"></span> 
+								</div>
+							</td>
+						</tr>
+						
+						
+						<tr ng-repeat="so in filteredSoList = ( soList | filter: searchCodeFilter | orderBy:predicate:reverse  )  |startFrom:(currentPage-1)*pageSize | limitTo:pageSize">
+							<!-- <td><input type="checkbox" name="selected" ng-checked="isSelected(so)"  ng-click="updateSelection($event, so)" ng-show="!isInternal(so)"/>-->
+							<td>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" ng-checked="isSelected(so)"  ng-click="updateSelection($event, so)" ng-enabled="!isInternal(so)">
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									</label>
+								</div>
+							</td>
+						
+							<td><a href="#/management/viewVirtualentity/{{tenant}}/{{so.socode}}">{{so.socode}}</a></td>
+							<td>{{so.name}}</td>
+							<td>{{so.soType.description}}</td>
+							<td>{{so.creationdate|smartobject_date_format}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div  class='text-center'>
+					<pagination boundary-links="true" total-items="filteredSoList.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+						next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+					></pagination>
+	
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>

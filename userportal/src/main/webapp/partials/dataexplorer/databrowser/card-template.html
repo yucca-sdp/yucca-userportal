@@ -1,0 +1,53 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<a ng-href='#/{{card.detailPath}}' class='browsedata-metadata-box-link'>
+	<div class="browsedata-metadata-box" ng-click="openDetail(card)">
+		<header class='clearfix'>
+			<div class='browsedata-metadata-box-title-panel'>
+				<div><small translate-cloak translate>{{card['type']}}</small></div>
+				<div><strong>{{card.name}}</strong></div>
+			</div>
+			<div class='browsedata-metadata-box-type-panel'>
+				<img ng-src="/userportal/img/icons/{{card['type']}}_icon_white.png" alt="{{card['type']|translate}}">
+			</div>
+		</header>
+		<div class='box-content'>
+			<section>
+				<strong>{{card['name']}}</strong>
+				<p>{{card['description']}}</p>
+			</section>
+			<section ng-show="card.stream.smartobject">
+				<div><strong translate>VIRTUALENTITY</strong></div>
+				<p>{{card.stream.smartobject.code}}<br>{{card.stream.smartobject.name}}<br>{{card.stream.smartobject.description}}</p>
+			</section>
+			<section>
+				<i class="icon-{{card['domainCode']}} domain-icon" title="{{card['domainCode']|translate}}"></i> <span translate-cloak translate>{{card['domainCode']}}</span>
+			</section>
+			<section>
+				<div><strong translate>TENANT</strong></div>
+				<p>{{card.tenantCode}}</p>
+			</section>
+			<section><span ng-repeat="tag in card['tags']" class=" tags-list"><span ng-bind-html="tag|translate"></span> </span></section>
+			<section ng-show="card['license']!=null && card.copyright!=''">
+				<div><strong translate>STREAM_FIELD_LICENCE</strong></div>
+				<p>{{card["license"]}}</p>
+			</section>
+			<!-- <section ng-show="card['copyright']!=null && card.copyright!=''">
+				<div><strong translate>STREAM_FIELD_COPYRIGHT</strong></div>
+				<p>&copy; {{card["copyright"]}}</p>
+			</section> -->
+			<section ng-show="card['disclaimer']!=null && disclaimer!=''">
+				<div><strong translate>STREAM_FIELD_DISCLAIMER</strong></div>
+				<p>{{card["disclaimer"]}}</p>
+			</section>
+		</div>
+		<footer>
+			<img ng-src="{{card.icon}}" alt="logo dataset"class="" >
+		</footer>
+	</div>
+</a>
+
+

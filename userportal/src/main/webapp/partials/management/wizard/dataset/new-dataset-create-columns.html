@@ -1,0 +1,62 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-cloak class='management-new-dataset-columns-panel'>
+	<div class="alert alert-danger management-upload-column-error-panel " ng-show='saveError'>
+		<div>
+			<strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_ERROR_IMPORT_COLUMN</strong> &nbsp;
+			<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_ERROR_IMPORT_COLUMN_NUM_ERR</span>: <strong>{{saveErrors.length}}</strong>
+			<ul><li ng-repeat="saveError in saveErrors "><span title="{{saveError.detail}}">{{saveError.message}}</span></li></ul>
+			
+		</div>
+	</div>
+	<datasource-components datasource='dataset' preview='preview' ng-if='datasetReady' action='createDatasourceDefineColumn' hide-title="true"></datasource-components>
+	<div ng-show="choosenDatasetType=='binary_no_upload'">
+		<p>&nbsp;</p>
+		<div class='row text-left'>
+			<div class="col-lg-12 col-md-12 ">
+				<h4 translate-cloak translate>MANAGEMENT_NEW_DATASET_BINARY_TITLE</h4>
+				<p translate-cloak translate>MANAGEMENT_NEW_DATASET_BINARY_INTRO</p>
+			</div>
+		</div>
+		<div class='upadte-components-panel'>
+			<div class='row row-head'>
+				<div class="col-md-2 ">&num;</div>
+				<div class="col-md-2  form-group"><span translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</span></div>
+				<div class="col-md-2 "><span translate-cloak translate>DATASET_FIELD_METADATA_FIELD_ALIAS</span></div>
+				<div class="col-md-1 ">&nbsp;</div>
+			</div>
+			<div  class='row' ng-repeat="column in previewBinaries track by $index">
+				<div class="col-md-2 "><span>{{column.sourceBinary}}</span></div>
+				<div class="col-md-2  form-group" ><input class="input-sm form-control" type="text" ng-model="column.name" ></div>
+				<div class="col-md-2 "><input class="input-sm form-control" type="text" ng-model="column.alias"  ></div>
+				<div class="col-md-1 ">
+			    	<a class="btn   btn-sm btn-remove"  href ng-click='removeBinaryDefinition($index)' title="{{'MANAGEMENT_NEW_DATASET_REMOVE_BINARY_DEFINITION'|translate}}" >
+						<i class='glyphicon glyphicon-trash'></i><span translate>REMOVE</span> 
+					</a>
+				</div>
+			</div>
+			<div  class='row' >
+				<div class="col-md-2 "><small><strong translate>MANAGEMENT_EDIT_DATASOURCE_NEW_BINARY</strong></small></div>
+				<div class="col-md-2  form-group has-feedback" >
+					<input class="input-sm form-control" type="text" ng-model="newBinaryDefinition.name"  title="{{'MANAGEMENT_NEW_DATASET_ADD_BINARY_INPUT_NAME_HINT'|translate}}">
+					<i class="fa fa-lightbulb-o form-control-feedback input-icon-hint" title="{{'MANAGEMENT_NEW_DATASET_ADD_BINARY_INPUT_NAME_HINT'|translate}}"></i>
+				</div>
+				<div class="col-md-2 "><input class="input-sm form-control" type="text" ng-model="newBinaryDefinition.alias" ></div>
+				<div class="col-md-1 ">
+			    	<a class="btn  btn-default btn-sm btn-add"  href ng-click='addBinaryDefinition()' title="{{'MANAGEMENT_NEW_DATASET_ADD_BINARY_DEFINITION'|translate}}" >
+					 	<i class='glyphicon glyphicon-plus'></i> <span translate>ADD</span> 
+					</a>
+				</div>
+			</div>
+			<div class="alert alert-danger text-left" ng-show='insertBinaryErrors.length>0'>
+				<strong>{{updateError.error_message}}</strong>
+				<ul><li ng-repeat="insertError in insertBinaryErrors "><span translate-cloak translate>{{insertError}}</span></li></ul>
+			</div>
+		</div>
+	</div>
+	
+	
+</div>

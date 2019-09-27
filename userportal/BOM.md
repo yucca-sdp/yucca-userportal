@@ -1,0 +1,50 @@
+name,version,license
+@plesk/ui-library,0.0.68,Apache-2.0
+angular-cookies,1.3.13,MIT
+angular-deckgrid,0.5.0,MIT
+angular-local-storage,0.1.5,MIT
+angular-ui-codemirror,0.1.7,MIT
+anthtrigger,0.1.1,MIT
+apache-collections:commons-collections,3.1,Not Declared
+apache-httpclient:commons-httpclient,3.1,Apache-2.0
+apache-lang:commons-lang,2.1,Not Declared
+apache-velocity:velocity,1.5,Not Declared
+apim-ui,5.0.232,Not Declared
+ca.juliusdavies:not-yet-commons-ssl,0.3.9,Apache-2.0
+code-mirror,3.22.0,MIT
+codemirror,4.8.0,MIT
+com.github.stephenc.jcip:jcip-annotations,1.0-1,Apache-2.0
+com.google.code.gson:gson,2.3,Apache-2.0
+com.nimbusds:nimbus-jose-jwt,4.23,Apache-2.0
+commons-codec:commons-codec,1.9,Apache-2.0
+commons-fileupload:commons-fileupload,1.3.1,Apache-2.0
+commons-io:commons-io,2.6,Apache-2.0
+commons-logging:commons-logging,1.2,Apache-2.0
+dom4j:dom4j,1.6.1,BSD
+jaxen:jaxen,1.1.1,Non-Standard
+joda-time:joda-time,1.6.2,Apache-2.0
+net.minidev:json-smart,1.3.1,Apache-2.0
+net.sourceforge.jexcelapi:jxl,2.6.12,LGPL
+ng-file-upload,10.0.3,MIT
+org.apache.geronimo.specs:geronimo-activation_1.1_spec,1.0.2,Apache-2.0
+org.apache.geronimo.specs:geronimo-javamail_1.4_spec,1.6,Apache-2.0
+org.apache.geronimo.specs:geronimo-stax-api_1.0_spec,1.0.1,Apache-2.0
+org.apache.httpcomponents:httpclient,4.5.3,Apache-2.0
+org.apache.httpcomponents:httpcore,4.4.6,Apache-2.0
+org.apache.poi:poi,3.14,Apache-2.0
+org.apache.poi:poi-ooxml,3.9,Apache-2.0
+org.apache.poi:poi-ooxml-schemas,3.9,Apache-2.0
+org.apache.santuario:xmlsec,1.4.5,Apache-2.0
+org.apache.ws.commons.axiom:axiom-api,1.2.12,Apache-2.0
+org.apache.ws.commons.axiom:axiom-impl,1.2.12,Apache-2.0
+org.apache.xmlbeans:xmlbeans,2.3.0,Apache-2.0
+org.bouncycastle:bcprov-jdk15,1.46,MIT
+org.codehaus.woodstox:wstx-asl,3.2.9,Apache-2.0
+org.opensaml:opensaml,2.4.1,Apache-2.0
+org.opensaml:openws,1.4.4,Apache-2.0
+org.opensaml:xmltooling,1.3.4,Apache-2.0
+org.twitter4j:twitter4j-core,4.0.7,Apache-2.0
+org.webjars.bower:angular-deckgrid,0.5.0,MIT
+org.webjars:angular-file-upload,1.6.12,MIT
+stax:stax-api,1.0.1,Apache-2.0
+xml-resolver:xml-resolver,1.2,Apache-2.0

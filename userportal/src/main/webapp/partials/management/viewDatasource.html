@@ -1,0 +1,488 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementDetailCtrl as datasourceCtrl" ng-cloak>
+	<div class='container'>
+		<alert-panel content='admin_response'></alert-panel>
+		<datasource-intro datasource='datasource' ng-if='datasource'></datasource-intro>
+	</div>		
+	<accordion close-others="false">
+		<accordion-group is-open="!status0.open">
+		 	<accordion-heading>
+				<div class='container'>
+	 				<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_GENERAL_INFO</span>
+	 				<i class="pull-right glyphicon hide" ng-class="{'glyphicon-minus': status0.open, 'glyphicon-plus': !status0.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class='row'>
+					<div class="col-sm-10">
+						<div class="row card-row" ng-hide="stream!=null">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DESCRIPTION</span></strong></div>
+							<div class='col-sm-10 multiline-panel' >{{dataset.description}}</div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>MANAGEMENT_VIEW_DATASET_UNPUBLISHED</span></strong></div>
+							<div class='col-sm-10'>
+								<span ng-if="!datasource.unpublished" translate>YES</span>
+								<span ng-if="datasource.unpublished" translate>NO</span>
+							</div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</span></strong></div>
+							<div class='col-sm-6'><span>{{datasource.domain|translateDecode:currentLang()}}</span></div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_COD_SUB_DATADOMAIN</span></strong></div>
+							<div class='col-sm-6'><span >{{datasource.subdomain|translateDecode:currentLang()}}</span></div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_DATASETGROUPS</span></strong></div>
+							<div class='col-sm-6'>
+								<ul class="list-inline">
+									<li ng-repeat="group in datasource.groups"><span class="label label-datasourcegroup label-custom" style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}}' >{{group.name}}</span></li>
+								</ul>
+							</div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_TAGS</span></strong></div>
+							<div class='col-sm-6'>
+								<ul class="list-inline">
+									<li ng-repeat="tag in datasource.tags"><span class="label label-tag label-custom"><span ng-bind-html="tag|translateDecode:currentLang()"></span></span></li>
+								</ul>
+							</div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_EXTERNAL_REFERENCE</span></strong></div>
+							<div class='col-sm-10'>{{datasource.externalreference|nvl:' -'}}</div>
+						</div>	
+						<div class="row card-row">
+							<div class="col-sm-2 card-label"><strong><span ng-bind-html="'DATASET_FIELD_METADATA_VISIBILITY'|translate"></span></strong></div>
+							<div class='col-sm-2'>{{datasource.visibility}}</div>
+							<div class='col-sm-2 text-right'card-label" ng-show="datasource.visibility=='private'"><strong><span translate-cloak translate>DATASET_FIELD_TENANTSSHARED_WITH</span></strong></div>
+							<div class='col-sm-6'>
+								<ul class="list-inline">
+									<li  ng-repeat="tenantSharing in datasource.sharingTenants">
+										<span  class="label label-tag label-custom">{{tenantSharing.name}}</span>
+									</li> &nbsp;
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2 text-right">
+						<img ng-src="{{datasource.icon}}" alt="logo dataset" class='upload-icon-preview-img' ng-if='datasource.icon' >
+						<img ng-src="{{DEFAULT_DATASET_ICON}}" alt="logo dataset" class='upload-icon-preview-img' ng-if='!datasource.icon' >
+					</div>
+				</div>	
+			</div>
+		</accordion-group>
+		<accordion-group is-open="statusOpendata.open" ng-show="datasource.opendata.isOpenData">
+		 	<accordion-heading>
+				<div class='container'>
+		 			<span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA'|translate"></span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': statusOpendata.open.open, 'glyphicon-plus': !statusOpendata.open.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA_AUTHOR'|translate"></span></strong></div>
+					<div class='col-sm-10'>{{datasource.opendata.opendataauthor}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_LANG</span></strong></div>
+					<div class='col-sm-10'>{{datasource.opendata.opendatalanguage}} - {{datasource.opendata.opendatalanguage|translate}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_DATE</span></strong></div>
+					<div class='col-sm-10'>{{datasource.opendata.opendataupdatedate|date}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_FREQUENCY</span></strong></div>
+					<div class='col-sm-10'>{{'OPENDATA_UPDATE_FREQUENCY_'+datasource.opendata.opendataupdatefrequency|translate}}</div>
+				</div>
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status1.open">
+		 	<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_LEGAL_INFO</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status1.open, 'glyphicon-plus': !status1.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_LICENSE</span></strong></div>
+					<div class='col-sm-10'>{{datasource.license.licensecode|nvl:' -'}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DISCLAIMER</span></strong></div>
+					<div class='col-sm-10'>{{datasource.disclaimer|nvl:' -'}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_COPYRIGHT</span></strong></div>
+					<div class='col-sm-10'>{{datasource.copyright|nvl:' -'}}</div>
+				</div>	
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status2.open" ng-show="stream!=null">
+			<accordion-heading>
+				<div class='container'>
+					<span translate-cloak translate>VIRTUALENTITY</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status2.open, 'glyphicon-plus': !status2.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span></strong></div>
+					<div class='col-sm-10'>{{stream.smartobject.name|nvl:''}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CODE</span></strong></div>
+					<div class='col-sm-10'>{{stream.smartobject.socode|nvl:''}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_DESCRIPTION</span></strong></div>
+					<div class='col-sm-10'>{{stream.smartobject.description|nvl:''}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_TYPE</span></strong></div>
+					<div class='col-sm-10'>{{stream.smartobject.soType.sotypecode|nvl:''}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CATEGORY</span></strong></div>
+					<div class='col-sm-10'>{{stream.smartobject.soCategory.socategorycode|nvl:''}}</div>
+				</div>	
+				<div class="row card-row"  ng-if="stream.smartobject.position!=null">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION</span></strong></div>
+					<div class='col-sm-4'>[{{stream.smartobject.position.lat}};{{stream.smartobject.position.lon}}]</div>
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_ELEVATION</span></strong></div>
+					<div class='col-sm-4'>{{stream.smartobject.position.elevation|nvl:' -'}}</div>
+				</div>	
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status3.open" ng-show="stream!=null">
+			<accordion-heading>
+				<div class='container'>
+					<span translate-cloak translate>STREAM</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status3.open, 'glyphicon-plus': !status3.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_NAME</span></strong></div>
+					<div class='col-sm-10'>{{stream.streamname|nvl:' -'}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_CODE</span></strong></div>
+					<div class='col-sm-10'>{{stream.streamcode|nvl:' -'}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_FPS</span></strong></div>
+					<div class='col-sm-10'>{{stream.fps|nvl:' -'}}</div>
+				</div>	
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status4.open" ng-show="stream.smartobject.soType.idSoType == VIRTUALENTITY_TYPE_TWITTER_ID">
+			<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWITTER_DATA</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status4.open, 'glyphicon-plus': !status4.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_QUERY</span></strong></div>
+					<div class='col-sm-6'>{{stream.twitterInfo.twtquery}}</div>
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_LANG</span></strong></div>
+					<div class='col-sm-2'>{{stream.twitterInfo.twtlang}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>MANAGEMENT_NEW_STREAM_GEO_COORDINATES</span></strong></div>
+					<div class='col-sm-6'><span ng-show="stream.twitterInfo.twtgeoloclat!=0 || stream.twitterInfo.twtgeoloclon!=0">{{stream.twitterInfo.twtgeoloclat}},{{stream.twitterInfo.twtgeoloclon}}</span></div>
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_GEO_RADIUS</span></strong></div>
+					<div class='col-sm-2'><span ng-show="stream.twitterInfo.twtgeolocradius!=0">{{stream.twitterInfo.twtgeolocradius}} {{stream.twitterInfo.twtgeolocunit}}</span></div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_RATE</span></strong></div>
+					<div class='col-sm-10'>{{stream.twitterInfo.twtratepercentage}}</div>
+				</div>	
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status6.open">
+			<accordion-heading>
+				<div class='container'>
+					<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_COLUMNS</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status6.open, 'glyphicon-plus': !status6.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+		
+				<div class="col-sm-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</th>
+								<th translate-cloak translate ng-if='!isStream()'>DATASET_FIELD_METADATA_FIELD_ALIAS</th>
+								<th translate-cloak translate ><span ng-bind-html="'STREAM_FIELD_COMPONENTS_UNIT_OF_MEASUREMENT'|translate"></span></th>
+								<th translate-cloak translate ng-if='isStream()'>STREAM_FIELD_COMPONENTS_TOLERANCE</th>
+								<th translate-cloak translate ng-if='isStream()'>STREAM_FIELD_COMPONENTS_PHENOMENON</th>
+								<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_DATATYPE</th>
+								<th translate-cloak translate ng-if='!isStream()'>DATASET_FIELD_METADATA_FIELD_IS_KEY</th>
+								<th translate-cloak translate>STREAM_FIELD_COMPONENTS_SINCE_VERSION</th>
+								<th translate-cloak translate title='{{"STREAM_FIELD_COMPONENTS_REQUIRED_HINT"|translate}}'>STREAM_FIELD_COMPONENTS_REQUIRED</th>
+								<th translate-cloak translate title='{{"STREAM_FIELD_COMPONENTS_GROUPABLE_HINT"|translate}}'>STREAM_FIELD_COMPONENTS_GROUPABLE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="component in datasource.components">
+								<td>{{component.name}}</td>
+								<td ng-if='!isStream()'>{{component.alias}}</td>
+								<td ng-if="isDateTimeField(component)">{{component.dateTimeFormat|nvl:' - '}}</td>
+								<td ng-if="!isDateTimeField(component) && component.measureUnit.measureunit">{{component.measureUnit.measureunitcategory}}: {{component.measureUnit.measureunit}}</td>
+								<td ng-if="!isDateTimeField(component) && !component.measureUnit.measureunit">-</td>
+								<td ng-if='isStream()'>{{component.tolerance}}</td>
+								<td ng-if='isStream()'>{{component.phenomenon.phenomenoncetegory}}: {{component.phenomenon.phenomenonname}}</td>
+								<td>{{component.dataType.description}}</td>
+								<td ng-if='!isStream()'>{{field.iskey|booleanToString|translate}}</td>
+								<td>{{component.sinceVersion}}</td>
+								<td>{{component.required|booleanToString|translate}}</td>
+								<td>{{component.isgroupable|booleanToString|translate}}</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status7.open" ng-if="datasource.unpublished==-1">
+			<accordion-heading>
+				<div class='container'>
+					<span translate-cloak translate>MANAGEMENT_VIEW_DATASET_DATA_URLS</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status7.open, 'glyphicon-plus': !status7.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-10"><strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_DATA_URLS</span></strong></div>
+					</div>				
+					<div class="row card-row">
+					<!-- <div class='col-sm-10'><a ng-href="#/dataexplorer/dataset/{{dataset.configData.tenantCode}}/{{dataset.datasetCode}}"  translate-cloak translate>MANAGEMENT_VIEW_DATASET_GO_TO_DATASET_CARD</a></div> -->
+					<div class="col-sm-11 well well-small api_urls" style="margin-left: 10px">
+						<div class='col-sm-10'><a href="http://{{apiMetdataUrl}}{{topic}}/" target="_blank" class='management-dataset-download-link'>http://{{apiMetdataUrl}}{{topic}}/</a></div>
+						<div class='col-sm-10'><a href="https://{{apiMetdataSecureUrl}}{{topic}}/" target="_blank" class='management-dataset-download-link'>https://{{apiMetdataSecureUrl}}{{topic}}/</a></div>
+					</div>	
+					
+				</div>
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status8.open" ng-if="datasource.unpublished==0">
+			<accordion-heading>
+				<div class='container'>
+					<span translate-cloak translate>DCAT</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status8.open, 'glyphicon-plus': !status8.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatrightsholdername}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERTYPE</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatrightsholdertype}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERID</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatrightsholderid}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORNAME</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatcreatorname}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORTYPE</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatcreatortype}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORID</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatcreatorid}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatnomeorg}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span></strong></div>
+					<div class='col-sm-10'>{{datasource.dcat.dcatemailorg}}</div>
+				</div>	
+			</div>
+		</accordion-group>
+	</accordion>
+	<!--  <h4><span translate-cloak translate>MANAGEMENT_VIEW_DATASET_DATA_URLS</span></h4>
+	<strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_API_URL</span></strong>
+	<p><a href="{{apiMetdataUrl}}" target="_blank" class='management-dataset-download-link'>{{apiMetdataUrl}}</a></p>-->
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="row card-toolbar">
+					<a  href='#/dataexplorer/{{tenant}}/{{dataset.datasetcode}}' class="btn btn-edit" ng-if='canExploreData()'>
+						<i class="fa fa-table" aria-hidden="true"></i> {{'MANAGEMENT_VIEW_DATASET_DATA_EXPLORER_BUTTON'|translate}}
+					</a>
+					<a  href='#/dashboard/stream/{{tenant}}/{{stream.smartobject.socode}}/{{stream.streamcode}}' class="btn btn-edit" ng-if="isStream()">
+						<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{'MANAGEMENT_VIEW_STREAM_DASHBOARD_BUTTON'|translate}}
+					</a>
+					<a  href ng-click='cloneDatasource()' class="btn btn-edit">
+						<i class="fa fa-files-o" ></i> <span translate-cloak translate>MANAGEMENT_VIEW_DATASET_CLONE_BUTTON</span>
+					</a>
+					<a  href='#/management/manageStageArea/dataset/{{tenant}}/{{dataset.datasetcode}}/{{dataset.iddataset}}' class="btn btn-edit" ng-if="isOwner()  && canManageStageArea()">
+						<i class="hive-icon" ></i> <span class='hive-btn-text' translate-cloak translate>MANAGEMENT_VIEW_DATASET_STAGE_AREA</span>
+					</a> 
+ 					<a  ng-href='{{editDatasourceUrl()}}' class="btn btn-edit" ng-if="isOwner() && canEdit() && isAuthorized('management/datasets/update')">
+						<span class="glyphicon glyphicon-pencil "></span> {{'MANAGEMENT_VIEW_DATASET_EDIT_BUTTON'|translate}}
+					</a>
+					<a  href='#/management/uploadDataset/dataset/{{tenant}}/{{dataset.datasetcode}}/{{dataset.iddataset}}' class="btn  btn-new" ng-if="isOwner()  && canAddData() && isAuthorized('management/datasets/upload')">
+						<span class="glyphicon glyphicon-cloud-upload "></span> {{'MANAGEMENT_VIEW_DATASET_ADD_DATA_BUTTON'|translate}}
+					</a>
+					<div class="btn-group" dropdown  ng-if="isAuthorized('management/datasets/download') && canDownload()" >
+						<a  href='{{downloadCsvUrl}}{{decimalSeparator}}' class="btn  btn-download-dataset" >
+							<span class="glyphicon glyphicon-cloud-download "></span> {{'MANAGEMENT_VIEW_DATASET_DOWNLOAD_BUTTON'|translate}}
+						</a>
+						<button type="button" class="btn dropdown-toggle btn-download-dataset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  dropdown-toggle>
+						    <span class="caret"></span>
+						    <span class="sr-only">Options</span>
+						 </button>
+						 <ul class="dropdown-menu text-left" >
+						 	<li  class="dropdown-header"translate>DECIMAL_SEPARATOR_DOWNLOAD_DIALOG_INTRO</li>
+						 	<li>
+							 	<div class="radio">
+									<label>
+										<input type="radio" name="decimalSeparator" value="DOT" ng-model="decimalSeparator" '>
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										<span translate-cloak translate>DECIMAL_SEPARATOR_DOT</span>
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="radio">
+									<label>
+										<input type="radio" name="decimalSeparator" value="COMMA" ng-model="decimalSeparator" '>
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										<span translate-cloak translate>DECIMAL_SEPARATOR_COMMA</span>
+									</label>
+								</div>
+							</li>
+						 </ul>
+  					</div>
+	   				<a href ng-click='openDeleteDataDatasetModal()' class="btn btn-delete" ng-disabled="!isAuthorized('management/datasets/update') || !isOwner() || !canDelete()" >
+						<span class="glyphicon glyphicon-trash "></span>&nbsp;<span translate-cloak translate>MANAGEMENT_DATASET_LIST_DELETE_DATA_DATASET</span>
+					</a>
+	   				<a href ng-click='openUninstalDatasetModal()' class="btn btn-delete" ng-if="isAuthorized('management/datasets/update') && isOwner()  && canUnistall() && !isStream()" >
+						<span class="glyphicon glyphicon-remove "></span>&nbsp;<span translate-cloak translate>MANAGEMENT_DATASET_LIST_DELETE_DATASET</span>
+					</a>
+					<a  href class="btn  btn-uninstall" ng-if="isOwner() && canUnistall() && isAuthorized('management/streams/req_disinst') && isStream()" ng-click='requestUnistallation()'>
+						<span class="glyphicon glyphicon-open "></span> <span translate-cloak translate>MANAGEMENT_VIEW_STREAM_UNINSTALL_BUTTON</span>
+					</a>
+					<a  href class="btn  btn-new" ng-if="isOwner() && canCreateNewVersion() && isAuthorized('management/streams/update')" ng-click='createNewVersion()'>
+						<span class="glyphicon glyphicon-export "></span> <span translate-cloak translate>MANAGEMENT_VIEW_STREAM_NEWVERSION_BUTTON</span>
+					</a>
+					<a  href class="btn  btn-install" ng-if="isOwner() && canInstall() && isAuthorized('management/streams/req_inst')" ng-click='requestInstallation()'>
+						<span class="glyphicon glyphicon-save "></span> <span translate-cloak translate>MANAGEMENT_VIEW_STREAM_INSTALL_BUTTON</span>
+					</a>
+							
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div> <!-- ng-show="ModalDemoCtrl" -->
+  <!-- <script type="text/ng-template" id="datasetModalContent.html">
+		<div id="datasetModalContent">
+        	<div class="modal-header">
+            	<h3 class="modal-title">{{'MANAGEMENT_DATASET_MODAL_DELETE_TITLE'|translate}}</h3>
+           	 	<h4 class="modal-title" ng-show="datasetModalView.dataset.todo==true">{{'MANAGEMENT_DATASET_MODAL_DELETE_SUBTITLE'|translate}}</h4>
+        	</div>
+        	<div class="modal-body" ng-show="datasetModalView.dataset.todo==true">
+            	<div>
+                	<b>{{'DATASET_FIELD_CONFIGDATA_CODE'|translate}}</b>: {{datasetModalView.dataset.datasetCode}} <br />
+					<b>{{'DATASET_FIELD_CONFIGDATA_TENANT'|translate}}</b>: {{datasetModalView.dataset.configData.tenantCode}} <br />
+					<b>{{'DATASET_FIELD_CONFIGDATA_TYPE'|translate}}</b>: {{datasetModalView.dataset.configData.type}} <br />
+					<b>{{'DATASET_FIELD_CONFIGDATA_SUBTYPE'|translate}}</b>: {{datasetModalView.dataset.configData.subtype}} <br />
+					<b>{{'DATASET_FIELD_METADATA_NAME'|translate}}</b>: {{datasetModalView.dataset.info.datasetName}}
+					<b>{{'DATASET_FIELD_METADATA_DESCRIPTION'|translate}}</b>: {{datasetModalView.dataset.info.description}}
+            	</div>
+  	    	</div>
+        	<div class="modal-body" ng-show="datasetModalView.dataset.okdo==true">
+           	 	<div>{{'MANAGEMENT_DATASET_MODAL_DELETE_OKMSG'|translate}}</div>
+        	</div>
+        	<div class="modal-body" ng-show="datasetModalView.dataset.kodo==true">
+            	<div>{{'MANAGEMENT_DATASET_MODAL_DELETE_KOMSG'|translate}}</div>
+        	</div>
+        	<div class="modal-footer" ng-show="datasetModalView.dataset.todo==true">
+            	<button class="btn btn-primary" type="button" ng-click="deleteDataset()">SI</button>
+            	<button class="btn btn-warning" type="button" ng-click="cancel()">NO</button>
+        	</div>
+        	<div class="modal-footer" ng-show="datasetModalView.dataset.okdo==true">
+            	<button class="btn btn-primary" type="button" ng-click="cancel()">chiudi</button>
+        	</div>
+        	<div class="modal-footer" ng-show="datasetModalView.dataset.kodo==true">
+            	<button class="btn btn-primary" type="button" ng-click="cancel()">chiudi</button>
+        	</div>
+		</div>
+    </script> -->
+   	<!-- Modal -->
+   	<script type="text/ng-template" id="deleteDataDatasetModal.html">
+			<div class='modal-header'>
+       	 		<h3 class='modal-title'>{{'MANAGEMENT_DATASET_MODAL_DELETE_TITLE'|translate}}</h3>
+	  		</div>
+   			<div id="changeQueue" class='modal-body'>
+				<div class='inline-alert' ng-if ="ds.sharingTenants.length > 0">
+				    <span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    <span translate = 'MANAGEMENT_DATASET_MODAL_SHARING_TENANTS_WARNING'>/span>
+				</div>	
+				<div class='inline-alert' ng-if ="ds.dataset.dbhivetable != null">
+				    <span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    <span translate = 'MANAGEMENT_DATASET_MODAL_HIVE_TABLE_WARNING'></span>
+				</div>	
+				<div class="panel panel-default">
+					<span translate='MANAGEMENT_DATASET_MODAL_DELETE_SUBTITLE'></span> <strong>{{ds.dataset.datasetname}}?</strong>
+    			</div>
+				<alert-panel content='admin_response'></alert-panel>
+   			</div>
+			<div class="modal-footer" ng-if="update.loading">
+				<div class='text-right' translate>LOADING</div>
+			</div>
+			<div class="modal-footer" ng-if="!update.loading">
+	 			<button class="btn " ng-click="cancel()" translate>CLOSE</button>
+	 			<button type="submit" class="btn btn-default" ng-click="ok()" translate ng-if='showDeleteButton'>OK</button>
+    		</div>
+	</script>
+	<script type="text/ng-template" id="unistallDatasetModal.html">
+			<div class='modal-header'>
+       	 		<h3 class='modal-title'>{{'MANAGEMENT_DATASET_LIST_DELETE_DATASET'|translate}}</h3>
+	  		</div>
+   			<div id="changeQueue" class='modal-body'>
+				<div class='inline-alert' ng-if ="ds.sharingTenants.length > 0">
+				    <span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				   <span translate = 'MANAGEMENT_DATASET_MODAL_SHARING_TENANTS_WARNING'></span>
+				</div>	
+				<div class='inline-alert' ng-if ="ds.dataset.dbhivetable != null">
+				    <span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    <span translate = 'MANAGEMENT_DATASET_MODAL_HIVE_TABLE_WARNING'></span>
+				</div>
+				<div class="panel panel-default">
+					<span translate='MANAGEMENT_DATASET_CONFIRM_DELETE'></span> <strong>{{ds.dataset.datasetname}}?</strong>
+    			</div>
+				<alert-panel content='admin_response'></alert-panel>
+   			</div>
+			<div class="modal-footer" ng-if="update.loading">
+				<div class='text-right' translate>LOADING</div>
+			</div>
+			<div class="modal-footer" ng-if="!update.loading && admin_response.type != 'success'">
+	 			<button class="btn " ng-click="cancel()" translate>CANCEL</button>
+	 			<button type="submit" class="btn btn-default" ng-click="ok()" translate>OK</button>
+    		</div>
+			<div class="modal-footer" ng-if="!update.loading && admin_response.type == 'success'">
+	 			<button class="btn " ng-click="close()" translate>CLOSE</button>
+    		</div>
+	</script>
+</div>

@@ -1,0 +1,80 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_TITLE</span> - <span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_METADATA_SUBTITLE</span></h3></div>
+	<div class='pull-right'><h3><small>Step 5/7</small></h3></div>
+</div>
+<div class='row'>
+	<div class='col-sm-7'>
+		<form class="form-horizontal" role="form" name="metadataDatasetForm" ng-cloak>
+			<datasource-main-info datasource='defaultMetadata' operation='importDatabase'  ng-if='datasetReady'></datasource-main-info>
+			<datasource-detail-info datasource='defaultMetadata' ng-if='datasetReady'></datasource-detail-info>
+			<datasource-sharing datasource='defaultMetadata' ng-if='datasetReady'></datasource-sharing>
+			<datasource-legal-info datasource='defaultMetadata' ng-if='datasetReady'></datasource-legal-info>
+			<datasource-dcat datasource='defaultMetadata' ng-if='datasetReady'></datasource-dcat>
+			
+			<div class="row">
+				<div class=" col-sm-12 form-toolbar">
+					<a ng-click='goToRequestor()' class="btn " translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_PREV</a>
+					<a ng-click='goToCustomize()' class="btn btn-wizard-next" ng-disabled="!isOwner() || metadataDatasetForm.$invalid || checkTag(defaultMetadata)" translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_NEXT</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-sm-5 panel-hint">
+		<div class='panel-hint-content'>
+			<h2><span class='icon-hint'><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>&nbsp;<span translate>MANAGEMENT_PANEL_METADATA_HINT_TITLE</span></h2>
+			<ul class='fa-ul'>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_IMPORT_DATABASE_STEP_METADATA_INTRO'|translate"></span></li>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_START_NAME_HINT'|translate"></span>  </li>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_DOMAIN_SUBDOMAIN_HINT'|translate"></span>  </li>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_UNPUBLISHED_FLAG_HINT'|translate"></span>  </li>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_USE_MULTIDOMAIN_FLAG_HINT'|translate"></span>  </li>
+				<li class='hint-item'>
+					<i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i>
+					<strong class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_METADATA_MANDATORY_HINT'|translate"></strong>
+					<ul class='fa-ul'>
+						<!-- li >
+							<i class='fa fa-square-o' ng-if='defaultMetadata.info.dataDomain==null'></i>
+							<span class='text-success'><i class='fa fa-check-square-o ' ng-if='defaultMetadata.info.dataDomain!=null'></i></span>
+							<span translate>DATASET_FIELD_METADATA_DATADOMAIN</span>
+						</li -->
+						<li >
+							<i class='fa fa-square-o' ng-if='defaultMetadata.idSubdomain==null'></i>
+							<span class='text-success'><i class='fa fa-check-square-o ' ng-if='defaultMetadata.idSubdomain!=null'></i></span>
+							<span translate>DATASET_FIELD_METADATA_DOMAIN_SUBDOMAIN</span>
+						</li>
+						<li >
+							<i class='fa fa-square-o' ng-if='checkTag(defaultMetadata)'></i>
+							<span class='text-success'><i class='fa fa-check-square-o ' ng-if='!checkTag(defaultMetadata)'></i></span>
+							<span translate>MANAGEMENT_DATASET_MATADATA_TAG_HINT</span>
+						</li>
+						
+						<li ng-if='!defaultMetadata.info.unpublished'>
+							<strong translate>MANAGEMENT_DATASET_MATADATA_DCAT_HINT</strong>
+						</li>
+						<li ng-if='!defaultMetadata.info.unpublished'>
+							<i class='fa fa-square-o' ng-if='defaultMetadata.dcat.dcatrightsholdername==null'></i>
+							<span class='text-success'><i class='fa fa-check-square-o ' ng-if='defaultMetadata.dcat.dcatrightsholdername!=null'></i></span>
+							<span translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span>
+						</li>
+						<li ng-if='!defaultMetadata.info.unpublished'>
+							<i class='fa fa-square-o' ng-if='defaultMetadata.dcat.dcatnomeorg==null'></i>
+							<span class='text-success'><i class='fa fa-check-square-o ' ng-if='defaultMetadata.dcat.dcatnomeorg!=null'></i></span>
+							<span translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span>
+						</li>
+						<li ng-if='!defaultMetadata.info.unpublished'>
+							<i class='fa fa-square-o' ng-if='defaultMetadata.dcat.dcatemailorg==null'></i>
+							<span class='text-success'><i class='fa fa-check-square-o ' ng-if='defaultMetadata.dcat.dcatemailorg!=null'></i></span>
+							<span translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span>
+						</li>
+											
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>	
+</div>

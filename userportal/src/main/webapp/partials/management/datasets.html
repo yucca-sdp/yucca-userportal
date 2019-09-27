@@ -1,0 +1,393 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementDatasetListCtrl as datasetsCtrl"  ng-cloak>
+	<div class='container'>
+		<!-- <h3> <span translate-cloak translate>MANAGEMENT_DATASET_SUBTITLE </span></h3>-->
+		<div class='content table-toolbar table-toolbar-border'>
+			<div class='row'>
+				<div class="col-sm-12">
+		        	<a href="#/management/newDataset/{{tenantCode}}" class="btn  btn-default" ng-disabled="!isAuthorized('management/datasets/update') ||!isOwner() ">
+						<span class="glyphicon glyphicon-plus "></span>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_DATASET_LIST_NEW_DATASET</span>
+					</a>
+					<a id='importMetadataDatasetButton' href="#/management/importDatabase/{{tenantCode}}" class="btn  btn-default" title="{{'MANAGEMENT_DATASET_LIST_IMPORT_DB_BUTTON_HINT'|translate}}">
+						<span class="fa fa-database"></span>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_DATASET_LIST_IMPORT_DB</span>
+					</a>
+					<a href  ng-click='editDataset()' class="btn btn-default" ng-disabled="!isAuthorized('management/datasets/update') || !isOwner() || !canEdit()" 
+						title="{{'MANAGEMENT_DATASET_LIST_EDIT_DATASET_BUTTON_HINT'|translate}}">
+						<span class="glyphicon glyphicon-pencil "></span>&nbsp;
+						<span translate-cloak translate>MANAGEMENT_DATASET_LIST_EDIT_DATASET</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class='content table-toolbar'>
+			<div class='row '>
+				<div class="col-sm-12">
+					<div class='dataset-group-toolbar-statistic'>
+						<div class='dataset-group-toolbar clearfix'>
+							<strong translate>MANAGEMENT_DATASET_GROUPS_SUBTITLE</strong>
+							<a  href ng-click='chooseGroup()' class="btn-table-toolbar"  ng-disabled='selectedDatasets.length==0'>
+								<span class='double-icon add-to-group-icon'>
+									<i class="fa fa-long-arrow-right action-icon first-icon"></i>
+									<i class="fa fa-circle-o  last-icon"></i>
+								</span>&nbsp;
+								<span translate-cloak translate>MANAGEMENT_DATASET_LIST_ADD_TO_GROUP</span>
+							</a>
+							<div class='pull-right'>							
+								<help-button ng-if='isCsiTenant()' helptitle='Gruppi di dataset' section='management' page='datasourcegroup' css='btn-table-toolbar' size='lg'></help-button>
+							</div>	
+							<a  href="#/management/datasetGroups/{{tenantCode}}" class="btn-table-toolbar pull-right">
+								<span class='double-icon group-icon'>
+									<i class="fa fa-circle-o  first-icon"></i>
+									<i class="fa fa-circle middle-icon group-bg-icon"></i>
+									<i class="fa fa-circle-o middle-icon"></i>
+									<i class="fa fa-circle last-icon group-bg-icon"></i>
+									<i class="fa fa-circle-o last-icon"></i>
+								</span>&nbsp;
+								<span translate-cloak translate>MANAGEMENT_DATASET_DATASET_GROUPS_LIST_MANAGE</span>
+							</a>	
+							<a  href class="btn-table-toolbar pull-right" ng-click='groupStatistics.show=1' >
+								<i class="fa fa-bar-chart"></i>
+								</span>&nbsp;
+								<span translate-cloak translate>MANAGEMENT_DATASET_DATASET_GROUPS_LIST_STATS</span>
+							</a>	
+						</div>
+						<div id='datasourceGroupStatisticToolbar' class='dataset-group-statistic' ng-class="groupStatistics.show==1?'slideup':(groupStatistics.show==-1?'slidedown':'')">
+							<a href ng-click='datasourceGroupStatisticScrollRight()' class='scroll-right-link' ng-if='showDatasourceGroupStatisticLeftScroll'>
+								<i class="fa fa-chevron-left" aria-hidden="true"></i>
+							</a>
+							<div id='datasourceGroupStatisticToolbarItems' style='margin-left:-{{datasourceGroupStatisticToolbarLeft}}px' >
+								<a href  ng-repeat="item in groupStatistics.stats track by $index" class='btn-table-toolbar' ng-click="toggleFilterByGroup(item.name)" title='{{datasetGroupFilterHint|translate}}' 
+									ng-class="{'active': isSingleFilteredGroup(item.name)}">
+									<i class='fa fa-circle' style='color: {{item.color}};'></i> {{item.name}} <strong class='semimute'>({{item.count}})</strong>
+								</a>
+							</div>
+							<a href ng-if='showDatasourceGroupStatisticRightScroll' class='scroll-left-link' ng-click='datasourceGroupStatisticScrollLeft()' >
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>
+							</a>
+							<a href ng-click='groupStatistics.show=-1' class='close-link' >
+								<i class="fa fa-close" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='row '>
+			<div class="col-sm-12 ">
+				<div id='datasourceGroupStatisticBar' class="datasource-group-statistic-bar" ng-click='showDatasourceGroupToolbar()' ng-init='groupStatistics.show=0'>
+					<div class="datasource-group-statistic-bar-item" ng-repeat="item in groupStatistics.stats track by $index" 
+						style='background-color: {{item.color}}; width: {{item.percent}}%; left:{{item.left}}%;' title="{{item.name}} - {{item.count}}%"></div>
+				</div>
+			</div>
+		</div>
+		<div class='content management-filter-panel'>
+			<div class='clearfix'>
+				<form class="form form-horizontal-compact pull-right" role="form">   
+				 	 <div class="form-group">						 	
+						<div class="dropdown checkbox-dropdown" dropdown>
+							<div class="dropdown-toggle form-horizontal-compact-filter-dropdown" id="dropdownMenuFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<i class='fa fa-filter'  aria-hidden="true"></i><span translate>MANAGEMENT_STREAM_LIST_FILTERS_MENU</span>
+						    	<a href dropdown-toggle><span class="caret"></span></a>
+							</div>
+						  	<ul class="dropdown-menu text-left" aria-labelledby="dropdownMenuFilters" ng-click="$event.stopPropagation()">
+							    <li>
+							    	<div class="checkbox">
+
+										<label>
+											<input type="checkbox" ng-model="viewUnistalledCheck">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span translate-cloak translate title="{{'MANAGEMENT_STREAM_LIST_SHOW_UNINSTALLED_HINT'|translate}}">MANAGEMENT_STREAM_LIST_SHOW_UNINSTALLED&nbsp;</span>
+											<span class='semimute'>({{deletedCount}})</span>
+										</label>
+									</div>	
+								</li>
+							    <li>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" ng-model="viewUnpublishedCheck">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span translate-cloak translate title="{{'MANAGEMENT_STREAM_LIST_SHOW_UNPUBLISHED_HINT'|translate}}">MANAGEMENT_STREAM_LIST_SHOW_UNPUBLISHED&nbsp;</span>
+											<span class='semimute'>({{unpublishedCount}})</span>
+										</label>
+									</div>
+							    </li>
+							    <li role="separator" class="divider"></li>
+							    <li class="dropdown-header" ng-init='showDomainListFilter=false' ng-click='showDomainListFilter = !showDomainListFilter'>
+							    	<strong translate>MANAGEMENT_STREAM_LIST_FILTERS_DOMAIN</strong>
+							    	<i class="fa fa-chevron-down" aria-hidden="true" ng-if='!showDomainListFilter' ></i>
+							    	<i class="fa fa-chevron-up" aria-hidden="true" ng-if='showDomainListFilter'></i>
+							    </li>
+							    
+							    <li ng-if='showDomainListFilter'>
+							    	<div class='dropdown-element dropdown-inline-toolbar'>
+							    		 <span translate>MANAGEMENT_STREAM_LIST_FILTERS_SELECT</span>
+								   		 <a href ng-click='selectDomainsFilter("all")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_ALL</small></a>	
+								   		 <!-- <a href ng-click='selectDomainsFilter("none")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_NONE</small></a> -->	
+								   		 <a href ng-click='selectDomainsFilter("toggle")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_TOGGLE</small></a>
+								   	</div>											   		 
+							    </li>
+							   
+							    <li ng-if='showDomainListFilter' ng-repeat='domain in domainsFilter track by $index;'>	
+							    	<div class="checkbox nowrap">
+										<label  class=''>
+											<input type="checkbox" ng-model="domain.checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span class='nowrap'>
+												<span translate-cloak translate title="{{domain.key|translate}}">{{domain.key}}</span> <span class='semimute'>({{domain.count}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+											</span>
+										</label>
+									</div>	    
+							    </li>
+							    <li role="separator" class="divider"></li>
+							    <li class="dropdown-header" ng-init='showTenantsListFilter=false' ng-click='showTenantsListFilter = !showTenantsListFilter'>
+							    	<strong translate>MANAGEMENT_STREAM_LIST_FILTERS_TENANTS</strong>
+							    	<i class="fa fa-chevron-down" aria-hidden="true" ng-if='!showTenantsListFilter' ></i>
+							    	<i class="fa fa-chevron-up" aria-hidden="true" ng-if='showTenantsListFilter'></i>
+							    </li>
+							    
+							    <li ng-if='showTenantsListFilter'>
+							    	<div class='dropdown-element dropdown-inline-toolbar'>
+							    		 <span translate>MANAGEMENT_STREAM_LIST_FILTERS_SELECT</span>
+								   		 <a href ng-click='selectTenantsFilter("all")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_ALL</small></a>	
+								   		 <!-- <a href ng-click='selectTenantsFilter("none")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_NONE</small></a>	-->
+								   		 <a href ng-click='selectTenantsFilter("toggle")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_TOGGLE</small></a>
+								   	</div>											   		 
+							    </li>
+							    <li ng-if='showTenantsListFilter' ng-repeat='t in tenantsFilter track by $index;'>	
+							    	<div class="checkbox nowrap">
+										<label  class='nowrap'>
+											<input type="checkbox" ng-model="t.checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<strong title="{{t.key|translate}}" ng-if='tenant==t.tenant.tenantcode'>{{t.tenant.tenantcode}}  <span class='semimute'>({{t.count}})</span></strong>
+											<span title="{{t.key|translate}}" ng-if='tenant!=t.tenant.tenantcode'><span>{{t.tenant.tenantcode}}</span> <span class='semimute'>({{t.count}})</span></span>
+										</label>
+									</div>	    
+							    </li>
+							    <li role="separator" class="divider"></li>
+							    <li class="dropdown-header" ng-init='showGroupsListFilter=false' ng-click='showGroupsListFilter = !showGroupsListFilter'>
+							    	<strong translate>MANAGEMENT_STREAM_LIST_FILTERS_GROUPS</strong>
+							    	<i class="fa fa-chevron-down" aria-hidden="true" ng-if='!showGroupsListFilter' ></i>
+							    	<i class="fa fa-chevron-up" aria-hidden="true" ng-if='showGroupsListFilter'></i>
+							    </li>
+							     <li ng-if='showGroupsListFilter'>
+							    	<div class='dropdown-element dropdown-inline-toolbar'>
+							    		 <span translate>MANAGEMENT_STREAM_LIST_FILTERS_SELECT</span>
+								   		 <a href ng-click='selectGroupsFilter("all")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_ALL</small></a>	
+								   		 <!-- <a href ng-click='selectDomainsFilter("none")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_NONE</small></a> -->	
+								   		 <a href ng-click='selectGroupsFilter("toggle")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_TOGGLE</small></a>
+								   	</div>											   		 
+							    </li>
+							   
+							    <li ng-if='showGroupsListFilter' ng-repeat='group in groupsFilter track by $index;'>	
+							    	<div class="checkbox nowrap">
+										<label  class=''>
+											<input type="checkbox" ng-model="group.checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span class='nowrap'>
+												<span translate-cloak translate title="{{group.key|translate}}">{{group.key}}</span> <span class='semimute'>({{group.count}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+											</span>
+										</label>
+									</div>	    
+							    </li>
+							  </ul>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="nameFilter" placeholder="{{'DATASET_LIST_NAME_FILTER'|translate}}" />									
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="codeFilter" placeholder="{{'DATASET_LIST_CODE_FILTER'|translate}}" />
+					</div>
+				</form>
+			</div>
+			<div class='management-active-filter-panel clearfix'>
+				<div class='pull-left text-left' ng-show='showActiveDomainFilter || showActiveTenantFilter || showActiveGroupFilter '>
+					<span><strong translate>MANAGEMENT_ACTIVE_FILTER_TITLE</strong></span>
+					<a href class='active-filter' ng-click='selectDomainsFilter("all")' ng-show='showActiveDomainFilter' tooltip-html-unsafe="{{unselectedDomainFilter()}}">
+						<span translate>MANAGEMENT_STREAM_LIST_FILTERS_DOMAIN</span> &nbsp;&times;
+					</a>
+					<a href class='active-filter' ng-click='selectTenantsFilter("all")' ng-show='showActiveTenantFilter' tooltip-html-unsafe="{{unselectedTenantFilter()}}">
+						<span translate>MANAGEMENT_STREAM_LIST_FILTERS_TENANTS</span> &nbsp;&times;
+					</a>
+					<a href class='active-filter' ng-click='selectGroupsFilter("all")' ng-show='showActiveGroupFilter' tooltip-html-unsafe="{{unselectedGroupFilter()}}" >
+						<span translate>MANAGEMENT_STREAM_LIST_FILTERS_GROUPS</span> &nbsp;&times;
+					</a>
+				</div>
+				<div class='pull-right'>
+					<span class='text-right management-datasetList-total-label' title='{{"DATASET_LIST_COUNT_TOTAL_LABEL_HINT"|translate}}'>
+						<span translate translate-cloack>DATASET_LIST_COUNT_TOTAL_LABEL</span>: <strong>{{datasetList.length}}</strong>
+					</span>
+					<span class='text-right management-datasetList-total-label'>
+						<span translate translate-cloack>DATASET_LIST_COUNT_FILTERED_LABEL</span>: <strong>{{filteredDatasetsList.length}}</strong>
+					</span>
+				</div>
+				
+			</div>
+
+						
+			<div class="table-responsive management-datasourceList-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th>							
+								<a href="" ng-click="predicate  = 'datasetname'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_METADATA_NAME</span>
+								<span ng-show="predicate=='datasetname' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='datasetname' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'datasetcode'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span>
+								<span ng-show="predicate=='datasetcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='datasetcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'domain.domaincode'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</span> 
+								<span ng-show="predicate=='domain.domaincode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='domain.domaincode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'datasetSubtype.datasetSubtype'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_TYPE</span> / <span translate-cloak translate>DATASET_FIELD_CONFIGDATA_SUBTYPE</span>
+								<span ng-show="predicate=='datasetSubtype.datasetSubtype' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='datasetSubtype.datasetSubtype' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'registrationdate'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_METADATA_REGISTRATIONDATE</span>
+								<span ng-show="predicate=='registrationdate' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='registrationdate' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'status.statuscode|translate'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_STATUS</span> 
+								<span ng-show="predicate=='status.statuscode|translate' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='status.statuscode|translate' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'version'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_DATAVERSION</span>
+								<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th title="{{'DATASET_LIST_VISIBILITY_TOOLTIP'|translate}}">
+								<a href="" ng-click="predicate = 'visibility'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_METADATA_VISIBILITY</span>
+								<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th title="">Gruppi</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-show="showLoading">
+							<td colspan='11' >
+								<div class='ajax-loading-container'>
+									<span class='ajax-loading-big'></span>
+									<h4>Loading...</h4>
+								</div>
+							</td>
+						</tr>
+						<tr ng-if="admin_response.message">
+							<td colspan='11' >
+								<alert-panel content='admin_response'></alert-panel>
+							</td>
+						</tr>
+						<tr ng-repeat="dataset in filteredDatasetsList = (datasetList | filter: searchNameFilter | filter: viewUnistalledFilter | filter: viewUnpublishedFilter | filter: searchDomainFilter | filter: searchGroupFilter | filter: searchTenantFilter | filter: searchCodeFilter | orderBy:predicate:reverse) |startFrom:(currentPage-1)*pageSize | limitTo:pageSize ">
+							<td>
+								<div class="checkbox"  ng-if='tenant==dataset.tenantManager.tenantcode'>
+									<label>
+										<input type="checkbox" ng-checked="isSelected(dataset)"  ng-click="updateSelection($event, dataset)">
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									</label>
+								</div>
+								<i class="glyphicon glyphicon-ban-circle mute" ng-if='tenant!=dataset.tenantManager.tenantcode' title="{{'DATASET_LIST_READONLY_TOOLTIP'|translate}}"></i>
+							</td>
+							<td class='text-center no-border-right'>
+								<a href="#/management/viewDatasource/dataset/{{dataset.tenantManager.tenantcode}}/{{dataset.datasetcode}}/{{dataset.iddataset}}" >
+									<img ng-if="dataset.hasIcon == true" ng-src="{{datasetIconUrl(dataset.organization.organizationcode,dataset.iddataset)}}" alt="logo dataset" class='list-entity-icon-preview-img' >
+									<img ng-if="dataset.hasIcon == false" ng-src="./img/stream-icon-default_{{yuccaPortal}}.png" alt="logo stream {{yuccaPortal}}" class='list-entity-icon-preview-img' >
+								</a>
+							</td>
+							<td class='text-left no-border-left'>
+								<a href="#/management/viewDatasource/dataset/{{dataset.tenantManager.tenantcode}}/{{dataset.datasetcode}}/{{dataset.iddataset}}"title="{{dataset.description}}">
+									{{dataset.datasetname}}
+								</a>
+								<!-- <ul class="list-inline">
+									<li ng-repeat="group in dataset.groups">
+										<span class="label label-datasetgroup label-custom-small" style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}}'  title="{{group.name}}">
+											{{group.name|string_ellipse:7}}
+										</span> -->
+										<!-- <i class='fa fa-circle' style='color: {{group.color}};'></i> -->
+								<!-- 	</li>
+								</ul> -->
+							</td>
+							<td>
+								<span>{{dataset.datasetcode}}</span>
+							</td>
+							<td>
+								<div class='domain-column'>
+									<i ng-if='dataset.domain.domaincode!="MULTI"' class="icon-{{dataset.domain.domaincode}} domain-icon" title="{{dataset.domain.domaincode|translate}}"></i>
+									<div class='domain-multi-icon'  ng-if='dataset.domain.domaincode=="MULTI"'>
+										<i class='fa fa-circle-o'></i>
+										<small>MULTI</small>
+									</div>
+								</div>
+							</td>
+							<td>
+								<i class='glyphicon glyphicon-paperclip management-datasetList-attach-icon' ng-if="dataset.idDataSourceBinary!=null" title='Dataset with binary attachment'></i>
+								<span>{{'DATASET_TYPE_'+dataset.datasetType.datasetType|translate}}</span>/
+								<span>{{'DATASET_SUBTYPE_'+dataset.datasetSubtype.datasetSubtype|translate}}</span>
+							</td>
+							<td>{{dataset.registrationdate|dataset_date_format}}</td>
+							<td class='text-left'><span class="stream-status stream-status-{{dataset.status.statuscode}}" title="{{dataset.status.statuscode|translate}}">{{dataset.status.statuscode|translate|string_ellipse:12}}</span></td>
+							<td><span translate-cloak translate>{{dataset.version}}</span> <strong class='text-icon entity-uninstalled-icon' ng-if="dataset.status.idStatus==5 || dataset.status.idStatus==4" title='{{"DATASET_FIELD_CONFIGDATA_DELETED"|translate}}'>D</strong></td>
+							<td>
+								<span translate-cloak translate>{{dataset.visibility}}</span> <strong class='text-icon entity-unpublished-icon' ng-if="dataset.unpublished" title='{{"DATASET_FIELD_UNPUBLISHED_TRUE"|translate}}'>NP</strong>
+								<br/><small class='mute'>{{dataset.tenantManager.tenantcode}}</small>
+							</td>
+							<td class='text-right'>
+								<span ng-repeat="group in dataset.groups">
+										<!-- <span class=" " style='color: {{group.color}}; font-weight: bold; text-transform: uppercase;' >{{group.name}}</span> -->
+									<!-- <span class="label label-datasetgroup label-custom-extrasmall" style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}}; width:100%;' title="{{group.name}}" >
+										{{group.name|string_ellipse:7}}
+									</span>-->
+									<a href class='btn-icon' ng-click="filterByGroup(group.name)">	
+										<div title="{{group.name}}{{datasourceGroupTypeHint(group.type.idDatasourcegroupType)}}" class='icon-datasourcegroup lettercircle' style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}};'>
+											<span class='text-capitalize' ng-if='group.type.idDatasourcegroupType>1'>{{group.name| limitTo: 2}}</span>
+											<span ng-if='group.type.idDatasourcegroupType==1'>&nbsp;</span>
+											<!-- <div ng-if='group.type.idDatasourcegroupType>1' class='datasourcegroup-special-badge'>{{specialDatasourceGroupLetterIcon(group.type.idDatasourcegroupType)}}</div>-->
+										</div>
+									</a>
+								</span>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				<div  class='text-center'>
+					<pagination boundary-links="true" total-items="filteredDatasetsList.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+						next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+					></pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<script type="text/ng-template" id="deleteDatasetUninstall.html">
+		<div class='modal-header'>
+        	<h3 class='modal-title'>..::{{'MANAGEMENT_DATASET_LIST_DELETE_DATASET'|translate}}::..</h3>
+	    </div>
+    <div id="changeQueue" class='modal-body'>
+		<div class="panel panel-default">
+			<span>{{'MANAGEMENT_DATASET_CONFIRM_DELETE'|translate}}</span>
+    	</div>
+    </div>
+    	<div class="modal-footer">
+        	<button class='btn btn-primary' type='button' ng-click='ok()'>OK</button>
+	        <button class='btn btn-warning' type='button' ng-click='cancel()'>Cancel</button>
+    	</div>
+	</script>
+</div>
+

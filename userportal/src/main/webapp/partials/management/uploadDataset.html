@@ -1,0 +1,39 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementDatasetCtrl as datasetCtrl"  ng-cloak>
+	<div class='container'>
+		<h3 class='content-edit-title'>
+			<span translate-cloak translate>DATASET</span> <small><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_ADD_DATA_SUBTITLE</span>  {{dataset.datasetCode}} - {{dataset.info.datasetName}}</small>
+		</h3>
+		<datasource-intro datasource='inputDatasource' ng-if='datasetReady'></datasource-intro>
+	</div>
+	<div class='content-gray'>
+		<div class='container'>
+			<div class='alert alert-sandbox ng-hide' ng-show='tenant=="sandbox"'><strong><i class="fa fa-exclamation-triangle"></i>&nbsp;<span translate-cloak translate>WARNING_TITLE</span></strong>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_SANDBOX_WARNING</span></div>
+			<!-- <p>&nbsp;<a href ng-click="debu()">debug</a></p>-->
+			<alert-panel content='admin_response'></alert-panel>
+			<form class="form-horizontal" role="form" name="addDatadDatasetForm">
+				<p>&nbsp;</p>
+				<upload-data-csv datasource='dataset' preview='preview' csv-info='csvInfo' ng-if='datasetReady' component-info-requests='componentInfoRequests' action='uploadData'></upload-data-csv>
+
+				<div class="row" ng-show="updateStatus!='upload' && isAuthorized('management/datasets/upload') ">
+					<div class=" col-sm-12 col-lg-12 form-toolbar" >
+						<a  href='#/management/viewDatasource/dataset/{{tenant}}/{{dataset.datasetcode}}/{{dataset.iddataset}}' class="btn" translate-cloak translate>MANAGEMENT_EDIT_DATASET_ADD_DATA_FINISH_BUTTON</a>
+						<a ng-click='loadMoreData()' ng-if="!showUploadButton" class="btn btn-default" translate-cloak translate>MANAGEMENT_EDIT_DATASET_ADD_DATA_UPLOAD_MORE_BUTTON</a>
+						<a ng-click='uploadData()' ng-if='showUploadButton && !isMultiUpload()' class="btn btn-default" ng-disabled="!isOwner() || addDatadDatasetForm.$invalid || csvInfo.selectedFile==null" translate-cloak translate>MANAGEMENT_EDIT_DATASET_ADD_DATA_UPLOAD_BUTTON</a>
+						<a ng-click='downloadCsvParts()' ng-if='showUploadButton && isMultiUpload()' class="btn btn-default" ng-disabled="!isOwner() || addDatadDatasetForm.$invalid || csvInfo.selectedFile==null" translate-cloak translate>MANAGEMENT_UPLOAD_CSV_MULTIPLE_DOWNLOAD_PARTS_BUTTON</a>
+						<a ng-click='uploadMultiCsv()' ng-if='showUploadButton && isMultiUpload()' class="btn btn-default" ng-disabled="!isOwner() || addDatadDatasetForm.$invalid || csvInfo.selectedFile==null" translate-cloak translate>MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_BUTTON</a>
+					</div>
+				</div>
+				<div class="row"  ng-show="updateStatus=='upload'">
+					<div class=" col-sm-12 col-lg-12 form-toolbar">
+						<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+					</div>				
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

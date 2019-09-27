@@ -1,0 +1,23 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class='clearfix wizard-title' ng-cloak>
+		<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_STREAM_WIZARD_STEP_DETAIL_TITLE</span></h3></div>
+		<div class='pull-right'><h3><small>Step 3/5</small></h3></div>
+	</div>
+	<form class="form-horizontal" role="form" name="detailStreamForm" ng-cloak>
+		<datasource-detail-info datasource='stream' ng-if='datasourceReady'></datasource-detail-info>
+		
+			
+	
+		<div class="form-group">
+			<div class=" col-sm-12 form-toolbar">
+				<a ng-click='goToRequestor()' class="btn " translate-cloak translate>BACK</a>
+				<a ng-click='goToComponents()' class="btn btn-wizard-next" ng-disabled="!isOwner() || detailStreamForm.$invalid || checkTag(stream)" translate-cloak translate>MANAGEMENT_NEW_STREAM_WIZARD_NEXT</a>
+			</div>
+		</div>
+	</form>
+</div>

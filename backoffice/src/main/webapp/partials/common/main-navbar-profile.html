@@ -1,0 +1,19 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<ul class="nav navbar-nav navbar-right" ng-cloak>
+	<li class='main-menu-profile-item' ng-show="user.loggedIn"><span class='main-menu-username'>{{user.username}}</span><span class='main-menu-tenant'>{{user.firstname}} {{user.lastname}}</span></li>
+	<li class='main-menu-item'>
+		<a href='{{_baseUrl}}/api/authorize?returnUrl={{currentUrl()}}' ng-show="!user.loggedIn"><span translate>MENU_SING_IN</span></a>
+		<div class="dropdown" ng-show="user.loggedIn" dropdown>
+			<button class="btn btn-default main-menu-profile-button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" dropdown-toggle>
+				<span class="caret main-menu-caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="/backoffice/api/authorize?logout={{user.username}}&returnUrl={{currentUrl()}}"><span translate>MENU_SING_OUT</span></a></li>
+		  </ul>
+		</div>
+	</li>
+</ul>

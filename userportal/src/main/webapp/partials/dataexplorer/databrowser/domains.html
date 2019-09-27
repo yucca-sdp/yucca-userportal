@@ -1,0 +1,30 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='domains-panel'>
+	<!--  <div ng-repeat='domain in domainList' ng-if="$index % 2 == 0" class="row " >
+		<div class='col-sm-4 col-sm-offset-2 browsedata-choosing-domain-box' ng-click='selectDomain(domainList[$index])'ng-class="{'browsedata-choosing-domain-box-selected':domainList[$index]==selectedDomain}">
+			<i class="icon-{{domainList[$index]}} domain-icon" title="{{domainList[$index]|translate}}"></i>&nbsp;<span translate-cloak translate>{{domainList[$index]}}</span>
+		</div>
+		<div class='col-sm-4 browsedata-choosing-domain-box' ng-click='selectDomain(domainList[$index+1])' ng-class="{'browsedata-choosing-domain-box-selected':domainList[$index+1]==selectedDomain}">
+			<i class="icon-{{domainList[$index+1]}} domain-icon" title="{{domainList[$index+1]|translate}}"></i>&nbsp;<span translate-cloak translate>{{domainList[$index+1]}}</span>
+		</div>
+	</div> -->
+	
+	<table class='table domains-table'>
+		<tbody>
+			<tr ng-repeat='domain in domainList'  ng-if="$index % 2 == 0" >
+				<td class='browsedata-choosing-domain-box text-left domains-table-left-column' ng-click='selectDomain(domainList[$index].domain)'> 
+					<i class="icon-{{domain.domain}} domain-icon" title="{{domain.domain|translate}}"></i> <span translate-cloak translate>{{domain.domain}}</span> <small>{{domain.count}}</small>
+				</td>
+				<td class='browsedata-choosing-domain-box text-right domains-table-right-column' ng-click='selectDomain(domainList[$index+1].domain)'> 
+					<small>{{domainList[$index+1].count}}</small>	<span translate-cloak translate>{{domainList[$index+1].domain}}</span>  <i class="icon-{{domainList[$index+1].domain}} domain-icon" title="domainList[$index+1]"></i> 
+				</td>
+			</tr>	
+		</tbody>
+	</table>
+	
+</div>
+

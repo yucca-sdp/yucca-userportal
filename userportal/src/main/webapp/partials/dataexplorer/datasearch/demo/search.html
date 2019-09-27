@@ -1,0 +1,293 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="DataSearchDemoCtrl as dataSearchLandingCtrl" id="datasearch" class='section-store datasearchdemo'  ng-cloak>
+	<div class='search-inputpanel '>
+		<div class='container'>
+			<h3 class='search-title'>
+				<span translate-cloak translate>DATASEARCH_TITLE</span>
+			</h3>
+			<div class='clearfix' > 
+				<form role="form" class="form-horizontal" ng-cloak>
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-2">
+							<div class="dataseach-input-query inner-addon right-addon">
+								<i class="icon fa fa-search" ng-click="search(null)"></i>
+								<input type="search" class="form-control input-lg datasearch-input" ng-model="metadataSearchInput.query" id="simpleSearchInput" 
+									placeholder="{{'DISCOVERY_FILTER_SIMPLESEARCH_PLACEHOLDER'|translate}}" ng-enter="search(null)" >
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-2 search-input-checks">
+							<div class="checkbox inline">
+								<label>
+						            <input type="checkbox" ng-model="metadataSearchInput.filter.isSearchExact">
+						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						            {{'DATA_BROWSER_SEARCH_EXACT'|translate}}
+					         	</label>
+					        </div>							
+							<div class="checkbox inline">
+								<label>
+						  			<input type="checkbox" ng-model="metadataSearchInput.filter.includeSandbox" >
+						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						            {{'DATA_BROWSER_SANDBOX_EXCLUDE'|translate}}
+					         	</label>
+					        </div>							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class='search-domains'>
+		<div class='container-fluid'>
+			<div class='content'>
+				<div id='demo-menu'>
+					<strong>Tipo di demo</strong>
+					<a href ng-click="chooseDemo('tree')"  ng-class="demoType=='tree'?'active':''">Albero</a>
+					<a href ng-click="chooseDemo('netflix')" ng-class="demoType=='netflix'?'active':''">Pannelli</a>
+					<a href ng-click="chooseDemo('force')" ng-class="demoType=='force'?'active':''">Connessioni</a>
+					<a href ng-click="chooseDemo('bigicon')" ng-class="demoType=='bigicon'?'active':''">Icone Grandi</a>
+				</div>
+				<div class="alert alert-warning" ng-if='warningMessages.length>0'  ng-cloak>
+					<strong translate-cloak translate>WARNING_TITLE</strong> <span translate-cloak translate>{{warningMessage}}</span>
+					<ul><li ng-repeat="warningMessage in warningMessages "><span translate-cloak translate>{{warningMessage}}</span></li></ul>
+				</div>
+				<div class='row'>
+					<div class='browse-data-title col-sm-8 col-sm-offset-2'>
+						<h3 class='search-title'>
+							<span translate-cloak translate>DATASEARCH_DOMAINS_TITLE</span> 
+						</h3>
+						<div class='search-subtitle'>
+							<span translate-cloak translate>DATASEARCH_DOMAINS_SUBTITLE</span>
+						</div>
+					</div>
+				</div>
+				<div class='search-toolbar'  ng-if='demoType!="bigicon"'>
+					<a href ng-click="browseByDomain()" class='btn btn-default' ng-class="browseBy=='domain'?'active':''">Naviga per categorie </a>
+					<a href ng-click="browseByOrganization()" class='btn btn-default'  ng-class="browseBy=='organization'?'active':''">Naviga per organizzazioni</a>
+				</div>
+				<div class='search-toolbar'  ng-if='demoType=="force1"'>
+					<a href ng-click="browseByDomain()" class='btn btn-default' ng-class="browseBy=='domain'?'active':''">Mostra sottoambito</a>
+					<a href ng-click="browseByDomainNoSubdomain()" class='btn btn-default'  ng-class="browseBy=='noSubdomain'?'active':''">Nascondi sottoambito</a>
+				</div>
+				<div class='row row-tree' ng-if='demoType=="tree"'>
+					<div class="col-sm-12 ">
+						<div id='search-browse-tree'>
+							<browse-tree data="treeListData[0]" ng-if='treeListDataReady'></browse-tree>
+						</div>					
+					</div>
+				</div>
+				<div ng-if='demoType=="netflix"'>
+					<div class='netflix-row' ng-repeat='first_child in netflixData.children track by $index'>
+						<div class='netflix-scroll-panel netflix-scroll-panel-next' ng-click='scrollNetflixRow($index,-1)'><h3><i class="fa fa-chevron-right" aria-hidden="true"></i></h3></div>
+						<div class='netflix-scroll-panel netflix-scroll-panel-prev' ng-click='scrollNetflixRow($index,1)' ng-show='netflixRowDelta[$index]<0'><h3><i class="fa fa-chevron-left" aria-hidden="true"></i></h3></div>
+						<h3 class='netflix-row-title' ng-click='searchFromNetflix(first_child)'>
+							<span ng-if='first_child.icon' class='domain-icon'>{{first_child.icon}}</span> <span class='netflix-item-count'>[{{first_child.count}}]</span> {{first_child.name}}
+						</h3>
+						<div class='netflix-row-content' id="netflix_row_{{$index}}">
+							<div class='netflix-cell' ng-repeat='second_child in first_child.children track by $index'>
+								<h4  ng-click='searchFromNetflix(second_child)'>
+									<span ng-if='second_child.icon' class='domain-icon'>{{second_child.icon}}</span> <span class='netflix-item-count'>[{{second_child.count}}]</span> {{second_child.name}}
+								</h4>
+								<div ng-repeat='third_child in second_child.children track by $index' class='netflix-cell-item'  ng-click='searchFromNetflix(third_child)'>
+									<span class='netflix-item-count'>[{{third_child.count}}]</span> {{third_child.name}}
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div ng-if='demoType=="force"' class='forcepanel'>
+					<div class='content'>
+					
+						<div class='row'>
+							<div class='col-sm-4' id='browseForceHorizontalRowContainer'>
+								<h3 id='browseForceHorizontalTitle'>
+									<i class="fa fa-chevron-left" aria-hidden="true" ng-click='browseForceDirected(null, true)' ng-if='forceHorizontalNavigationChilds.length>1'></i>
+									{{browseForceTitle}}
+								</h3>
+								<div class='browseForceHorizontalRow' >
+									<div class='browseForceHorizontalPanel' ng-repeat='childs in forceHorizontalNavigationChilds'>
+										<div  ng-repeat='first_child in childs.children track by $index' class='force-row-item' style='width:{{browseForceNavigationDelta}}px'>
+											<h4 class='force-row-title' ng-click='browseForceDirected(first_child, false)'>
+												<span ng-if='first_child.icon' class='domain-icon'>{{first_child.icon}}</span> 
+												<span class='netflix-item-count'>[{{first_child.count}}]</span> 
+												{{first_child.name}}
+											</h4>
+											<i class="fa fa-chevron-right nav-button" aria-hidden="true" ng-click='browseForceDirected(first_child, false)' ></i>
+											
+										</div>
+									</div>								
+								</div>
+							</div>
+							<div class='col-sm-8'>
+								<force-directed ng-if='treeListDataReady'
+									links="forceDirectedData"
+									link_length='100'
+									height="800"
+									node_size="14"
+									node_type_icon="{'domainCode':'circle', 'organizationCode':'circle'}"
+									link_line="bezier" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-if='demoType=="bigicon"'>
+					<div class='' ng-repeat='first_child in netflixData.children track by $index' ng-if="$index % 2 == 0" >
+						<div class='bigicon-row row' >
+							<div class='col-sm-2 col-sm-offset-3 text-right'>
+								<div class='bigicon-icon-container'>
+									<span ng-if='netflixData.children[$index].icon' class='domain-icon'>{{netflixData.children[$index].icon}}</span>
+								</div>
+							</div>
+							<div class='col-sm-7'>
+								<browse-tree data="netflixData.children[$index]" ng-if='treeListDataReady' width='400' class='bigicon-tree'  fix_height='true'
+									margin_left='0' margin_right='0' margin_bottom='0' margin_top='0' radius='7' empty_color="#bbb" full_color="#e3e4e6" ></browse-tree>
+							</div>
+						</div>
+						<div class='bigicon-row row' >
+							<div class='col-sm-7'>
+								<browse-tree data="netflixData.children[$index+1]" ng-if='treeListDataReady' width='400' class='bigicon-tree'  fix_height='true'
+									margin_left='0' margin_right='0' margin_bottom='0' margin_top='0' radius='7' empty_color="#bbb" full_color="#e3e4e6" ></browse-tree>
+							</div>
+							<div class='col-sm-2 text-left'>
+								<div class='bigicon-icon-container'>
+									<span ng-if='netflixData.children[$index+1].icon' class='domain-icon'>{{netflixData.children[$index+1].icon}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+    <style>
+    
+    
+	.bigicon-row{padding: 1em 0; border-bottom: solid 1px #bbb; }
+    .bigicon-row .bigicon-icon-container{display: inline-block;margin: 0 auto;}
+    .bigicon-row .domain-icon{font-family: 'smartdatanet-domains'; font-size: 64px; display: table-cell; vertical-align:middle; color:#e3e4e6;
+    	background: #333; border-radius: 100%; height: 128px; width: 128px; text-align: center; display: 100%;}
+    .bigicon-item-count{font-size: .9em; line-height: 1em; color: #8a8a8a;padding-left: 1em;}
+    .bigicon-row .bigicon-tree .domain-icon{display: none; font-size: .3em;}
+	.bigicon-row1 .bigicon-tree svg{height: auto!important;}
+	
+	.bigicon-tree .node text.domain{font-size: 1.2em; font-weight:bold;}
+	.bigicon-tree .node text.count{fill: #8a8a8a;font-size: 1em; font-weight:bold;}
+	.bigicon-tree  .node circle {stroke: #bbb;stroke-width: 3px;}
+	.bigicon-tree .link {fill: none; stroke: #bbb; stroke-width: 1px;}
+
+
+    
+	#datasearch.datasearchdemo .search-input-checks .inline{display: inline-block;}
+	#datasearch.datasearchdemo .search-title{margin: 40px 0 12px 0}
+	#datasearch.datasearchdemo .search-subtitle{margin:12px 0 25px 0}
+	#datasearch.datasearchdemo .search-inputpanel{height: 200px}
+	#datasearch.datasearchdemo .search-toolbar {text-align: center;}
+	#datasearch.datasearchdemo .search-toolbar .btn-default{margin: 12px; background-color: #f1f1ab; color: #333!important; text-transform: uppercase;
+		font-weight: bold; padding: 10px 12px; border: solid 1px #dbdb00;position: relative;box-shadow: none}
+	#datasearch.datasearchdemo .search-toolbar .btn-default{background-color: #f1f1ab;}
+	#datasearch.datasearchdemo .search-toolbar .btn-default.active{background-color: #dbdb00;}
+	/* #datasearch.datasearchdemo .search-toolbar .btn-default.active:after { top: 100%; left: 28px; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; 
+		border-color: rgba(0, 187, 240, 0); border-top-color: #dbdb00; border-width: 13px; margin-left: -13px;}
+	*/
+	
+	#datasearch.datasearchdemo .browse-data-title h3{display: inline-block;}
+	#datasearch.datasearchdemo .browse-data-title .search-subtitle{display: inline-block;margin-left: 2em;}
+	
+	#datasearch.datasearchdemo .row-tree{padding-bottom: 48px;}
+	
+	.node {cursor: pointer;	}
+	.node circle {fill: #fff;stroke: #dbdb00;stroke-width: 3px;}
+	.node text {font: 14px sans-serif;}
+	.link {fill: none; stroke: #ccc; stroke-width: 2px;}
+	.node text.datalake{font-size: 1.6em; font-weight:bold;}
+	.node text.domain{font-size: 1.1em; font-weight:bold;}
+	.node text.count{fill: #8a8a8a;font-size: 1em; font-weight:bold;}
+	text.domain-icon{font-family: 'smartdatanet-domains'; font-size: 1.5em}
+	#invisible{color:#e3e4e6;}
+	
+	
+	/* netflix  https://bootsnipp.com/snippets/featured/infinite-carousel-loop*/
+	#datasearch .netflix-row{clear: both;margin-left: -15px; margin-right: -15px;  position: relative; overflow: hidden; }
+	#datasearch .netflix-scroll-panel{position: absolute; font-size: 1.5em; width: 3em; text-align: center; height: 100%; top: 0; color:#999;}
+	#datasearch .netflix-scroll-panel h3{margin-bottom: 0;}		
+	#datasearch .netflix-scroll-panel-next{right: 0;}
+	#datasearch .netflix-scroll-panel-prev{left: 0;}
+	#datasearch .netflix-scroll-panel:hover{color: #8c8c00; background-color: rgba(219,219,0,.2); cursor: pointer;}		
+	#datasearch .netflix-row .netflix-row-title{border-bottom: 1px #000 solid; padding-left: 3em;margin-bottom: 0;line-height: 1.5em;}
+	#datasearch .netflix-row .netflix-row-title:hover{cursor: pointer;}
+	#datasearch .netflix-row .domain-icon{font-family: 'smartdatanet-domains'; font-size: 1.5em}
+	#datasearch .netflix-row-content{width: 8000px; transition: .7s ease-in-out;}
+	#datasearch .netflix-cell{ padding: 1em; width: 280px;  display: table-cell; border: solid #e3e4e6; border-width: 12px 6px; background-color: #f2f3f4; }
+	#datasearch .netflix-cell:hover{}
+	#datasearch .netflix-cell h4{margin-top: 0; margin-bottom: 1em;}
+	#datasearch .netflix-cell h4:hover{cursor: pointer;}
+	
+	#datasearch .netflix-item-count{ font-size: .9em; line-height: 1em; color: #8a8a8a;}
+	#datasearch .netflix-cell .netflix-cell-item:hover{cursor: pointer;}
+
+
+
+	#datasearch .carousel-inner .active.left { left: -33%; }
+	#datasearch .carousel-inner .next        { left:  33%; }
+	#datasearch .carousel-inner .prev        { left: -33%; }
+	#datasearch .carousel-control.left,.carousel-control.right {background-image:none;}
+	#datasearch .item:not(.prev) {visibility: visible;}
+	#datasearch .item.right:not(.prev) {visibility: hidden;}
+	#datasearch .rightest{ visibility: visible;}
+	
+	#datasearch .forcepanel{}
+	#datasearch .forcepane .forcedirected-section{clear: both;}
+	#datasearch .forcepane .forcedirected-chart{}
+	#datasearch .forcedirected-legend{text-align: right;}
+	#datasearch .forcedirected-legend .forcedirected-legend-block{display: none;}
+	#datasearch .forcedirected-legend .forcedirected-legend-categories .legend_Links{display: none;}
+	#datasearch .forcedirected-legend .forcedirected-legend-category{margin-right: 2em; }
+
+	#datasearch .forcedirected-legend .forcedirected-legend-category .forcedirected-legend-label{line-height: 28px;display: table-cell; height: 28px;padding-left:1em;}
+	#datasearch .forcedirected-legend .forcedirected-legend-category .forcedirected-legend-bullet{display: table-cell; border: solid 3px ; height:28px; width: 28px; border-radius: 20px;}
+	#datasearch .forcedirected-legend .forcedirected-legend-categories .legend_Links{display: none;}
+	#datasearch .forcedirected-legend .forcedirected-legend-categories .legend_domainCode .forcedirected-legend-bullet{background-color: #dbdb00; border-color: #dbdb00;}
+	#datasearch .forcedirected-legend .forcedirected-legend-categories .legend_subdomainCode .forcedirected-legend-bullet{background-color: #f1f1ab; border-color: #dbdb00;}
+	#datasearch .forcedirected-legend .forcedirected-legend-categories .legend_organizationCode .forcedirected-legend-bullet{background-color: #95daff;border-color: #19aeff;}
+	
+	#datasearch .forcedirected-chart .node.domainCode{stroke-width: 6px;fill:#dbdb00; stroke: #dbdb00;}
+	#datasearch .forcedirected-chart .node.subdomainCode{stroke-width: 3px; fill:#f1f1ab; stroke: #dbdb00;}
+	#datasearch .forcedirected-chart .node.organizationCode{stroke-width: 3px; fill: #95daff; stroke: #19aeff;}
+	#datasearch .forcedirected-chart .label{font-size: 1.1em; font-weight:normal;}
+	#datasearch .forcedirected-chart .label.organizationCode{font-weight:bold;}
+	#datasearch .forcepanel .forcedirected-chart .domain-icon{font-size: 1.5em;}
+	
+	
+	#datasearch #browseForceHorizontalRowContainer{overflow: hidden;}
+	#datasearch .browseForceHorizontalRow{transition: .7s ease-in-out;}
+	#datasearch .browseForceHorizontalPanel{display: table-cell; }
+	#datasearch .force-row-item{border-bottom: solid #ccc 1px; padding:6px 15px 6px 0;}
+	#datasearch .force-row-title{line-height: 1.4em; display: table-cell;white-space: nowrap;}
+	#datasearch .nav-button{display: table-cell;width: 100%;text-align: right; font-size: 1.4em;}
+	#datasearch .force-row-title .domain-icon{width: 1.6em; display: inline-block;}
+	#datasearch .forcepanel .domain-icon{font-family: 'smartdatanet-domains'; font-size: 1.4em}
+
+
+	#datasearch .search-domains .content{position: relative;}
+
+	#demo-menu{position: absolute; top:0; right:0; padding: .5em; background-color: #fff;  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);z-index: 100;}
+	#demo-menu strong{display: block; margin: 0 14px 7px 14px; font-size: 1.2em}
+	#demo-menu a{display: inline-block; margin: 0 14px; text-decoration: none;	 }
+	#demo-menu a:hover, #demo-menu a.active{color: 	  #19aeff ; font-weight: bold; }
+	
+    </style>

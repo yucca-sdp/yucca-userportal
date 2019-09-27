@@ -1,0 +1,85 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="DataBrowserCtrl as databrowserCtrl" id="databrowser" class='section-store'  ng-cloak>
+	<div class='search-panel'>
+		<div class='container'>
+			<div class='' ng-cloak>
+				<h3 class='text-center'>
+					<span translate-cloak translate>DATABROWSER_TITLE</span>
+				</h3>
+			</div>
+			<div class='clearfix databrowser-search-panel' > <!-- ng-show="currentStep == 'domains'" -->
+				<form role="form" class="form-horizontal" ng-cloak>
+					<div class="form-group">
+						<div class="col-sm-5 col-sm-offset-1">
+							<input type="search" class="form-control input-lg" ng-model="metadataSearchInput.query" id="simpleSearchInput" placeholder="{{'DISCOVERY_FILTER_SIMPLESEARCH_PLACEHOLDER'|translate}}"
+							ng-enter="goToResults('query')" >
+						</div>
+						<div class="col-sm-2">
+							<button type="submit" ng-click="goToResults('query')" class="btn btn-default btn-lg">
+								<span class="glyphicon glyphicon-search"></span>&nbsp;
+								<span translate-cloak translate>DATA_BROWSER_SEARCH_BUTTON</span>
+							</button>
+						</div>
+						<div class="col-sm-4">
+						
+						<!-- 	<span class="databrowser-search-separatore" ng-show="selectedDomain != null">in</span>&nbsp;
+							<button type="submit" ng-click="goToResults('query', true)" class="btn btn-default btn-domain-remove" ng-show="selectedDomain!=null">
+								<span class="glyphicon glyphicons-circle-remove"></span>&nbsp;
+								<span translate-cloak translate>{{selectedDomain|translate}}</span>&nbsp;&nbsp;&times;
+							</button>-->
+							<div class="checkbox">
+								<label>
+						            <input type="checkbox" ng-model="metadataSearchInput.filter.isSearchExact">
+						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						            {{'DATA_BROWSER_SEARCH_EXACT'|translate}}
+					         	</label>
+					        </div>							
+							<!-- <div class="checkbox">
+								<label>
+						  			<input type="checkbox" ng-model="metadataSearchInput.filter.includeSandbox" >
+						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						            {{'DATA_BROWSER_SANDBOX_EXCLUDE'|translate}}
+					         	</label>
+					        </div>-->							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class='content-gray'>
+		<div class='container-fluid'>
+			<div class='clearfix'>
+				<div class='text-center section-title'><h3><span ng-bind-html="stepTitle|translate"></span></h3></div>
+			</div>
+			<p>&nbsp;</p>
+			<div class='content'>
+				<div class="alert alert-warning" ng-show='warningMessages.length>0'  ng-cloak>
+					<strong translate-cloak translate>WARNING_TITLE</strong> <span translate-cloak translate>{{warningMessage}}</span>
+					<ul><li ng-repeat="warningMessage in warningMessages "><span translate-cloak translate>{{warningMessage}}</span></li></ul>
+				</div>
+				
+				
+				<div class='row'>
+					<div class="col-sm-12">
+						<carousel id='dataBrowserWizard' interval="-1">
+							<slide  active="currentStep == 'domains'">
+								<databrowser-domains></databrowser-domains>
+							</slide>
+							<slide active="currentStep == 'tags'">
+								<databrowser-tags></databrowser-tags>
+							</slide>
+							<slide active="currentStep == 'results'">
+								<databrowser-results></databrowser-results>
+							</slide>
+						</carousel>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

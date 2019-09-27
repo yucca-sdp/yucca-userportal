@@ -1,0 +1,24 @@
+/build/
+/target/
+/prod/
+/target_prod/
+/target_prod_old/
+/test/
+/src - Copia/
+/target_test/
+/src.zip
+/node/
+/node_modules/
+/.tmp/
+/dist/
+/target_local/
+/target_prod_v0.7.1/
+/repository/
+/target_int/
+/target-int/
+/target-prod/
+/.settings/
+/test-output
+/target
+/target
+/desktop.ini

@@ -1,0 +1,95 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<p>With <strong>dataset groups</strong>  is possible to create logical groupings of datasets</p>
+<p>There are two macro types of groups: user-defined groups and special groups that will be used for data operations</p>
+<section>
+	<h4>User-defined groups</h4>
+	<p>These are groups for total use by the tenant, they are not versioned, and it is possible at any time to add or remove datasets</p>
+</section>
+<section>
+	<h4>Special Groups</h4>
+	<p>Special groups are used to determine which datasets must be taken into account for massive data operations<br/>
+	For special groups are versioned, the group is created in draft status, and you can add or remove datasets. 
+	When an operation is demand, the group must be consolidated, and from that moment on it will no longer be possible to change. It will however be possible to create a new version</p>
+</section>
+<section>
+	<h4>Types of special groups</h4>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-2'>
+			<span>Pr</span>
+		</div>
+		<Strong>Promotion</Strong> - Promotion is the operation by which data are copied from the datalake to the speed layer (Promotion 01)
+	</div>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-3'>
+			<span>Pu</span>
+		</div>
+		<Strong>Publication</Strong> - The publication is the operation with which the data are published on the store (Promotion 02)
+	</div>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-4'>
+			<span>Ou</span>
+		</div>
+		<Strong>Outgestion</Strong> - Outgestion is the operation by which data is exported from the datalake
+	</div>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-5'>
+			<span>In</span>
+		</div>
+		<Strong>Ingestion</Strong> - Ingestion is the operation by which data is imported into the datalake
+	</div>
+</section>
+<section>
+	<h4>Steps to follow to request an operation</h4>
+	<div class=' help-steps-datasetgroup-workflow'>
+		<div class='help-steps-loop-container'><div class=' help-steps-loop'></div></div>
+		<div class='help-steps '>
+			<div class='help-step  help-step-bullet-first'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='fa fa-circle-o'></i></div>
+	                <div class='help-step-bullet-line'></div>
+	                <div class='help-step-desc text-left'>Create a group of the desired operation type</div>
+	             </div>
+	         </div>
+	         <div class='help-step'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='icon-dataset-white'></i></div>
+	                <div class='help-step-bullet-line'></div>
+	                <div class='help-step-desc'>Choose the datasets to be processed and add them to the group</div>
+	             </div>
+	         </div>
+	         <div class='help-step'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='fa fa-snowflake-o'></i></div>
+	                <div class='help-step-bullet-line'></div>
+	                <div class='help-step-desc'>Consolidate the group</div>
+	             </div>
+	         </div>
+	         <div class='help-step'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='fa fa-envelope'></i></div>
+	                <div class='help-step-bullet-line help-step-bullet-semiline-right'></div>
+	                <div class='help-step-bullet-line help-step-bullet-semiline-left help-step help-step-bullet-line-dotted'></div>
+	                <div class='help-step-desc'>Contact the Yucca team and agree on how to perform the operation by indicating the group of datasets to consider</div>
+	             </div>
+	         </div>
+	         <div class='help-step  help-step-bullet-last'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='glyphicon glyphicon-export'></i></div>
+	                <div class='help-step-bullet-line help-step-bullet-line-dotted'></div>
+	                <div class='help-step-desc text-right'>In case it was necessary to create a new version of the group and start again</div>
+	             </div>
+	         </div>	
+	    </div>
+	</div>
+</section>
+<section>
+	<p>
+		For further details and documentation of the workflow refer to the dedicated section on
+		<strong>Knoledge Base Tecnologica</strong>
+	</p>
+</section>
+	

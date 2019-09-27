@@ -1,0 +1,99 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div id='subscribeApiDialog'>
+	<div class="modal-header">
+		<div class='clearfix'>
+			<h3 class="modal-title pull-left">
+	    		<span translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_MODAL_TITLE</span><br/>
+	    		<span class='subscribeapi-apiname'>{{apiName}}</span><br/>
+	    		<small><span translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_MODAL_SUBTITLE</span></small>
+	    	</h3>
+			<div class='pull-right subscribeApi-icon-preview'>
+				<img ng-src="{{metadata.icon}}" alt="logo dataset" class='subscribeApi-icon-preview-img' >
+			</div>
+			<div class='pull-right text-right subscribeApi-dataset-info'>
+				<div><small><span>{{metadata.code}}</span></small></div>
+				<div class='main-info'><strong>{{metadata.name}}</strong></div>
+			</div>
+				
+		</div>
+	</div>
+	<div class="modal-body table-responsive" ng-show="applicationList">
+		<div class='loadingPanel' ng-show="updating">
+			<div><span translate-cloak translate>WAIT</span></div>
+			<div><span class='ajax-loading-big'></span></div>
+		</div>
+		<h4><span translate-cloak translate>DATA_EXPLORER_APPLICATIONS_LIST_TITLE</span></h4>
+	
+		<div class='subpanel'>
+			<div class="alert alert-danger alert-dismissible" ng-show='errorMessage'>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="clearMessages()"><span aria-hidden="true">&times;</span></button>
+				<strong translate-cloak translate>WARNING_TITLE</strong> {{errorMessage|translate}}
+			</div>
+			<div class="alert alert-success alert-dismissible" ng-show='updateMessage'>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="clearMessages()"><span aria-hidden="true">&times;</span></button>
+				{{updateMessage|translate}}
+			</div>
+			<table class="table table-application-api">
+				<thead>
+					<tr>
+						<th><span translate-cloak translate>APPLICATIONS_NAME</span></th>
+						<th><span translate-cloak translate>APPLICATIONS_DESCRIPTION</span></th>
+						<th colspan='3'>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="application in applicationList">
+						<td class='slim-td'>{{application.name}}</td>
+						<td>
+							<span ng-show="!application.isEditing">{{application.description}}</span>
+							<input ng-show="application.isEditing" class="input-sm form-control" type="text" name="editedDescriptions{{$index}}"  
+										                		ng-model="editedDescriptions[$index]" placeholder="{{'APPLICATIONS_DESCRIPTION'|translate}}">
+						</td>
+						<td	class='icon-td'>
+							<a ng-show="!application.isEditing" href ng-click='startEditApplication($index)' class="btn btn-icon-edit btn-sm" title="{{'EDIT'|translate}}" ng-disable="!application.isBusy">
+								<i class='glyphicon glyphicon-pencil'></i>
+							</a>
+							<a ng-show="application.isEditing" href ng-click='saveEditApplication($index)' class="btn btn-icon-add btn-sm" title="{{'SAVE'|translate}}" ng-disable="!application.isBusy"><i class='glyphicon glyphicon-ok'></i></a>
+						</td>
+						<td class='icon-td'>
+							
+							<!-- <a  ng-show="!application.isEditing" href ng-click='removeApplication($index)' class="btn btn-icon-remove btn-sm" title="{{'DELETE'|translate}}" ng-disable="!application.isBusy">
+								<i class='glyphicon glyphicon-trash'></i>
+							</a>-->
+							<a ng-show="application.isEditing" href ng-click='cancelEditApplication($index)' class="btn btn-icon-plus btn-sm" title="{{'UNDO'|translate}}" ng-disable="!application.isBusy"><i class='glyphicon glyphicon-repeat'></i></a>
+						</td>
+						<td class='slim-td'>
+							<a ng-show="!application.isSubscribed" href ng-click='subscribeApplication($index)' class="btn btn-add-subscription btn-sm" 
+								ng-disable="!application.isBusy"><span translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_ADD_SUBSCRIPTION</span></a>
+							<a ng-show="application.isSubscribed" href ng-click='unsubscribeApplication($index)' class=" btn-remove-subscription btn-sm"  
+								ng-disable="!application.isBusy"><span translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_REMOVE_SUBSCRIPTION</span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<h4 translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_NEW_APPLICATION_TITLE</h4>
+		<div class='subpanel'>
+			<form class="form-inline">
+				<div class="form-group">
+   					<label for="newApplicationName" translate-cloak translate>APPLICATIONS_NAME</label>
+    				<input class="input-sm form-control" type="text" name="newApplicationName" ng-model="newApplicationName" placeholder="{{'APPLICATIONS_NAME'|translate}}" required="required">
+  				</div>
+  				<div class="form-group">
+	    			<label for="newApplicationDescription" translate-cloak translate>APPLICATIONS_DESCRIPTION</label>
+	    			<input class="input-sm form-control" type="text" name="newApplicationDescription" ng-model="newApplicationDescription" placeholder="{{'APPLICATIONS_DESCRIPTION'|translate}}">
+  				</div>
+  				<a href ng-click='createApplication()' class="btn btn-icon-plus " title="{{'SAVE'|translate}}" ><i class='glyphicon glyphicon-plus'></i> <span translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_CREATE_APP_BTN</span></a>
+			</form>
+		</div>
+	</div>
+    <div class="modal-footer">
+        <a href ng-click="cancel()" translate-cloak translate>CLOSE</a>
+        <a class="btn btn-primary" ng-click="goToSubscriptions()" href translate-cloak translate>DATA_EXPLORER_SUBSCRIBE_GO_TO_SUBSCRIPTIONS</a>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <base href="/userportal/"> -->
+<title>Smart Data Platform</title>
+<!-- Bootstrap -->
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/app.css">
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="favicon.png">
+<!-- Optional theme -->
+<!--  <link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+-->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<script type='text/javascript'>
+		if(!console){
+			var console = window.console || { log: function() {} };
+		}
+		if(!console.debug)
+			console.debug = window.console.log;
+
+		
+	</script>
+	<style>
+		.page-403{padding: 128px 0; font-size: 18px;}
+		.page-403 h1{font-size: 48px;}
+		.page-403 p{margin: 2em 0;}
+		.deny-icon{color: #d40000; font-size: 164pt;}
+	</style>
+</head>
+<body lang="en" >
+	<div class="container ">
+		<div class='nav navbar-nav navbar-left'>
+			<a class="navbar-brand logo" href="http://www.smartdatanet.it"><img src="img/logosdp_header.png" alt="logo"  class=''/> </a>
+		</div>
+	</div>
+	<div class='main-body page-403'>
+		<div class="container ">
+			<div class='col-sm-6 text-center'><i class="fa fa-ban deny-icon"></i></div>
+			<div class='col-sm-6'>
+				<h1>Access denied</h1>
+				<p>Your user does not have permission to use the <strong>Backoffice</strong></p>
+				<p><a class='btn btn-default' href="/backoffice/api/authorize?logout=&returnUrl=">Logout</a></p>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4'>
+					<div>
+						<a href="http://www.smartdatanet.it" target='_blank'><img src="img/logo_sdp_footer.png" alt="smartdatanet.it" /></a>
+					</div>
+					<div>
+						<a href="http://www.smartdatanet.it" target='_blank'>smartdatanet.it</a>
+					</div>
+				</div>
+				<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4'>
+					<div>
+						<a href="http://www.regione.piemonte.it" target='_blank'><img src="img/logo_regionepiemonte_footer.png" alt="Regione Piemonte" /></a>
+					</div>
+					<div>
+						<a href="http://www.regione.piemonte.it" target='_blank'>Regione Piemonte</a>
+					</div>
+				</div>
+				<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4'>
+					<div>
+						<a href="http://www.csipiemonte.it" target='_blank'><img src="img/logo_csipiemonte_footer.png" alt="CSI Piemonte" /></a>
+					</div>
+					<div>
+						<a href="http://www.csipiemonte.it" target='_blank'>CSI Piemonte</a>
+					</div>
+				</div>
+			</div>
+			<div class='last-row'>
+				<span><a href='/userportal' target='_blank'>Userportal</a></span>
+				<span class='footer-separator'>|</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

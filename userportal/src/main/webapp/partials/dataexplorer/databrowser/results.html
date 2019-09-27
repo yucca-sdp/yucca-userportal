@@ -1,0 +1,177 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='ajax-loading-container' ng-show="showSearchLoading">
+	<span class='ajax-loading-big'></span>
+	<h4>Loading...</h4>
+</div>
+
+<div class='row-fluid clearfix table-toolbar' ng-show="!showSearchLoading">
+	<div ng-class="{'col-sm-1':layoutInfo.sideMenu == 'none','col-sm-3 col-md-2':layoutInfo.sideMenu != 'none'}" ' class='clearfix facet-side-panel-title'>
+		<!-- 
+		<div class='pull-left'><i class='glyphicon glyphicon-filter'></i>&nbsp;<span translate-cloak translate ng-show='layoutInfo.sideMenu=="facet"'>DATA_BROWSER_FACET_PANEL_TITLE</span></div>
+		<div class='pull-right'>
+		 <a ng-show='layoutInfo.sideMenu=="none"' href ng-click="layoutInfo.sideMenu = 'facet'" class=''><i class='fa fa-caret-right'></i></a>
+			<a ng-show='layoutInfo.sideMenu=="facet"' href ng-click="layoutInfo.sideMenu = 'none'" class=''><i class='fa fa-caret-left '></i></a>
+		</div> 
+		-->
+	</div>
+	<div ng-class="{'col-sm-11':layoutInfo.sideMenu == 'none','col-sm-9 col-md-10':layoutInfo.sideMenu != 'none'}" class='table-toolbar1'> 
+		<div class='clearfix'>
+			<div class="table-toolbar-filter pull-left">
+				<span  class='table-toolbar-filter-element table-toolbar-filter-element-total'>
+					<strong><span translate-cloak translate>DATA_BROWSER_TOTAL_FOUND</span>:</strong> {{metadataSearchOutput.totalFound}}
+				</span>
+			<!-- <span  class='table-toolbar-filter-element'>
+					<strong><span translate-cloak translate>DATA_BROWSER_USED_FILTER</span></strong> 
+				</span> -->
+				<span  class='table-toolbar-filter-element table-toolbar-filter-element-query' ng-show="metadataSearchInput.query.length>0"> 
+					<span><strong>Query</strong> {{metadataSearchInput.query}}</span>
+					<span ng-if="metadataSearchInput.filter.isSearchExact" class='table-toolbar-filter-isSearchExact' translate>FILTER_isSearchExact</span>
+				</span>
+			<!-- <span class='table-toolbar-filter-includeSandbox' ng-if='metadataSearchInput.filter.includeSandbox'><strong translate="FILTER_includeSandbox"></strong></span> -->
+				<span  class='table-toolbar-filter-element  table-toolbar-filter-element-{{filterKey}}'>
+					<span ng-repeat="(filterKey, filterValues) in metadataSearchInput.filter track by $index" class='table-toolbar-filter-{{filterKey}}' ng-show="filterKey!='isSearchExact' && filterKey!='includeSandbox' ">
+						<strong translate="FILTER_{{filterKey}}"></strong>
+						<span ng-repeat='filterValue in filterValues track by $index' class='table-toolbar-filter-item' ng-class="{'table-toolbar-filter-item-remove':removeItem}">
+							<span>{{filterValue|translate}}</span> <a href ng-click="removeFilter(filterKey, filterValue)" ng-mouseenter="removeItem=true" ng-mouseleave="removeItem=false">&times;</a>
+						</span>
+					</span>
+				</span>
+			</div>
+			<div class="table-toolbar-actions pull-right">
+				<!-- <small><a ng-click='goToChooseDomains(true)' class="btn" translate-cloak translate>DATABROWSER_RESULTS_BACK_BTN</a></small>-->
+				<a href ng-click="resultViewType = 'box'" ng-class="{'table-toolbar-actions-active':resultViewType=='box'}"><i class="fa fa-th"  title="{{'DATABROWSER_SHOW_GRID'|translate}}"></i></a>
+				<a href ng-click="resultViewType = 'list'"  ng-class="{'table-toolbar-actions-active':resultViewType=='list'}"><i class="fa fa-table" title="{{'DATABROWSER_SHOW_LIST'|translate}}"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='row-fluid'>
+	<div ng-show='layoutInfo.sideMenu=="facet" && !showSearchLoading' ng-class="{'col-sm-1':layoutInfo.sideMenu == 'none','col-sm-3 col-md-2':layoutInfo.sideMenu != 'none'}" class='facet-side-panel'  >
+		<div ng-repeat="facet in metadataSearchOutput.facetList track by $index" >
+			<h4 ng-bind-html="facet.label"></h4>
+			<div ng-repeat="facetItem in facet.firstItems track by $index" ng-if="facet.compact">
+				<a href ng-click="addFilter(facet.facet, facetItem.name)">{{facetItem.label}}</a> <small class='facet-count'>{{facetItem.count}}</small>
+			</div>
+			<div ng-repeat="facetItem in facet.items track by $index" ng-if="!facet.compact">
+				<a href ng-click="addFilter(facet.facet, facetItem.name)">{{facetItem.label}}</a> <small class='facet-count'>{{facetItem.count}}</small>
+			</div>
+			<div  class='facet-side-panel-compact-link' ng-if="facet.items.length>=facetCompactLimit">
+				<a  ng-if="facet.compact" href ng-click="facet.compact = false"><i class='fa  fa-caret-down '></i>&nbsp;<span ng-bind-html="'DATABROWSER_EXPAND_FACET_MENU'|translate"></span></a>
+				<a  href ng-click="facet.compact = true" ng-if="!facet.compact"><i class='fa  fa-caret-up'></i>&nbsp;<span ng-bind-html="'DATABROWSER_COMPACT_FACET_MENU'|translate"></span></a>
+			</div>		
+		</div>
+	</div>
+	<div ng-class="{'col-sm-11 col-sm-offset-1':layoutInfo.sideMenu == 'none','col-sm-9 col-md-10':layoutInfo.sideMenu != 'none'}"> 
+		<!--  <div class='table-header clearfix'>
+			<div class='pull-right table-toolbar-info'>
+				<span ng-show='currentStep!=domains'>
+					<span class="query-label" ng-show='queryInput!=null && currentStep == "results"'> 
+						<strong translate-cloak translate>DATA_EXPLORER_QUERY_INPUT</strong> <span>{{queryInput}}</span>
+					</span>
+					<span class="tag-label" ng-show='selectedTags!=null && selectedTags.length>0'> 
+						<span class=' panel-dataexplorer-topbar-separator-big'>|</span>
+						<strong translate-cloak translate>DATASET_FIELD_METADATA_TAGS</strong> <span ng-repeat="tag in selectedTags"><span ng-bind-html="tag|translate"></span> &nbsp;</span>
+					</span>
+					<!-- span class="domain-label" ng-show='selectedDomain!=null'>
+						<span class=' panel-dataexplorer-topbar-separator-big'>|</span>
+						<strong translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</strong> <span>{{selectedDomain|translate}}</span>
+					</span
+				</span>
+				<a ng-click='goToChooseDomains()' class="btn btn-default btn-sm " translate-cloak translate>DATABROWSER_RESULTS_BACK_BTN</a>
+			</div>
+			
+		</div> -->
+		
+		<div class=''>
+			<div>
+				<div class='alert alert-info' ng-show="metadataSearchOutput.datasetList.length==0 && !showSearchLoading && errors.length==0">
+					<span translate-cloak translate>DATA_EXPLORER_DATA_RESULT_EMPTY</span>
+				</div>
+			</div>
+			<div class="alert alert-danger" ng-show='errors.length!=0'>
+				<div class='row  text-left' ng-repeat="error in errors track by $index">
+					<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">{{error.message|string_ellipse:50}}</div>
+					<div class="col-lg-8 col-md-1 col-sm-12 col-xs-12">{{error.detail|string_ellipse:120}}</div>
+				</div>		
+			</div>
+			<div ng-show="!showSearchLoading && metadataSearchOutput.datasetList.length>0" class='dataexplorer-table-grid-container'>
+				<table class='table dataexplorer-table-grid' ng-show="resultViewType == 'list'">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th ng-repeat='column in columns track by $index'>
+								<div class=''>{{column["label"]|translate}}</div>
+								<div class='order-icons' ng-show="column['showOrderButton']" style='display: none'>
+									<a href ng-click='orderResult(column["label"],"desc")' ng-show='column["order"]=="none"'><i class='fa fa-sort'></i></a>
+									<a href ng-show='column["order"]=="desc"' ><i class='fa fa-sort-desc'></i></a>
+									<a href ng-show='column["order"]=="asc"' ng-click='orderResult(column["label"],"none")'><i class='fa fa-sort-asc'></i></a>
+								</div>
+							</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in metadataSearchOutput.datasetList  track by $index" class='browsedata-metadata-row'>
+							<td ng-click="openDetail(data)" title="{{'DATABROWSER_RESULTS_DETAIL_HINT'|translate}}" >
+								<div class='type-column'>
+									<img ng-src="/userportal/img/icons/{{data['type']}}_icon.png" alt="{{data['type']|translate}}">
+								</div>
+							</td>
+							<td ng-click="openDetail(data)" title="{{'DATABROWSER_RESULTS_DETAIL_HINT'|translate}}" >
+								<div class='dataexplorer-table-grid-first-column'>
+									<img ng-src="{{metadataSearchOutput.datasetList[$index].icon}}" alt="logo dataset" class="img-responsive dataset-icon" >
+									<strong>{{data["name"]}}</strong><br><small><span class='muted' title="{{data['name']}}">{{data["description"]|string_ellipse:300}}</span></small>
+								</div>
+							</td>
+							<td ng-click="openDetail(data)" title="{{'DATABROWSER_RESULTS_DETAIL_HINT'|translate}}" >
+								<div class='domain-column'><i class="icon-{{data['domainCode']}} domain-icon" title="{{data['domainCode']|translate}}"></i></div>
+							</td>
+							<td ng-click="openDetail(data)" title="{{'DATABROWSER_RESULTS_DETAIL_HINT'|translate}}" >
+								<ul class="list-inline">
+									<li ng-repeat="tag in data['tagCodes'] track by $index"><span translate>{{tag}}</span></span></li>
+								</ul>
+							</td>
+							<td ng-click="openDetail(data)" title="{{'DATABROWSER_RESULTS_DETAIL_HINT'|translate}}" >{{data["tenantCode"]}}</td>
+							<td class='license-column' ng-click="openDetail(data)" title="{{'DATABROWSER_RESULTS_DETAIL_HINT'|translate}}" >
+								<span ng-class='data["license"].length<12?"nowrap":""'>{{data["license"]}} </span>
+								<span class='license-column-icons'>
+									<!-- <i ng-show="data['copyright']!=null && data['copyright']!=''"class="fa fa-copyright" title="{{data['copyright']}}"></i> --> 
+									<i ng-show="data['disclaimer']!=null && data['disclaimer']!=''"class="fa fa-info-circle" title="{{data['disclaimer']}}"></i> 
+								</span>
+							</td>	
+							<td>
+								<a href ng-click='openStreamDashboard(data)'  class="btn btn-default btn-sm btn-databrowser-action" ng-show='data["showDashboardButton"]'>
+									<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{'MANAGEMENT_VIEW_STREAM_DASHBOARD_BUTTON'|translate}}
+								</a>
+								<a  href ng-click='exploreData(data)' class="btn btn-default btn-sm btn-databrowser-action" ng-show='data["showDataexplorerButton"]'>
+									<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp{{'MANAGEMENT_VIEW_DATASET_DATA_EXPLORER_BUTTON'|translate}}
+								</a>
+							</td>				
+							
+						</tr>
+					</tbody>
+				</table>
+				<div class='dataexplorer-box-grid-container' ng-show="resultViewType == 'box'">
+					<div deckgrid source="metadataSearchOutput.datasetList" cardTemplate="partials/dataexplorer/databrowser/card-template.html?{{BuildInfo.timestamp}}" class="deckgrid"></div>
+				</div> 
+			</div>
+			<div class='row'>
+				<div class='col-sm-8 col-sm-offset-2' ng-show="metadataSearchOutput.datasetList.length>0 && !showSearchLoading && errors.length==0 ">
+					<pagination boundary-links="false" total-items="metadataSearchOutput.totalFound" ng-model="metadataSearchInput.currentPage" items-per-page="metadataSearchInput.rows"
+							ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;" max-size='5' next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+					</pagination>
+				</div>
+	
+				<div class='col-sm-2 text-right browsedata-toolbar' ng-show="!showSearchLoading">
+					<a ng-click='goToChooseDomains(true)' class="btn btn-default " translate-cloak translate>DATABROWSER_RESULTS_BACK_BTN</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		
+	

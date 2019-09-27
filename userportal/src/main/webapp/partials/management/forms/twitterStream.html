@@ -1,0 +1,96 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-if="datasource.twitterInfo != null">	
+	<h3 class='text-left form-section-title' ><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWITTER_DATA</span></h3>
+	<div class="form-group has-feedback">
+		<label for="inputStreamTwtQuery" class="col-sm-3 control-label"><span translate-cloak translate>STREAM_FIELD_TWT_QUERY</span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-5">
+			<input type="text" class="form-control" ng-model="datasource.twitterInfo.twtquery"  id="inputStreamTwtQuery"  name="inputStreamTwtQuery"
+			placeholder="{{'STREAM_FIELD_CODE_PLACEHOLDER'|translate}}" ng-required="true">
+		</div>
+		<label for="inputStreamTwtLang" class="col-sm-1 control-label"><span translate-cloak translate>STREAM_FIELD_TWT_LANG</span> </label>
+		<div class="col-sm-3">
+			<select class="input-sm form-control" ng-model="datasource.twitterInfo.twtlang" ng-options="k as v for (k, v) in Lang_ISO_639_1">
+  				<option value="">{{'CHOOSE'|translate}}</option>
+  			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputStreamTwtGeoLat" class="col-sm-3 control-label"><span translate-cloak translate>MANAGEMENT_NEW_STREAM_GEO_COORDINATES</span> </label>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" ng-model="datasource.twitterInfo.twtgeoloclat"  id="inputStreamTwtGeoLat"  name="inputStreamTwtGeoLat" ng-pattern="validationPatternFloat"
+			placeholder="{{'STREAM_FIELD_TWT_GEO_LAT'|translate}}">
+		</div>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" ng-model="datasource.twitterInfo.twtgeoloclon"  id="inputStreamTwtGeoLon"  name="inputStreamTwtGeoLon" ng-pattern="validationPatternFloat"
+			placeholder="{{'STREAM_FIELD_TWT_GEO_LON'|translate}}">
+		</div>
+		<label for="inputStreamTwtGeoRadius" class="col-sm-1  control-label"><span translate-cloak translate>STREAM_FIELD_TWT_GEO_RADIUS</span></label>
+		<div class="col-sm-1">
+			<input type="text" class="form-control" ng-model="datasource.twitterInfo.twtgeolocradius"  id="inputStreamTwtGeoRadius"  name="inputStreamTwtGeoRadius" ng-pattern="validationPatternFloat">
+			
+			<!--  
+			<select class="input-sm form-control" ng-model="datasource.twitterInfo.twtuntil" ng-options="k as v for (k, v) in TWITTER_GEO_SEARCH_RADIUS_UNIT">
+  				<option value="">{{'CHOOSE'|translate}}</option>
+  			</select> -->
+		</div>
+		<div class="col-sm-3">
+			<div class="radio pull-left"  ng-repeat="(value, label)  in TWITTER_GEO_SEARCH_RADIUS_UNIT" >
+				<label>
+					<input type="radio" name="twtGeoRadius" value="{{value}}" ng-model="datasource.twitterInfo.twtgeolocunit">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>{{label}}</span>
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label"><span translate-cloak translate>STREAM_FIELD_TWT_RATE</span></label>
+		<div class="col-sm-1 control-label">
+			<div class='text-left'>{{twitterPollingInterval}}</div>
+		</div>
+		<div class="col-sm-8 mute">
+			<i class="fa fa-lightbulb-o"></i> <i><span translate class='' >MANAGEMENT_EDIT_STREAM_TWT_POLLING_HELP</span></i>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label"><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWT_QUERY_CHECK</span></label>
+		<div class="col-sm-2">
+			<a href ng-click="checkTwitterQuery()" class='btn btn-default btn-sm' translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWT_QUERY_CHECK_RESPONSE</a>
+		</div>
+		<div ng-show="checkTwitterQueryResult.result=='KO'" class='twitter-feedback-error-panel'>
+			<div class='col-sm-1 text-center text-danger'>
+				<div><i class="fa fa-times" title="Invalid Query"></i></div>
+				<div>Invalid</div>
+			</div>
+			<div class='col-sm-7'>
+				<span class='twitter-feedback-message'>{{checkTwitterQueryResult.message}}</span>
+			</div>									
+		</div>
+		<div ng-show="checkTwitterQueryResult.result=='OK'" class='twitter-feedback-ok-panel'>
+			<div class='col-sm-1 text-center text-success'>
+				<div><i class="fa fa-check twitter-feedback-icon" title="{{checkTwitterQueryResult.message}}"></i></div>
+				<div>Valid</div>
+			</div>
+			<div class='col-sm-7'>
+				<div class='tweet-panel' ng-show="checkTwitterQueryResult.twitterMessage.getText!=null">
+					<div><strong>{{checkTwitterQueryResult.twitterMessage.userName}}</strong></div>
+					<p ng-bind-html="checkTwitterQueryResult.twitterMessage.getText|prettifyTweet"></p>
+					<div class='clearfix tweet-info'>
+						<div class='pull-left tweet-statistic-icons'>
+							<i class="fa fa-retweet" ng-class="{'tweet-retweet': checkTwitterQueryResult.twitterMessage.retweetCount>0}"></i> 
+							<span>{{checkTwitterQueryResult.twitterMessage.retweetCount}}</span>
+							<i class="fa fa-star"  ng-class="{'tweet-favorite': checkTwitterQueryResult.twitterMessage.favoriteCount>0}"></i> 
+							<span>{{checkTwitterQueryResult.twitterMessage.favoriteCount}}</span>
+						</div>
+						<div class='pull-right tweet-date'>{{checkTwitterQueryResult.twitterMessage.createdAt|date:"MM/dd/yyyy  H:mm"}}</div>
+					</div>										
+				</div>	
+				<span translate ng-show="checkTwitterQueryResult.twitterMessage.getText==null">MANAGEMENT_EDIT_STREAM_TWT_QUERY_CHECK_OK_NO_MESSAGE</span>								
+			</div>
+		</div>
+	</div>
+</div>

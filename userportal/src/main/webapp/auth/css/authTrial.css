@@ -1,0 +1,8 @@
+@import url("auth.css");
+
+#title-auth{display: none;}
+#auth_panel{display: none;}
+#title-social{display: block;margin-top: 60px;}
+#social_panel{display: block; text-align: center;}
+#social_panel p{margin-bottom: 1rem; font-size: 1.125rem;line-height: 27px;}
+

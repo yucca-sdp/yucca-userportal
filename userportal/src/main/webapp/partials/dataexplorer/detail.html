@@ -1,0 +1,437 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="DataExplorerDetailCtrl as detailCtrl" ng-cloak class='section-store'>
+
+	<div class='page-top-panel'>
+		<div class="title-container" ng-cloak>
+			<h3 class='container'>
+				{{metadata.name}}
+			</h3>
+		</div>
+	</div>
+	<div class='container error-panel-alone' ng-show='error!=null'>
+		<div class="alert alert-danger"  >
+			<strong>{{error.message|string_ellipse:50}}</strong> <span title="{{error.detail}}">{{error.detail|string_ellipse:120}}</span>
+		</div>
+	</div>
+	<div ng-show='error==null' >
+		<div class='container'>
+			<div class='clearfix entity-info entity-info-top'>
+				<div class='pull-left'>
+					<div><small><span translate-cloak translate>DATA_EXPLORER_DETAIL_STREAM_CODE</span></small></div>
+					<div class='main-info'><strong>{{metadata.stream.code}}</strong></div>
+				</div>
+				<div class='pull-right text-right'>
+					<div><small><span translate-cloak translate>STREAM_FIELD_CREATION_DATE</span></small></div>
+					<div><strong>{{metadata.registrationDateMillis|date}}</strong></div>
+				
+				</div>
+			</div>
+			<div class='clearfix entity-info entity-info-bottom'>
+				<div class='pull-left'>
+					<div><small><span translate-cloak translate>DATA_EXPLORER_DETAIL_DATASET_CODE</span></small></div>
+					<div class='url'><strong>{{metadata.dataset.code}}</strong></div>
+				</div>
+				<div class='pull-right text-right'>
+					<div><small><span translate-cloak translate>DATASET_FIELD_VERSION</span></small></div>
+					<div><strong>{{metadata.version}}</strong>  </div>
+				</div>
+			</div>
+		</div>
+		<accordion close-others="false">
+			<accordion-group is-open="!status0.open">
+				<accordion-heading>
+					<div class='container'>
+			 			<span translate-cloak translate>DATA_EXPLORER_DETAIL_GENERAL_INFO</span>
+			 			<i class="pull-right glyphicon hide" ng-class="{'glyphicon-minus': status0.open, 'glyphicon-plus': !status0.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class='row'>
+						<div class="col-sm-10">
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DESCRIPTION</span></strong></div>
+								<div class='col-sm-6'><span class='multiline-panel'>{{metadata.description}}</span></div>
+							</div>	
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</span></strong></div>
+								<div class='col-sm-6'><span >{{metadata.domainCode|translate}}</span></div>
+							</div>	
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_COD_SUB_DATADOMAIN</span></strong></div>
+								<div class='col-sm-6'><span >{{metadata.subdomainCode|translate}}</span></div>
+							</div>	
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_TAGS</span></strong></div>
+								<div class='col-sm-6'>
+									<ul class="list-inline">
+										<li ng-repeat="tagCode in metadata.tagCodes track by $index"><span class="label label-tag label-custom"><span ng-bind-html="tagCode|translate"></span></span></li>
+									</ul>
+								</div>
+							</div>	
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span ng-bind-html="'DATASET_FIELD_METADATA_VISIBILITY'|translate"></span></strong></div>
+								<div class='col-sm-2'>{{metadata.visibility}}</div>
+							</div>
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span ng-bind-html="'DATASET_FIELD_METADATA_TENANT'|translate"></span></strong></div>
+								<div class='col-sm-2'>{{metadata.tenantCode}}</div>
+							</div>
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_EXTERNAL_REFERENCE</span></strong></div>
+								<div class='col-sm-2'>{{metadata.externalreference}}</div>
+							</div>	
+							<div class="row card-row">
+								<div class="col-sm-2 card-label"><strong><span translate-cloak translate><!-- MANAGEMENT_EDIT_STREAM_SAVE_DATA_LABEL --></span></strong></div>
+								<div class='col-sm-10'><!-- {{stream.saveData|booleanToString|translate}} --></div>
+							</div>	
+						</div>
+						<div class="col-sm-2 text-right">
+							<img ng-src="{{metadata.icon}}" alt="logo dataset" class='upload-icon-preview-img' >
+						</div>
+					</div>	
+				</div>
+			</accordion-group>
+			<accordion-group is-open="statusOpendata.open" ng-show="metadata.opendata.isOpendata=='true'">
+				<accordion-heading>
+					<div class='container'>
+			 			<span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA'|translate"></span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': statusOpendata.open, 'glyphicon-plus': !statusOpendata.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA_AUTHOR'|translate"></span></strong></div>
+						<div class='col-sm-10'>{{metadata.opendata.author}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_LANG</span></strong></div>
+						<div class='col-sm-10'>{{metadata.opendata.language}} - {{metadata.opendata.language|translate}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_DATE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.opendata.dataUpdateDate|date}}</div>
+					</div>	
+				</div>
+			</accordion-group>
+			<accordion-group is-open="status1.open">
+				<accordion-heading>
+					<div class='container'>
+			 			<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_LEGAL_INFO</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status1.open, 'glyphicon-plus': !status1.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_LICENSE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.license|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DISCLAIMER</span></strong></div>
+						<div class='col-sm-10'>{{metadata.disclaimer|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_COPYRIGHT</span></strong></div>
+						<div class='col-sm-10'>{{metadata.copyright|nvl:' -'}}</div>
+					</div>	
+				</div>
+			</accordion-group>
+			<accordion-group is-open="status2.open" ng-show="metadata.stream!=null">
+				<accordion-heading>
+					<div class='container'>
+						<span translate-cloak translate>VIRTUALENTITY</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status2.open, 'glyphicon-plus': !status2.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.name|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CODE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.code|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_DESCRIPTION</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.description|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_TYPE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.type|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CATEGORY</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.category|nvl:''}}</div>
+					</div>	
+					<div class="row card-row"  ng-show="metadata.stream.smartobject.latitude && metadata.stream.smartobject.longitude ">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION</span></strong></div>
+						<div class='col-sm-4'>[{{metadata.stream.smartobject.latitude}};{{metadata.stream.smartobject.longitude}}]</div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_ELEVATION</span></strong></div>
+						<div class='col-sm-4'>{{metadata.stream.smartobject.altitude|nvl:' -'}}</div>
+					</div>	
+				</div>
+			</accordion-group>
+			<accordion-group is-open="status3.open" ng-show="metadata.stream!=null">
+				<accordion-heading>
+					<div class='container'>
+						<span translate-cloak translate>STREAM</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status3.open, 'glyphicon-plus': !status3.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_NAME</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.name|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_CODE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.code|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_FPS</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.fps|nvl:' -'}}</div>
+					</div>	
+				</div>
+			</accordion-group>
+			<accordion-group is-open="status4.open" ng-show="metadata.stream.twitter">
+				<accordion-heading>
+					<div class='container'>
+			 			<span translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWITTER_DATA</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status4.open, 'glyphicon-plus': !status4.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_QUERY</span></strong></div>
+						<div class='col-sm-6'>{{metadata.stream.twitter.twtQuery}}</div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_LANG</span></strong></div>
+						<div class='col-sm-2'>{{metadata.stream.twitter.twtLang}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>MANAGEMENT_NEW_STREAM_GEO_COORDINATES</span></strong></div>
+						<div class='col-sm-6'><span ng-show="metadata.stream.twitter.twtGeolocLat!=0 || metadata.stream.twitter.twtGeolocLon!=0">{{metadata.stream.twitter.twtGeolocLat}},{{metadata.stream.twitter.twtGeolocLon}}</span></div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_GEO_RADIUS</span></strong></div>
+						<div class='col-sm-2'><span ng-show="metadata.stream.twitter.twtGeolocRadius!=0">{{metadata.stream.twitter.twtGeolocRadius}} {{metadata.stream.twitter.twtUnit}}</span></div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_RATE</span></strong></div>
+						<div class='col-sm-1'>{{metadata.stream.twitter.twtRatePercentage}}</div>
+						<div class="col-sm-9 ">
+							<i><span translate class='' >MANAGEMENT_EDIT_STREAM_TWT_POLLING_HELP</span></i>
+						</div>
+						
+					</div>	
+				</div>
+			</accordion-group>
+			<accordion-group is-open="status5.open">
+				<accordion-heading>
+					<div class='container'>
+						<span translate-cloak translate>DATA_EXPLORER_DETAIL_COMPONENTS</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status5.open, 'glyphicon-plus': !status5.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+				
+					<div class="col-sm-12">
+						<table class="table">
+							<thead>
+								<tr>
+									<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</th>
+									<th translate-cloak translate ng-show='metadata.dataset'>DATASET_FIELD_METADATA_FIELD_ALIAS</th>
+									<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_UNIT</th>
+									<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_DATATYPE</th>
+									<th translate-cloak translate ng-show='metadata.stream'>STREAM_FIELD_COMPONENTS_TOLERANCE</th>
+									<th translate-cloak translate ng-show='metadata.stream'>STREAM_FIELD_COMPONENTS_PHENOMENON</th>
+									<th translate-cloak translate ng-show='metadata.stream'>STREAM_FIELD_COMPONENTS_SINCE_VERSION</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="component in metadata.components">
+									<td>{{component.name}}</td>
+									<td ng-show='metadata.dataset'>{{component.alias}}</td>
+									<td>{{component.measureUnitCategory|nvl:' - '}}:{{component.measureUnit|nvl:' - '}}</td>
+									<td>{{component.datatype|nvl:' - '}}</td>
+									<td ng-show='metadata.stream'>{{component.tolerance|nvl:' - '}}</td>
+									<td ng-show='metadata.stream'>{{component.phenomenonCategory|nvl:' - '}}: {{component.phenomenon|nvl:' - '}}</td>
+									<td ng-show='metadata.stream'>{{component.sinceVersion|nvl:' - '}}</td>
+									
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</accordion-group>
+	<!-- 	<accordion-group is-open="status6.open"  ng-show="stream.smartOType == VIRTUALENTITY_TYPE_TWITTER_ID">
+				<accordion-heading>
+					<div class='container'>
+			 			<span translate-cloak translate>MANAGEMENT_EDIT_STREAM_TWITTER_DATA</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status6.open, 'glyphicon-plus': !status6.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_QUERY</span></strong></div>
+						<div class='col-sm-6'>{{stream.twtQuery}}</div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_LANG</span></strong></div>
+						<div class='col-sm-2'>{{stream.twtLang}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>MANAGEMENT_NEW_STREAM_GEO_COORDINATES</span></strong></div>
+						<div class='col-sm-6'><span ng-show="stream.twtGeolocLat!=0 || stream.twtGeolocLon!=0">{{stream.twtGeolocLat}},{{stream.twtGeolocLon}}</span></div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_GEO_RADIUS</span></strong></div>
+						<div class='col-sm-2'><span ng-show="stream.twtGeolocRadius!=0">{{stream.twtGeolocRadius}} {{stream.twtUnit}}</span></div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_RATE</span></strong></div>
+						<div class='col-sm-1'>{{(5 * stream.twtMaxStreamsOfVE) +1}}</span>
+						</div>
+						<div class="col-sm-9 ">
+							<i><span translate class='' >MANAGEMENT_EDIT_STREAM_TWT_POLLING_HELP</span></i>
+						</div>
+						
+					</div>	
+				</div>
+			</accordion-group> -->
+			<accordion-group is-open="status7.open">
+				<accordion-heading>
+					<div class='container'>
+						<span translate-cloak translate>MANAGEMENT_VIEW_DATASET_DATA_URLS</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status7.open, 'glyphicon-plus': !status7.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row" ng-show='metadata.dataset'>
+						<div class="col-sm-10"><strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_DATA_URLS</span></strong></div>
+					</div>
+					<div class="row card-row" ng-show='metadata.dataset'>
+						<div class="col-sm-11 well well-small api_urls" style="margin-left: 10px">
+							<div class='col-sm-10'><a href="http://{{apiMetdataUrl}}{{topic}}/" target="_blank" class='management-dataset-download-link'>http://{{apiMetdataUrl}}{{topic}}/</a></div>
+							<div class='col-sm-10'><a href="https://{{apiMetdataSecureUrl}}{{topic}}/" target="_blank" class='management-dataset-download-link'>https://{{apiMetdataSecureUrl}}{{topic}}/</a></div>
+						</div>	
+					</div>	
+					<div class="row card-row" ng-show='metadata.stream'>
+						<div class="col-sm-10"><strong><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_WS_LBL</span></strong></div>
+					</div>	
+					<div class="row card-row" ng-show='metadata.stream'>
+						<div class="col-sm-11 well well-small api_urls" style="margin-left: 10px">
+							<div class='col-sm-10'><span class='management-dataset-download-link'>{{wsUrl}}</span></div>
+							<div class='col-sm-10'><span class='management-dataset-download-link'>{{wsUrlSecured}} (secured)</span></div>
+							<div class='col-sm-12'><span class='management-dataset-download-link'>topic: {{wsUrlTopic}}</span></div>
+						</div>	
+					</div>	
+					<div class="row card-row" ng-show='metadata.stream'>
+						<div class="col-sm-10"><strong><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_MQTT_LBL</span></strong></div>
+					</div>	
+					<div class="row card-row" ng-show='metadata.stream'>
+						<div class="col-sm-11 well well-small api_urls" style="margin-left: 10px">
+							<div class='col-sm-10'><span class='management-dataset-download-link'>{{mqttUrl}}</span></div>
+							<div class='col-sm-10'><span class='management-dataset-download-link'>{{mqttUrlSecured}} (secured)</span></div>
+							<div class='col-sm-12'><span class='management-dataset-download-link'>topic: {{mqttUrlTopic}}</span></div>
+						</div>	
+					</div>	
+				</div>
+			</accordion-group>
+			
+			
+			<accordion-group is-open="status9.open" ng-show='metadata.dcat'>
+				<accordion-heading>
+					<div class='container'>
+						<span translate-cloak translate>DCAT</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status9.open, 'glyphicon-plus': !status8.open}"></i>
+					</div>
+					
+					
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORNAME</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatCreatorName}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORTYPE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatCreatorType}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORID</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatCreatorId}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatRightsHolderName}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERTYPE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatRightsHolderType}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERID</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatRightsHolderId}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatNomeOrg}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span></strong></div>
+						<div class='col-sm-10'>{{metadata.dcat.dcatEmailOrg}}</div>
+					</div>	
+				</div>
+			</accordion-group>
+		</accordion>
+		<div class='container'>
+			<!--  <h4><span translate-cloak translate>MANAGEMENT_VIEW_DATASET_DATA_URLS</span></h4>
+			<strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_API_URL</span></strong>
+			<p><a href="{{apiMetdataUrl}}" target="_blank" class='management-dataset-download-link'>{{apiMetdataUrl}}</a></p>-->
+			<div class='row'>
+				<div class="col-sm-5">
+					<div class="row card-toolbar text-left">
+						<!-- <a  href='{{downloadCsvUrl}}' class="btn  btn-download-dataset"  >
+							<span class="glyphicon glyphicon-cloud-download "></span> {{'MANAGEMENT_VIEW_DATASET_DOWNLOAD_BUTTON'|translate}}
+						</a> -->
+						<div class="text-left ">
+							<a href="{{downloadCsvUrl}}{{decimalSeparator}} " class="btn btn-download-dataset ng-binding">
+								<span class="glyphicon glyphicon-cloud-download "></span> {{'MANAGEMENT_VIEW_DATASET_DOWNLOAD_BUTTON'|translate}}
+							</a>	
+						</div>
+						<p>&nbsp;</p>
+						<p class='text-left'> 
+							<span class='text-left'>
+								<span translate>DATA_EXPLORER_DOWNLOAD_CSV_DECIMALSEPARATOR_LABEL</span> <strong>{{'DECIMAL_SEPARATOR_'+decimalSeparator|translate}}</strong>
+							</span>
+							&nbsp;&nbsp;<a class='' href ng-click="chooseDecimalSeparator()"><!-- <i class="fa fa-cog" /></i>--><span translate>MANAGEMENT_VIEW_DATASET_DOWNLOAD_CUSTOM_BUTTON</span></a>
+						</p>
+						<p class="text-left ">
+							<span class='semimute'><i class='fa fa-info-circle'></i> <i><span translate-cloak translate>DATA_EXPLORER_FILTER_DOWNLOAD_CSV_HINT</span></i></span>
+						</p>
+
+					</div>
+				</div>
+
+				<div class="col-sm-7">
+					<div class="row card-toolbar">
+					
+						<a href="{{openInManagementUrl}}" class="btn btn-edit" ng-show="canEdit()" >
+							<span class="glyphicon glyphicon-pencil"></span> {{'DATA_EXPLORER_OPEN_IN_MANAGEMENT_BUTTON'|translate}}
+						</a>
+						<a  href='#/dataexplorer/{{tenantCode}}/{{metadata.dataset.code}}' class="btn btn-edit" ng-if="metadata.dataset">
+							<i class="fa fa-table" aria-hidden="true"></i> {{'MANAGEMENT_VIEW_DATASET_DATA_EXPLORER_BUTTON'|translate}}
+						</a>
+						<a  href='#/dashboard/stream/{{tenantCode}}/{{metadata.stream.smartobject.code}}/{{metadata.stream.code}}' class="btn btn-edit" ng-if="metadata.stream">
+							<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{'MANAGEMENT_VIEW_STREAM_DASHBOARD_BUTTON'|translate}}
+						</a>
+	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","odata")' class="btn btn-subscribe"  ng-show="user.loggedIn" ng-if='metadata.dataset'>
+							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_ODATA_BUTTON'|translate}}
+						</a>
+	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","stream")' class="btn btn-subscribe"  ng-show="user.loggedIn" ng-if='metadata.stream'>
+							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_STREAM_BUTTON'|translate}}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

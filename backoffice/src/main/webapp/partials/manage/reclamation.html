@@ -1,0 +1,105 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ReclamationCtrl as reclamationCtrl" class='container-fluid'>
+	<div class='clearfix  content-toolbar'>	
+		<h3 class='content-title'><span translate>RECLAMATIONMETADATA</span> <small title="{{'DASHBOARD_RECLAMATIONMETADATA_INTRO'|translate}}">{{'DASHBOARD_RECLAMATIONMETADATA_INTRO'|translate|string_ellipse:100}}</small></h3>
+		
+	</div>	
+	<div class='row'>
+		<div class="col-sm-6" >
+				<div ng-file-drop="onFileSelect($files)" class='upload-icon-drop-area-compact' ng-file-drag-over-class="upload-icon-drop-area-hover" ">
+					<div translate-cloak translate>RECLAMATION_UPLOAD_FILE_DROPAREA</div>
+					<div class='desc'><span translate-cloak translate>RECLAMATION_UPLOAD_FILE_MAX_SIZE</span><strong>{{maxFileSize|format_filesize}}</strong></div>
+					<div class='desc'>Supported file types:  csv</div>
+					<div class='text-center'>
+						<div ng-file-select="onFileSelect($files)" data-multiple="false" title="select file" onclick="this.value = null" class="browse-button">
+							<span translate-cloak translate>RECLAMATION_METADATA_ICON_BUTTON_LOAD_FILE</span>
+						</div>
+					</div>
+				</div>
+				<div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">HTML5 Drop File is not supported!</div>	
+		</div>
+		<div class="col-sm-6" ng-show='!dropSupported'>
+			<div ng-file-select="onFileSelect($files)" data-multiple="false" title="select file" onclick="this.value = null" class="upload-icon-selecticon-button">
+				<span translate-cloak translate>RECLAMATION_METADATA_ICON_BUTTON_LOAD_FILE</span>
+			</div>
+		</div>
+		<div class='col-sm-3 text-left'>
+			<h4>File info</h4>
+			Name: <strong title="{{csvInfo.selectedFile.name}}">{{csvInfo.selectedFile.name|string_ellipse:30}}</strong> <br>
+			<small class=''>Type: {{csvInfo.selectedFile.type}}</small><br>
+			<small class=''>Size: {{csvInfo.selectedFile.size|format_filesize}}</small>
+		</div>
+		<div class='col-sm-3 text-left'>		
+				<div class="form-group">
+					<div class ="reclamation-title-select-column ">Seleziona le colonne...</div> 
+					<div class="checkbox" >
+						<label ng-repeat="column in reclamationColumns">
+							<input type="checkbox"  ng-model = "column.checked" ng-change="toggleReclamationColumns(column)"/>
+							<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+							<span>{{column.name}}</span>
+						</label>
+					</div>
+				</div>			
+		</div>	
+		<!-- <div ng-if='csvInfo.selectedFile!=null' >
+			 <div>				
+				<div class="col-sm-4 text-right" ng-if='reclamationColumnsSelected.length>0'>
+					<a class='btn btn-default ' href ng-click="executeReclamation()"><span translate>RECLAMATION_BUTTON</span></a>
+				</div>				
+			</div> 
+		</div> -->
+		<div ng-if='csvInfo.selectedFile!=null' class = 'reclamation-toolbar'>
+			<div >
+				<div class="col-sm-8" >
+					<h4 translate-cloak translate>RECLAMATION_CSV_IMPORT_DATA_PREVIEW</h4>
+				</div>
+				<div class='col-sm-4'>
+					<span class=' management-datasetList-total-label' '>
+							<span translate translate-cloack>Dataset totali</span>: <strong>{{numDatasets}}</strong>
+					</span>
+					<span class='management-datasetList-total-label' '>
+							<span translate translate-cloack>Dataset aggiornati</span>: <strong>{{datasetAggiornati}}</strong>
+					</span>
+					<span class='management-datasetList-total-label' '>
+							<span translate translate-cloack>Dataset da aggiornare</span>: <strong>{{datasetdaAggiornare}}</strong>
+					</span>	
+									
+				</div>							
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class='reclamation-upload-preview-table-container'>
+					<table class='table-reclamation  reclamation-table-upload-preview reclamation-table-supercondensed'>
+						<tr ng-repeat='line in previewLines ' >
+							<td ng-repeat='item in line track by $index' title="{{item}}" >{{item|nvl:' '|string_ellipse:30}}</td>
+						</tr>
+					</table>
+				</div>
+				<div class='table-toolbar-separator'>&nbsp;</div>			
+				<div class='table-toolbar'>
+					<div ng-if='isUpdating && executeOn' >
+					<h4 translate-cloak translate>RECLAMATION_IS_UPDATING</h4>
+				</div>
+				<div ng-if='finished && !isUpdating && !isAborted' >
+					<h4 translate-cloak translate>RECLAMATION_FINISHED</h4>
+				</div>
+				<div ng-if='isAborted' >
+					<h4 translate-cloak translate>RECLAMATION_ABORTED</h4>
+				</div>
+					<div class='table-toolbar-item' >
+						<a class='btn btn-default ' ng-disabled ='reclamationColumnsSelected.length<=0 || executeOn'  href ng-click="executeReclamation()"><span translate>RECLAMATION_BUTTON</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-if='csvInfo.selectedFile==null' class='big-message' translate>DASHBOARD_RECLAMATION_CHOOSE_START_LABEL</div>
+			<div  class='big-message'>
+				<span class='{{bigMessage.style}}' > {{bigMessage.message}}</span>
+				<span class='big-message-detail {{bigMessage.style}}'> {{bigMessage.detail}}</span>
+			</div>					
+		</div>
+	
+</div>

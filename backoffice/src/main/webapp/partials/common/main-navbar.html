@@ -1,0 +1,100 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-cloak class='nav-bar-compact'>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed" ng-init="navbarCollapsed=true">
+				<!--  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> -->
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand" >
+					<img alt="Smartdatanet" src="./img/logo_header.png">
+				</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="navbarCollapsed">
+				<ul class="nav navbar-nav action-navbar">
+					<li>
+						<a href="#/manage/stream" ng-class="{active: activetab == 'stream'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_STREAMS</span>
+						</a>
+					</li>
+				<!-- 	<li>
+						<a href="#/manage/dataset" ng-class="{active: activetab == 'dataset'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_DATASETS</span>
+						</a>
+					</li> -->
+					
+					<li  class="dropdown" dropdown >
+			           	<a href class="dropdown-toggle"  id="dropdownMenuDataset" data-toggle="dropdown" dropdown-toggle ng-class="{active: activetab == 'dataset' || activetab == 'import'}">
+							<span translate-cloak translate>DASHBOARD_MENU_DATASETS</span>&nbsp;
+							<span class="fa fa-caret-down caret-icon"></span>
+					  	</a>
+		             	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDataset">
+							<li><a href="#/manage/dataset" translate>DASHBOARD_MENU_DATASETS_DATA</a></li>
+				        	<li><a href="#/manage/import" translate>DASHBOARD_MENU_IMPORTMETADATA</a></li>
+				        	<li><a href="#/manage/reclamation" translate>DASHBOARD_MENU_RECLAMATION_METADATA</a></li>						 	
+				  		</ul>
+				  	</li>
+					
+					<li>
+						<a href="#/manage/tenant" ng-class="{active: activetab == 'tenant'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_TENANTS</span>
+						</a>
+					</li>				
+				<!--	<li>
+						<a href="#/manage/user" ng-class="{active: activetab == 'user'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_USERS</span>
+						</a>
+					</li> -->
+				<!--	<li>
+						<a href="#/manage/import" ng-class="{active: $route.current.activetab == 'import'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_IMPORTMETADATA</span>
+						</a>
+					</li>-->
+					<li  class="dropdown" dropdown >
+			           	<a href class="dropdown-toggle"  id="dropdownMenuDataset" data-toggle="dropdown" dropdown-toggle ng-class="{active: activetab == 'bulk' || activetab == 'promotion'}">
+							<span translate-cloak translate>DASHBOARD_MENU_JOBS</span>&nbsp;
+							<span class="fa fa-caret-down caret-icon"></span>
+					  	</a>
+		             	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDataset">
+				        	<li><a href="#/jobs/bulk" translate>DASHBOARD_MENU_BULK_MODIFY</a></li>						 	
+							<li><a href="#/jobs/promotion" translate>DASHBOARD_MENU_PROMOTION</a></li>
+							<li><a href="#/jobs/pubblication" translate>DASHBOARD_MENU_PUBBLICATION</a></li>
+							<li><a href="#/jobs/dbhive" translate>DASHBOARD_MENU_DBHIVE</a></li>
+				  		</ul>
+				  	</li>
+					
+					<!-- <li>
+						<a href="#/jobs/promotion" ng-class="{active: $route.current.activetab == 'promotion'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_PROMOTION</span>
+						</a>
+					</li>						
+					<li>
+						<a href="#/jobs/bulk" ng-class="{active: $route.current.activetab == 'bulk'}" class='main-menu-item '>
+							<span translate-cloak translate>DASHBOARD_MENU_BULK_MODIFY</span>
+						</a>
+					</li>	-->				
+				</ul>
+				
+				<span class="navbar-brand" '>
+					<span  class="yucca-logo"></span>
+				</span>
+				<main-navbar-profile></main-navbar-profile>
+				<span  class="yucca-logo-collapse">Yucca</span>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	
+
+</div>
+
+
+

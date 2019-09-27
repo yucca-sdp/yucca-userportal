@@ -1,0 +1,190 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementDetailCtrl as datasourceCtrl" ng-cloak>
+	<div class='container'>
+		<alert-panel content='admin_response'></alert-panel>
+		<datasource-intro datasource='datasource' ng-if='datasource'></datasource-intro>
+	</div>		
+	<div class='fullpage-panel'>
+		<div class='panel-heading'>
+			<h4 class='panel-title container'>
+				<span translate translate-cloak>MANAGEMENT_STAGE_AREA_DATALAKE_HTFS_TITLE</span>
+			</h4>		
+		</div>
+		<div class='panel-body'>
+			<div class='panel-section container'>
+				<p><span translate>MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_INTRO</span></p>
+				<div class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_LAST_RUN</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						{{hdfsFileLastRun|millisFormatted}}
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_PATH</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						{{locationStageArea()}}
+					</div>
+				</div>	
+				<div class='row'>
+					<div class='col-sm-2 text-left label-with-action-right'>
+						<strong translate>MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_FILELIST</strong>
+						<a class='action-right' href ng-click='loadHdfsFileList()' title='{{"MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_FILELIST_HINT"|translate}}' translate><i clasS='fa fa-refresh'></i></a>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						<div ng-if='hdfsFileListStatus!=null'><i translate>{{hdfsFileListStatus}}</i></div>
+						<alert-panel content='hdfsFileListResponse'></alert-panel>
+						<div ng-if='hdfsFileListStatus==null'>
+							<div><span translate>MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_FILELIST_TOTAL</span> {{hdfsFileList.length}}</div>
+							<table class='table table-filelist'>
+								<thead>
+									<tr>
+										<th translate translate-cloak>HDFS_FILE_NAME</th>
+										<th translate translate-cloak>HDFS_FILE_ACCESS_TIME</th>
+										<th translate translate-cloak>HDFS_FILE_MODIFICATION_TIME</th>
+										<th translate translate-cloak>HDFS_FILE_SIZE</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat='file in hdfsFileList track by $index'>
+										<td>{{file.pathSuffix}}</td>
+										<td>{{file.accessTime|millisFormatted}}</td>
+										<td>{{file.modificationTime|millisFormatted}}</td>
+										<td title='{{file.length}} bytes'>{{file.length|format_filesize}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-11 col-sm-offset-2 text-left'>	
+					</div>
+				</div>	
+				<div class='text-right'>
+					<div class='ajax-loading ajax-loading-white' ng-if='forceDownloadCsvStatus=="progress"'><span translate-cloak translate>LOADING</span></div>
+					<a href class='btn btn-default' translate  translate-cloak ng-click='forceDownloadCsv()' ng-if='datasourceReady && forceDownloadCsvStatus!="progress"'>MANAGEMENT_STAGE_AREA_FORCE_DOWNLOAD_CSV_BUTTON</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='fullpage-panel' >
+		<div class='panel-heading'>
+			<h4 class='panel-title container'>
+				<span translate translate-cloak>MANAGEMENT_STAGE_UPDATE_POLICY_RANGER_TITLE</span>
+			</h4>		
+		</div>
+		<div class='panel-body'>
+			<div class='panel-section container' >
+				<p><span translate>MANAGEMENT_STAGE_UPDATE_POLICY_RANGER_INTRO</span></p>
+				<div ng-if='hdfsRangerPolicyStatus!=null'><i translate>{{hdfsRangerPolicyStatus}}</i></div>
+						<alert-panel content='hdfsRangerPolicyResponse'></alert-panel>
+				<div ng-if='hdfsRangerPolicyStatus==null' class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong><span ng-bind-html="'DATASET_FIELD_METADATA_VISIBILITY'|translate"></span></strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						{{datasource.visibility}}
+					</div>
+				</div>	
+				<div class='row' ng-if="datasource.visibility=='private'">
+				<div  ng-if='hdfsRangerPolicyStatus==null' class='col-sm-2' ><strong><span translate-cloak translate>STREAM_FIELD_TENANTSSHARED_WITH</span></strong></div>
+					<div class='col-sm-10'>
+						<span  ng-repeat="groupid in rangerPolicyGroupList">
+						<span class="label label-tag label-custom">{{groupid}}</span>
+						</span>
+					</div>
+				</div>
+				<div class='row' ng-if='hdfsRangerPolicyStatus==null' >
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_UPDATE_POLICY_RANGER_STATUS</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						<div ng-if='rangerStatus'>Allineato</div>
+						<div ng-if='!rangerStatus'> Non Allineato</div>
+					</div>
+				</div>				
+				<div class='text-right'><a href class='btn btn-default' translate  translate-cloak ng-click='propagaPolicy()' ng-disabled='rangerStatus'>MANAGEMENT_STAGE_UPDATE_POLICY_RANGER_BUTTON</a></div>
+			</div>
+		</div>
+	</div>
+	<div class='fullpage-panel'>
+		<div class='panel-heading'>
+			<h4 class='panel-title container'>
+				<span translate translate-cloak>MANAGEMENT_STAGE_AREA_EXTERNAL_HIVE_TABLE_TITLE</span>
+			</h4>		
+		</div>
+		<div class='panel-body'>
+			<div class='panel-section container'>
+				<p><span translate>MANAGEMENT_STAGE_AREA_EXTERNAL_HIVE_TABLE_INTRO</span></p>
+				<alert-panel content='updateHiveExternalTableResponse'></alert-panel>
+				<div class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_AREA_EXTERNAL_HIVE_DB_STAGE</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						{{hiveStageArea()}}
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_AREA_EXTERNAL_HIVE_TABLE_NAME</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						{{hiveExternalTableName()}}
+					</div>
+				</div>
+				<div class='text-right'>
+					<a href class='btn btn-default' ng-click='updateHiveExternalTable()' translate translate-cloak ng-if='updateHiveExternalTableStatus=="ready"'>MANAGEMENT_STAGE_AREA_EXTERNAL_HIVE_TABLE_BUTTON</a>
+					<div class='ajax-loading ajax-loading-white' ng-if='updateHiveExternalTableStatus=="progress"'><span translate-cloak translate>LOADING</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='fullpage-panel' style='display:none;'>
+		<div class='panel-heading'>
+			<h4 class='panel-title container'>
+				<span translate translate-cloak>MANAGEMENT_STAGE_AREA_REQUEST_PROMOTION_TITLE</span>
+			</h4>		
+		</div>
+		<div class='panel-body'>
+			<div class='panel-section container' '>
+				<p><span translate>MANAGEMENT_STAGE_AREA_REQUEST_PROMOTION_INTRO</span></p>
+				<div class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_AREA_REQUEST_PROMOTION_DB_HIVE</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						<span>{{dataset.dbhiveschema|nvl:' -'}}</span>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2 text-left'>
+						<strong translate>MANAGEMENT_STAGE_AREA_REQUEST_PROMOTION_SOURCE_TABLE</strong>
+					</div>
+					<div class='col-sm-10 text-left'>	
+						<span>{{dataset.dbhivetable|nvl:' -'}}</span>
+					</div>
+				</div>
+				
+				<div class='text-right' ><a href class='btn btn-default' translate  translate-cloak>MANAGEMENT_STAGE_AREA_REQUEST_PROMOTION_BUTTON</a></div>
+			</div>
+		</div>
+	
+	</div>
+	<div class='container'>
+		<div class="row">
+			<div class=" col-sm-12 form-toolbar" ng-show="isAuthorized('management/datasets/update')">
+				<a  href='#/management/viewDatasource/dataset/{{tenant}}/{{dataset.datasetcode}}/{{dataset.iddataset}}' class="btn btn-default" translate-cloak translate>MANAGEMENT_STAGE_AREA_REQUEST_BACK_BUTTON</a>
+			</div>
+		</div>
+	</div>
+	
+</div>

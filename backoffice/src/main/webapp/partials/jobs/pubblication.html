@@ -1,0 +1,174 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div ng-controller="PubblicationCtrl as pubblicationCtrl" class='container-fluid dataset-panel'>
+	<div class='' ng-cloak>
+		<div>
+			<h3 class='content-title'>Pubblication </h3>
+		</div>
+		<div class='clearfix  content-toolbar'>	
+			
+			<div class="btn-group  content-toolbar-end">
+				<form class='form-inline'>
+					<div class=' form-group'>
+						<select class='form-control input-sm' ng-model='tenantForDataset'>
+							<option value=''>Scegli un tenant...</option>
+							<option ng-repeat="tenant in allTenants track by $index" value='{{tenant.tenantcode}}'>{{tenant.tenantcode}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="projectCode" placeholder="{{'PROMOTION_PROJECT_CODE'|translate}}" />
+					</div>	
+					<div class=' form-group'>
+							 <select class='form-control input-sm' ng-model='writemodeSelect' id='writemode' >	
+							 	<option value=''>Scegli una modalita' di scrittura...</option>		
+								<option ng-repeat="val in writeMode track by $index" value='{{val.id}}'>{{val.description}}</option>
+							</select>
+						</div>				
+					<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="operationCode" placeholder="{{'PROMOTION_OPERATION_CODE'|translate}}" />
+					</div>
+					<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="datasetsStr" placeholder="{{'PROMOTION_DATASET_LIST'|translate}}" />
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" ng-model="flgCreateCsv"  >  
+							<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+							<span translate>PUBBLICATION_FLG_CSV_LABEL</span>
+						</label>
+					</div>
+					<a class='btn btn-default' href ng-click='loadDatasets()' ng-disabled='!enableExecuteButton()'><span translate>Carica Dataset</span></a>
+				</form>
+			</div>
+		</div>
+		<div ng-if='!lastTenantUsed' class='big-message && !showLoading' translate>DASHBOARD_PUBBLICATION_CHOOSE_DATASET_START_LABEL</div>
+		<div ng-if='lastTenantUsed && datasetsList.length==0 && !showLoading' class='big-message'>
+			<span class='{{bigMessage.style}}'  translate translate-values="{ lastTenantUsed: lastTenantUsed}"> {{bigMessage.message}}</span>
+			<span class='big-message-detail {{bigMessage.style}}'> {{bigMessage.detail}}</span>
+		</div>
+		<div ng-if="showLoading" class='ajax-loading-container'>
+			<span class='ajax-loading-big'></span>
+			<h4>Loading...</h4>
+		</div>
+		
+		<div ng-if='lastTenantUsed && datasetsList.length>0' >
+			<div class='clearfix  content-toolbar'>
+				<div class="btn-group content-toolbar-end">
+					<form class="form-inline" role="form">
+						<div class="form-group" >
+							<a class='btn btn-primary-negative' href ng-click='loadDatasets()'><i class='glyphicon glyphicon-refresh'></i> <span translate>RELOAD</span></a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="table-responsive dashboard-list-table">
+				<table class="table table-actions">
+					<thead>
+						<tr>
+							<th class='text-center'>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="selectAll"  ng-click="selectAll($event)"  />
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									</label>
+								</div>
+							
+							</th>
+							<th></th>
+							<th  class='text-center'>
+								<a href="" ng-click="predicate = 'dataset.datasetcode'; reverse=!reverse"><span translate>STREAM_FIELD_CODE</span> 
+									<span ng-show="predicate=='dataset.datasetcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+									<span ng-show="predicate=='dataset.datasetcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+								</a>
+							</th>
+							<th  class='text-center'>
+								<a href="" ng-click="predicate = 'dataset.tenantManager.tenantcode'; reverse=!reverse"><span translate>TENANT</span> 
+								<span ng-show="predicate=='dataset.tenantManager.tenantcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='dataset.tenantManager.tenantcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th  class='text-center'><span translate>DATASET_FIELD_HIVE_SCHEMA</span></th>
+							<th class='text-center'><span translate>DATASET_FIELD_HIVE_TABLE</span></th>
+							<th>
+								<span title='Flag availablehive'>H</span>
+							</th>
+							<th>
+								<span title='Flag availablespeed'>S</span>
+							</th>
+							<th>
+								<span title='Flag istransformed'>T</span>
+							</th>
+							<th  class='text-center'>
+								<a href="" ng-click="predicate = 'dataset.solrcollectionname'; reverse=!reverse"><span translate>TENANT_FORM_SOLR_COLLECTION</span> 
+								<span ng-show="predicate=='dataset.solrcollectionname' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='dataset.solrcollectionname' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+	
+						</tr>
+					</thead>
+					<tbody>
+						<tr  class='table-data-row' ng-class='{"table-action-selected-row": row.isSelected}' 
+							ng-repeat="row in filter.filteredDatasets = (datasetListFiltered | orderBy:predicate:reverse )|startFrom:(currentPage-1)*pageSize | limitTo:pageSize  ">
+							<td class='table-data-row-first'>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" ng-model="row.isSelected" ng-click="updateSelection($event, row.rowIndex)" />
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									</label>
+								</div>
+							<td>
+								<div ng-if="!row.dataset.availablehive && row.dataset.istransformed">
+									<h4 class="modal-title"><span class='icon-warning' ><i class='fa fa-exclamation-triangle' title = "{{'PROMOTION_FLG_AVAILABLEHIVE_ISTRANSFORMED_WARNING_TITLE'|translate}}"></i></span>
+								</div>
+								<div ng-if="row.dataset.dbhiveschema == null && row.dataset.dbhivetable ==  null">
+									<h4 class="modal-title"><span class='icon-warning'><i class='fa fa-exclamation-triangle' title = "{{'PROMOTION_HIVEDB_HIVETABLE_WARNING_TITLE'|translate}}"></i></span>
+								</div>
+							</td>
+							
+								
+							</td>
+							<td class='text-left'>
+								<!--<img ng-src="{{row.dataset.datasetIcon}}" alt="logo dataset" class='list-entity-icon-preview-img' >  -->
+								<!--  <img ng-src="{{datasetIconUrl(row.dataset.organization.organizationcode,row.dataset.iddataset)}}" alt="logo dataset" class='list-entity-icon-preview-img' >-->
+								<strong>{{row.dataset.iddataset}} -  {{row.dataset.datasetcode}}</strong>
+							</td>
+							<td><small>{{row.dataset.tenantManager.tenantcode}}</small></td>
+							<td><small>{{row.dataset.dbhiveschema}}</small></td>
+							<td><small>{{row.dataset.dbhivetable}}</small></td>
+							 <td>
+								<span class='flag-badge flag-badge-true' title='availablehive true' ng-if='row.dataset.availablehive'><i class='fa fa-check-square-o'></i></span>
+								<span class='flag-badge flag-badge-false' title='availablehive false' ng-if='!row.dataset.availablehive'><i class='fa fa-square-o'></i></span>
+							</td>
+							<td>
+								<span class='flag-badge flag-badge-true' title='availablespeed true' ng-if='row.dataset.availablespeed'><i class='fa fa-check-square-o'></i></span>
+								<span class='flag-badge flag-badge-false' title='availablespeed false' ng-if='!row.dataset.availablespeed'><i class='fa fa-square-o'></i></span>
+							</td>
+							<td>
+								<span class='flag-badge flag-badge-true' title='istransformed true' ng-if='row.dataset.istransformed'><i class='fa fa-check-square-o'></i></span>
+								<span class='flag-badge flag-badge-false' title='istransformed false' ng-if='!row.dataset.istransformed'><i class='fa fa-square-o'></i></span>
+							
+							</td>
+							<td><small>{{row.dataset.solrcollectionname}}</small></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class='table-toolbar'>
+				<pagination boundary-links="true" total-items="filter.filteredDatasets.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+					next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+				></pagination>
+				<div class='heart {{pingpongStyle}}' ng-if='oozieConnect == "ok" && oozieInfo.status == "SUCCEEDED" || oozieInfo.status == "RUNNING"' >&#10084;</div>
+				<div class='heart' ng-if='oozieInfo.status == "FAILED" || oozieInfo.status == "KILLED"' >&#128148;</div>
+				<div ng-if='oozieConnect == "ok"' ><h4 class = 'oozieStatus{{oozieInfo.status}}'>status: {{oozieInfo.status}}</h4></div>
+				<div class='table-toolbar-item'>
+						<a class='btn btn-default ' href ng-click="callOoziePubblication()" ><span translate>DASHBOARD_PROMOTION_EXECUTE_BUTTON</span></a>
+				</div>				
+			</div>
+		</div>
+
+		<p>&nbsp;</p>
+	</div>
+</div>

@@ -1,0 +1,263 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ImportCtrl as importCtrl" class='container-fluid'>
+	<div class='clearfix  content-toolbar'>	
+		<h3 class='content-title'><span translate>IMPORTMETADATA</span> <small title="{{'DASHBOARD_IMPORTMETADATA_INTRO'|translate}}">{{'DASHBOARD_IMPORTMETADATA_INTRO'|translate|string_ellipse:50}}</small></h3>
+		<div class="btn-group content-toolbar-end">
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<input type="text"  class="form-control input-sm" ng-model="organizationCode" placeholder="{{'ORGANIZATION'|translate}}">
+<!-- 					<input type="text" class="form-control input-sm" ng-model="organizationCode" placeholder="{{'ORGANIZATION'|translate}}" typeahead-editable='false' 
+						typeahead="organizationcode as organization.organizationcode for organization in allOrganizations | filter:{organizationcode:$viewValue} | limitTo:8"  />-->
+				</div>
+				<div class="form-group text-left">
+					<input type="text" class="form-control input-sm " ng-model="tenantCode" placeholder="{{'TENANT'|translate}}" typeahead-editable='false' 
+						typeahead="tenantcode as tenant.tenantcode for tenant in allTenants | filter:{tenantcode:$viewValue} | limitTo:8" typeahead-on-select="onTenantSelect($item, $model, $label)" />
+				</div>
+				<div class="form-group text-left text-lower">
+					<input type="text" class="form-control input-sm inputdomain" ng-model="domain" placeholder="{{'DOMAIN'|translate}}" typeahead-editable='false' 
+						typeahead="domaincode as domain.domaincode for domain in allDomains | filter:{domaincode:$viewValue} | limitTo:8" typeahead-on-select="onDomainSelect($item, $model, $label)" />
+				</div>
+				<div class="form-group text-left text-lower">
+					<input type="text" class="form-control input-sm inputsubdomain" ng-model="subdomain" placeholder="{{'SUBDOMAIN'|translate}}" ng-enter='importMetadata()'
+						typeahead="subdomaincode as subdomain.subdomaincode for subdomain in allSubdomains | filter:{subdomaincode:$viewValue} | limitTo:8" typeahead-on-select="onSubdomainSelect($item, $model, $label)" />
+				</div>
+				</br></br>
+				<div class='inline-alert' ng-if='isLowerCase(organizationCode)'>
+				    <span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    <span translate>DASHBOARD_IMPORTMETADATA_LOWER_CASE_ORGANIZATION</span>
+				</div>	
+				<div class="form-group">
+					<a  ng-enabled = "!isLoadingDB" class='btn btn-default ' href ng-click='importMetadata()'><span translate>IMPORTMETADATA_LOAD_TABLE_BUTTON</span> </a>
+				</div>
+
+				
+			</form>
+		</div>
+	</div>		
+	<div ng-if='!lastDbUsed' class='big-message && !showLoading' translate>DASHBOARD_IMPORTMETADATA_CHOOSE_START_LABEL</div>
+	<div ng-if='lastDbUsed && tables.length==0 && !showLoading' class='big-message'>
+		<span class='{{bigMessage.style}}'  translate translate-values="{ lastDbUsed: lastDbUsed}"> {{bigMessage.message}}</span>
+		<span class='big-message-detail {{bigMessage.style}}'> {{bigMessage.detail}}</span>
+	</div>
+	<div ng-if="showLoading" class='ajax-loading-container'>
+		<span class='ajax-loading-big'></span>
+		<h4>Loading...</h4>
+	</div>
+	<div ng-if='lastDbUsed && tables.length>0' >
+		<!-- <alert-panel content='alert.admin_response'></alert-panel>-->		
+		<div class='import-content-panel'>
+	
+			<div class='specific-field-import-hive'>
+				<h3><span translate>DASHBOARD_IMPORTMETADATA_SPECIFIC_FIELDS_TITLE</span><br><small translate>DASHBOARD_IMPORTMETADATA_SPECIFIC_FIELDS_INTRO</small></h3>
+				<div class='table-filter-panel'>
+					<form class="form-inline" role="form">   
+					
+						<div class='form-group'><i class='glyphicon glyphicon-filter'></i><label translate>DASHBOARD_IMPORTMETADATA_FILTER_LABEL</label></div>
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="filter.datasetname" placeholder="{{'DASHBOARD_IMPORTMETADATA_DATASETNAME_FILTER'|translate}}" />									
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="filter.tablename" placeholder="{{'DASHBOARD_IMPORTMETADATA_TABLENAME_FILTER'|translate}}" />
+						</div>
+						</br></br>
+						<div class='inline-alert' ng-if='notVisibleSelectedDataset()'>
+				    		<span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    		<span translate>DASHBOARD_IMPORTMETADATA_NOT_VISIBLE_DATASET</span>
+						</div>
+					</form>
+				</div>
+				<table class='table table-actions table-editable'>
+					<thead>
+						<tr>
+							<th class='slim-td nowrap checkbox-badge-th' >
+								<div class="dropdown checkbox-dropdown" dropdown>
+									<div class="checkbox dropdown-toggle" id="dropdownMenuSelectTables" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<label title='Select All'>
+											<input type="checkbox" ng-model='selectTablesFlag' ng-click='toggleSelectTables(selectTablesFlag)' checked="checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										</label>
+								    	<a href dropdown-toggle><span class="caret"></span></a>
+									</div>
+								  	<ul class="dropdown-menu" aria-labelledby="dropdownMenuSelectTables">
+									    <li><a href ng-click="selectTables('all')" translate>MANAGEMENT_IMPORT_DATABASE_TABLES_SELECT_ALL</a></li>
+									    <li><a href ng-click="selectTables('none')" translate>MANAGEMENT_IMPORT_DATABASE_TABLES_SELECT_NONE</a></li>
+									    <li><a href ng-click="selectTables('invert')" translate>MANAGEMENT_IMPORT_DATABASE_TABLES_SELECT_INVERT</a></li>
+									    <li><a href ng-click="selectTables('filtered')" translate>MANAGEMENT_IMPORT_DATABASE_TABLES_SELECT_FILTERED</a></li>
+									  </ul>
+								</div>
+							</th>
+							<th class='nowrap'>
+								<a href ng-click="predicate  = 'tablename'; reverse=!reverse"><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_TABLE_NAME</span>
+								<span ng-if="predicate=='tablename' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-if="predicate=='tablename' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th class=' nowrap'>
+								<a href ng-click="predicate  = 'dataset.datasetname'; reverse=!reverse"><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_DATASET_NAME</span>
+								<span ng-if="predicate=='dataset.datasetname' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-if="predicate=='dataset.datasetname' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th  class=' nowrap'>
+								<a href ng-click="predicate  = 'dataset.description'; reverse=!reverse"><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_DATASET_DESCRIPTION</span>
+								<span ng-if="predicate=='dataset.description' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-if="predicate=='dataset.description' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th class=' nowrap'>
+								<a href ng-click="predicate  = 'dataset.jdbctablename'; reverse=!reverse"><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_TABLE_JDBCTABLENAME</span>
+								<span ng-if="predicate=='dataset.jdbctablename' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-if="predicate=='dataset.jdbctablename' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th class='th-mute'>
+								<span class='' title='{{"DASHBOARD_IMPORTMETADATA_FEEDBECK_HINT"|translate}}'></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<!--  <tr ng-repeat="dataset in filteredDatasetsList = (datasetList | filter: searchCodeFilter | orderBy:predicate:reverse)"> -->
+							
+						<tr ng-repeat='table in filter.filteredTables = (tables | filter: searchDatasetnameFilter| filter: searchTablenameFilter| orderBy:predicate:reverse)  track by $index'>
+							<td class='slim-td'>
+								<div class='checkbox-badge-td'>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" ng-model="table.importTable" ng-change="refreshSelectedTableCount()" ng-disabled='table.disabled'>
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										</label>
+									</div>
+									<div>
+										<span class='infotable-badge infotable-badge-new' title='{{"DASHBOARD_IMPORTMETADATA_NEW_TABLE"|translate}}' ng-if='table.status=="new"'>N</span>
+										<span class='infotable-badge infotable-badge-existing' title='{{"DASHBOARD_IMPORTMETADATA_EXISTING_TABLE"|translate}} {{table.dataset.datasetcode}}'  ng-if='table.status=="existing"'>E</span>
+									</div>
+								</div>
+							</td>
+							
+							<!--  
+							<td class='nowrap'>
+								<i class="fa fa-exclamation-triangle import-database-choose-table-warning" aria-hidden="true"  ng-if='table.warnings.length>0' title="Show errors"  ng-click="showTablesWarnings(table.index)"></i>
+								<i class='fa fa-table import-database-choose-table-type-icon' title='Table' ng-if='table.tableType == "TABLE"'></i>
+								<i class='fa fa-eye import-database-choose-table-type-icon' title='View'  ng-if='table.tableType == "VIEW"'></i>
+								<span class='import-database-choose-synonym-type-icon' title='Synonym'  ng-if='table.tableType == "SYNONYM"'>S</span>
+								&nbsp;&nbsp;
+								<span  class='import-database-table-{{table.status}}'>{{'MANAGEMENT_IMPORT_DATABASE_TABLE_STATUS_'+table.status| translate}}</span>
+							</td>-->
+							<td class='text-left td-readonly'>
+								<span>{{table.tableName}}</span>
+							</td>
+							<td>
+								<input type='text' placeholder='Dataset Name' ng-model='table.dataset.datasetname' class="form-control input-sm" ng-disabled='table.disabled'/>
+							</td>
+							<td>
+								<input type='text' title='Dataset Description' ng-model='table.dataset.description' class="form-control input-sm" ng-disabled='table.disabled'/>
+							</td>
+							<td class=''>
+								<input type='text' title='JDBC Table name' ng-model='table.dataset.jdbctablename' ng-blur='onBlurjdbctablename(table.dataset.jdbctablename)'  class="form-control input-sm" ng-disabled='table.disabled || table.status=="existing"'/>
+							</td>
+							<td class=' icon-td text-center'>
+								<span class='feedback-icon-ok' ng-if='table.statusfeedback == "import-ok"' title='{{table.statusmessage}}'><i class='glyphicon glyphicon-ok'></i></span>
+								<span class='feedback-icon-ko' ng-if='table.statusfeedback == "import-ko"' title='{{table.statusmessage}}'><i class='fa fa-warning'></i></span>
+								<!--<span class='feedback-icon-info'  ng-if='table.status=="existing"' title='{{"DASHBOARD_IMPORTMETADATA_EXISTING_TABLE_INFO"|translate}}'><i class='fa fa-warning'></i></span>-->
+							</td>
+							<!--  
+							<td class=' info-table-cell'>
+								{{table.dataset.components.length}} 
+							<i class="fa fa-info-circle column-info-icon tag-html-tooltip-button" aria-hidden="true" ng-click="showTablesColumns(table.index)"></i>
+								<!-- <i class="fa fa-info-circle column-info-icon tag-html-tooltip-button info-icon" aria-hidden="true" tooltip-html-unsafe="{{table.columnsTooltip}}"  tooltip-trigger="click" tooltip-placement="left"></i>
+							</td>-->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class='common-field-import-hive'>
+				<h3><span translate>DASHBOARD_IMPORTMETADATA_COMMON_FIELDS_TITLE</span><br><small translate>DASHBOARD_IMPORTMETADATA_COMMON_FIELDS_INTRO</small></h3>
+				<form>
+				  <div class="form-group">
+				    <label for="defaultDomain" translate>DOMAIN</label>
+				    <input type="text" class="form-control input-sm text-lower" id="defaultDomain" placeholder="" ng-model='defaultMetadata.domain' disabled='disabeld'>
+				  </div>
+				  <div class="form-group">
+				    <label for="defaultSubdomain" translate>SUBDOMAIN</label>
+				    <input type="text" class="form-control input-sm text-lower" id="defaultSubdomain" placeholder="" ng-model='defaultMetadata.subdomain.subdomaincode' disabled='disabeld'>
+				  </div>
+				  <div class="form-group">
+				    <label for="defaultTenant" translate>TENANT</label>
+				    <input type="text" class="form-control input-sm" id="defaultTenant" placeholder="" ng-model='defaultMetadata.tenantCode' disabled='disabeld'>
+				  </div>
+				  <div class="form-group">
+				    <label for="defaultRequestername" translate>REQUESTER</label>
+				    <input type="text" class="form-control input-sm" id="defaultRequestername" placeholder="{{'REQUESTER_NAME'|translate}}" ng-model='defaultMetadata.requestername'><br>
+				    <input type="text" class="form-control input-sm" id="defaultRequestorsurnane" placeholder="{{'REQUESTER_SURNAME'|translate}}" ng-model='defaultMetadata.requestersurname' ><br>
+				    <input type="email" class="form-control input-sm" id="defaultRequesteremail" placeholder="{{'REQUESTER_EMAIL'|translate}}" ng-model='defaultMetadata.requesteremail' >
+				  </div>
+				  <div class="form-group">
+				    <label for="jdbcParamName" translate>JDBC_PARAMS</label>
+				    <div class='inline-alert' ng-if='tablesWithUpdate'>
+				    	<span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    	<span translate>DASHBOARD_IMPORTMETADATA_JDBC_NOT_UPDATE_IF_EXISTING</span>
+				    </div>
+				    <input type="text" class="form-control input-sm" id="jdbcParamName" placeholder="{{'MANAGEMENT_IMPORT_DATABASE_TABLE_JDBCNAME'|translate}}" ng-model='defaultMetadata.jdbcdbname'><br>
+				    <input type="text" class="form-control input-sm" id="jdbcParamType" placeholder="{{'MANAGEMENT_IMPORT_DATABASE_TABLE_JDBCTYPE'|translate}}" ng-model='defaultMetadata.jdbcdbtype'><br>
+				    <input type="text" class="form-control input-sm" id="jdbcParamSchema" placeholder="{{'MANAGEMENT_IMPORT_DATABASE_TABLE_JDBCSCHEMA'|translate}}" ng-model='defaultMetadata.jdbcdbschema'><br>
+				    <input type="text" class="form-control input-sm" id="jdbcParamUrl" placeholder="{{'MANAGEMENT_IMPORT_DATABASE_TABLE_JDBCURL'|translate}}" ng-model='defaultMetadata.jdbcdburl'>
+				  </div>				  
+				<div class="form-group">
+				    <label for="defaultTag" translate>TAG</label>
+				    <input type="text" class="form-control input-sm" id="defaultTag" placeholder="{{'TAG_PLACEHOLDER'|translate}}" ng-model="newTag.value"  typeahead-editable='false' 
+						typeahead="tagCode as tag.tagLabel for tag in allTags | filter:{tagCode:$viewValue} | limitTo:8" typeahead-on-select="onTagSelect($item, $model, $label)"><br>
+					<span  ng-repeat="tag in defaultMetadata.tags track by $index">
+						<span class="label label-tag label-custom"><span>{{(tag|tagFromId:allTagsMap).tagLabel|translate}}</span>
+						<a href ng-click='removeTag($index)'  class='close-button'>&times;</a>
+						</span> &nbsp;
+					</span>
+				  </div>
+				</form>
+			</div>
+		</div>
+		<div class='table-toolbar'>
+			<div class='pagination'>
+				<span translate>DASHBOARD_IMPORTMETADATA_TOTAL_TABLE_LABEL</span> <strong>{{tables.length}}</strong> | 
+				<span translate>DASHBOARD_IMPORTMETADATA_FILTERED_TABLE_LABEL</span> <strong>{{filter.filteredTables.length}}</strong> |
+				<span translate>DASHBOARD_IMPORTMETADATA_SELECTED_TABLE_LABEL</span> <strong>{{selectedTablesCount()}}</strong>
+				
+			</div>
+			<div class='table-toolbar-item'  >
+				<strong translate>DASHBOARD_IMPORTMETADATA_IMPORT_FEEDBACK_TITLE</strong><br>
+				<span translate>DASHBOARD_IMPORTMETADATA_IMPORT_STATUS_LABEL</span> <strong>{{status}}</strong><br>  
+				<span ng-if='status!= "ready"'>
+					<span translate>DASHBOARD_IMPORTMETADATA_IMPORT_STATS_LABEL</span> 
+					<span class='import-badge import-badge-ok'><strong>{{dbImport.totalOk}}</strong> ok</span>
+					<span class='import-badge import-badge-ko'><strong>{{dbImport.totalKo}}</strong> ko</span> <br>
+					<span translate>DASHBOARD_IMPORTMETADATA_IMPORT_CURRENT_LABEL</span> <strong>{{dbImport.currentDatasetName}}</strong><br>
+				</span>
+				<span ng-if='status=="pause"'>
+					<br>
+					<span translate class='text-danger'>DASHBOARD_IMPORTMETADATA_IMPORT_ERROR_INTRO</span><br>
+					<strong class='text-danger' title='{{dbImport.currentError}}'>{{dbImport.currentError|string_ellipse:80}}</strong><br>
+					<span translate class='text-danger'>DASHBOARD_IMPORTMETADATA_IMPORT_ERROR_QUESTION</span><br>
+					<a href class='btn bnt-empty' ng-click='continueCreateDataset()'><strong translate>YES</strong></a>
+					<a href class='btn bnt-empty' ng-click='stopCreateDataset()'><strong translate>NO</strong></a>
+				</span>
+
+			</div>
+			<div class='table-toolbar-item' >
+				<a ng-click='confirmImport()'  href class="btn btn-default" translate translate-cloak>MANAGEMENT_IMPORT_DATABASE_FINISH_START_BTN</a>
+			</div>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+	<!-- Modal -->
+	<script type="text/ng-template" id="confirmImportMetadataDialog.html">
+    	<div id="changeQueue" class='modal-body message-dialog'>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+       		<h4 class="modal-title"><span class='icon-warning'><i class='fa fa-exclamation-triangle'></i></span> <span translate>DASHBOARD_IMPORTMETADATA_CONFIRM_MODAL_DIALOG_TITLE</span></h4>
+			<div translate>DASHBOARD_IMPORTMETADATA_CONFIRM_MODAL_DIALOG</div>
+    	</div>
+    	<div class="modal-footer">
+	        <button class='btn' type='button' ng-click='cancel()' translate>CANCEL</button>
+        	<button class='btn  btn-default' type='button' ng-click='ok()' translate>OK</button>
+    	</div>
+	</script>
+</div>

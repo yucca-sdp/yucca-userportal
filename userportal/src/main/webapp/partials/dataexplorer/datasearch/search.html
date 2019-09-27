@@ -1,0 +1,130 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="DataSearchLandingCtrl as dataSearchLandingCtrl" id="datasearch" class='section-store'  ng-cloak>
+	<div class='search-inputpanel'>
+		<div class='container'>
+			<h3 class='search-title'>
+				<span translate-cloak translate>DATASEARCH_TITLE</span>
+			</h3>
+			<div class='clearfix' > 
+				<form role="form" class="form-horizontal" ng-cloak>
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-2">
+							<div class="dataseach-input-query inner-addon right-addon">
+								<i class="icon fa fa-search" ng-click="search(null)"></i>
+								<input type="search" class="form-control input-lg datasearch-input" ng-model="metadataSearchInput.query" id="simpleSearchInput" 
+									placeholder="{{'DISCOVERY_FILTER_SIMPLESEARCH_PLACEHOLDER'|translate}}" ng-enter="search(null)" >
+							</div>
+						</div>
+						<!-- <div class="col-sm-2">
+							<button type="submit" ng-click="search(null)" class="btn btn-default btn-lg">
+								<span class="glyphicon glyphicon-search"></span>&nbsp;
+								<span translate-cloak translate>DATA_BROWSER_SEARCH_BUTTON</span>
+							</button>
+						</div> -->
+					</div>
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-2 search-input-checks">
+							<div class="checkbox inline">
+								<label>
+						            <input type="checkbox" ng-model="metadataSearchInput.filter.isSearchExact">
+						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						            {{'DATA_BROWSER_SEARCH_EXACT'|translate}}
+					         	</label>
+					        </div>							
+							<!--  <div class="checkbox inline">
+								<label>
+						  			<input type="checkbox" ng-model="metadataSearchInput.filter.includeSandbox" >
+						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						            {{'DATA_BROWSER_SANDBOX_EXCLUDE'|translate}}
+					         	</label>
+					        </div>-->							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class='search-domains'>
+		<div class='container-fluid'>
+			<div class='content'>
+				<div class="alert alert-warning" ng-if='warningMessages.length>0'  ng-cloak>
+					<strong translate-cloak translate>WARNING_TITLE</strong> <span translate-cloak translate>{{warningMessage}}</span>
+					<ul><li ng-repeat="warningMessage in warningMessages "><span translate-cloak translate>{{warningMessage}}</span></li></ul>
+				</div>
+				<h3 class='search-title'>
+					<span translate-cloak translate>DATASEARCH_DOMAINS_TITLE</span>
+				</h3>
+				<div class='search-subtitle'>
+					<span translate-cloak translate>DATASEARCH_DOMAINS_SUBTITLE</span>
+				</div>
+				<div class='search-toolbar'  ng-if='demoType!="bigicon"'>
+					<div class='row'>
+						<div class="col-sm-6 first-column">
+							<a href ng-click="browseByDomain()" class='btn btn-default' ng-class="browseBy=='domain'?'active':''" translate >DATASEARCH_DOMAINS_BROWSE_BY_DOMAIN</a>
+						</div>
+						<div class="col-sm-6 second-column">
+							<a href ng-click="browseByOrganization()" class='btn btn-default'  ng-class="browseBy=='organization'?'active':''" translate>DATASEARCH_DOMAINS_BROWSE_BY_ORGANIZATION</a>
+						</div>
+					</div>
+						
+				</div>
+				
+				<div class='row' ng-if="browseBy=='domain'">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class='domains-panel'>
+							<table class='table domains-table'  ng-if="selectedDomainTree==null">
+								<tbody>
+									<tr ng-repeat='domain in domainList'  ng-if="$index % 2 == 0" >
+										<td class='browsedata-choosing-domain-box text-left domains-table-left-column'> 
+											<div class='domains-closed-cell'>
+												<i class="icon-{{domain.domain}} domain-icon search-domain-link" title="{{domain.domain|translate}}" ng-click='search(domainList[$index].domain)'></i> 
+												<small ng-click='search(domainList[$index].domain)' class='search-domain-link'>[{{domain.count}}]</small> 
+												<span translate-cloak translate ng-click='search(domainList[$index].domain)' class='search-domain-link'>{{domain.label}}</span>
+												<a href ng-click='expandRoot($index)' class='expand_tree_button'><i class='fa fa-plus'></i></a>
+											</div>
+											<!-- <div ng-if="domainList[$index].isOpen">
+												<browse-tree data="domainList[$index].tree.children[0]" ng-if='domainList[$index].treeReady'   fix_height='true' row_depth='80'
+													margin_left='0' margin_right='0' margin_bottom='0' margin_top='0' radius='7' update_callback="updateTreeCallback(isRoot, $index)" />
+											</div>--> 
+										</td>
+										<td class='browsedata-choosing-domain-box text-right domains-table-right-column' > 
+											<div class='domains-closed-cell'>
+												<a href ng-click='expandRoot($index+1)' class='expand_tree_button'><i class='fa fa-plus'></i></a>
+												<small  ng-click='search(domainList[$index+1].domain)' class='search-domain-link'>[{{domainList[$index+1].count}}]</small>	
+												<span ng-click='search(domainList[$index+1].domain)' class='search-domain-link'>{{domainList[$index+1].label}}</span>  
+												<i class="icon-{{domainList[$index+1].domain}} domain-icon search-domain-link" title="domainList[$index+1]"  ng-click='search(domainList[$index+1].domain)'></i>
+											</div>
+											<!-- <div ng-if="domainList[$index+1].isOpen" >
+												<browse-tree data="domainList[$index+1].tree.children[0]" ng-if='domainList[$index+1].treeReady' fix_height='true' row_depth='80' 
+													margin_left='0' margin_right='0' margin_bottom='0' margin_top='0' radius='7' update_callback="updateTreeCallback(isRoot, $index+1)"/> 
+											</div>-->
+											 
+										</td>
+									</tr>	
+								</tbody>
+							</table>
+							<div ng-if="selectedDomainTree!=null" class='domains-panel-selected'>
+								<div class='' >
+									<browse-tree data="selectedDomainTree.tree.children[0]" ng-if='selectedDomainTree.treeReady'   fix_height='true' row_depth='300'
+										margin_left='0' margin_right='0' margin_bottom='0' margin_top='0' radius='7' update_callback="updateTreeCallback(isRoot, selectedDomainTree.treeIndex)" />
+								</div>
+							</div> 
+						</div>
+					</div>
+				</div>
+				<div class='row' ng-if="browseBy=='organization'">
+					<div class="col-sm-10 col-sm-offset-1 ">
+						<div id='search-browse-tree'>
+							<browse-tree data="organizationTree.tree" ng-if='organizationTree.treeReady' row_depth='200' row_height='48' radius='12' icon_width='36' node_offset_x='24'
+							margin_left='0' margin_right='0' margin_bottom='0' margin_top='0' fix_height='true'></browse-tree>
+						</div>					
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,200 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <base href="/userportal/"> -->
+<title>Smart Data Platform</title>
+<!-- Bootstrap -->
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" />
+
+<link rel="stylesheet" type="text/css" href="css/app.css">
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="favicon.png">
+<!-- Optional theme -->
+<!--  <link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+-->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<script type='text/javascript'>
+		if(!console){
+			var console = window.console || { log: function() {} };
+		}
+		if(!console.debug)
+			console.debug = window.console.log;
+	</script>
+</head>
+<body lang="en" ng-app="backoffice">
+	<div ng-controller="GlobalCtrl as globalCtrl">
+		<main-navbar></main-navbar>
+		<div ng-view class='main-body'></div>
+		<main-footer></main-footer>
+	</div>
+	<script type="text/ng-template" id="messageDialog.html">
+        <div class="modal-body message-dialog {{message.type}}">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" translate>{{message.title}}</h4>
+			<div translate>{{message.message}}</div>
+			<div><small ng-bind-html='message.detail'></small></div>
+		</div>
+    </script>
+    
+    	<script type="text/ng-template" id="fabricInstalLog.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Installation log <small> Status: <span class='fabric-status-feedback-{{row.feedbackLog.status}}'>{{row.feedbackLog.status}}</span></small> </h3>
+        </div>
+        <div class="modal-body">
+			<div class='installLogToolbar '>
+				<div class=""><strong>Log level</strong></div>
+				<div class="" ng-repeat='logLevel in logLevels track by $index'>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="selectAll"  ng-click="toggleLevel(logLevel.level)" ng-model='logLevel.show'  />
+							<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+							<span class='level-{{logLevel.level}}'>{{logLevel.level}}</span>
+						</label>
+					</div>
+				</div>
+
+			</div>
+			<div class='text-right'>
+				<table class='table table-compact table-fabric-log'>
+					<tbody>
+						<tr ng-repeat='log in row.feedbackLog.logs track by $index' ng-if='isLevelVisible(log.level)'>
+							<td class='level-{{log.level}}'>{{log.level}}</td><td>{{log.message}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="close()">OK</button>
+        </div>
+    </script>
+	
+	<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+	<script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="lib/angular-translate/angular-translate.min.js"></script>
+	<script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+	<!-- commented d3.js because use the version compliant with nvd3 -->
+	<script type="text/javascript" src="lib/stomp/stomp.min.js"></script>
+		 
+	<script type="text/javascript" src="lib/ngDraggable/ngDraggable.js"></script>
+	<script type="text/javascript" src="lib/ng-file-upload/angular-file-upload.js"></script>
+
+
+
+	<script type="text/javascript" src="api/config"></script>
+
+	<script type="text/javascript" src="js/build_info.js"></script>
+	
+
+	
+	<!-- build:js js-min/i18n/strings_en.js -->
+	<script type="text/javascript" src="js/i18n/strings_en.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js js-min/i18n/strings_it.js -->
+	<script type="text/javascript" src="js/i18n/strings_it.js"></script>
+	<!-- endbuild -->
+ 	
+	
+	<!-- build:js js-min/app.js -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/helpers.js -->
+	<script type="text/javascript" src="js/helpers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/constants.js -->
+	<script type="text/javascript" src="js/constants.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/services.js -->
+	<script type="text/javascript" src="js/services/services.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/adminServices.js -->
+	<script type="text/javascript" src="js/services/adminServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/buildServices.js -->
+	<script type="text/javascript" src="js/services/buildServices.js"></script>
+	<!-- endbuild -->
+
+
+
+	
+	<!-- build:js js-min/controllers.js -->
+	<script type="text/javascript" src="js/controllers.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js js-min/filters.js -->	
+	<script type="text/javascript" src="js/filters.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/directives.js -->
+	<script type="text/javascript" src="js/directives.js"></script>
+	<!-- endbuild -->
+	
+	<!-- build:js js-min/controllers.js -->
+	<script type="text/javascript" src="js/controllers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dashboard/DashboardController.js -->
+	<!-- <script type="text/javascript" src="js/business/dashboard/DashboardController.js"></script>-->
+	<!-- endbuild -->
+	<!-- build:js js-min/business/manage/StreamController.js -->
+	<script type="text/javascript" src="js/business/manage/StreamController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/manage/DatasetController.js -->
+	<script type="text/javascript" src="js/business/manage/DatasetController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/manage/UserController.js -->
+	<script type="text/javascript" src="js/business/manage/UserController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/manage/TenantController.js -->
+	<script type="text/javascript" src="js/business/manage/TenantController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dashboard/DashboardDirectives.js -->
+	<!-- <script type="text/javascript" src="js/business/dashboard/DashboardDirectives.js"></script>-->
+	<!-- endbuild -->
+	<!-- build:js js-min/business/manage/ImportController.js -->
+	<script type="text/javascript" src="js/business/manage/ImportController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/manage/ReclamationController.js -->
+	<script type="text/javascript" src="js/business/manage/ReclamationController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/jobs/BulkController.js -->
+	<script type="text/javascript" src="js/business/jobs/BulkController.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js js-min/business/jobs/DbHiveController.js -->
+	<script type="text/javascript" src="js/business/jobs/DbHiveController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/jobs/PromotionController.js -->
+	<script type="text/javascript" src="js/business/jobs/PromotionController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/jobs/PubblicationController.js -->
+	<script type="text/javascript" src="js/business/jobs/PubblicationController.js"></script>
+	<!-- endbuild -->
+	
+	
+
+</body>
+</html>

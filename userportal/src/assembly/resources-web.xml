@@ -1,0 +1,29 @@
+<assembly>
+	<id>resources-web</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<includes>
+				<include>README*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/webapp/lib</directory>
+			<outputDirectory>lib</outputDirectory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+			<lineEnding>dos</lineEnding>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/legalinfo/nivola</directory>
+			<outputDirectory>legalinfo</outputDirectory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+			<lineEnding>dos</lineEnding>
+		</fileSet>
+	</fileSets>
+</assembly>

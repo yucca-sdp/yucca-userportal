@@ -1,0 +1,61 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_DATASET_TITLE</span> - <span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_DATASET_TYPE_SUBTITLE</span></h3></div>
+	<div class='pull-right'><h3><small>Step 4/5</small></h3></div>
+</div>
+<div>
+	<h3 class='new-dataset-choose-panel-question'><span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_DATASET_TYPE_QUESTION</span></h3>
+	<div class=''>
+		<div class="row ">
+			<div class='col-sm-4 new-dataset-choose-panel-container'>
+				<h3><span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_WITH_ATTACH_TITLE</span></h3>
+				<div class='wizard-choose-panel' id='new-dataset-choose-panel-binary'>
+					<div  class='wizard-choose-panel-icons'>
+						<!-- <i class="fa fa-film" id='new-dataset-choose-panel-movie-icon'></i>
+						<i class="fa fa-camera" id='new-dataset-choose-panel-camera-icon'></i>
+						<i class="fa  fa-file-pdf-o" id='new-dataset-choose-panel-pdf-icon'></i> -->
+						<i class="fa fa-list-ol" id="new-dataset-choose-panel-define-colum-list-icon"></i>
+						<i class="fa fa-paperclip " id="new-dataset-choose-panel-attach-icon"></i>
+						<i class="fa fa-pencil" id="new-dataset-choose-panel-define-colum-pencil-icon"></i>
+					</div>
+					<div class='wizard-choose-panel-action'><a class='btn btn-wizard-next'  href ng-click='chooseDatasetType("binary_no_upload")'><span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_BINARY</span></a></div>
+					<p class='wizard-choose-panel-desc' translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_BINARY_DESC</p>
+				</div>
+			</div>
+			<div class='col-sm-7 col-sm-offset-1 new-dataset-choose-panel-container'>
+				<h3><span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_NO_ATTACH_TITLE</span></h3>
+				<div class='row'>
+					<div class='col-sm-6'>
+						<div class='wizard-choose-panel' id='new-dataset-choose-panel-define-columns'>
+							<div  class='wizard-choose-panel-icons'>
+								<i class="fa fa-list-ol" id="new-dataset-choose-panel-define-colum-list-icon"></i>
+								<i class="fa fa-pencil" id="new-dataset-choose-panel-define-colum-pencil-icon"></i>
+							</div>
+							<div class='wizard-choose-panel-action'><a class='btn btn-wizard-next'  ng-click='chooseDatasetType("bulk_no_upload")' href><span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_DEFINE_COLUMN</span></a></div>
+							<p class='wizard-choose-panel-desc' translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_DEFINE_COLUMN_DESC</p>
+						</div>
+					</div>
+					<div class='col-sm-6'>
+						<div class='wizard-choose-panel' id='new-dataset-choose-panel-upload-file'>
+							<div  class='wizard-choose-panel-icons'>
+								<i class="fa fa-table"id='new-dataset-choose-panel-csv-icon'></i>
+								<i class="fa fa-arrow-up"id='new-dataset-choose-panel-upload-icon'></i>
+							</div>
+							<div class='wizard-choose-panel-action'><a class='btn btn-wizard-next'  ng-click='chooseDatasetType("bulk_upload")' href><span translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_UPLOAD_FILE</span></a></div>
+							<p class='wizard-choose-panel-desc' translate-cloak translate>MANAGEMENT_NEW_DATASET_CHOOSE_FILE_UPLOAD_FILE_DESC</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row ">
+			<div class='col-sm-4 text-left'>
+				<a ng-click='goToMetadata()' class="btn wizard-choose-btn-back" translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_PREV</a>
+			</div>
+		</div>
+	</div>
+</div>

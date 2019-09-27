@@ -1,0 +1,75 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div id='header2' ng-controller="NavigationCtrl as navigation" ng-cloak class='nav-bar-compact'>
+	<nav class="navbar ">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed" ng-init="navbarCollapsed=true">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a href="http://yucca.userportal.it/" class="navbar-brand" ><span class="hidden">Yucca  Smart Data Platform</span>
+					<!-- <img alt="Smartdatanet" src="./img/2018/logosdp.png">-->
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="navbarCollapsed">
+				<ul class="nav navbar-nav action-navbar">
+					<li>
+						<a href="#/" ng-class="{active: $route.current.activetab == 'home'}" class='main-menu-item main-menu-item-dashboard'>
+							<span translate-cloak translate>MENU_HOME</span></a>
+					</li>
+					<li ng-show="isAuthorized('management/*')" class='border-left'>
+						<a ng-href="{{managementUrl}}"  ng-class="{active: $route.current.activetab == 'management'}" class='main-menu-item main-menu-item-management'>
+							<span translate-cloak translate>MENU_MANAGEMENT</span></a>
+					</li>
+					<li ng-show="isAuthorized('store/*')" class='border-left'>
+						<a href="#/dataexplorer/search?" ng-class="{active: $route.current.activetab == 'dataexplorer'}" class='main-menu-item main-menu-item-dataexplorer'>
+							<span translate-cloak translate>MENU_STORE</span></a>
+					</li>
+					<li ng-show="isAuthorized('store/*') && user.loggedIn" class='border-left'><a href="#/dataexplorer/subscriptions?"
+							ng-class="{active: $route.current.activetab == 'subscriptions'}" class='main-menu-item main-menu-item-dataexplorer'>
+							<span translate-cloak translate>MENU_SUBSCRIPTIONS</span></a>
+					</li>
+				</ul>
+				<main-navbar-profile2></main-navbar-profile2>
+				<ul class="nav navbar-nav navbar-right navbar-with-caret lang-menu" ng-cloak>
+					<li class='main-menu-item main-menu-item-caret' class="dropdown" dropdown >
+			           	<a href class="dropdown-toggle main-menu-profile-caret"  id="dropdownMenuLang" data-toggle="dropdown" dropdown-toggle>
+							<span ng-if="currentLang() == 'it'">ITA</span>
+							<span ng-if="currentLang() == 'en'">ENG</span>
+							<span class="fa fa-chevron-down caret-icon"></span>
+					  	</a>
+		             	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuLang">
+						 	<li>
+						 		<a ng-click="changeLanguage('it')"  href title="{{'MENU_LANG_IT'|translate}}" ng-class="{'indent-dropdownitem-noicon':currentLang() != 'it'}" >
+						 			<i class='glyphicon glyphicon-ok indent-dropdownitem-icon' ng-show="currentLang() == 'it'"></i>&nbsp;&nbsp;<span translate>MENU_LANG_IT</span>
+						 		</a>
+						 	</li>
+						 	<li>
+						 		<a ng-click="changeLanguage('en')"  href title="{{'MENU_LANG_EN'|translate}}" ng-class="{'indent-dropdownitem-noicon':currentLang() != 'en'}" >
+						 			<i class='glyphicon glyphicon-ok indent-dropdownitem-icon' ng-show="currentLang() == 'en'"></i>&nbsp;&nbsp;<span translate>MENU_LANG_EN</span>
+						 		</a>
+						 	</li>	
+				  		</ul>
+				  	</li>
+	            </ul>
+				
+				<ul class="nav navbar-nav navbar-right developer-center-navabar">
+					<li>
+						<a href="http://developer.smartdatanet.it/" target='_blank'  class="developer-center" title="Developer Center">
+							<img alt="Developer Center" src="./img/2018/logdevcenter.png">
+							<span class='developer-center-label'>Developer Center</span>
+						</a>
+					</li>
+				</ul>
+				<span  class="yucca-logo-collapse">Yucca</span>
+			</div>
+		</div>
+	</nav>
+
+</div>
+

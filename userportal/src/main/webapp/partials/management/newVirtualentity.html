@@ -1,0 +1,62 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementVirtualentityWizardCtrl as virtualentityWizardCtrl">
+	<div class='container' ng-cloak>
+		<h3 class='content-edit-title'><span translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_SUBTITLE</span></h3>
+	</div>
+	<div class='container' ng-cloak>
+		<div class='row'>
+			<div class="col-sm-10  col-sm-offset-1 wizard-nav" >
+				<ul class="nav nav-pills " role="tablist">
+				  <li role="presentation" ng-class="{active: currentStep == 'register'}">
+				  	<a href='javascript:void(0)' ng-class="wizardSteps[0].style">
+				  		<span class='wizard-step-counter'>1</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_WIZARD_STEP_REGISTER</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'position'}">
+				  	<a href='javascript:void(0)' ng-class="wizardSteps[1].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>2</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_WIZARD_STEP_POSITION</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'detail'}">
+				  	<a href='javascript:void(0)' ng-class="wizardSteps[2].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>3</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_WIZARD_STEP_DETAIL</span> 
+				  	</a>
+				  </li>
+			</ul>
+			</div>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+	<div class='content-gray'>
+		<div class='container'  ng-controller="ManagementVirtualentityCtrl as virtualentityCtrl">
+			<div class='alert alert-sandbox ng-hide' ng-if='tenant=="sandbox"' ng-cloak>
+				<strong><i class="fa fa-exclamation-triangle"></i>&nbsp;<span translate-cloak translate>WARNING_TITLE</span></strong>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_SANDBOX_WARNING</span>
+			</div>
+			
+			<alert-panel content='admin_response'></alert-panel>
+
+			<div class='row'>
+				<div class="col-sm-10 col-sm-offset-1">
+					<carousel id='newDatasetWizard' interval="-1">
+						<slide  active="currentStep == 'register'">
+							<new-virtualentity-wizard-register></new-virtualentity-wizard-register>
+						</slide>
+						<slide active="currentStep == 'position'">
+							<new-virtualentity-wizard-position></new-virtualentity-wizard-position>
+						</slide>
+						<slide active="currentStep == 'detail'">
+							<new-virtualentity-wizard-detail></new-virtualentity-wizard-detail>
+						</slide>
+					</carousel>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

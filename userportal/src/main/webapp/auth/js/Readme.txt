@@ -1,0 +1,1 @@
+Copy and unzip on identity server host at path /appserv/wso420/wso001is_node02/repository/deployment/server/webapps/authenticationendpoint/js

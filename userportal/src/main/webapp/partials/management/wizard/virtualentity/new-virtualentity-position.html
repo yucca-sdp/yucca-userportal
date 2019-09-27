@@ -1,0 +1,110 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class='clearfix wizard-title'  ng-cloak>
+		<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_WIZARD_STEP_POSITION_TITLE</span></h3></div>
+		<div class='pull-right'><h3><small>Step 2/3</small></h3></div>
+	</div>
+	<form class="form-horizontal" role="form" name="positionVirtualentityForm"  ng-cloak>
+		<div class="form-group">
+			<label for="RadioGroupPositionType" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION_TYPE_MOBILE</span></label>
+			<div class="col-sm-10 text-left">
+				<div class="radio pull-left" ng-repeat='lt in locationTypeList track by $index'>
+					<label>
+						<input type="radio" name="RadioGroupPositionType" value="{{lt.idLocationType}}" ng-model="so.idLocationType" id="RadioGroupPositionType_{{$index}}">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>{{lt.description}}</span>
+					</label>
+				</div>
+				<!-- <label class="radio-inline" ng-repeat='lt in locationTypeList track by $index'>
+					<input type="radio" name="RadioGroupPositionType" value="{{lt.idLocationType}}" id="RadioGroupPositionType_{{$index}}" ng-model="so.idLocationType">{{lt.description}}
+				</label>-->
+			</div> 
+		</div>
+		<div class="form-group  has-feedback">
+			<label for="RadioGroupEsposition" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_ESPOSITION</span> <span class='required-asterisk'>*</span></label>
+			<div class="col-sm-10  text-left">
+				<div class="radio pull-left" ng-repeat='et in exposureTypeList track by $index'>
+					<label>
+						<input type="radio" name="RadioGroupEsposition" value="{{et.idExposureType}}" ng-model="so.idExposureType" id="RadioGroupEsposition_{{$index}}" required>
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>{{et.description}}</span>
+					</label>
+				</div>
+				<!-- 
+				<label class="radio-inline" ng-repeat="et in exposureTypeList track by $index">
+             			<input type="radio" name="RadioGroupEsposition" value="{{et.idExposureType}}" id="RadioGroupEsposition_{{$index}}" ng-model="so.idExposureType" required>{{et.description}}
+           		</label>-->
+			</div>
+		</div>
+
+		<div class="form-group has-feedback">
+			<label class="col-sm-2 control-label" for="inputVirtualentityLatitude" ><span translate-cloak translate>VIRTUALENTITY_FIELD_LATITUDE</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityLatitude" name="inputVirtualentityLatitude" placeholder="{{'VIRTUALENTITY_FIELD_LATITUDE'|translate}}" 
+				ng-model="so.position.lat" ng-pattern="validationPatternFloat">
+				<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+					ng-show="positionVirtualentityForm.inputVirtualentityLatitude.$error.pattern && positionVirtualentityForm.inputVirtualentityLatitude.$dirty"></span>
+			</div>
+		</div>
+
+		<div class="form-group has-feedback">
+			<label class="col-sm-2 control-label" for="inputVirtualentityLongitude" ><span translate-cloak translate>VIRTUALENTITY_FIELD_LONGITUDE</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityLongitude" name="inputVirtualentityLongitude" placeholder="{{'VIRTUALENTITY_FIELD_LONGITUDE'|translate}}" 
+				ng-model="so.position.lon"  ng-pattern="validationPatternFloat">
+				<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+					ng-show="positionVirtualentityForm.inputVirtualentityLongitude.$error.pattern && positionVirtualentityForm.inputVirtualentityLongitude.$dirty"></span>
+			</div>
+		</div>
+
+		<div class="form-group has-feedback">
+			<label class="col-sm-2 control-label" for="inputVirtualentityElevation" ><span translate-cloak translate>VIRTUALENTITY_FIELD_ELEVATION</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityElevation" name="inputVirtualentityElevation" placeholder="{{'VIRTUALENTITY_FIELD_ELEVATION'|translate}}" 
+				ng-model="so.position.elevation" ng-pattern="validationPatternFloat">
+				<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+					ng-show="positionVirtualentityForm.inputVirtualentityElevation.$error.pattern && positionVirtualentityForm.inputVirtualentityElevation.$dirty"></span>
+			</div>
+		</div>
+		
+		<div class="form-group has-feedback" ng-show="so.idExposureType==1">
+			<label class="col-sm-2 control-label" for="inputVirtualentityBuilding" ><span translate-cloak translate>VIRTUALENTITY_FIELD_INDOOR_BUILDING</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityBuilding" name="inputVirtualentityBuilding" placeholder="{{'VIRTUALENTITY_FIELD_INDOOR_BUILDING'|translate}}" 
+				ng-model="so.position.building" maxlength="150">
+				<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_MAXLENGTH_TOOLTIP'|translate}}"
+					ng-show="positionVirtualentityForm.inputVirtualentityBuilding.$error.maxlength && positionVirtualentityForm.inputVirtualentityBuilding.$dirty" ></span>
+			</div>
+		</div>
+
+		<div class="form-group has-feedback" ng-show="so.idExposureType==1">
+			<label class="col-sm-2 control-label" for=""inputVirtualentityFloor"" ><span translate-cloak translate>VIRTUALENTITY_FIELD_INDOOR_FLOOR</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityFloor" name="inputVirtualentityFloor" placeholder="{{'VIRTUALENTITY_FIELD_INDOOR_FLOOR'|translate}}" 
+				ng-model="so.position.floor" ng-pattern="validationPatternInteger">
+				<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_INTEGER_TOOLTIP'|translate}}"
+					ng-show="positionVirtualentityForm.inputVirtualentityFloor.$error.pattern && positionVirtualentityForm.inputVirtualentityFloor.$dirty"></span>
+			</div>
+		</div>
+
+		<div class="form-group has-feedback" ng-show="so.idExposureType==1">
+			<label class="col-sm-2 control-label" for="inputVirtualentityRoom" ><span translate-cloak translate>VIRTUALENTITY_FIELD_INDOOR_ROOM</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityRoom" name="inputVirtualentityRoom" placeholder="{{'VIRTUALENTITY_FIELD_INDOOR_ROOM'|translate}}" 
+					ng-model="so.position.room" maxlength="100">
+				<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_MAXLENGTH_TOOLTIP'|translate}}"
+					ng-show="positionVirtualentityForm.inputVirtualentityRoom.$error.maxlength && positionVirtualentityForm.inputVirtualentityRoom.$dirty"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class=" col-sm-12 form-toolbar">
+				<a ng-click='goToRegister()' class="btn " translate-cloak translate>BACK</a>
+				<a ng-click='goToDetail()' class="btn btn-wizard-next" ng-disabled="!isOwner() || positionVirtualentityForm.$invalid " translate-cloak translate>MANAGEMENT_NEW_STREAM_WIZARD_NEXT</a>
+			</div>
+		</div>
+	</form>
+</div>

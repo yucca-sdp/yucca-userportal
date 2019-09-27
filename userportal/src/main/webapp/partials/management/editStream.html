@@ -1,0 +1,60 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementEditCtrl as editCtrl"  ng-cloak>
+	<div ng-controller="ManagementStreamCtrl as streamCtrl"  ng-cloak>
+		<div class='container'>
+			<h3 class='content-edit-title'><span translate-cloak translate>STREAM</span> <small><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_FROM_VIRTUAL_ENTITY_SUBTITLE</span>  {{stream.streamcode}} - {{stream.streamname}}</small></h3>
+			<datasource-intro datasource='inputDatasource' ng-if='datasourceReady'></datasource-intro>
+		</div>
+		<div class='content-gray'>
+			<div class='container'>
+				<div class='row'>
+					<div ng-class="showHint?'col-sm-7': 'col-sm-11'">
+						<div class='alert alert-sandbox ng-hide' ng-show='tenant=="sandbox"'><strong><i class="fa fa-exclamation-triangle"></i>&nbsp;<span translate-cloak translate>WARNING_TITLE</span></strong>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_SANDBOX_WARNING</span></div>
+						<p>&nbsp;</p>
+						<div class='row'><alert-panel content='admin_response'></alert-panel></div>
+						<div class='row'>
+							<div class="col-sm-12">
+								<form class="form-horizontal" role="form" name="editStreamForm" accept-charset="UTF-8">
+									<div class='form-group'  style='display:none'>
+										<a href ng-click="provaDire();">debug</a>
+									</div>
+									<!-- <div class="row card-row">
+										<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY</span></strong></div>
+										<div class="col-sm-10">{{stream.smartobject.socode}} - {{stream.smartobject.name}}</div>
+									</div>-->			
+									<datasource-main-info datasource='stream' datasource-domain='{{streamDomain}}' datasource-subdomain='{{streamSubdomain}}'  operation='update'
+										ng-if='datasourceReady'></datasource-main-info>
+										
+									<datasource-detail-info datasource='stream' ng-if='datasourceReady'></datasource-detail-info>
+									<datasource-sharing datasource='stream' ng-if='datasourceReady'></datasource-sharing>
+									<datasource-legal-info datasource='stream' ng-if='datasourceReady'></datasource-legal-info>
+									<datasource-dcat datasource='stream' ng-if='datasourceReady'></datasource-dcat>
+									<datasource-components datasource='stream' preview='preview' ng-if='datasourceReady'  action='editDatasource' status="{{inputDatasource.status.statuscode}}"></datasource-components>
+									<datasource-internal-streams datasource='stream' extra='extra' ng-if='datasourceReady'></datasource-internal-streams>
+									<datasource-twitter-stream datasource='stream' smartobject='extra.selectedSo' tenantcode='{{tenantCode}}' ng-if='datasourceReady'></datasource-twitter-stream>
+
+								
+									<div class="row" ng-show="!isUpdating">
+										<div class=" col-sm-12 form-toolbar"  ng-show="isAuthorized('management/streams/update')" >
+											<a  ng-href='{{viewStream()}}' class="btn"><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_FINISH_BUTTON</span></a>
+											<a  ng-click='save()'  class="btn btn-default" ng-disabled="!isOwner() "><span translate-cloak translate>MANAGEMENT_EDIT_STREAM_SAVE_AS_DRAFT_BUTTON</span></a>
+										</div>
+									</div>
+									<div class="row"  ng-show="isUpdating" ng-cloak>
+										<div class=" col-sm-12 col-lg-12 form-toolbar">
+											<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+										</div>				
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

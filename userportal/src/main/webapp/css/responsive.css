@@ -1,0 +1,115 @@
+@media only screen and (max-width: 991px) {
+ /* tablets and desktop */
+#homepage-family-identity #home-top-header .yucca{ padding-top: 0px;}
+#homepage-family-identity #home-operation-section .role-panel{font-size: 36px;}
+#homepage-family-identity #home-top-header{height: auto;}
+#homepage-family-identity #home-top-header .yucca{height: auto;}
+}
+
+@media (max-width: 1240px) {
+	.nav-bar-compact .navbar-collapse .yucca-logo{  display: none; }
+}
+
+@media only screen and (max-width: 767px) {
+ /* phones */
+ /* homepage */
+	.top-header{background-color: black; background-image: none;}
+	.top-header .developer-center-label{display: none;}
+	.top-header .top-header-logo-bg{background-image: none; min-height: 1px;}
+	.top-header .first-bar{background: url(../img/familyidentity/top-navbar-logotree-rotated-small.png) no-repeat bottom left;}
+	.top-header .first-bar h2{float: left;}
+	.top-header .yucca .first-bar{padding-left: 0;}
+	.top-header .yucca .first-bar-menu .navbar-right{margin-right: 12px;}
+	.top-header .yucca .first-bar-menu .flag-menu-item{float: left;}
+	.top-header .yucca .first-bar-menu  .navbar-with-caret{overflow: hidden;}
+	.top-header .yucca .first-bar-menu  .main-menu-item-with-caret{float:left;}
+	.top-header .yucca .first-bar-menu  .main-menu-item-caret{float:right;}
+	.bottom-header .main-menu{text-align: left;}
+	.bottom-header .border-left{border-left: none;}
+	
+	
+	.navbar-collapse .nav > .divider-vertical {  display: none; }
+	.navbar-collapse .nav > .space-vertical {  display: none; }
+	.nav-bar-compact  .navbar-nav > li > a {line-height: 20px; padding-top: 10px; padding-bottom: 10px;}
+	.nav-bar-compact .navbar-collapse .yucca-logo{  display: none; }
+	
+	.nav-bar-compact .navbar-collapse{background: url(../img/familyidentity/top-navbar-logotree-rotated-small.png) no-repeat bottom left;  position: relative; padding-bottom: 60px;}
+	
+	.nav-bar-compact .navbar-collapse{margin: 0; padding-left: 0; padding-right: 0;}
+	.nav-bar-compact .navbar-header{padding: 5px 15px 15px 15px;}
+	.nav-bar-compact .container-fluid{padding-left: 0; padding-right: 0;}
+	.nav-bar-compact .navbar-collapse .action-navbar{margin:0; padding:15px 30px; }
+	.nav-bar-compact .navbar-collapse .navbar-right.developer-center-navabar{margin:0; padding:15px 30px 0px 30px; border-bottom: solid 0px #393939; }
+	.nav-bar-compact .navbar-collapse .navbar-right{margin:0; padding:15px 30px; border-bottom: solid 1px #393939;}
+	.nav-bar-compact .navbar-collapse .developer-center-label{display: inline-block; color: white; font-size: 18px; padding-left: 1em;  }
+	.nav-bar-compact .navbar-collapse .navbar-nav.navbar-right.developer-center-navabar {margin-right: 0;}
+	.nav-bar-compact .navbar-collapse .main-menu-username{text-align: left;}
+	.nav-bar-compact .navbar-collapse .main-menu-tenant{text-align: left;}
+	.nav-bar-compact .navbar-collapse .action-navbar{border-bottom: solid 1px #393939;}	
+	.nav-bar-compact .navbar-collapse .navbar-with-caret{overflow: hidden;}
+	.nav-bar-compact .navbar-collapse .main-menu-item-with-caret{float:left;}
+	.nav-bar-compact .navbar-collapse .main-menu-item-caret{float:right;}
+	.nav-bar-compact .navbar-collapse.in{max-height: 100% !important;  }
+	
+	.nav-bar-compact .navbar-inverse .navbar-nav > .open > a,.nav-bar-compact .navbar-inverse .navbar-nav > .open > a:hover,.nav-bar-compact .navbar-inverse .navbar-nav > .open > a:focus{
+	background-color: #222222; text-align: right;}
+	
+	.nav-bar-compact .yucca-logo-collapse{font-family: 'Aldrich', sans-serif; position: absolute; bottom: 0; left: 136px;  display: block; font-size: 36px; line-height: 60px; }
+	
+	/* internal menu */
+	.title-container h1{float: none;}
+	.title-container .title-menu{float: none;}
+	.title-container .btn-top-toolbar{display: block; margin-left: 0; margin-top: 12px; margin-bottom: 12px;}
+	.title-container .btn-top-toolbar.active:after{border-color: transparent;}
+	
+	
+	
+	#homepage-family-identity #home-top-header{height: auto;}
+	#homepage-family-identity #home-top-header .yucca {height: auto;}
+	 
+	#homepage-family-identity #home-top-header .yucca{background-image: none;}
+	#homepage-family-identity #home-top-header .yucca h2{padding-left: 0; text-align: center;}
+	#homepage-family-identity #home-top-header .yucca p{padding-left: 0; text-align: center; font-size: 18px;}
+	#homepage-family-identity #home-landing-section {padding-top: 25px;}
+	#homepage-family-identity #home-landing-section .login-col{border-right: none; border-bottom: solid 1px #000; height: auto; text-align: left;}
+	#homepage-family-identity #home-landing-section .home_box_text{text-align: left;}
+	#homepage-family-identity #home-landing-section .intro-desc {text-align: left; padding: 0;}
+	#homepage-family-identity #home-landing-section .login-col-last{height: auto;}
+	#homepage-family-identity #home-landing-section .action-start-panel{text-align: center; }
+	#homepage-family-identity #home-landing-section .home-start-intro {padding-right: 0; margin-top: 25px;}
+	#homepage-family-identity #home-landing-section .btn-home-start{text-align: center; width: 100%;}
+	#homepage-family-identity #home-landing-section .home-demo-intro {padding-right: 0; margin-top: 25px;}
+	#homepage-family-identity #home-landing-section .btn-arrow-right:before{width: 0;}
+	#homepage-family-identity #home-landing-section .btn-arrow-right:after{width: 0;}
+	#homepage-family-identity #home-landing-section .btn{white-space: normal; }
+	#homepage-family-identity .btn-home-demo{width: auto;}
+	
+	
+	
+	#home-statistic-section {padding: 10px 0 0 0;}
+	#home-statistic-section h3 {margin-bottom: 0;}
+	#home-statistic-section .statistic-data-panel{text-align: center;}
+	#home-statistic-section .statistic-chart-panel{text-align: center;}
+	#home-statistic-section .statistic-entity-panel{text-align: center;}
+	
+	#home-operation-section {padding: 10px 0;}
+	#homepage-family-identity #home-operation-section h2{font-size: 32px; margin-bottom: 30px;}
+	#homepage-family-identity #home-operation-section .main-icon{font-size: 48px; display: inline-block;}
+	#homepage-family-identity #home-operation-section .role-panel{ display: inline-block; line-height: 48px; padding-bottom: 30px;border-bottom-width: 0;}
+	#homepage-family-identity #home-operation-section .operation-panel-content .intro{border-top: solid 1px #000; font-size: 20px; padding:1em 0; margin: 0 1em; }
+	#homepage-family-identity #home-operation-section .operation-panel{margin-bottom: 30px; min-height: auto;}
+
+	#home-map-section .right-overlay-map{display: none;}
+	#home-map-section .left-overlay-map{display: none;}
+	
+	#footer-family-identity p{text-align: center;}
+	#footer-family-identity .logo-csi{margin-top: 20px;}
+	#footer-family-identity ul{padding-left: 0;}
+	#footer-family-identity ul li{text-align: center;}
+
+}
+
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+ /* portrait phones */
+}
