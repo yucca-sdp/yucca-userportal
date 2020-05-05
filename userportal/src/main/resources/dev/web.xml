@@ -13,23 +13,23 @@
 		<servlet-name>AuthorizeServlet</servlet-name>
 		<init-param>
 			<param-name>Issuer</param-name>
-			<param-value>userportal</param-value>
+			<param-value>@@Issuer@@</param-value>
 		</init-param>
 		<init-param>
 			<param-name>IdpUrl</param-name>
-			<param-value>https://tst-sdnet-sec1.sdp.csi.it:9444/samlsso</param-value>
+			<param-value>@@IdpUrl@@</param-value>
 		</init-param>
 		<init-param>
 			<param-name>ConsumerUrl</param-name>
-			<param-value>http://tst-sdnet-up1.sdp.csi.it/userportal/api/authorize</param-value>
+			<param-value>@@ConsumerUrl@@</param-value>
 		</init-param>
 		<init-param>
 			<param-name>AttributeConsumingServiceIndex</param-name>
-			<param-value>627970293</param-value>
+			<param-value>@@AttributeConsumingServiceIndex@@</param-value>
 		</init-param>
 		<init-param>
 			<param-name>IdpLoginPageStylePath</param-name>
-			<param-value>http://tst-sdnet-up1.sdp.csi.it/userportal/css/auth.css</param-value>
+			<param-value>@@IdpLoginPageStylePath@@</param-value>
 		</init-param>
 	</servlet>
 </web-app>     
