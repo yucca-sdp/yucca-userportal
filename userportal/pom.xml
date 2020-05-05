@@ -268,59 +268,6 @@
 
 	<profiles>
 		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<resources>
-					<resource>
-						<directory>src/main/resources/local</directory>
-					</resource>
-					<resource>
-						<directory>src/main/resources/releasenotes</directory>
-						<targetPath>./releasenotes</targetPath>
-					</resource>
-					<resource>
-						<directory>src/main/resources/images</directory>
-						<targetPath>.</targetPath>
-					</resource>
-				</resources>
-			</build>
-			<properties>
-				<webXmlPath>src/main/resources/local</webXmlPath>
-			</properties>
-		</profile>
-		<profile>
-			<id>local2</id>
-			<build>
-				<testResources>
-					<testResource>
-						<directory>${project.basedir}/src/test/resources</directory>
-					</testResource>
-					<testResource>
-						<directory>${project.build.directory}/checkout/userportal/test/local</directory>
-					</testResource>
-				</testResources>
-				<resources>
-					<resource>
-						<directory>${project.build.directory}/checkout/userportal/resources/local</directory>
-					</resource>
-					<resource>
-						<directory>src/main/resources/images</directory>
-						<targetPath>.</targetPath>
-					</resource>
-					<resource>
-						<directory>src/main/resources/releasenotes</directory>
-						<targetPath>./releasenotes</targetPath>
-					</resource>
-				</resources>
-			</build>
-			<properties>
-				<webXmlPath>${project.build.directory}/checkout/userportal/resources/local/</webXmlPath>
-			</properties>
-		</profile>
-		<profile>
 			<id>dev</id>
 			<build>
 				<resources>

@@ -5,14 +5,6 @@
  * 
  */
 
-
-/*
- * SPDX-License-Identifier: EUPL-1.2
- * 
- * (C) Copyright 2019 Regione Piemonte
- * 
- */
-
 appControllers.controller('ReclamationCtrl', [ '$scope', "$route", 'adminAPIservice', 'fabricBuildService', 'readFilePreview', '$translate', '$modal', '$timeout' , '$q',
                                            function($scope, $route, adminAPIservice, fabricBuildService, readFilePreview, $translate, $modal,$timeout, $q) {
 	
