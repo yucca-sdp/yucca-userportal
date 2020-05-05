@@ -1,0 +1,259 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementVirtualentityCtrl as streamCtrl"  ng-cloak>
+	<div class='container'>
+		<h3 class='content-edit-title'><span translate-cloak translate>VIRTUALENTITY</span> <small><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUAL_ENTITY_SUBTITLE</span> {{so.virtualEntityName}}</small></h3>
+		<div class='clearfix entity-info entity-info-top'>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span></small></div>
+				<div class='main-info'><strong>{{so.name}}</strong></div>
+			</div>
+			<div class='pull-right text-right'>
+				<div><small><span translate-cloak translate>VIRTUALENTITY_FIELD_CREATION_DATE</span></small></div>
+				<div><strong>{{so.creationdate|smartobject_date_format}}</strong></div>			
+			</div>
+		</div>
+		<div class='clearfix entity-info entity-info-bottom'>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>VIRTUALENTITY_FIELD_CODE</span></small></div>
+				<div class='url'><strong>{{so.socode}}</strong></div>
+			</div>
+			<div class='pull-right text-right'>
+				<div><small><span translate-cloak translate>VIRTUALENTITY_FIELD_TYPE</span></small></div>
+				<div><strong title="Type code: {{so.soType.sotypecode}}">{{so.soType.description}}</strong></div>
+			</div>
+		</div>
+		<div class='clearfix entity-info entity-info-bottom'>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>VIRTUALENTITY_SLUG</span></small></div>
+				<div class='url'><strong>{{so.slug}}</strong></div>
+			</div>
+		</div>
+	
+	</div>
+	<div id='topForm' class='content-gray'>
+		<div class='container'>
+			<div class='alert alert-sandbox ng-hide' ng-show='tenant=="sandbox"'><strong><i class="fa fa-exclamation-triangle"></i>&nbsp;<span translate-cloak translate>WARNING_TITLE</span></strong>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_SANDBOX_WARNING</span></div>
+			<p>&nbsp;</p>
+			<div class='row'>
+				<div class="col-sm-10 col-sm-offset-1">
+					<alert-panel content='admin_response'></alert-panel>
+				</div>
+			</div>
+			<div class='row'>
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_STATUS</span></strong></div>
+						<div class="col-sm-3"><span title="Status code: {{so.status.statuscode}}">{{so.status.descriptionStatus}}</span></div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CATEGORY</span></strong></div>
+						<div class="col-sm-3"><span title="Category code: {{so.soCategory.socategorycode}}">{{so.soCategory.description}}</span></div>
+					</div>			
+				</div>
+			</div>
+			<div class='row'>
+				<div class="col-sm-10 col-sm-offset-1">
+					<form class="form-horizontal" role="form" name='updateVirtualentityForm'>
+						<div class='form-label-separator'><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_GENERAL</span></div>
+						<div class="form-group">
+							<label for="inputVirtualentityName" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputVirtualentityName" placeholder="{{'VIRTUALENTITY_FIELD_NAME'|translate}}" ng-model="so.name">
+							</div>
+						</div>			
+						<div class="form-group" ng-show="isDevice()">
+							<label for="inputVirtualentityModel" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_MODEL</span></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputVirtualentityModel" placeholder="{{'VIRTUALENTITY_FIELD_MODEL'|translate}}" ng-model="so.model">
+							</div>
+						</div>			
+						<div class="form-group">
+							<label for="inputVirtualentityDescription" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_DESCRIPTION</span></label>
+							<div class="col-sm-10">
+								<textarea class="form-control" rows="2" id="inputVirtualentityDescription" placeholder="{{'VIRTUALENTITY_FIELD_DESCRIPTION'|translate}}" ng-model="so.description"></textarea>
+							</div>
+						</div>	
+						<div class="row card-row"  ng-show='isTwitter()'>
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_TWITTER_USER_NAME</span></strong></div>
+							<div class='col-sm-10'>
+								<div ng-show='twitterCredentialLoading'>
+									<div class='ajax-loading'></div>
+								</div>
+								<div ng-show='!twitterCredentialLoading'>
+									<div ng-show='so.twtusername!=null'>
+										<img ng-src="{{twtMiniProfileImageURLHttps}}" title='User Twitter' ng-show='twtMiniProfileImageURLHttps!=null'/> 
+										<span class='twitter-username-label'>{{so.twtusername}}</span> 
+										<a href ng-click="clearTwitterCredential()" class='btn btn-default btn-sm' translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_AUTH_TWITTER_CHANGE</a>
+									</div>
+									<div ng-show='so.twtusername==null'>
+										<a ng-href='{{twitterAuthUrl()}}' class="btn btn-default">
+											<i class="fa fa-twitter"></i>&nbsp;
+											<span translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_AUTH_TWITTER_LOGIN</span>
+										</a>
+									</div>
+								</div>
+								<div ng-show="twitterError!=null" class="text-danger">
+									<small><strong translate-cloak translate>WARNING_TITLE</strong> {{twitterError}}</small>
+								</div>
+							</div>
+						</div>	
+						<div class="row card-row management-virtualentity-update-stream" ng-show="streamsToReinstall.length>0">
+							<label class="col-sm-2 control-label"><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_REINSTALL_STREAMS</span></label>
+							<div class="col-sm-10 ">
+								<div class="alert alert-warning">
+									<strong><span translate-cloak translate>WARNING_TITLE</span></strong> 
+									<span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_REINSTALL_STREAMS_HELP</span>
+								</div>
+								<div ng-show="streamsToReinstall.length==0 && !showLoadingStreams">
+									<span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_REINSTALL_STREAMS_NO_STREAMS</span>
+								</div>
+								<div class='text-center' ng-show="showLoadingStreams">
+									<span class='ajax-loading-label'>Loading&hellip;</span>
+								</div>
+								<div class='row stream-list' ng-repeat="streamRow in streamsToReinstall">
+									<div class='col-sm-5'>
+										<img ng-src="{{streamIconUrl(organizationCode,streamRow.stream.idstream)}}" alt="logo stream" class='list-entity-icon-preview-img' >
+										<span title="{{streamRow.stream.streamcode}} - {{streamRow.stream.streamname}}"><strong>{{streamRow.stream.streamcode}}</strong> - {{streamRow.stream.streamname|string_ellipse:20}}</span>
+									</div>
+									<div class='col-sm-1 col-no-padding'>	
+										<span class="stream-status stream-status-{{streamRow.stream.status.statuscode}}">{{streamRow.stream.status.statuscode|translate|string_ellipse:8}}</span>									
+									</div>
+									<div class='col-sm-6 col-sm-6'>
+										<a href class='btn btn-default btn-sm' ng-click='reinstallStream(streamRow)' ng-disabled="streamRow.isUpdating || streamRow.stream.status.statuscode!=STREAM_STATUS_INST">
+											<span class="glyphicon glyphicon-save "></span> <span translate-cloak translate>MANAGEMENT_VIEW_STREAM_INSTALL_BUTTON</span>
+										</a>
+										<a  href class='btn btn-default btn-sm' ng-click='unInstallStream(streamRow)' ng-disabled="streamRow.isUpdating || streamRow.stream.status.statuscode!=STREAM_STATUS_INST">
+											<span class="glyphicon glyphicon-open "></span> <span translate-cloak translate>MANAGEMENT_VIEW_STREAM_UNINSTALL_BUTTON</span>
+										</a>
+										<i class="fa fa-check text-success" ng-if='streamRow.updateOk'></i>
+										<i class="fa fa-times text-danger" ng-if='streamRow.updateKo'></i>
+										<span class="ajax-loading" ng-show='streamRow.isUpdating'></span>
+										<!-- <a href ng-click='refreshStream(streamRow, true)'>d</a> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div ng-show="isDevice()">
+							<div class='form-label-separator'><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_COLLOCATION</span></div>
+							<div class="form-group">
+								<label for="RadioGroupPositionType" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION_TYPE_MOBILE</span></label>
+								<div class="col-sm-10">
+									<label class="radio-inline" ng-repeat='lt in locationTypeList track by $index'>
+				              			<input type="radio" name="RadioGroupPositionType" value="{{lt.idLocationType}}" id="RadioGroupPositionType_{{$index}}" ng-model="so.idLocationType">{{lt.description}}
+				            		</label>
+								<!-- 
+									<label class="radio-inline">
+				              			<input type="radio" name="RadioGroupPositionType" value="static" id="RadioGroupPositionType_0" ng-model="so.locationType">{{'VIRTUALENTITY_FIELD_POSITION_TYPE_STATIC'|translate}}
+				            		</label>
+									<label class="radio-inline">
+				              			<input type="radio" name="RadioGroupPositionType" value="mobile" id="RadioGroupPositionType_1" ng-model="so.locationType">{{'VIRTUALENTITY_FIELD_POSITION_TYPE_MOBILE'|translate}}
+				            		</label>-->
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION</span></label>
+								<label for="inputVirtualentityLatitude" class="col-sm-1 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_LATITUDE</span></label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="inputVirtualentityLatitude" name="inputVirtualentityLatitude" placeholder="{{'VIRTUALENTITY_FIELD_LATITUDE'|translate}}" 
+									ng-model="so.position.lat" ng-pattern="validationPatternFloat">
+									<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+										ng-show="updateVirtualentityForm.inputVirtualentityLatitude.$error.pattern && updateVirtualentityForm.inputVirtualentityLatitude.$dirty"></span>
+								</div>
+								<label for="inputVirtualentityLongitude" class="col-sm-1 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_LONGITUDE</span></label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="inputVirtualentityLongitude" name="inputVirtualentityLongitude" placeholder="{{'VIRTUALENTITY_FIELD_LONGITUDE'|translate}}" 
+									ng-model="so.position.lon"  ng-pattern="validationPatternFloat">
+									<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+										ng-show="updateVirtualentityForm.inputVirtualentityLongitude.$error.pattern && updateVirtualentityForm.inputVirtualentityLongitude.$dirty"></span>
+								</div>
+								<label for="inputVirtualentityElevation" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_ELEVATION</span></label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="inputVirtualentityElevation" name="inputVirtualentityElevation" placeholder="{{'VIRTUALENTITY_FIELD_ELEVATION'|translate}}" 
+									ng-model="so.position.elevation" ng-pattern="validationPatternFloat">
+									<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+										ng-show="updateVirtualentityForm.inputVirtualentityElevation.$error.pattern && updateVirtualentityForm.inputVirtualentityElevation.$dirty"></span>
+								</div>
+							</div>									
+							<div class="form-group  has-feedback">
+								<label for="RadioGroupEsposition" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_ESPOSITION</span></label>
+								<div class="col-sm-10">
+									<label class="radio-inline" ng-repeat="et in exposureTypeList track by $index">
+				              			<input type="radio" name="RadioGroupEsposition" value="{{et.idExposureType}}" id="RadioGroupEsposition_{{$index}}" ng-model="so.idExposureType" required>{{et.description}}
+				            		</label>
+
+								</div>
+							</div>
+							<div class="form-group has-feedback" ng-show="so.idExposureType==1">
+								<label class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_ESPOSITION_INDOOR_ADDITIONAL</span></label>
+								<label for="inputVirtualentityBuilding" class="col-sm-1 control-label" ><span translate-cloak translate>VIRTUALENTITY_FIELD_INDOOR_BUILDING</span></label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="inputVirtualentityBuilding" name="inputVirtualentityBuilding" placeholder="{{'VIRTUALENTITY_FIELD_INDOOR_BUILDING'|translate}}" 
+									ng-model="so.position.building" maxlength="150">
+									<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_MAXLENGTH_TOOLTIP'|translate}}"
+										ng-show="updateVirtualentityForm.inputVirtualentityBuilding.$error.maxlength && updateVirtualentityForm.inputVirtualentityBuilding.$dirty" ></span>
+								</div>
+								<label for="inputVirtualentityFloor" class="col-sm-1 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_INDOOR_FLOOR</span></label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="inputVirtualentityFloor" name="inputVirtualentityFloor" placeholder="{{'VIRTUALENTITY_FIELD_INDOOR_FLOOR'|translate}}" 
+									ng-model="so.position.floor" ng-pattern="validationPatternInteger">
+									<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_FLOAT_TOOLTIP'|translate}}"
+										ng-show="updateVirtualentityForm.inputVirtualentityFloor.$error.pattern && updateVirtualentityForm.inputVirtualentityFloor.$dirty"></span>
+								</div>
+								<label for="inputVirtualentityRoom" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_INDOOR_ROOM</span></label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="inputVirtualentityRoom" name="inputVirtualentityRoom" placeholder="{{'VIRTUALENTITY_FIELD_INDOOR_ROOM'|translate}}" 
+										ng-model="so.position.room" maxlength="100">
+									<span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'VALIDATION_PATTERN_MAXLENGTH_TOOLTIP'|translate}}"
+										ng-show="updateVirtualentityForm.inputVirtualentityRoom.$error.maxlength && updateVirtualentityForm.inputVirtualentityRoom.$dirty"></span>
+								</div>
+							</div>
+							<div class='form-label-separator'><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_OTHER_INFO</span></div>
+							<div class="form-group   has-feedback">
+								<label for="RadioGroupSupply" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_SUPPLY_TYPE</span></label>
+								<div class="col-sm-10">
+									<label class="radio-inline" ng-repeat="su in supplyTypeList track by $index">
+				              			<input type="radio" name="RadioGroupSupply" value="{{su.idSupplyType}}" id="RadioGroupSupply_{{$index}}" ng-model="so.idSupplyType">
+				              			{{su.description}}
+				            		</label>
+								<!-- 
+								
+									<label class="radio-inline">
+				              			<input type="radio" name="RadioGroupSupply" value="auto" id="RadioGroupSupply_0" ng-model="so.supplyType"><span translate-cloak translate>VIRTUALENTITY_FIELD_SUPPLY_TYPE_AUTO</span>
+				            		</label>
+									<label class="radio-inline">
+				              			<input type="radio" name="RadioGroupSupply" value="network" id="RadioGroupSupply_1" ng-model="so.supplyType"><span translate-cloak translate>VIRTUALENTITY_FIELD_SUPPLY_TYPE_NETWORK</span>
+				            		</label> -->
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="inputVirtualentityAdministrationURI" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_ADMIN_URI</span></label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="inputVirtualentityAdministrationURI" placeholder="{{'VIRTUALENTITY_FIELD_ADMIN_URI'|translate}}" ng-model="so.urladmin">
+								</div>
+							</div>			
+							<div class="form-group has-feedback">
+								<label for="inputVirtualentitySoftwareVersion" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_SOFTWARE_VERSION</span></label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="inputVirtualentitySoftwareVersion" placeholder="{{'VIRTUALENTITY_FIELD_SOFTWARE_VERSION'|translate}}" ng-model="so.swclientversion">
+								</div>
+							</div>
+						</div>			
+						<div class="row" ng-show="!isUpdating">
+							<div class=" col-sm-12 form-toolbar"  ng-show="isAuthorized('management/smartobjects/update')" >
+								<a  href='#/management/viewVirtualentity/{{tenant}}/{{so.socode}}' class="btn"><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_FINISH_BUTTON</span></a>
+								<a  ng-click='save()'  class="btn btn-default" ng-disabled="!isOwner() || isInternal() || editVirtualentityForm.$invalid"><span translate-cloak translate>MANAGEMENT_EDIT_VIRTUALENTITY_SAVE_BUTTON</span></a>
+							</div>
+						</div>
+						<div class="row"  ng-show="isUpdating" ng-cloak>
+							<div class=" col-sm-12 col-lg-12 form-toolbar">
+								<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+							</div>				
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

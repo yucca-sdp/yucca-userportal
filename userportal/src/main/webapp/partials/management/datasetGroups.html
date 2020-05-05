@@ -1,0 +1,342 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementDatasetGroupsListCtrl as datasetsCtrl"  ng-cloak>
+	<div class='container'>
+		
+		<div class='content  table-toolbar-border table-toolbar'>
+			<div class='row'>
+				<div class="col-sm-10">
+					<h3> <span translate-cloak translate>MANAGEMENT_DATASET_GROUPS_SUBTITLE </span></h3>
+		        	<a href ng-click='newGroup()'  class="btn  btn-new" ng-disabled="!isAuthorized('management/datasets/update') ||!isOwner() ">
+						<span class="glyphicon glyphicon-plus "></span>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_DATASET_LIST_NEW_DATASET</span>
+					</a>						
+				</div>
+				<div clasS='col-sm-2 text-right'>
+					<help-button ng-if='isCsiTenant()' helptitle='Gruppi di dataset' section='management' page='datasourcegroup' css='btn-icon-big' size='lg'></help-button>
+				</div>
+			</div>
+		</div>
+		<div><alert-panel content='admin_response'></alert-panel></div>
+		<div class='content management-filter-panel'>
+			<div class='clearfix'>
+				<form class="form form-inline pull-right" role="form">   
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="nameFilter" placeholder="{{'GROUP_LIST_NAME_FILTER'|translate}}" />								
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="typeFilter" placeholder="{{'GROUP_LIST_TYPE_FILTER'|translate}}" />
+					</div>
+				</form>
+			</div>
+			<div class='text-right'>
+				<span class='text-right management-datasetList-total-label'>
+					<small><span translate translate-cloack>DATASET_GROUP_LIST_COUNT_TOTAL_LABEL</span>: <strong>{{groupList.length}}</strong></small>
+				</span>
+				<span class='text-right management-datasetList-total-label'>
+					<small><span translate translate-cloack>DATASET_GROUP_LIST_COUNT_FILTERED_LABEL</span>: <strong>{{filteredGroupsList.length}}</strong></small>
+				</span>
+				
+			</div>
+	<!--
+		<div class='row'>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+				<div class='row  content-toolbar row-compact'>
+					<div class="col-sm-4">
+			        	<a href ng-click='newGroup()'  class="btn  btn-new" ng-disabled="!isAuthorized('management/datasets/update') ||!isOwner() ">
+							<span class="glyphicon glyphicon-plus "></span>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_DATASET_LIST_NEW_DATASET</span>
+						</a>						
+					</div>
+					<div class="btn-group pull-right">
+						<form class="form-inline" role="form">  						 	
+							<div class="form-group">				
+								<div class="form-group">
+									<input type="text" class="form-control input-sm" ng-model="nameFilter" placeholder="{{'GROUP_LIST_NAME_FILTER'|translate}}" />	
+									<input type="text" class="form-control input-sm" ng-model="typeFilter" placeholder="{{'GROUP_LIST_TYPE_FILTER'|translate}}" />								
+								</div>						
+							</div>
+						</form>
+					</div>
+				</div>	
+
+				<div class='text-right'>
+					<span class='text-right management-datasetList-total-label' title='{{"DATASET_LIST_COUNT_TOTAL_LABEL"|translate}}'>
+						<small><span translate translate-cloack>GROUP_LIST_COUNT_TOTAL_LABEL</span>: <strong>{{groupList.length}}</strong></small>
+					</span>
+					<span class='text-right management-datasetList-total-label'>
+						<small><span translate translate-cloack>GROUP_LIST_COUNT_FILTERED_LABEL</span>: <strong>{{filteredGroupsList.length}}</strong></small>
+					</span>					
+				</div>	
+				-->
+			<div class="table-responsive management-datasourceList-table">
+				<table class="table">
+					<thead>
+						<tr class='text-left'>
+							<th></th>
+							<th>				
+								<span translate-cloak translate>DATASET_GROUP_NAME</span>
+							<!--	<a href="" ng-click="predicate  = 'name'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_NAME</span>
+								<span ng-show="predicate=='name' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='name' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th>ID</th>
+							<th>
+								<span translate-cloak translate>DATASET_GROUP_TYPE</span>
+								<!--	<a href="" ng-click="predicate = 'type'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_TYPE</span>
+								<span ng-show="predicate=='type' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='type' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th >
+								<span translate-cloak translate>DATASET_GROUP_VERSION</span>
+								<!--	<a href="" ng-click="predicate = 'version'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_VERSION</span>
+								<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th>
+								<span translate-cloak translate>DATASET_GROUP_STATUS</span>
+								<!--	<a href="" ng-click="predicate = 'status'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_STATUS</span>
+								<span ng-show="predicate=='status' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='status' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th colspan='4'></th>
+<!-- 							<th><span class="icon-stream"></span> <span translate translate-cloack>MANAGEMENT_DATASET_LIST_STREAM_GROUP</span></th>
+							<th><span class="icon-dataset"></span> <span translate translate-cloack>MANAGEMENT_DATASET_LIST_DATASET_GROUP</span></th>  -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-show="showLoading">
+							<td colspan='10' >
+								<div class='ajax-loading-container'>
+									<span class='ajax-loading-big'></span>
+									<h4>Loading...</h4>
+								</div>
+							</td>
+						</tr>
+						<tr ng-repeat="group in filteredGroupsList = (groupList | filter: searchNameFilter |  filter: searchTypeFilter | orderBy:predicate:reverse) |startFrom:(currentPage-1)*pageSize | limitTo:pageSize "
+							 ng-class="{'row-frozen':group.status=='FROZEN', 'row-uninstalled':group.status=='DISMISSED'}" >
+							<td class='no-border-right'>
+								<!-- <div class="icon-datasourcegroup lettercircle" ng-style="{'background':group.color}" ></div> -->
+								<div title="{{group.name}}{{datasourceGroupTypeHint(group.type.idDatasourcegroupType)}}" class='icon-datasourcegroup icon-datasourcegroup-big lettercircle' style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}};'>
+									<span>{{specialDatasourceGroupLetterIcon(group.type.idDatasourcegroupType)}}</span>
+								</div>
+								
+							</td>
+							<td class='text-left no-border-left' ng-class="group.status=='DISMISSED'?'dismissed':''">									
+								<span>{{group.name}}</span> 												
+							</td>
+							<td  class='text-left'><span ng-if='group.type.idDatasourcegroupType>1'>{{group.idDatasourcegroup}}</span></td>
+							<td class='text-left no-border-left' ng-class="group.status=='DISMISSED'?'dismissed':''">
+								<span>{{group.type.description}}</span>
+							</td>
+							<td class='text-left no-border-left' ng-class="group.status=='DISMISSED'?'dismissed':''">
+								<span ng-if='group.type.idDatasourcegroupType>1'>{{group.datasourcegroupversion}}</span>
+							</td>
+							<td class='text-left no-border-left'>
+								<span ng-if='group.type.idDatasourcegroupType>1'>{{'DATASOURCEGROUP_STATUS_'+group.status|translate}}</span>
+							</td>
+							<td class='text-center no-border-right'>
+								<a  href  ng-click='editGroup(group)' class="btn-icon nowrap" ng-if='group.status=="DRAFT" || group.type.idDatasourcegroupType==1'>
+									<span class="glyphicon glyphicon-pencil "></span> <span translate>MANAGEMENT_DATASET_LIST_EDIT_GROUP</span>
+								</a>
+							</td>
+							<td class='text-center no-border-right'>
+								<a  href  ng-click='deleteGroup(group)' class="btn-icon nowrap" ng-if='group.status=="DRAFT" || group.type.idDatasourcegroupType==1'>
+									<span class="glyphicon glyphicon-trash "></span>  <span translate>MANAGEMENT_DATASET_LIST_DELETE_GROUP</span>
+								</a>
+								<a  href  ng-click='actionOnGroup(group,"dismiss")' class="btn-icon nowrap" ng-if='group.status=="FROZEN"'>
+									<span class="fa fa-clock-o"></span>  <span translate>MANAGEMENT_DATASET_LIST_DISMISSED_GROUP</span>
+								</a>
+								<a  ng-show="group.type.idDatasourcegroupType!='1'  && group.status=='DISMISSED'" href  ng-click='actionOnGroup(group,"restore")' class="btn-icon nowrap"  >
+									<span class="fa fa-undo"></span> <span translate>MANAGEMENT_DATASET_LIST_RESTORE_GROUP</span>
+								</a>
+							</td>
+							<td class='text-left no-border-right'>
+								<a  ng-show="group.type.idDatasourcegroupType!='1' && group.status=='DRAFT'" href  ng-click='actionOnGroup(group,"consolidate")' class="btn-icon nowrap"  >
+									<span class="fa fa-snowflake-o "></span> <span translate>MANAGEMENT_DATASET_LIST_CONSOLIDATE_GROUP</span>
+								</a>
+								<a  ng-show="group.type.idDatasourcegroupType!='1'  && group.status!='DRAFT'" href  ng-click='actionOnGroup(group,"new_version")' class="btn-icon nowrap"  >
+									<span class="glyphicon glyphicon-export "> </span><span translate>MANAGEMENT_DATASET_LIST_NEWVERSION_GROUP</span>
+								</a>
+							</td>
+						<!-- <td class='text-center no-border-right'>
+								<a  href  ng-click='viewStreamGroup(group)' class="btn-light nowrap" >
+									<span translate-cloak translate>MANAGEMENT_DATASET_LIST_STREAM_GROUP_VIEW</span>
+								</a>
+							</td> -->
+<!-- 						<td class='text-center no-border-right'>
+								<a  ng-click='deleteDatasetsFromGroup(group, true)' class="btn-icon nowrap" >
+									<span class="icon-stream"></span> <span translate-cloak translate>MANAGEMENT_DATASET_LIST_STREAM_GROUP</span>
+								</a>
+							</td>			 -->					
+				<!-- 			<td class='text-center no-border-right'>
+								<a  href  ng-click='viewDatasetGroup(group)' class="btn-icon nowrap" >
+									<span translate-cloak translate>MANAGEMENT_DATASET_LIST_DATASET_GROUP_VIEW</span>
+								</a>
+							</td> -->
+							<td class='text-center no-border-right'>
+								<a  ng-click='deleteDatasetsFromGroup(group, false)' class="btn-icon nowrap" >
+									<span class="icon-dataset"></span> <span translate-cloak translate>MANAGEMENT_DATASET_LIST_DATASET_GROUP</span>
+								</a>
+							</td>									
+						</tr>
+					</tbody>
+				</table>
+				<div  class='text-center'>
+					<pagination boundary-links="true" total-items="filteredGroupsList.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+						next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+					></pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<script type="text/ng-template" id="DatasetGroupDialog.html">
+	<div class="modal-compact">
+		<div class="modal-header" ng-if="group.idDatasourcegroup">
+			<a type="a" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></a>
+            <h4 class="modal-title" translate>DATASET_GROUP_EDIT_DIALOG_TITLE</h4>
+        </div>
+		<div class="modal-header" ng-if="!group.idDatasourcegroup">
+			<a type="a" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></a>
+            <h4 class="modal-title" translate>DATASET_GROUP_NEW_DIALOG_TITLE</h4>
+     	</div>
+	
+	<div class="modal-body">
+			<p translate ng-if="group.idDatasourcegroup">DATASET_GROUP_EDIT_DIALOG_INTRO</p>
+			<p translate ng-if="!group.idDatasourcegroup">DATASET_GROUP_NEW_DIALOG_INTRO</p>
+			<p><alert-panel content='admin_response'></alert-panel></p>
+			<div class="form-horizontal">
+  				<div class="form-group">
+    				<label for="groupname" class="col-sm-3 control-label ">
+						<span translate-cloak translate>DATASET_GROUP_NAME</span><span  class='required-asterisk' >*</span>
+					</label>
+    				<div class="col-sm-9">
+   						<input type="text" class="form-control " ng-model="group.name" required name="groupname" >
+    				</div>
+ 				</div>
+  				<div class="form-group">
+    				<label for="grouptype" class="col-sm-3 control-label ">
+						<span translate-cloak translate>DATASET_GROUP_TYPE</span><span ng-if="!group.idDatasourcegroup" class='required-asterisk' >*</span>
+					</label>
+    				<div class="col-sm-9">
+						<!--<select id="datasetGroupType2" name="grouptype2" class=" form-control " ng-model="group.idDatasourcegroupType" ng-options="type.idDatasourcegroupType as (type.description) for type in DATASET_GROUP_TYPE" ng-if="!group.idDatasourcegroup"  ng-change='chooseTypeChanged()'>
+						</select>-->
+						<span ng-if="group.idDatasourcegroup">{{group.type.description}}</span>
+						<select id="datasetGroupType" name="grouptype" class=" form-control " ng-model="group.idDatasourcegroupType" ng-if="!group.idDatasourcegroup"  ng-change='chooseTypeChanged()'>
+						   <optgroup label="{{'DATASET_GROUP_TYPE_USER_DEFINED'|translate}}">		
+								 <option value="1">User Defined</option>
+						   </optgroup>			
+						   <optgroup label="{{'DATASET_GROUP_TYPE_SPECIAL'|translate}}" ng-if='isCsiTenant()' >		
+								 <option ng-repeat="groupType in DATASET_GROUP_TYPE track by $index" value="{{groupType.idDatasourcegroupType}}" ng-if='groupType.idDatasourcegroupType>1'>{{groupType.description}}</option>
+						   </optgroup>			
+						</select>
+    				</div>
+ 				</div>
+  				<div class="form-group">
+    				<label for="groupcolor" class="col-sm-3 control-label ">
+						<span translate-cloak translate>DATASET_GROUP_COLOR</span><span class='required-asterisk' >*</span>
+					</label>
+    				<div class="col-sm-9">
+   						<color-picker color="group.color" css=""  isdisabled='group.idDatasourcegroupType>1'></color-picker>
+						<div class='semimute' ng-if='group.idDatasourcegroupType>1'><i class='fa fa-info-circle' ></i> <span translate>DATASET_GROUP_NEW_COLOR_SPECIAL_INFO</span></div>
+    				</div>
+ 				</div>
+			</div>
+		</div>
+		<div class='modal-footer'>
+		 	<a class="btn " ng-click="cancel()" translate>CLOSE</a>
+	 		<a type="submit" class="btn btn-default" ng-click="createDatasourceGroup()" translate ng-disabled="group.name == null || group.idDatasourcegroupType== null" ng-if="!group.idDatasourcegroup">OK</a>
+	 		<a type="submit" class="btn btn-default" ng-click="modifyDatasourceGroup()" translate ng-disabled="group.name == null" ng-if="group.idDatasourcegroup">OK</a>
+		</div>
+</div>	
+</script>
+	<script type="text/ng-template" id="ChooseDatasetsDialog.html">
+		<div class="modal-compact datasourcegroup-datasets-dialog">
+			<div class="modal-header" ">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">
+					<span ng-if='!isStream'><span translate>MANAGEMENT_DATASET_LIST_DELETE_FROM_GROUP_DATASET</span></span> 
+					<span ng-if='isStream'><span translate>MANAGEMENT_DATASET_LIST_DELETE_FROM_GROUP_STREAM</span></span>  
+					<strong>{{group.name}}</strong>
+				</h4>
+			</div>
+			
+			<div class="modal-body">
+				<p class='modal-intro'>
+					<span translate ng-if='isStream'>DATASET_DELETE_FROM_GROUP_DIALOG_INTRO_STREAM</span>
+					<span translate ng-if='!isStream'>DATASET_DELETE_FROM_GROUP_DIALOG_INTRO_DATASET</span>
+				</p>
+				<alert-panel content='admin_response'></alert-panel>
+				<div class='ajax-loading-container' ng-if="showLoading">
+					<span class='ajax-loading-big'></span>
+					<h4>Loading...</h4>
+				</div>
+				
+				<table class="table table-condensed table-only-rows" ng-if='datasetGroupList.length>0'>
+					<thead>
+						<tr>
+							<th></th>
+							<th>							
+								<span translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</span>
+								<!-- <a href="" ng-click="predicate  = 'name'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</span>
+								<span ng-show="predicate=='name' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='name' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th>							
+								<span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span>
+								<!-- <a href="" ng-click="predicate  = 'name'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span>
+								<span ng-show="predicate=='name' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='name' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th>
+								<span translate-cloak translate>DATASET_FIELD_CONFIGDATA_DATAVERSION</span>
+								<!-- <a href="" ng-click="predicate = 'version'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_DATAVERSION</span>
+								<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a> -->
+							</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="dataset in datasetGroupList "   ng-class="{'row-deleted':dataset.isDeleted, 'row-warning': !dataset.isMaxVersion && !dataset.isDeleted, 'row-uninstalled':(dataset.status.idStatus==5 || dataset.status.idStatus==4) && !dataset.isDeleted}" ng-show="!showLoading">
+							<td class='text-center no-border-right'>
+								<a href ng-click='goToDatasourceDetail(dataset)' title='{{"DATASET_DELETE_FROM_GROUP_DIALOG_NOT_LAST_DETAIL_WARNING"|translate}}' >
+									<img ng-if="dataset.hasIcon == true" ng-src="{{datasetIconUrl(dataset.organization.organizationcode,dataset.iddataset)}}" alt="logo dataset" class='list-entity-icon-preview-img' >
+									<img ng-if="dataset.hasIcon == false" ng-src="./img/stream-icon-default_{{yuccaPortal}}.png" alt="logo stream {{yuccaPortal}}" class='list-entity-icon-preview-img' >
+								</a>
+							</td>
+		
+							<td class='text-left'  ><a href ng-click='goToDatasourceDetail(dataset)'   title='{{"DATASET_DELETE_FROM_GROUP_DIALOG_NOT_LAST_DETAIL_WARNING"|translate}}' ><span>{{dataset.datasetname}}</span></a></td>
+							<td class='text-left'  ><span>{{dataset.datasetcode}}</span></td>
+							<td class='text-left'><span >{{dataset.version}}</span></td>
+							<td>
+								<span class='icon-warning' ng-if='!dataset.isMaxVersion'><i class="fa fa-exclamation-triangle" aria-hidden="true" title='{{"DATASET_DELETE_FROM_GROUP_DIALOG_NOT_LAST_WARNING"|translate}}'></i></span>
+								<strong class='text-icon entity-uninstalled-icon' ng-if="dataset.status.idStatus==5 || dataset.status.idStatus==4" title='{{"DATASET_FIELD_CONFIGDATA_DELETED"|translate}}'>D</strong>	
+							</td>
+							<td class='text-right'>
+								<i title="{{'DELETE'|translate}}" ng-if='!dataset.isDeleted && group.status=="DRAFT"' class='glyphicon glyphicon-trash' ng-click='dataset.isDeleted = true'></i>
+								<i title="{{'RESTORE'|translate}}" ng-if='dataset.isDeleted && group.status=="DRAFT"' class='fa fa-undo' ng-click='dataset.isDeleted = false'></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class='modal-footer clearfix'>
+				<div class='pull-left text-left'><a href ng-click='goToDatasourceList()' translate>MANAGEMENT_DATASET_LIST_DELETE_FROM_GROUP_VIEW_IN_MANAGEMENT</a>
+                    <br /><span class='alert-hint semimute'><i class="fa  fa-info-circle"></i> 
+						<span translate>MANAGEMENT_DATASET_LIST_DELETE_FROM_GROUP_VIEW_IN_MANAGEMENT_HINT_1</span><br />
+						<span translate>MANAGEMENT_DATASET_LIST_DELETE_FROM_GROUP_VIEW_IN_MANAGEMENT_HINT_2</span>
+					</span>
+                </div>
+				<div class='pull-right'>
+					<button class="btn " ng-click="cancel()" translate>CLOSE</button>
+					<button type="submit" class="btn btn-default" ng-click="ok()"  ng-if='group.status=="DRAFT"' ng-disabled = "selectedDatasourceGroup.length==0" translate>MANAGEMENT_DATASET_LIST_DELETE_FROM_GROUP_CONFIRM_BUTTON</button>
+				</div>
+			</div>
+		</div>	
+	</script>
+</div>
+

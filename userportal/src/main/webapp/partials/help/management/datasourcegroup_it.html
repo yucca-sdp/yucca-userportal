@@ -1,0 +1,96 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<p>Con i <strong>gruppi di dataset</strong> &egrave; possibile effettuare dei raggruppamenti logici di dataset</p>
+<p>Sono previste due macro tipologie di gruppi: gruppi definiti dall'utente  e gruppi speciali che verranno utilizzati per operazioni sui dati</p>
+<section>
+	<h4>Gruppi definiti dall'utente</h4>
+	<p>Si tratta di gruppi a totale uso e consumo dell'area di lavoro, non sono versionati, ed &egrave; possibile in qualsiasi momento aggiungere o togliere dataset</p>
+</section>
+<section>
+	<h4>Gruppi Speciali</h4>
+	<p>I gruppi speciali sono utilizzati per determinare quali dataset devono essere presi in considerazione per operazioni massiva sui dati<br/>
+	Per i gruppi speciali &egrave; previsto il versionamento, al momento della creazione il gruppo &egrave; in stato di bozza, e si possono aggiungere o togliere dataset. 
+	Nel momento in cui si richiede un operazione &egrave; necessario consolidare il gruppo, e da quel momento in poi non sar&agrave; pi&ugrave; possibile modificare. 
+	Sar&agrave; comunque possibile creare una nuova verisone</p>
+</section>
+<section>
+	<h4>Tipologie di gruppi speciali</h4>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-2'>
+			<span>Pr</span>
+		</div>
+		<Strong>Promotion</Strong> - La promotion &egrave; l'operazione con cui si copiano i dati dal datalake allo speed layer (Promotion 01)
+	</div>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-3'>
+			<span>Pu</span>
+		</div>
+		<Strong>Publication</Strong> - La publication &egrave; l'operazione con cui si pubblicano i dati sullo store (Promotion 02)
+	</div>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-4'>
+			<span>Ou</span>
+		</div>
+		<Strong>Outgestion</Strong> - L' outgestion &egrave; l'operazione con cui si esportando i dati dal datalake
+	</div>
+	<div class='help-row-paragraph'>
+		<div class='icon-datasourcegroup icon-datasourcegroup-big lettercircle  special-datasourcegroup-bullet-5'>
+			<span>In</span>
+		</div>
+		<Strong>Ingestion</Strong> - La ingestion &egrave; l'operazione con cui si importano i dati nel datalake
+	</div>
+</section>
+<section>
+	<h4>Passi da seguire per richiedere un operazione</h4>
+	<div class=' help-steps-datasetgroup-workflow'>
+		<div class='help-steps-loop-container'><div class=' help-steps-loop'></div></div>
+		<div class='help-steps '>
+			<div class='help-step  help-step-bullet-first'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='fa fa-circle-o'></i></div>
+	                <div class='help-step-bullet-line'></div>
+	                <div class='help-step-desc text-left'>Creare un gruppo del tipo di operazione desiderata</div>
+	             </div>
+	         </div>
+	         <div class='help-step'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='icon-dataset-white'></i></div>
+	                <div class='help-step-bullet-line'></div>
+	                <div class='help-step-desc'>Scegliere i dataset da elaborare e aggiungerli al gruppo</div>
+	             </div>
+	         </div>
+	         <div class='help-step'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='fa fa-snowflake-o'></i></div>
+	                <div class='help-step-bullet-line'></div>
+	                <div class='help-step-desc'>Consolidare il gruppo</div>
+	             </div>
+	         </div>
+	         <div class='help-step'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='fa fa-envelope'></i></div>
+	                <div class='help-step-bullet-line help-step-bullet-semiline-right'></div>
+	                <div class='help-step-bullet-line help-step-bullet-semiline-left help-step help-step-bullet-line-dotted'></div>
+	                <div class='help-step-desc'>Contattare il team Yucca e concordare la modalit&agrave; di esecuzione dell'operazione indicando il gruppo di dataset da considerare</div>
+	             </div>
+	         </div>
+	         <div class='help-step  help-step-bullet-last'>
+				<div class='help-step-bullet-container'>
+	            	<div class='help-step-bullet '><i class='glyphicon glyphicon-export'></i></div>
+	                <div class='help-step-bullet-line help-step-bullet-line-dotted'></div>
+	                <div class='help-step-desc text-right'>Nel caso fosse necessario creare una nuova versione del gruppo e ricominciare</div>
+	             </div>
+	         </div>	
+	    </div>
+	</div>
+</section>
+<section>
+	<p>
+		Per un maggiore dettaglio e per la documentazione del flusso di lavoro fare riferimento alla sezione dedicata su
+		<strong><a href='http://kbt.csi.it/analytics-e-iot/flussi-di-lavoro' target='_blank'>Knoledge Base Tecnologica</a></strong>
+	</p>
+</section>
+	

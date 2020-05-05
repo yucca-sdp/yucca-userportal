@@ -1,0 +1,53 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<h3 class='text-left form-section-title'  translate-cloak translate><span ng-bind-html="'MANAGEMENT_EDIT_DATASET_LEGAL_INFO'|translate"></span></h3>
+	<div class="form-group" ng-show="datasource.visibility!='private'">
+		<label for="inputDatasetLicense" class="col-sm-3 control-label" translate-cloak translate>DATASET_FIELD_METADATA_LICENSE</label>
+		<div class="col-sm-9 text-left">
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupLicense" value="CCBY" ng-model="selectedLicenseType" ng-change='selectLicense(selectedLicenseType)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>DATASET_FIELD_METADATA_LICENCE_CCBY</span>
+				</label>
+			</div>
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupLicense" value="CC0" ng-model="selectedLicenseType" ng-change='selectLicense(selectedLicenseType)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>DATASET_FIELD_METADATA_LICENCE_CC0</span>
+				</label>
+			</div>		
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupLicense" value="OTHER" ng-model="selectedLicenseType" ng-change='selectLicense(selectedLicenseType)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>DATASET_FIELD_METADATA_LICENCE_OTHER</span>
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-show="datasource.visibility!='private'">
+		<div class="col-sm-9 text-left col-sm-offset-3">
+			<textarea id="inputDatasetLicence" class="form-control" rows="2" resize="none" ng-model="datasource.license.licensecode" placeholder="{{'DATASET_FIELD_METADATA_LICENSE'|translate}}" 
+				ng-if='selectedLicenseType == "OTHER"' ></textarea>
+		</div>
+	</div>			
+	<div class="form-group" ng-show="datasource.visibility!='private'">
+		<label for="inputDatasetDisclaimer" class="col-sm-3 control-label" translate-cloak translate>DATASET_FIELD_METADATA_DISCLAIMER</label>
+		<div class="col-sm-9">
+			<textarea class="form-control" rows="2" resize="none" ng-model="datasource.disclaimer"  placeholder="{{'DATASET_FIELD_METADATA_DISCLAIMER'|translate}}" id="inputDatasetDisclaimer" >
+			</textarea>					
+		</div>
+	</div>	
+	<div class="form-group" ng-show="datasource.visibility=='private'">
+		<label for="inputDatasetCopyright" class="col-sm-3 control-label" translate-cloak translate>DATASET_FIELD_METADATA_COPYRIGHT</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetCopyright" placeholder="{{'DATASET_FIELD_METADATA_COPYRIGHT'|translate}}" ng-model="datasource.copyright" >
+		</div>
+	</div>
+</div>

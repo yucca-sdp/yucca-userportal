@@ -1,0 +1,278 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="DataExplorerCtrl as dataExplorerCtrl" ng-cloak class='section-store'>
+	<div class='page-top-panel'>
+		<div class="title-container" ng-cloak>
+			<h3 class='container'>
+				<span translate-cloak translate>DATASET</span>  <small>{{dataset.datasetCode}} - {{dataset.datasetName}}</small>
+			</h3>
+		</div>
+	</div>
+	<div class='container'>
+		<div class='clearfix entity-info entity-info-top'>
+			<div class='pull-left dataExplorer-icon-preview'>
+				<img ng-src="{{metadata.icon}}" alt="logo dataset" class='dataExplorer-icon-preview-img' >
+			</div>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>DATASET_FIELD_METADATA_NAME</span></small></div>
+				<div class='main-info'><strong>{{metadata.name}}</strong></div>
+			</div>
+			<div class='pull-right text-right'>
+				<div><small><span translate-cloak translate>DATASET_FIELD_METADATA_REGISTRATIONDATE</span></small></div>
+				<div><strong>{{metadata.registrationDate|date}}</strong></div>
+				
+			</div>
+		</div>
+		<div class='clearfix entity-info entity-info-bottom'>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span></small></div>
+				<div class='url'><strong>{{metadata.dataset.code}}</strong></div>
+			</div>
+			<div class='pull-right text-right'>
+				<div><small><span translate-cloak translate>DATASET_FIELD_VERSION</span></small></div>
+				<div><strong>{{metadata.version}}</strong></div>
+			</div>
+		</div>
+	</div>
+	<div class='container-fluid'>
+		<div class='row-fluid clearfix panel-dataexplorer-topbar'>
+			<div class='col-sm-4'>
+				<i class='glyphicon glyphicon-filter'></i>&nbsp;<a href ng-click="currentSidebar = 'filter'" class='sidebar-menu-item'><span translate-cloak translate>DATA_EXPLORER_FILTER_MENU_BUTTON</span></a> &nbsp;
+				<span class=' panel-dataexplorer-topbar-separator-big'>|</span>
+				<i class='glyphicon glyphicon-record'></i>&nbsp;<a href ng-click="detailModal(metadata)" class='sidebar-menu-item'><span translate-cloak translate>DATA_EXPLORER_DETAIL_MENU_BUTTON</span></a>
+				<span class=' panel-dataexplorer-topbar-separator-big'>|</span>
+				<i class="fa fa-download "></i>&nbsp;
+				<a href ng-click="exportTableToCSV()" title="{{'DATA_EXPLORER_FILTER_QUERY_ODATA_HINT'|translate}}" translate>DATA_EXPLORER_FILTER_QUERY_ODATA_DOWNLOAD</a> 
+			</div>
+			<div class='col-sm-8 text-right'>
+				<span ng-if='usedFilter!=null'><strong><span translate-cloak translate>DATA_EXPLORER_USED_FILTER</span>:</strong> <span ng-bind-html="usedFilter"></span></span>
+				<span class=' panel-dataexplorer-topbar-separator-big'>|</span>
+				<span ng-if='totalFound!=null'><strong><span translate-cloak translate>DATA_EXPLORER_TOTAL_FOUND</span>:</strong> {{totalFound}}</span>
+			</div>
+		</div>
+			
+		<div class='row-fluid'>
+			<div ng-if='currentSidebar=="filter"' class='col-sm-4 col-md-3'>
+				<dataexplorer-sidebar-filter></dataexplorer-sidebar-filter>
+			</div>
+			
+			<!-- div ng-if='currentSidebar=="metadataDetail"' class='col-sm-4 col-md-3'>
+				<dataexplorer-sidebar-metadatadetail></dataexplorer-sidebar-metadatadetail>
+			</div -->
+			<div ng-class="{'col-sm-12':currentSidebar == 'none','col-sm-8 col-md-9':currentSidebar != 'none'}"> <!-- data -->
+				<div class='ajax-loading-container' ng-if="showLoading">
+					<span class='ajax-loading-big'></span>
+					<h4>Loading...</h4>
+				</div>
+				<div class='alert alert-info' ng-if="dataList.length==0 && !showLoading && errors.length==0">
+					<span translate-cloak translate>DATA_EXPLORER_DATA_RESULT_EMPTY</span>
+				</div>
+				<div class="alert alert-danger" ng-if='errors.length!=0'>
+					<div class='row  text-left' ng-repeat="error in errors">
+						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">{{error.message|string_ellipse:50}}</div>
+						<div class="col-lg-8 col-md-1 col-sm-12 col-xs-12">{{error.detail|string_ellipse:120}}</div>
+					</div>		
+				</div>
+				<div ng-if="!showLoading" class='dataexplorer-table-grid-container'>
+					<table class='table dataexplorer-table-grid'>
+						<thead>
+							<tr>
+								<th ng-repeat='column in columns track by $index' class='nowrap'>
+									<span class=''>{{column["label"]}}</span>
+									<span class='' ng-if="column['showBinaryIcon']">
+										<i class='glyphicon glyphicon-paperclip'></i>
+									</span>
+									<span class=' table-panel-orderarrow' ng-if="column['showOrderButton']" >
+										<i class='fa fa-sort' ng-if='column["order"]=="none"' ng-click='orderResult(column["label"],"desc")'></i>
+										<i class='fa fa-sort-desc' ng-if='column["order"]=="desc"' ng-click='orderResult(column["label"],"asc")'></i>
+										<i class='fa fa-sort-asc' ng-if='column["order"]=="asc"' ng-click='orderResult(column["label"],"none")'></i>
+									</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						 	<tr ng-repeat="data in dataList track by $index"  ng-init="rowIndex = $index">
+								<td  ng-repeat='column in columns track by $index' ng-class ="{'content-gray': column.isSpecial}"> 
+									<div ng-if="data[column['label']].isBinary" class='dataexplorer-table-binary-td'>
+										<div class='clearfix dataexplorer-table-binary-td-topbar'>
+											{{data[column["label"]].value}}
+											<div class='dataexplorer-table-binary-td-topbar-expand-icon'>
+												<a href ng-click='loadBinaryDetail(rowIndex,column["label"])' ng-if="!data[column['label']].showBinaryDetail" title="{{'DATA_EXPLORER_BINARY_SHOW_DETAIL'|translate}}">
+													<i class='glyphicon glyphicon-plus'></i></a>
+											</div>
+										</div>
+										<div ng-if="data[column['label']].showBinaryDetail" class=''>
+											<div ng-if="data[column['label']].loadingBinaryDetail">Loading...</div>
+											<div class="alert alert-info" ng-if="data[column['label']].noBinaryFound">
+												<span translate-cloak translate>DATASET_BINARY_DETAIL_NOT_FOUND</span>
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="data[column['label']].showBinaryDetail=false">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div ng-if="!data[column['label']].loadingBinaryDetail && !data[column['label']].noBinaryFound">
+												<div class="panel panel-default dataexplorer-table-binary-td-detail-panel">
+													<div class="panel-heading">
+														<h4 class="panel-title nowrap">
+															<span title="{{'DATASET_BINARY_DETAIL_ID'|translate}}">{{data[column['label']].binaryDetail.idBinary}}</span> - 
+															<span title="{{'DATASET_BINARY_DETAIL_ALIASNAME'|translate}}">{{data[column['label']].binaryDetail.aliasNameBinary}}</span>
+															<a href ng-click="data[column['label']].showBinaryDetail=false" class='panel-hide-button'>&times;</a>
+														</h4>
+													</div>
+													<div class="panel-body">
+														<p>					
+															<strong><span translate-cloak translate>DATASET_BINARY_DETAIL_FILENAME</span></strong><br/>
+															<span>{{data[column['label']].binaryDetail.filenameBinary}}&nbsp;({{data[column['label']].binaryDetail.sizeBinary|format_filesize}})</span>
+														</p>
+														<p>					
+															<strong><span translate-cloak translate>DATASET_BINARY_DETAIL_CONTENTTYPE</span></strong><br/>
+															<span>{{data[column['label']].binaryDetail.contentTypeBinary}}</span>
+														</p>
+														<p ng-if="data[column['label']].binaryDetail.metadataBinary!=null">					
+															<strong><span translate-cloak translate>DATASET_BINARY_DETAIL_METADATA</span></strong>
+															
+															<a href ng-click="previewBinary(data[column['label']].binaryDetail, 'metadata')" class='btn btn-inline-slim'>
+																<span translate-cloak translate>DATASET_BINARY_DETAIL_METADATA_VIEW_BTN</span>
+															</a>
+															
+														</p>
+														<div class='dataexplorer-table-binary-td-bottombar text-right nowrap'>
+															<a href ng-click="previewBinary(data[column['label']].binaryDetail, 'file')" class='btn' 
+																ng-if="hasBinaryPreview(data[column['label']].binaryDetail.contentTypeBinary)">
+																<i class=' glyphicon glyphicon-eye-open'></i> <strong translate-cloak translate>DATASET_BINARY_DETAIL_PREVIEW</strong>
+															</a>
+															<a href="{{data[column['label']].binaryDetail.absoluteUrlDownloadBinary}}" title="data[column['label']].binaryDetail.absoluteUrlDownloadBinary"class='btn'>
+																<i class='glyphicon glyphicon-download-alt'></i> <strong translate-cloak translate>DATASET_BINARY_DETAIL_URLDOWNLOAD</strong>
+															</a>
+														</div>
+														<!-- 	<div class='row'>
+															<div class='col-sm-12'>{{data[column['label']].binaryDetail.urlDownloadBinary}}</div>
+															</div> -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div ng-if="!data[column['label']].isBinary" >										
+										{{data[column["label"]].value}}
+									</div>
+								</td>
+							</tr> 
+						</tbody>
+					</table> 
+					<div class='dataexplorer-url-container'>
+						<strong translate-cloak translate>DATA_EXPLORER_FILTER_QUERY_ODATA_LABEL</strong>&nbsp;&nbsp;
+						<a class='query-odata-link' target='blank' ng-href='{{queryOdataLink}}'>{{queryOdataLink}}</a>
+					</div>
+				
+					<!--  
+						<a href="{{queryOdataCsvLink}}" class="btn btn-download-dataset ng-binding" target='_blank'>
+							<span class="glyphicon glyphicon-cloud-download "></span> {{'DATA_EXPLORER_FILTER_QUERY_ODATA_DOWNLOAD'|translate}}
+						</a>
+					-->
+					
+								
+					<!-- 
+					<div>
+						<button type="button" class="btn btn-download-dataset ng-binding"  ng-click="exportTableToCSV()"><span aria-hidden="true">{{'DATA_EXPLORER_FILTER_QUERY_ODATA_DOWNLOAD'|translate}}</span></button>
+					</div>
+					<span class='semimute'><i class='fa fa-lightbulb-o'></i> <i><span translate-cloak translate>DATA_EXPLORER_FILTER_QUERY_ODATA_HINT</span></i></span>
+					-->
+					<div  class='text-center'>
+						<pagination boundary-links="false" total-items="totalFound" ng-model="pagination.currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;" max-size='5'
+									next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="15">
+						</pagination>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!--  <h4><span translate-cloak translate>MANAGEMENT_VIEW_DATASET_DATA_URLS</span></h4>
+		<strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_API_URL</span></strong>
+		<p><a href="{{apiMetdataUrl}}" target="_blank" class='management-dataset-download-link'>{{apiMetdataUrl}}</a></p>-->
+		<div class='row dataexplorer-dowloadcsv-container'>
+			<div class="col-xs-12 text-left ">
+				<h4 translate-cloak translate>DATA_EXPLORER_FILTER_QUERY_ODATA_DOWNLOAD</h4>
+			</div>
+			
+			<div class="col-xs-12 text-left ">
+				<!-- <strong translate-cloak translate>DATA_EXPLORER_FILTER_DOWNLOAD_CSV_LABEL</strong>&nbsp;&nbsp;
+				<!-- a class='dataexplorer-dowloadcsv-link' target='blank' ng-href='{{downloadCsvUrl}}'>{{downloadCsvUrl}}</a -->
+				<p  class="text-left alert-hint semimute">
+					<i class='fa  fa-info-circle'></i> 
+					<i ng-if='metadata.stream == null'  translate-cloak translate>DATA_EXPLORER_DOWNLOAD_CSV_DATASET_LABEL</i>
+					<i ng-if='metadata.stream != null' translate-cloak translate> DATA_EXPLORER_DOWNLOAD_CSV_STREAM_LABEL</i><br />
+				<i class='fa fa-info-circle'></i> <i><span translate-cloak translate>DATA_EXPLORER_FILTER_DOWNLOAD_CSV_HINT</span></i>
+				</p>		
+				<p>
+					<span class=''>
+						<span translate>DATA_EXPLORER_DOWNLOAD_CSV_DECIMALSEPARATOR_LABEL</span> <strong>{{'DECIMAL_SEPARATOR_'+decimalSeparator|translate}}</strong>
+					</span>
+					&nbsp;&nbsp;<a class='' href ng-click="chooseDecimalSeparator()"><span translate>MANAGEMENT_VIEW_DATASET_DOWNLOAD_CUSTOM_BUTTON</span></a>
+				</p>
+				<a href="{{downloadCsvUrl}}{{decimalSeparator}} " class="btn btn-download-dataset ng-binding">
+					<span class="glyphicon glyphicon-cloud-download "></span> {{'MANAGEMENT_VIEW_DATASET_DOWNLOAD_BUTTON'|translate}}
+				</a>	
+				<p>&nbsp;</p>
+				<!--  
+				<button type="button" class="btn btn-download-dataset ng-binding"  ng-click="chooseDecimalSeparator()"><span aria-hidden="true">{{'MANAGEMENT_VIEW_DATASET_DOWNLOAD_CUSTOM_BUTTON'|translate}}</span></button>			
+				-->
+			</div>
+			<div class="col-xs-12 text-left ">
+			</div>
+		</div>
+	</div>
+	<script type="text/ng-template" id="dataexplorerDetailModal.html">
+		<dataexplorer-sidebar-metadatadetail></dataexplorer-sidebar-metadatadetail>
+    </script>
+
+	<script type="text/ng-template" id="dataexplorerPreviewBinary.html">
+        <div class="modal-header">
+            <h3 class="modal-title">
+				<span translate-cloak translate>DATASET_BINARY_DETAIL_PREVIEW</span> 
+				<small>															
+					<span title="{{'DATASET_BINARY_DETAIL_ID'|translate}}">{{binaryPreview.idBinary}}</span> - 
+					<span title="{{'DATASET_BINARY_DETAIL_ALIASNAME'|translate}}">{{binaryPreview.aliasNameBinary}}</span>
+				</small> 
+				<a href ng-click="close()" class='modal-hide-button'>&times;</a>
+
+			</h3>
+        </div>
+        <div class="modal-body">
+			<div class='dataexplorer-binary-preview-body'>
+				<div ng-if="isImage()">
+					<img class='dataexplorer-binary-preview-img' ng-src="{{binaryPreview.absoluteUrlDownloadBinary}}" />
+				</div>
+				<div ng-if="isAudio()">
+					<audio controls>
+  						<source src="{{binaryPreview.absoluteUrlDownloadBinary}}" type="{{binaryPreview.contentTypeBinary}}">
+						Your browser does not support the audio element.
+					</audio>				
+				</div>
+				<div ng-if="isVideo()">
+					<video width="400" controls>
+ 						<source src="{{binaryPreview.absoluteUrlDownloadBinary}}" type="{{binaryPreview.contentTypeBinary}}">
+  						Your browser does not support HTML5 video.
+					</video>
+				</div>
+				<div ng-if="showInIFrame()">
+					<p><iframe src="{{binaryPreview.absoluteUrlDownloadBinary}}" frameborder="0" height="400" width="95%"></iframe></p>
+				</div>
+				<div ng-if="isMetadata()">
+					{{binaryPreview.metadataBinary|json}}
+				</div>
+       		</div>
+        </div>
+        <div class="modal-footer">
+			<div class='dataexplorer-binary-preview-footer'>
+          		<span><strong><span translate-cloak translate>DATASET_BINARY_DETAIL_FILENAME</span></strong> {{binaryPreview.filenameBinary}}&nbsp;({{binaryPreview.sizeBinary|format_filesize}})</span> 
+				<span>|</span> 
+				<strong><span translate-cloak translate>DATASET_BINARY_DETAIL_CONTENTTYPE</span></strong> <span>{{binaryPreview.contentTypeBinary}}</span>
+			</div>
+        </div>
+    </script>
+</div>
+

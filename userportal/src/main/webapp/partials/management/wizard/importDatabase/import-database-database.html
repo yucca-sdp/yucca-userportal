@@ -1,0 +1,144 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_TITLE</span> - <strong><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_DATABASE_SUBTITLE</span></strong></h3></div>
+	<div class='pull-right'><h3><small>Step 2/7</small></h3></div>
+</div>
+<div class='row'>
+	<div class='col-sm-10 col-sm-offset-1'>
+		<form class="form-horizontal" role="form" name="importDatabaseConfigForm" ng-cloak ng-if="importConfig.sourceType=='database'" class='text-left'>
+			<div class='wizard-step-intro'>
+				<div class='icon-hint '><i class='fa fa-lightbulb-o'></i></div>
+				<div class='wizard-step-intro-text' ng-bind-html="'MANAGEMENT_IMPORT_DATABASE_STEP_DB_JDBC_INTRO'|translate"></div>
+			</div>
+			<!-- <div class="alert alert-warning text-left" ng-show='warningMessages.length>0'  ng-cloak>
+				<strong translate-cloak translate>WARNING_TITLE</strong> <span translate-cloak translate>{{warningMessage}}</span>
+				<ul><li ng-repeat="warningMessage in warningMessages "><span translate-cloak translate>{{warningMessage}}</span></li></ul>
+			</div>-->
+			<alert-panel content='alert.admin_response'></alert-panel>
+			
+			<h3 translate class='text-left'>JDBC_PARAM_INTRO</h3>
+			<div class="form-group">
+				<label for="inputJDBCHostname" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_HOSTNAME</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model="importConfig.jdbcHostname" id="inputJDBCHostname" placeholder="{{'JDBC_PARAM_HOSTNAME_PLACEHOLDER'|translate}}"
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputJDBCDBName" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_DBNAME</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model="importConfig.jdbcDbname" id="inputJDBCDBName" placeholder="{{'JDBC_PARAM_DBNAME_PLACEHOLDER'|translate}}"
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputJDBCDBUsername" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_USERNAME</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model="importConfig.jdbcUsername" id="inputJDBCDBUsername" placeholder="{{'JDBC_PARAM_USERNAME_PLACEHOLDER'|translate}}"
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
+						<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>JDBC_PARAM_USERNAME_TOOLTIP</span></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputJDBCDBPassword" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_PASSWORD</span></label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" ng-model="importConfig.jdbcPassword" id="inputJDBCDBPassword" placeholder="{{'JDBC_PARAM_PASSWORD_PLACEHOLDER'|translate}}"
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
+					<p class="help-block text-left"><span translate>JDBC_PARAM_PASSWORD_HINT</span></p>
+				</div>
+				
+			</div>	
+			<div class="form-group text-left" ng-if="importConfig.dbType=='ORACLE' || importConfig.dbType=='ORACLE_8'  ">
+				<div class="col-sm-12">
+					<div class='wizard-step-intro'>
+						<i class='fa fa-lightbulb-o'></i> 
+						<span class='wizard-step-intro-text' ng-bind-html="'MANAGEMENT_IMPORT_DATABASE_ORACLE_SLOW_WARNING'|translate"></span>
+					</div>
+				</div>
+			</div>
+			
+		</form>
+		<div  ng-cloak ng-if="importConfig.sourceType=='script'">
+			<div class='wizard-step-intro'>
+				<div class='icon-hint '><i class='fa fa-lightbulb-o'></i></div>
+				<div class='wizard-step-intro-text' ng-bind-html="'MANAGEMENT_IMPORT_DATABASE_STEP_DB_SCRIPT_INTRO'|translate"></div>
+			</div>
+			<div class="alert alert-warning text-left" ng-show='warningMessages.length>0'  ng-cloak>
+				<strong translate-cloak translate>WARNING_TITLE</strong> <span translate-cloak translate>{{warningMessage}}</span>
+				<ul><li ng-repeat="warningMessage in warningMessages "><span translate-cloak translate>{{warningMessage}}</span></li></ul>
+			</div>
+			<div ng-file-drop="onSqlSourceSelect($files)" class='upload-file-drop-area' ng-file-drag-over-class="upload-icon-drop-area-hover" ng-show="dropSupported">
+				<div translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_DROPAREA</div>
+				<div class='desc' translate>MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_OR</div>
+				<div ng-file-select="onSqlSourceSelect($files)" data-multiple="true" title="select file" onclick="this.value = null" class="upload-file-selectfile-button">
+					<span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_BUTTON</span>
+				</div>
+			</div>
+			<div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+			<div class='text-left'>File: <strong>{{importConfig.sqlSourcefile.name}}</strong> <small><span class='mute'> - Type: {{importConfig.sqlSourcefile.type}} - Size:{{importConfig.sqlSourcefile.size|format_filesize}}</span></small></div>
+		</div>
+		<h3 translate class='text-left'>MANAGEMENT_IMPORT_DATABASE_DATABASE_TYPE</h3>
+		<div class="row text-left">
+			<div class='col-sm-2' >
+				<div class="radio">
+					<label>
+						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="ORACLE">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						Oracle
+					</label>
+				</div>	
+			</div>						
+			<div class='col-sm-2' >
+				<div class="radio">
+					<label>
+						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="ORACLE_8">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						Oracle 8
+					</label>
+				</div>	
+			</div>						
+			<div class='col-sm-2' >
+				<div class="radio">
+					<label>
+						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="MYSQL">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						MySql
+					</label>
+				</div>		
+			</div>						
+			<div class='col-sm-2' >
+				<div class="radio">
+					<label>
+						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="POSTGRESQL">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						PostgreSQL
+					</label>
+				</div>
+			</div>			
+			<div class='col-sm-3' >
+				<div class="radio">
+					<label>
+						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="HIVE" >
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						Yucca Datalake
+					</label>
+				</div>
+			</div>		
+			
+		</div>
+		<div class="row">
+			<div class=" col-sm-12 form-toolbar" ng-if="!isLoadingDB">
+				<a ng-click='goToStart()' class="btn " translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_PREV</a>
+				<a ng-click='loadTables()' class="btn btn-wizard-next" ng-disabled="!isOwner() " translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_NEXT</a>
+			</div>
+			<div class=" col-sm-12 form-toolbar" ng-if="isLoadingDB">
+				<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+

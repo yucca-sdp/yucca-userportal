@@ -1,0 +1,57 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div  ng-if='!datasource.unpublished'>
+
+	<h3 class='text-left form-section-title'  translate-cloak translate><span ng-bind-html="'MANAGEMENT_NEW_DATASET_DCAT'|translate"></span></h3>
+	<div class="form-group">
+		<label for="inputDatasetDcatRightHolderName" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span><span class='required-asterisk'>*</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetDcatRightHolderName" ng-model="datasource.dcat.dcatrightsholdername" ng-required="true">
+		</div>	
+	</div>		
+	<div class="form-group">
+		<label for="inputDatasetDcatRightHolderType" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERTYPE</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetDcatRightHolderType" ng-model="datasource.dcat.dcatrightsholdertype">
+		</div>	
+	</div>		
+	<div class="form-group">
+		<label for="inputDatasetDcatRightHolderId" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERID</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetDcatRightHolderId" ng-model="datasource.dcat.dcatrightsholderid">
+		</div>	
+	</div>		
+	<div class="form-group">
+		<label for="inputDatasetDcatCreatorName" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORNAME</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetDcatCreatorName" ng-model="datasource.dcat.dcatcreatorname">
+		</div>	
+	</div>		
+	<div class="form-group">
+		<label for="inputDatasetDcatCreatorType" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORTYPE</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetDcatCreatorType" ng-model="datasource.dcat.dcatcreatortype">
+		</div>	
+	</div>		
+	<div class="form-group">
+		<label for="inputDatasetDcatCreatorId" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_CREATORID</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetDcatCreatorId" ng-model="datasource.dcat.dcatcreatorid">
+		</div>	
+	</div>	
+	<div class="form-group">
+		<label for="inputDatasetOpendataNomeOrg" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span><span class='required-asterisk'>*</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetOpendataNomeOrg" ng-model="datasource.dcat.dcatnomeorg" ng-required="true">
+		</div>	
+	</div>		
+	<div class="form-group">
+		<label for="inputDatasetOpendataEmailOrg" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span><span class='required-asterisk'>*</span></label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputDatasetOpendataEmailOrg" ng-model="datasource.dcat.dcatemailorg" ng-required="true">
+		</div>	
+	</div>	
+</div>

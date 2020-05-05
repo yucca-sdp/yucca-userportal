@@ -1,0 +1,191 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class='row'>
+		<div class='col-sm-10'><alert-panel content='uploadMessage'></alert-panel></div>
+	</div>
+	<div class='row'>
+		<div class="col-sm-6" ng-show='dropSupported'>
+			<div ng-file-drop="onFileSelect($files)" class='upload-icon-drop-area-compact' ng-file-drag-over-class="upload-icon-drop-area-hover" ng-show="dropSupported">
+				<div translate-cloak translate>MANAGEMENT_NEW_DATASET_UPLOAD_FILE_DROPAREA</div>
+				<div class='desc'><span translate-cloak translate>MANAGEMENT_NEW_DATASET_UPLOAD_FILE_MAX_SIZE</span><strong>{{maxFileSize|format_filesize}}</strong></div>
+				<div class='desc'>Supported file types:  csv</div>
+				<div class='text-center'>
+					<div ng-file-select="onFileSelect($files)" data-multiple="false" title="select file" onclick="this.value = null" class="browse-button">
+						<span translate-cloak translate>MANAGEMENT_EDIT_STREAM_UPLOAD_ICON_BUTTON_LOAD_FILE</span>
+					</div>
+				</div>
+			</div>
+			<div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+			
+		</div>
+		<div class="col-sm-6" ng-show='!dropSupported'>
+			<div ng-file-select="onFileSelect($files)" data-multiple="false" title="select file" onclick="this.value = null" class="upload-icon-selecticon-button">
+				<span translate-cloak translate>MANAGEMENT_EDIT_STREAM_UPLOAD_ICON_BUTTON_LOAD_FILE</span>
+			</div>
+		</div>
+		<div class='col-sm-3 text-left'>
+			<h4>File info</h4>
+			Name: <strong title="{{csvInfo.selectedFile.name}}">{{csvInfo.selectedFile.name|string_ellipse:30}}</strong> <br>
+			<small class=''>Type: {{csvInfo.selectedFile.type}}</small><br>
+			<small class=''>Size: {{csvInfo.selectedFile.size|format_filesize}}</small>
+		</div>
+		<div class='col-sm-3 text-left'>
+			<h4><span translate>MANAGEMENT_NEW_DATASET_FILE_ALREADY_UPLOADED</span> <small class='semimute' ng-if='datasource.importedfiles.length>0'>({{datasource.importedfiles.length}})</small></h4> 
+			<div ng-show='datasource.importedfiles.length>0' ng-init="a.showAllImportedFiles=false">
+				<ul class='list-unstyled' ng-class='a.showAllImportedFiles?"compact-panel-expaded": "compact-panel-close-3"'>
+					<li ng-repeat="importedfile in datasource.importedfiles track by $index" title="{{importedfile}}">{{importedfile|string_ellipse:30}}</li>
+				</ul>
+				<div class='text-right'> 
+				<small>
+					<a class='' href ng-if="!a.showAllImportedFiles" ng-click='a.showAllImportedFiles=!a.showAllImportedFiles' translate>SHOW_ALL</a>
+					<a class='' href ng-if="a.showAllImportedFiles" ng-click='a.showAllImportedFiles=!a.showAllImportedFiles' translate>HIDE</a>
+				</small>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+	<!-- <div class='row'>
+		<div ng-show='datasource.importedfiles.length>0' class="col-sm-2">
+			<strong translate>MANAGEMENT_NEW_DATASET_FILE_ALREADY_UPLOADED</strong> 
+		</div>
+		<div ng-show='datasource.importedfiles.length>0' class="col-sm-10"  ng-init="a.showAllImportedFiles=false">
+			<ul class='list' ng-class='a.showAllImportedFiles?"compact-panel-expaded": "compact-panel-close-3"'>
+				<li ng-repeat="importedfile in datasource.importedfiles track by $index">{{importedfile}}</li>
+			</ul>
+			<div class='text-right'>
+			<a class='btn btn-sm' href ng-if="!a.showAllImportedFiles" ng-click='a.showAllImportedFiles=!a.showAllImportedFiles'>Show all</a>
+			<a class='btn btn-sm' href ng-if="a.showAllImportedFiles" ng-click='a.showAllImportedFiles=!a.showAllImportedFiles'>Hide</a>
+			</div>
+		</div>
+	</div>-->
+	<div class='row text-left'>
+		<div class="col-sm-12">
+			<h4 translate-cloak translate>MANAGEMENT_NEW_DATASET_CSV_IMPORT_INFO_TITLE</h4>
+		</div>
+	</div>
+	
+	<div class='row '>
+		<div class="col-sm-3 text-left">
+			<div class="checkbox" >
+				<label title='{{"MANAGEMENT_NEW_DATASET_SKIP_COLUMN_HINT"|translate}}'>
+					<input type="checkbox" ng-model="csvInfo.skipFirstRow"  ng-click="setCsvSkipFirstRow(csvSkipFirstRow)">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>MANAGEMENT_NEW_DATASET_SKIP_FIRST_ROW</span>
+				</label>
+			</div>
+		
+		<!-- 
+			<label><input type="checkbox" ng-model="csvInfo.skipFirstRow" ng-click="setCsvSkipFirstRow(csvSkipFirstRow)"> 
+			<span translate-cloak translate>MANAGEMENT_NEW_DATASET_SKIP_FIRST_ROW</span></label> -->
+			<br>
+			<small class='mute' translate-cloak translate>MANAGEMENT_NEW_DATASET_SKIP_FIRST_ROW_HELP</small>
+		</div>
+		<div class="col-sm-3">
+			<div class="form-inline">
+  				<div class="form-group">			
+  					<label class="" for="fileFormatSelect" ><span translate-cloak translate>MANAGEMENT_NEW_DATASET_UPLOAD_FILE_FORMAT</span></label>
+  					<select class="form-control" id="fileFormatSelect" ng-model="csvInfo.fileType" ng-options="format for format in formatList"><option>Choose one...</option></select>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="form-inline">
+  				<div class="form-group">			
+			<label class="" for="fileEncoding" ><span translate-cloak translate>MANAGEMENT_NEW_DATASET_UPLOAD_FILE_ENCODING</span></label>
+			<input type="text" class=" form-control" ng-model="csvInfo.fileEncoding" id="fileEncoding">
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3 form-group">
+			<div class="form-inline">
+  				<div class="form-group">			
+			<label class="" for="csvSeparator" ><span translate-cloak translate>MANAGEMENT_NEW_DATASET_UPLOAD_FILE_SEPARATOR</span> </label>
+			<input type="text" class="input-sm form-control" ng-model="csvInfo.separator" id="csvSeparator">
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class='row'>
+		<p>&nbsp;</p>
+	</div>
+	<div ng-if='csvInfo.selectedFile!=null'>
+		<div class='row text-left'>
+			<div class="col-sm-8">
+				<h4 translate-cloak translate>MANAGEMENT_NEW_DATASET_CSV_IMPORT_DATA_PREVIEW</h4>
+			</div>
+			<div class="col-sm-4 text-right">
+				<a href ng-click='refreshPreview()' class='btn'><i class='glyphicon glyphicon-refresh'></i> <span translate>MANAGEMENT_NEW_DATASET_CSV_IMPORT_DATA_PREVIEW_REFRESH</span></a>
+			</div>
+		</div>
+		
+		<!-- 
+		<div class='row  text-left' >
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<p>
+					<label><input type="checkbox" ng-model="csvSkipFirstRow" ng-click="setCsvSkipFirstRow(csvSkipFirstRow)"> <span translate-cloak translate>MANAGEMENT_NEW_DATASET_SKIP_FIRST_ROW</span></label>
+					<small class='mute' translate-cloak translate>MANAGEMENT_NEW_DATASET_SKIP_FIRST_ROW_HELP</small>
+				</p>
+			</div>
+		</div>-->
+		<div class='row'>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class='management-upload-preview-table-container'>
+					<table class='table  management-table-upload-preview table-supercondensed'>
+						<tr ng-repeat='line in previewLines ' class='data-row  {{$index==0 && csvSkipFirstRow?"skip-row":""}}'>
+							<td ng-repeat='item in line track by $index' title="{{item}}" ng-class='componentInfoRequests.info[$index].skipColumn?"skip-col": ""'>{{item|nvl:' '|string_ellipse:30}}</td>
+						</tr>
+						<!-- <tr>
+							<td ng-repeat='item in componentInfoRequests.info track by $index'>
+								<div class="checkbox" >
+									<label title='{{"MANAGEMENT_NEW_DATASET_SKIP_COLUMN_HINT"|translate}}'>
+										<input type="checkbox" ng-model='item.skipColumn'>
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										<span translate>MANAGEMENT_NEW_DATASET_SKIP_COLUMN_HINT</span>
+									</label>
+								</div>
+							</td>
+						</tr> -->
+						<tr ng-if='componentInfoRequests.info.length>0 && action == "uploadData"'>
+							<td colspan='{{componentInfoRequests.info.length}}' class='row-title'><strong translate>MANAGEMENT_ADD_DATA_PREVIEW_COMPONETS_INFO</strong></td>
+						</tr>
+						<tr ng-if='componentInfoRequests.info.length>0 && action == "uploadData"'>
+							<td ng-repeat='item in componentInfoRequests.info track by $index'>
+								<span ng-if='item.skipColumn'><i translate >MANAGEMENT_ADD_DATA_PREVIEW_COMPONETS_COL_SKIPPED</i></span>
+								<span ng-if='!item.skipColumn'>
+									<strong title="{{'DATASET_FIELD_METADATA_FIELD_NAME'|translate}}">{{item.name}}</strong> - <span title="{{'DATASET_FIELD_METADATA_FIELD_DATATYPE'|translate}}">{{(item.idDataType|decodeFromId:dataTypeList:'idDataType').description}}</span>
+								</span>
+							</td>
+						</tr>
+						<tr ng-if='componentInfoRequests.info.length>0 && action == "uploadData"'>
+							<td ng-repeat='item in componentInfoRequests.info track by $index'>
+								<div class="input-group input-group-sm popover-html" ng-if="item.isDate">
+									<input class="input-sm form-control" type="text" name="componentDateTimeFormat"ng-model="item.dateFormat" placeholder='{{"DATASET_FIELD_METADATA_FIELD_DATATYPE_FORMAT"|translate}}'>
+									<a class="input-group-addon" ng-click="showDateFormatHint()">&quest;</a>
+								</div>
+								<div class="input-group input-group-sm popover-html" ng-if="item.isDecimal">
+									<select class="input-sm form-control" name="componentDecimalSeparator" ng-model="item.decimalSeparator" >
+										<option value='COMMA' translate>DECIMAL_SEPARATOR_COMMA</option>
+										<option value='DOT' translate>DECIMAL_SEPARATOR_DOT</option>
+									</select>
+								</div>
+	
+								<div ng-if="!item.isDate && !item.isDecimal">-</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div ng-if='isFileTooBig()'>
+			<div class='alert alert-info alert-big-icon'>
+				<div class='big-icon'><i class='fa fa fa-info-circle '></i></div>
+				<span translate translate-cloack>MANAGEMENT_UPLOAD_CSV_MULTIPLE_FIRST_INFO</span>	
+			</div>
+		</div>
+	</div>
+</div>

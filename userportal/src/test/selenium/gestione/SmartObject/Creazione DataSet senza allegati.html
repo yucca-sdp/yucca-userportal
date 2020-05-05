@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://int-userportal.smartdatanet.it/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://www.google.it</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/userportal/#/home</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=a.btn.main-action-button &gt; span.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=small &gt; a.btn.main-action-button &gt; span.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//button[@type='submit']</td>
+	<td>Cerca</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.main-menu-item.main-menu-item-management &gt; span.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Dataset</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Dataset</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Carica nuovo Dataset</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDatasetName</td>
+	<td>testDataSet</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div/new-dataset-wizard-start/form/div[2]/div/select</td>
+	<td>Salute</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=requestorName</td>
+	<td>nome</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=requestorSurname</td>
+	<td>cognome</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=requestorEmail</td>
+	<td>mymail</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=accettazionePrivacy</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=accettazioneResponsability</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Next')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDatasetDesc</td>
+	<td>testDescr</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/div/select</td>
+	<td>Fuoco</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=i.glyphicon.glyphicon-plus</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/p/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=RadioGroupVisibility_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDatasetLicence</td>
+	<td>lic</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDatasetDisclaimer</td>
+	<td>restr</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDatasetCopyright</td>
+	<td>copy</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Next')])[3]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

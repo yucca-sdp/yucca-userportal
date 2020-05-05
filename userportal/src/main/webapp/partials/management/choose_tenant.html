@@ -1,0 +1,21 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div class='title-container'>
+	<div class="container">
+		<h1>{{'MANAGEMENT_TITLE'|translate}} <small>{{'MANAGEMENT_CHOOSE_TENANT_SUBTITLE'|translate}}</small></h1>
+	</div>
+</div>
+<div class="container"  ng-controller="ManagementChooseTenantCtrl as tenantCtrl">
+	<div class="alert alert-warning big-alert">{{'MANAGEMENT_CHOOSE_TENANT_WARNING'|translate}}</div>
+	<h4>{{'MANAGEMENT_CHOOSE_TENANT_TITLE'|translate}}</h4>
+	<ul>
+		<li ng-repeat='tenant in tenantsList'>
+			<a href="#/management/streams/{{tenant.tenantCode}}">{{tenant.tenantCode}} - {{tenant.tenantName}}</a>
+		</li>
+	</ul>
+	
+</div>

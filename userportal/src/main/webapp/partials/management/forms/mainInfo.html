@@ -1,0 +1,153 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class="form-group text-left" ng-if="isStream()  && operation=='create' && enableCEP">
+		<label  for="inputTypeStream" class="col-sm-3 control-label"><span translate-cloak translate>STREAM_TYPE_DEFINITION</span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-9"  >
+				<!-- span translate-cloak translate>STREAM_NEW_DEFINITION </span> --> 
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="inputTypeStream" ng-value="false" ng-model="extra.isInternal" ng-change="selectSoInternal(false)">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>STREAM_NEW_DEFINITION</span>
+				</label>
+			</div>
+			<div class="radio pull-left" >
+				<label>
+					<input type="radio" name="inputTypeStream" ng-value="true" ng-model="extra.isInternal" ng-change="selectSoInternal(true)">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>STREAM_AGGREGATE_DEFINITION</span>
+				</label>
+			</div>				
+		</div>
+	</div>
+		
+	<div class="form-group  has-feedback" ng-if="isStream() && operation=='create'">
+		<label for="inputSo" class="col-sm-3 control-label">
+			<span translate-cloak translate>VIRTUALENTITY</span><span class='required-asterisk' >*</span>
+		</label>
+		<div class="col-sm-9">
+       		<select class="form-control col-sm-10" ng-model="extra.selectedSo" ng-disabled="extra.isInternal"  ng-change="selectSoChange()" name="inputSo"
+       		  ng-options="so.name group by so.soType.description for so in soList track by so.socode" ng-required="!extra.isInternal" >
+       			<option value="" class='mute'>{{'MANAGEMENT_NEW_STREAM_VIRTUALENTITY_PLACEHOLDER'|translate}}</option>
+       		</select>
+       		<div class='text-left hint error-hint' ng-if='maxTweetError'><i class='fa fa-warning'></i>&nbsp;<span translate>VALIDATION_MAX_STREAM_TWITTER_TOOLTIP</span></div>
+		</div>
+	</div>
+
+	<div class="form-group" ng-if="operation!='importDatabase'">
+		<label for="inputDatasourceName" class="col-sm-3 control-label">
+		<span translate-cloak translate>DATASET_FIELD_METADATA_NAME</span><span class='required-asterisk' >*</span>
+		</label>
+		<div class="col-sm-9">
+			<input type="text" ng-if="!isStream()" class="form-control" ng-model="datasource.datasetname" id="inputDatasourceName" placeholder="{{'DATASET_FIELD_NAME_PLACEHOLDER'|translate}}" ng-required="true"  maxlength="255" >
+			<input type="text" ng-if="isStream()" class="form-control" ng-model="datasource.streamname" id="inputDatasourceName" placeholder="{{'DATASET_FIELD_NAME_PLACEHOLDER'|translate}}" ng-required="true"  maxlength="255" >
+		</div>
+	</div>
+	<div class="form-group" ng-if="!isStream() && operation!='importDatabase'">
+		<label for="inputDatasourceDesc" class="col-sm-3 control-label" translate-cloak translate>DATASET_FIELD_METADATA_DESCRIPTION</label>
+		<div class="col-sm-9">
+			<textarea  class="form-control" rows="2" resize="none" ng-model="datasource.description"  placeholder="{{'DATASET_FIELD_METADATA_DESCRIPTION'|translate}}" id="inputDatasourceDesc" maxlength="3000">
+			</textarea>		
+		</div>
+	</div>
+	<div class="form-group" ng-if="isStream()">
+		<label for="inputDatasourceDesc" class="col-sm-3 control-label">
+		<span  translate-cloak translate>STREAM_FIELD_CODE</span><span class='required-asterisk' >*</span>
+		</label>	
+		<div class="col-sm-9" ng-if="operation=='create'">
+			<input type="text" class="form-control" ng-model="datasource.streamcode"  id="inputStreamCode"  name="inputStreamCode" 
+				placeholder="{{'STREAM_FIELD_CODE_PLACEHOLDER'|translate}}" ng-required="true"  maxlength="20" ng-pattern="validationPatternStreamCode">		
+			<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>VALIDATION_PATTERN_CODE_STREAM_HINT</span></div>
+		</div>
+		<div class="col-sm-9" ng-if="operation=='update'"> 
+			<input type="text" class="form-control" ng-model="datasource.streamcode"  id="inputStreamCode"  name="inputStreamCode" ng-disabled='true'
+				placeholder="{{'STREAM_FIELD_CODE_PLACEHOLDER'|translate}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputDatasourceUnpublished" class="col-sm-3 control-label"><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_UNPUBLISHED</span></label>
+		<div class="col-sm-9">
+			<div class="checkbox text-left">
+				<label>
+					<input type="checkbox" ng-model="datasource.unpublished"  ng-disabled='selectedDomain=="MULTI"'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<strong translate>MANAGEMENT_EDIT_DATASET_UNPUBLISHED_FLAG</strong>
+				</label>
+			</div>
+		</div>
+	</div>
+	<div ng-if="operation=='update'">
+		<div class="form-group" ng-if='datasource.unpublished'>
+			<div class="col-sm-9 col-sm-offset-3">
+				<div class="checkbox text-left">
+					<label>
+						<input type="checkbox" ng-change="useDomainMulti(useDomainMultiFlag)" ng-model='useDomainMultiFlag'>
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<strong translate>MANAGEMENT_EDIT_DATASET_USE_MULTIDOMAIN_FLAG</strong>
+					</label>
+				</div>
+				<div class='text-left checkbox-hint'><i class='fa fa fa-exclamation-triangle'></i> <span translate>MANAGEMENT_EDIT_DATASET_USE_MULTIDOMAIN_WARNING</span></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputDatasourceDomain" class="col-sm-3 control-label"translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</label>
+			<div class="col-sm-9">
+				<input class='input-sm form-control' value="{{datasourceDomain}}" disabled="disabled"/>
+			</div>
+		</div>		
+		<div class="form-group">
+			<label for="inputDatasourceDomain" class="col-sm-3 control-label"translate-cloak translate>DATASET_FIELD_METADATA_COD_SUB_DATADOMAIN</label>
+			<div class="col-sm-9">
+				<input class='input-sm form-control' value="{{datasourceSubdomain}}" disabled="disabled"/>
+			</div>
+		</div>		
+	</div>
+	<div ng-if="operation=='create' || operation=='importDatabase' ">
+		<div class="form-group" ng-if='datasource.unpublished'>
+			<div class="col-sm-9 col-sm-offset-3">
+				<div class="checkbox text-left">
+					<label>
+						<input type="checkbox" ng-change="useDomainMulti(useDomainMultiFlag)" ng-model='useDomainMultiFlag'>
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<strong translate>MANAGEMENT_EDIT_DATASET_USE_MULTIDOMAIN_FLAG</strong>
+					</label>
+				</div>
+				<div class='text-left checkbox-hint'><i class='fa fa fa-exclamation-triangle'></i> <span translate>MANAGEMENT_EDIT_DATASET_USE_MULTIDOMAIN_WARNING</span></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputDatasourceDomain" class="col-sm-3 control-label nowrap"><span translate-cloak translate>DATASET_FIELD_METADATA_DATADOMAIN</span> <span class='required-asterisk'>*</span></label>
+			<div class="col-sm-9 text-left">
+				<select  ng-if='selectedDomain!="MULTI"' class="input-sm form-control" ng-model="selectedDomain" 
+					ng-options="domain.domaincode as (domain.domainLabel) for domain in domainList" ng-required="true" ng-change="selectSubdomain(selectedDomain)" >
+					<option value="" translate-cloak translate>MANAGEMENT_EDIT_DATASET_DOMAIN_PLACEHOLDER</option>
+				</select>
+				<input type="text" ng-if='selectedDomain=="MULTI"' class="form-control" ng-model="selectedDomain" id="inputDatasourceName" disabled='disabled'
+					ng-required="true" maxlength="255" >
+			</div>
+		</div>
+		<div class="form-group   has-feedback">
+			<label for="inputDatasourceSubDomain" class="col-sm-3 control-label nowrap"><span translate-cloak translate>DATASET_FIELD_METADATA_COD_SUB_DATADOMAIN</span> <span class='required-asterisk'>*</span></label>
+			<div class="col-sm-9" >
+				<select ng-if='selectedDomain!="MULTI"'  class="input-sm form-control" name="inputDatasourceSubDomain" ng-model="datasource.idSubdomain"   ng-change="onSelectSubdomain(datasource.idSubdomain)" 
+					ng-options="subdomain.idSubdomain as (subdomain.subdomainLabel) for subdomain in subdomainList" ng-required="true">
+					<option  value="" translate-cloak translate>MANAGEMENT_EDIT_STREAM_SUBDOMAIN_PLACEHOLDER</option>
+				</select>
+				
+				<input type="text" ng-if='selectedDomain=="MULTI"' class="form-control uppercase-input" ng-model="datasource.multiSubdomain" id="inputSubdomainCode" 
+					placeholder="{{'MANAGEMENT_EDIT_DATASET_COD_SUB_DOMAIN_PLACEHOLDER'|translate}}" name="inputSubdomainCode" ng-change="datasource.multiSubdomain = datasource.multiSubdomain.toUpperCase()"
+					ng-required="true" maxlength="255" ng-pattern="validationPatternSubdomain" ng-model-options="{allowInvalid: true}">
+				<!-- <span class='glyphicon glyphicon-remove  form-control-feedback error-validation-icon' title="{{'MANAGEMENT_EDIT_DATASET_COD_SUB_DOMAIN_MULTI_VALIDATION'|translate}}"
+					ng-show="!checkSubdomain(datasource.idsubdomain)"></span>-->
+					
+				<div class='text-left hint mute' ng-if='selectedDomain=="MULTI"'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>MANAGEMENT_EDIT_DATASET_COD_SUB_DOMAIN_MULTI_VALIDATION</span></div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+			

@@ -1,0 +1,220 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div id='homepage-family-identity' ng-controller="HomeCtrl as homeController">
+	
+	<div id='home-landing-section' ng-cloak ng-show="!user.loggedIn">
+		<div class="container">
+			<div class='row home_title_text' id="home_title_text">
+				<p ng-bind-html="'HOME_TITLE_TEXT'|translate"></p>
+			</div>
+			<div class='row'>
+				<div class="col-md-10 col-md-offset-1 col-sm-12">
+					<div class="login-col col-md-3 col-sm-12">
+						<div class="intro-desc  vcenter">
+							<p class="home_box_text"><span ng-bind-html="'HOME_BOX1_TEXT'|translate"></span></p>
+						</div>
+					</div>
+					<div class="login-col col-md-3 col-sm-12">
+						<div class="intro-desc  vcenter">
+							<p class="home_box_text"><span ng-bind-html="'HOME_BOX2_TEXT'|translate"></span></p>
+						</div>
+					</div>
+					<div class="login-col col-md-3 col-sm-12">
+						<div class="intro-desc  vcenter">
+							<p class="home_box_text"><span ng-bind-html="'HOME_BOX3_TEXT'|translate"></span></p>
+							<p><span>&nbsp;</span></p>
+						</div>
+					</div>
+					<div class="login-col-last col-md-3 col-sm-12">
+						<div class="intro-desc  vcenter">
+							<p class="home_box_text"><span ng-bind-html="'HOME_BOX4_TEXT'|translate"></span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<div class="col-md-10 col-md-offset-1">
+					<div class="row login-row">
+						<div class="col-md-8 col-sm-12  intro-desc  vcenter">
+							<h4><span ng-bind-html="'HOME_LOGIN_ENTER_TITLE'|translate"></span></h4>
+							<p><span ng-bind-html="'HOME_LOGIN_ENTER_TEXT'|translate"></span></p>
+						</div>
+						<div class="col-md-4 col-sm-12  vcenter text-right">
+							<a class='btn btn-home-start btn-arrow-right'  href="{{_baseUrl}}/api/authorize?returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor&typeAuth=personal">
+								<span translate-cloak translate>HOME_LOGIN_ENTER_BUTTON</span>
+							</a>
+						</div>
+					</div>		
+					<div class="row login-row">
+						<div class="col-md-8 col-sm-12  intro-desc  vcenter">
+							<h4><span ng-bind-html="'HOME_LOGIN_REQUEST_WORKAREA_TITLE'|translate"></span></h4>
+							<p><span ng-bind-html="'HOME_LOGIN_REQUEST_WORKAREA_TEXT'|translate"></span></p>
+						</div>
+						<div class="col-md-4 col-sm-12 vcenter text-right">
+							<a class='btn btn-home-start btn-arrow-right'  href="{{_baseUrl}}/api/authorize?returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor&typeAuth=work">
+								<span translate-cloak translate>HOME_LOGIN_REQUEST_WORKAREA_BUTTON</span>
+							</a>
+						</div>
+					</div>		
+				
+					<div class="row login-row">
+						<div class="col-md-8 col-sm-12 intro-desc  vcenter">
+							<h4><span ng-bind-html="'HOME_LOGIN_REQUEST_TESTAREA_TITLE'|translate"></span></h4>
+							<p><span ng-bind-html="'HOME_LOGIN_REQUEST_TESTAREA_TEXT'|translate"></span></p>
+						</div>
+						<div class="col-md-4 col-sm-12 vcenter text-right">
+							<a class='btn btn-home-start btn-arrow-right'  href="{{_baseUrl}}/api/authorize?returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor&typeAuth=trial">
+								<span translate-cloak translate>HOME_LOGIN_REQUEST_TESTAREA_BUTTON</span>
+							</a>
+						</div>
+					</div>		
+				
+					<div class="row login-row-blue">
+						<div class="col-md-8 col-sm-12 intro-desc vcenter">
+							<h4><span ng-bind-html="'HOME_SEARCH_TITLE'|translate"></span></h4>
+							<p ng-bind-html="'HOME_SEARCH_TEXT'|translate"></p>
+						</div>
+						<div class="col-md-4 col-sm-12 vcenter text-right">
+							<a class='btn btn-home-start btn-arrow-right'  href="#/dataexplorer/search">
+								<span translate-cloak translate>HOME_STORE_TITLE</span>
+							</a>
+						</div>
+					</div>		
+				</div>
+			</div>
+		</div> 	
+	</div>
+	<div id='home-sandbox-expiring-warning' ng-cloak ng-show="!user.loggedIn">
+		<p ng-bind-html="'HOME_REGISTRATION_TEXT'|translate"></p>
+	</div>
+	<div id='home-statistic-section' class='statistic-row' ng-cloak ng-show="!user.loggedIn">
+ 		<div class='container'>
+ 			<h3><span ng-bind-html="'HOME_STATISTIC_PANEL_TITLE'|translate"></span></h3>
+ 			<div class='row'>
+ 				<div class='col-sm-4 statistic-data-panel'>
+ 				 	<p><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_TOTAL_DATA</span> <span class='data-number' title='{{"HOME_STATISTIC_TOTAL_DATA_TIP"|translate}} {{statistics.total_data}}'><span ng-bind-html="statistics.total_data|format_big_number"></span></span></p>
+ 					<p><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_TOTAL_MEASURES</span> <span class='data-number' title='{{"HOME_STATISTIC_TOTAL_MEASURES_TIP"|translate}} {{statistics.total_measures}}' ng-bind-html="statistics.total_measures|format_big_number"></span></p>
+ 				 	<!-- <p><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_CURRENT_MONTH_DATA</span> <span class='data-number' title='{{"HOME_STATISTIC_CURRENT_MONTH_DATA_TIP"|translate}} {{statistics.last_month_data}}'><span ng-bind-html="statistics.last_month_data|format_big_number"></span></span></p> -->
+ 					<p><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_TODAY_DATA</span> <span class='data-number' title='{{"HOME_STATISTIC_TODAY_DATA_TIP"|translate}} {{statistics.today_data}}' ng-bind-html="statistics.today_data|format_big_number"></span></p>
+ 				</div>
+ 				<div class='col-sm-4 statistic-chart-panel'>
+ 					<div id='domain-chart' style='height: 350px;'>  
+ 					 	<nvd3-pie-chart ng-if='domainChartData'
+ 				            data="domainChartData"
+ 				            id="home-domain-chart-id"
+ 				            showLabels="true"
+ 				            x="xDomainChartFunction()"
+ 				            y="yDomainChartFunction()"
+ 				            color="domainChartColors"
+ 				            donut="true"
+ 				            donutRatio=".35"
+ 				            donutLabelsOutside="true">
+ 				        	<svg height="300"></svg>
+ 				   	 	</nvd3-pie-chart> 
+ 					</div>
+ 				</div>
+ 				<div class='col-sm-4 statistic-entity-panel'>
+ 					<p><span class='data-number'>{{statistics.total_tenants}}</span><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_TENANT</span></p>
+ 					<p><span class='data-number'>{{statistics.total_smart_objects}}</span><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_VIRTUALENTITY</span></p>
+ 					<p><span class='data-number'>{{statistics.total_streams}}</span><span class='data-number-label' translate-cloak translate>HOME_STATISTIC_STREAM</span></p>
+ 				</div>
+ 			</div>
+  		</div>
+ 		<div class='lastupdate-info container' ><span translate-cloak translate>HOME_STATISTIC_LASTUPDATE_INFO</span>{{statistics.lastupdate|date}}</div>
+ 	</div>
+	
+	<!-- 
+	<div id='home-search-section' ng-cloak ng-show="!user.loggedIn">
+		<div class="container">
+			<h3><span ng-bind-html="'HOME_SEARCH_TITLE'|translate"></span></h3>
+			<p ng-bind-html="'HOME_SEARCH_TEXT'|translate"></p>
+			<p>
+				<a class='btn btn-home-demo btn-arrow-right' href="#/dataexplorer/search"><span translate-cloak translate>HOME_SEARCH_BUTTON</span></a>
+			</p>
+		</div>
+	</div>
+	-->
+	<div id="home-operation-section" ng-cloak ng-show="user.loggedIn">
+		<h2><span translate-cloak translate>HOME_OPERATION_PANEL_TITLE</span></h2>
+		<div class='container'>
+			<div class="row ">
+				<div class='col-sm-4  operation-developer operation-panel' ng-show="isAuthorized('development/*')">
+					<div class='operation-panel-content'>
+						<div class="role-panel"><i class="fa fa-puzzle-piece role-icon"></i> <span class='role-label' translate-cloak translate>HOME_ROLE_DEVELOPER</span></div>
+						<p class='intro'><span ng-bind-html="'HOME_ROLE_DEVELOPER_INTRO'|translate"></span></p>
+						<a class='home-action' ng-href="#/management/newStream/{{activeTenantCode}}" ng-if="canManageStream()"><span translate-cloak translate>HOME_ACTION_NEW_STREAM_INTERNAL</span></a>
+						<a class='home-action-promo' href='mailto:smartdatanet@csi.it' ng-if="!canManageStream()" target='_blank'><span ng-bind-html="'HOME_ACTION_NO_STREAM_UPGRADE'|translate"></span></a>
+					</div>
+				</div>
+				<div class='col-sm-4 operation-manager operation-panel' ng-show="isAuthorized('management/*')" >
+					<div class='operation-panel-content'>
+						<div class="role-panel"><i class="fa fa-puzzle-piece role-icon"></i> <span class='role-label' translate-cloak translate>HOME_ROLE_PUBLISHER</span></div>
+						<p class='intro'><span ng-bind-html="'HOME_ROLE_PUBLISHER_INTRO'|translate"></span></p>
+						<a class='home-action'ng-href="#/management/virtualentities/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_MANAGEMENT</span></a>
+						<p><span translate-cloak translate>HOME_ACTION_PUBLISHER_SEP_1</span></a></p>
+						<a class='home-action' ng-href="#/management/newVirtualentity/{{activeTenantCode}}"  ng-if="canManageStream()"><span translate-cloak translate>HOME_ACTION_NEW_VIRTUAL_ENTITY</span></a>
+						<a class='home-action' ng-href="#/management/newStream/{{activeTenantCode}}"  ng-if="canManageStream()"><span translate-cloak translate>HOME_ACTION_NEW_STREAM</span></a>
+						<a class='home-action' ng-href="#/management/newDataset/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_NEW_DATASET</span></a>
+						<a class='home-action-promo' href='mailto:smartdatanet@csi.it' target='_blank' ng-if="!canManageStream()"><span ng-bind-html="'HOME_ACTION_NO_STREAM_UPGRADE'|translate"></span></a>
+					</div>
+				</div>
+				<div class='col-sm-4 operation-customer operation-panel' ng-show="isAuthorized('store/*')">
+					<div class='operation-panel-content'>
+						<div class="role-panel"><i class="fa fa-user role-icon"></i> <span class='role-label' translate-cloak translate>HOME_ROLE_SUBSCRIBER</span></div>
+						<p class='intro'><span ng-bind-html="'HOME_ROLE_SUBSCRIBER_INTRO'|translate"></span></p>
+						<a class='home-action'href="#/dataexplorer/search"><span translate-cloak translate>HOME_ACTION_SEARCH</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="home-operation-section" ng-cloak ng-show="!user.loggedIn">
+  		<h2><span translate-cloak translate>HOME_OPERATION_PANEL_TITLE</span></h2>
+  		<div class='container'>
+  			<div class="row ">
+  				<div class='col-sm-4  operation-developer operation-panel' ng-show="isAuthorized('development/*')">
+  					<div class='operation-panel-content'>
+ 						<div class="main-icon"><i class="fa fa-puzzle-piece role-icon"></i></div>
+ 						<div class='role-panel'><span translate-cloak translate>HOME_ROLE_DEVELOPER</span></div>
+  						<p class='intro'><span ng-bind-html="'HOME_ROLE_DEVELOPER_INTRO'|translate"></span></p>
+ 						<!--  disabled dashboard 13/11/2017 -->
+ 						<!-- 
+ 						<a href="#/dashboard/streams" class='home-action'><span translate-cloak translate>HOME_ACTION_DASHBOARD</span></a>
+ 						<p><span translate-cloak translate>HOME_ACTION_DEVELOPER_SEP_1</span></p>
+ 						-->
+  						<a class='home-action' ng-href="#/management/newStream/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_NEW_STREAM_INTERNAL</span></a>
+  					</div>
+  				</div>
+  				<div class='col-sm-4 operation-manager operation-panel' ng-show="isAuthorized('management/*')" >
+  					<div class='operation-panel-content'>
+ 						<div class="main-icon"><i class="fa fa-key role-icon"></i></div>
+ 						<div class='role-panel'><span translate-cloak translate>HOME_ROLE_PUBLISHER</span></div>
+  						<p class='intro'><span ng-bind-html="'HOME_ROLE_PUBLISHER_INTRO'|translate"></span></p>
+						<!-- 			
+ 						<a class='home-action'href="#/dashboard/streams" ng-if="canManageStream()"><span translate-cloak translate>HOME_ACTION_DASHBOARD</span></a>
+ 						-->
+  						<a class='home-action'ng-href="#/management/virtualentities/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_MANAGEMENT</span></a>
+  						<p><span translate-cloak translate>HOME_ACTION_PUBLISHER_SEP_1</span></a></p>
+  						<a class='home-action' ng-if="canManageStream()" ng-href="#/management/newVirtualentity/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_NEW_VIRTUAL_ENTITY</span></a>
+						<a class='home-action' ng-if="canManageStream()" ng-href="#/management/newStream/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_NEW_STREAM</span></a>
+						<a class='home-action' ng-href="#/management/newDataset/{{activeTenantCode}}"><span translate-cloak translate>HOME_ACTION_NEW_DATASET</span></a>
+						<a class='home-action-promo' href ng-if="!canManageStream()"><span ng-bind-html="'HOME_ACTION_NO_STREAM_UPGRADE'|translate"></span></a>
+					</div>
+  				</div>
+  				<div class='col-sm-4 operation-customer operation-panel' ng-show="isAuthorized('store/*')">
+  					<div class='operation-panel-content'>
+ 						<div class="main-icon"><i class="fa fa-user role-icon"></i></div>
+ 						<div class='role-panel'><span translate-cloak translate>HOME_ROLE_SUBSCRIBER</span></div>
+  						<p class='intro'><span ng-bind-html="'HOME_ROLE_SUBSCRIBER_INTRO'|translate"></span></p>
+ 						<!-- <a class='home-action'href="#/dashboard/streams"><span translate-cloak translate>HOME_ACTION_DASHBOARD</span></a> -->
+  						<a class='home-action'href="#/dataexplorer/search"><span translate-cloak translate>HOME_ACTION_SEARCH</span></a>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+</div>

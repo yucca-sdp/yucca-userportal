@@ -1,0 +1,97 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div ng-controller="ManagemenImportDatabasetWizardCtrl as importDatabaseCtrl">
+	<div class='container' ng-cloak>
+		<h3 class='content-edit-title'><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_TITLE</span> {{currentStep}}</h3>
+	</div>
+	<div class='container'  ng-cloak>
+		<div class='row'>
+			<div class="col-sm-12 wizard-nav" >
+				<ul class="nav nav-pills " role="tablist">
+				  <li role="presentation" ng-class="{active: currentStep == 'start'}">
+				  	<a href ng-class="wizardSteps[0].style">
+				  		<span class='wizard-step-counter'>1</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast'>Start</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'database'}">
+				  	<a href ng-class="wizardSteps[1].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>2</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate>MANAGEMENT_IMPORT_DATABASE_STEP_DB_TYPE</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'tables'}">
+				  	<a href ng-class="wizardSteps[2].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>3</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate>MANAGEMENT_IMPORT_DATABASE_STEP_TABLES</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'requestor'}">
+				  	<a href ng-class="wizardSteps[3].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>4</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate>MANAGEMENT_IMPORT_DATABASE_STEP_REQUESTOR</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'metadata'}">
+				  	<a href ng-class="wizardSteps[4].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>5</span>
+				  		<span class='wizard-step-label wizard-step-label-notlast' translate>MANAGEMENT_IMPORT_DATABASE_STEP_METADATA</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'customize'}">
+				  	<a href ng-class="wizardSteps[5].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>6</span>
+				  		<span class='wizard-step-label' translate>MANAGEMENT_IMPORT_DATABASE_STEP_CUSTOMIZE</span> 
+				  	</a>
+				  </li>
+				  <li role="presentation" ng-class="{active: currentStep == 'finish'}">
+				  	<a href ng-class="wizardSteps[5].style">
+				  		<span class='wizard-step-counter wizard-step-counter-notfirst'>7</span>
+				  		<span class='wizard-step-label' translate>MANAGEMENT_IMPORT_DATABASE_STEP_FINISH</span> 
+				  	</a>
+				  </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+	<div class='content-gray'>
+		<div class='container'>
+			<div class='alert alert-sandbox ng-hide' ng-show='tenant=="sandbox"'  ng-cloak>
+				<strong><i class="fa fa-exclamation-triangle"></i>&nbsp;<span translate-cloak translate>WARNING_TITLE</span></strong>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_SANDBOX_WARNING</span>
+			</div>
+			<div class='row'>
+				<div class="col-sm-12">
+					<carousel id='newDatasetWizard' interval="-1">
+						<slide  active="currentStep == 'start'">
+							<import-database-wizard-start></import-database-wizard-start>
+						</slide>
+						<slide active="currentStep == 'database'">
+							<import-database-wizard-database></import-database-wizard-database>
+						</slide>
+						<slide active="currentStep == 'tables'">
+							<import-database-wizard-tables></import-database-wizard-tables>
+						</slide>
+						<slide active="currentStep == 'requestor'">
+							<import-database-wizard-requestor></import-database-wizard-requestor>
+						</slide>
+						<slide active="currentStep == 'metadata'">
+							<import-database-wizard-metadata></import-database-wizard-metadata>
+						</slide>
+						<slide active="currentStep == 'customize'">
+							<import-database-wizard-customize></import-database-wizard-customize>
+						</slide>
+						<slide active="currentStep == 'finish'">
+							<import-database-wizard-finish></import-database-wizard-finish>
+						</slide>
+					
+					</carousel>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

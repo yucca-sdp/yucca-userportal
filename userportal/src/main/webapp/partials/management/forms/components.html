@@ -1,0 +1,233 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-if='!isTwitter()'>
+	<h3 class='text-left form-section-title clearfix'  ng-hide='isNewStream()'>
+		<span class='pull-left' ng-bind-html="'MANAGEMENT_EDIT_DATASET_COLUMNS'|translate"></span>
+		<a href class='pull-right popover-link' ng-click="showComponentJsonExample()" ng-if='isStream()'>
+			<small ><i class="fa fa-info-circle" aria-hidden="true"></i> <span translate>MANAGEMENT_EDIT_STREAM_COMPONENT_EXAMPLE_TITLE</span></small>
+		</a>
+	</h3>
+	
+	<div class='row dataset-components-edit-table-container'> 
+		<!-- <div class="col-sm-2" id="management-edit-stream-component-help-fix" ng-if='isStream()'>
+			<h5 class="help-title"><span translate-cloak translate tooltip-html-unsafe="{{componentJsonExample2}}"  ng-click="showComponentJsonExample()">MANAGEMENT_EDIT_STREAM_COMPONENT_EXAMPLE_TITLE</span></h5>						
+			<small><pre pretty-json="componentJsonExample"/></small>
+	
+		</div> 
+		<div  ng-class="isStream()?'col-sm-10': 'col-sm-12'" class='form form-horizontal'>-->
+		<div  ng-class="col-sm-12" class='form form-horizontal'>
+			<table class="table dragDropTable text-left" >
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_NAME</th>
+						<th translate-cloak translate ng-if='!isStream()'>DATASET_FIELD_METADATA_FIELD_ALIAS</th>
+						<th translate-cloak translate ng-if='!isStream()'>DATASET_FIELD_METADATA_FIELD_SOURCE_COLUMN</th>
+						<th translate-cloak translate>DATASET_FIELD_METADATA_FIELD_DATATYPE</th>
+						<th>
+							<span translate-cloak translate ng-if="isDateTimeComponent(newComponent)">DATASET_FIELD_METADATA_FIELD_DATATYPE_FORMAT</span>
+							<span translate-cloak translate ng-if="isCommonComponent(newComponent)">DATASET_FIELD_METADATA_FIELD_UNIT</span>
+							<span translate-cloak translate ng-if="isCoordinatesComponent(newComponent)">DATASET_FIELD_METADATA_FIELD_UNIT</span>
+						</th>
+						<th translate-cloak translate ng-if='isStream()'>STREAM_FIELD_COMPONENTS_TOLERANCE</th>
+						<th translate-cloak translate ng-if='isStream()'>STREAM_FIELD_COMPONENTS_PHENOMENON</th>
+						<th translate-cloak translate ng-if='isStream()'>STREAM_FIELD_COMPONENTS_SINCE_VERSION</th>
+						<th translate-cloak translate class='nowrap slim-td' ng-if='!isStream()'>DATASET_FIELD_METADATA_FIELD_IS_KEY</th>
+						<th translate-cloak translate class='nowrap slim-td' ng-if='isImportDatasource'>&nbsp;</th>
+						<th translate-cloak translate class='nowrap slim-td' ng-if='editField("skipColumn")'>&nbsp;</th>
+						<th translate-cloak translate title='{{"STREAM_FIELD_COMPONENTS_REQUIRED_HINT"|translate}}'>STREAM_FIELD_COMPONENTS_REQUIRED</th>
+						<th translate-cloak translate title='{{"STREAM_FIELD_COMPONENTS_GROUPABLE_HINT"|translate}}'>STREAM_FIELD_COMPONENTS_GROUPABLE</th>
+						<th translate-cloak translate class='nowrap slim-td'>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="component in preview.components track by $index"  ng-drop="true" ng-drop-success="onDropColumnComplete($data,$index,$event)"
+						 class=' dataset-column-droprow'  ng-class='component.skipColumn?"mute": ""'> 
+						<td>
+							<div class='edit-column-counter'>{{$index+1}}.</div>
+						<!-- 	<i class='fa fa-info-cirlce' ng-if='component.warning' title='{{"DATASET_FIELD_METADATA_FIELD_NAME_CHANGE_INFO"|translate}}'></i> -->
+						</td>
+						
+						<td >
+							<span ng-if='!editField("name") '>{{component.name}}</span>
+							<div class=' has-feedback' ng-if='editField("name") '>
+								<input  class="input-sm form-control" type="text" ng-model="component.name" ng-disabled="component.skipColumn || !isNewComponent(component.name)"  ng-change="refreshColumnOrder(column)"
+									ng-blur="checkColumnName(component.name, $index)">
+								<i class="fa fa-info input-icon-hint form-control-feedback edit-column-info" ng-if='component.warning' title='{{"DATASET_FIELD_METADATA_FIELD_NAME_CHANGE_INFO"|translate}}'></i>
+							</div>
+							
+						</td>
+						<td  ng-if='!isStream()'>
+							<span ng-if='!editField("alias")'>{{component.alias}}</span>
+							<input class="input-sm form-control" ng-if='editField("alias")' type="text" name="alias"ng-model="component.alias" ng-disabled="component.skipColumn" ng-change="refreshColumnOrder(column)">
+						</td>
+						<td  ng-if='!isStream()' class='text-center'>{{component.sourcecolumn}}</td>
+						<td>
+							<span ng-if='!editField("dataType")'>{{(component.idDataType|decodeFromId:dataTypeList:'idDataType').description |nvl:' - '}}</span>
+							<div ng-if='editField("dataType")' class='input-group input-group-sm'>
+								<select class="input-sm form-control" ng-model="component.dataType" ng-options="dataType.datatypecode for dataType in dataTypeList track by dataType.idDataType" 
+									ng-disabled="component.skipColumn || !isNewComponent(component.name)" ng-change="refreshColumnOrder(column)">
+						         </select>
+						        <a class="input-group-addon text-center" ng-click="chooseDecimalSeparator(component)" ng-if="isDigitalNumberComponent(component)" 
+						        	title='{{"DECIMAL_SEPARATOR_ICON_HINT"|translate}}' ng-init="component.decimalSeparator='COMMA'"> 
+						         	<span class='double-format-addon' translate>{{component.decimalSeparator}}</span>
+						         </a>
+						     </div>
+						</td>
+						<td >
+							<div class="" ng-if="isDateTimeComponent(component)">
+								<div ng-if='!editField("dateFormat")'> - </div>
+								<div ng-if='editField("dateFormat")' class='input-group input-group-sm popover-html'>
+									<input class="input-sm form-control" type="text" name="componentDateTimeFormat"ng-model="component.dateTimeFormat" ng-change="refreshColumnOrder(column)">
+									<a class="input-group-addon" ng-click="showDateFormatHint()">&quest;</a>
+								</div>
+							</div>
+							<div ng-if="isCommonComponent(component)">
+								<span ng-if='!editField("measureUnit")'>{{(component.measureUnit|decodeFromId:measureUnitList:'idMeasureUnit').description |nvl:' - '}}</span>
+								<select ng-if='editField("measureUnit")' class="input-sm form-control" name="componentMeasureUnit" ng-model="component.measureUnit" ng-disabled="component.skipColumn"
+							 		ng-options="measureUnit.measureunit group by measureUnit.measureunitcategory for measureUnit in measureUnitsList track by measureUnit.idMeasureUnit" ng-change="refreshColumnOrder(column)">
+							 		<option value="" translate-cloak translate>MANAGEMENT_EDIT_STREAM_UNIT_OF_MEASUREMENT_PLACEHOLDER</option> 
+							 	</select>
+							</div>
+							<div ng-if="isCoordinatesComponent(component)">
+								<i><small>Format: <code><strong>[lat,lon]</strong></code></small></i>
+							</div>
+						</td>
+						<td ng-if='isStream()'>
+							<span ng-if='!editField("tolerance")'>{{component.tolerance}}</span>
+							<input ng-if='editField("tolerance")' class="input-sm form-control" type="text" name="editComponentTolerance{{$index}}"   id="editComponentTolerance{{$index}}" 
+												                		ng-model="component.tolerance" placeholder="{{'STREAM_FIELD_COMPONENTS_TOLERANCE_PLACEHOLDER'|translate}}" ng-change="refreshColumnOrder(column)">
+						</td>
+						<td ng-if='isStream()'>
+							<span ng-if='!editField("phenomenon")'>{{(component.phenomenon|decodeFromId:phenomenonList:'idPhenomenon').description |nvl:' - '}}</span>
+							<select ng-if='editField("phenomenon")' class="input-sm form-control" name="componentPhenomenon" ng-model="component.phenomenon" ng-change="refreshColumnOrder(column)"
+							 		ng-options="phenomenon.phenomenonname group by phenomenon.phenomenoncetegory for phenomenon in phenomenonList track by phenomenon.idPhenomenon">
+							 		<option value="" translate-cloak translate>MANAGEMENT_EDIT_STREAM_PHENOMENOM_PLACEHOLDER</option> 
+							 </select>
+						</td>
+						
+						<td ng-if='isStream()' class='text-center'>{{component.sinceVersion}}</td>
+						
+						<td class='nowrap slim-td text-center'  ng-if='!isStream()'>
+							<span ng-if='!editField("isKey")'>{{component.isKey|booleanToString|translate}}</span>
+							<div class="checkbox" ng-if='editField("isKey")'>
+								<label title='{{"DATASET_FIELD_METADATA_FIELD_IS_KEY_PLACEHOLDER"|translate}}'>
+									<input type="checkbox" ng-model='component.isKey' ng-disabled="component.skipColumn || !isNewComponent(component.name)" ng-change="refreshColumnOrder(column)">
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									<i class='fa fa-key'></i>
+								</label>
+							</div>
+						</td>
+						<td class='nowrap text-right'  ng-if='editField("skipColumn")'>
+							<div class="checkbox" >
+								<label title='{{"MANAGEMENT_NEW_DATASET_SKIP_COLUMN_HINT"|translate}}'>
+									<input type="checkbox" ng-model='component.skipColumn' ng-change="refreshColumnOrder(column)" ng-disabled="!isNewComponent(component.name)">
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									<i class='glyphicon glyphicon-ban-circle skip-row'></i>
+								</label>
+							</div>
+						</td>
+						<td class='nowrap text-center'>
+							<div class="checkbox">
+								<label title='{{"STREAM_FIELD_COMPONENTS_REQUIRED_HINT"|translate}}'>
+									<input type="checkbox" ng-model='component.required' ng-disabled="component.skipColumn || !isStream() || !isNewComponent(component.name)" ng-change="refreshColumnOrder(column)" >
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>
+				
+						</td>
+						<td class='nowrap text-center'>{{component.isgroupable|booleanToString|translate}}</td>
+						<td class='nowrap slim-td'>
+							&nbsp;
+							<label class="dataset-column-drag-panel control-label"  ng-drag="true" ng-drag-data="$index" ng-drag-success="onDragColumnComplete($data,$event)"  
+			 					title='{{"MANAGEMENT_NEW_DATASET_MOVE_COLUMN_HINT"|translate}}' ng-if='editField("dragComponent")'><i class='glyphicon glyphicon-resize-vertical' ></i>
+							</label>
+							<a  ng-if='editField("deleteComponent") && canRemoveComponent(component)' ng-if='!isImportDatasource && component.idComponent==null' href ng-click='removeComponent($index)' class="btn btn-icon-remove  btn-sm" title="{{'DELETE'|translate}}"><i class='glyphicon glyphicon-trash'></i></a>
+							<span ng-if='editField("deleteComponent") && !canRemoveComponent(component)'  class="btn btn-disabled mute btn-sm" title="{{'DELETE'|translate}}"><i class='glyphicon glyphicon-trash'></i></span>
+						</td>
+					</tr>
+					<tr ng-if='editField("newComponent")'>
+						<td><small><strong translate>MANAGEMENT_EDIT_DATASOURCE_NEW_COMPONENT</strong></small></td>
+						<td>
+							<input class="input-sm form-control" type="text" name="newComponentName" ng-model="newComponent.name" >
+							<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>VALIDATION_PATTERN_ALPHANUMERIC_HINT</span></div>
+						</td>
+						<td ng-if='!isStream()'><input class="input-sm form-control" type="text" name="newComponentAlias" ng-model="newComponent.alias"><div class='hint'>&nbsp;</div></td>
+						<td ng-if='!isStream()'><input class="input-sm form-control" type="text" name="newComponentSourceColumn"ng-model="newComponent.sourcecolumn"><div class='hint'>&nbsp;</div></td>
+						<td>
+							<!-- 
+							<div  class='input-group input-group-sm'>
+								<select class="input-sm form-control" name="newComponentDataType" ng-model="newComponent.dataType" ng-options="dataType.datatypecode for dataType in dataTypeList track by dataType.idDataType"></select>
+						         <a class="input-group-addon text-center" ng-click="chooseDecimalSeparator(newComponent)" ng-if="isDigitalNumberComponent(newComponent)" >
+						         	<span class='double-format-addon' translate>{{newComponent.decimalSeparator}}</span>
+						         </a>
+						     </div>-->
+							<select class="input-sm form-control" name="newComponentDataType" ng-model="newComponent.dataType" ng-options="dataType.datatypecode for dataType in dataTypeList track by dataType.idDataType"></select>
+							<div class='hint'>&nbsp;</div>
+						</td>
+						<td >
+							<div class="input-group input-group-sm popover-html" ng-if="isDateTimeComponent(newComponent)">
+								<input class="input-sm form-control" type="text" name="newComponentDateTimeFormat" ng-model="newComponent.dateTimeFormat" >
+								<a class="input-group-addon" ng-click="showDateFormatHint()">&quest;</a>
+							</div>
+							<div ng-if="isCommonComponent(newComponent)">
+								
+								<select class="input-sm form-control" name="newComponentMeasureUnit" ng-model="newComponent.measureUnit" ng-options="measureUnit.measureunit group by measureUnit.measureunitcategory for measureUnit in measureUnitsList track by measureUnit.idMeasureUnit">
+							 		<option value="" translate-cloak translate>MANAGEMENT_EDIT_STREAM_UNIT_OF_MEASUREMENT_PLACEHOLDER</option> 
+							 	</select>
+							</div>
+							<div ng-if="isCoordinatesComponent(newComponent)">
+								<i><small>Format: <code><strong>[lat,lon]</strong></code></small></i>
+							</div>
+							<div class='hint'>&nbsp;</div>
+						</td>
+						<td ng-if='isStream()'>
+							<input class="input-sm form-control" type="text" name="newComponentTolerance"   id="newComponentTolerance" 
+								ng-model="newComponent.tolerance" placeholder="{{'STREAM_FIELD_COMPONENTS_TOLERANCE_PLACEHOLDER'|translate}}">
+								<div class='hint'>&nbsp;</div>
+						</td>
+						<td ng-if='isStream()'>
+							<select class="input-sm form-control" name="newComponentMeasureUnit" ng-model="newComponent.phenomenon" 
+							 		ng-options="phenomenon.phenomenonname group by phenomenon.phenomenoncetegory for phenomenon in phenomenonList track by phenomenon.idPhenomenon">
+							 		<option value="" translate-cloak translate>MANAGEMENT_EDIT_STREAM_PHENOMENOM_PLACEHOLDER</option> 
+							 	</select>
+							<div class='hint'>&nbsp;</div>
+						</td>
+						<td ng-if='isStream()'>&nbsp;<div class='hint'>&nbsp;</div></td>
+						
+						<td ng-if='!isStream()'>
+							<div class="checkbox">
+								<label title='{{"STREAM_FIELD_COMPONENTS_REQUIRED_HINT"|translate}}' class='nowrap'>
+									<input type="checkbox"  name="newComponentIsKey" ng-model="newComponent.isKey">
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>
+							<div class='text-center hint mute'><span translate>DATASET_FIELD_METADATA_FIELD_IS_KEY</span></div>
+						</td>
+						<td class='text-center'>
+							<div class="checkbox">
+								<label title='{{"STREAM_FIELD_COMPONENTS_REQUIRED_HINT"|translate}}' class='nowrap'>
+									<input type="checkbox"  name="newComponentRequired" ng-model="newComponent.required">
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>
+							<div class='text-center hint mute'><span translate>STREAM_FIELD_COMPONENTS_REQUIRED</span></div>
+						</td>
+						<td class='text-center'>{{newComponent.isgroupable|booleanToString|translate}}</td>
+						<td class='text-right'>
+							<a href ng-click='addComponent(newComponent)' class="btn btn-sm btn-default "><i class='glyphicon glyphicon-plus'></i>  <span translate>ADD</span></a>
+							<div class='hint'>&nbsp;</div>
+						</td>															
+					</tr>
+				</tbody>
+			</table>
+			<div class="alert alert-danger text-left" ng-show='insertColumnErrors.length>0'>
+				<strong>{{updateError.error_message}}</strong>
+				<ul><li ng-repeat="insertColumnError in insertColumnErrors "><span translate-cloak translate>{{insertColumnError}}</span></li></ul>
+			</div>
+		</div>
+	</div>
+</div>

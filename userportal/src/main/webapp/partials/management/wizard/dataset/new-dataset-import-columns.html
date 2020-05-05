@@ -1,0 +1,45 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-cloak>
+
+	
+	<upload-data-csv datasource='dataset' preview='preview' csv-info='csvInfo'  component-info-requests='componentInfoRequests' ng-if='datasetReady' action='createDatasourceDefineFromCSV'></upload-data-csv>
+	<div ng-if='csvInfo.selectedFile!=null' class='import-csv-components '>
+		<div class="alert alert-danger management-upload-column-error-panel " ng-show='saveError'>
+			<div>
+				<strong><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_ERROR_IMPORT_COLUMN</strong> &nbsp;
+				<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_ERROR_IMPORT_COLUMN_NUM_ERR</span>: <strong>{{saveErrors.length}}</strong>
+				<ul><li ng-repeat="saveError in saveErrors "><span title="{{saveError.detail}}">{{saveError.message}}</span></li></ul>
+				
+			</div>
+			<div class='row  text-left' >
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><strong><small>Error</small></strong></div>
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><strong><small>Detail</small></strong></div>
+			</div>
+			<div class='new-dataset-wizard-error-list'>
+				<div class='row  text-left' ng-repeat="error in saveErrors">
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">{{error.message|string_ellipse:50}}</div>
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">{{error.detail|string_ellipse:120}}</div>
+				</div>		
+			</div>
+		</div>
+		<div class='row'>
+			<p>&nbsp;</p>
+		</div>
+		<div class='row text-left'>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h4 translate-cloak translate>MANAGEMENT_NEW_DATASET_COLUMNS_TITLE</h4>
+				<p translate-cloak translate>MANAGEMENT_NEW_DATASET_COLUMNS_INTRO</p>
+			</div>
+		</div>
+		<div class="alert alert-warning text-left" ng-show='insertColumnErrors.length>0'>
+			<strong>{{updateError.error_message}}</strong>
+			<ul><li ng-repeat="insertColumnError in insertColumnErrors "><span translate-cloak translate>{{insertColumnError}}</span></li></ul>
+		</div>
+		
+		<datasource-components datasource='dataset' preview='preview' ng-if='datasetReady'  action='createDatasourceDefineFromCSV' tablestatus='tablestatus' ng-init="tablestatus='new'"></datasource-components>
+	</div>
+</div>

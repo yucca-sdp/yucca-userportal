@@ -1,0 +1,36 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_DATASET_TITLE</span> - <strong><span translate-cloak translate>MANAGEMENT_NEW_DATASET_START_SUBTITLE</span></strong></h3></div>
+	<div class='pull-right'><h3><small>Step 1/5</small></h3></div>
+</div>
+<div class='row'>
+	<div class="col-sm-6">
+		<form class="form-horizontal" role="form" name="newDatasourceForm" ng-cloak>
+			<datasource-main-info datasource='dataset' datasource-domain='{{datasetDomain}}' datasource-subdomain='{{datasetSubdomain}}' operation='create' ng-if='datasetReady'></datasource-main-info>
+			<div class="form-group ">
+				<div class=" col-sm-12 form-toolbar">
+					<a ng-click='cancel()' class="btn " translate-cloak translate>CANCEL</a>
+					<a ng-click='goToRequestor()' class="btn btn-wizard-next" ng-disabled="!isOwner() || newDatasourceForm.$invalid " translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_NEXT</a>
+				</div>
+			</div>
+		</form>	
+	</div>
+	<div class="col-sm-5 panel-hint col-sm-offset-1">
+		<div class='panel-hint-content'>
+			<h2><span class='icon-hint'><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>&nbsp;<span translate>MANAGEMENT_PANEL_START_HINT_TITLE</span> </h2>
+			<ul class='fa-ul'>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_START_NAME_HINT'|translate"></span>  </li>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_DOMAIN_SUBDOMAIN_HINT'|translate"></span>  </li>
+				<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_UNPUBLISHED_FLAG_HINT'|translate"></span>  </li>
+				<li class='hint-item' ng-if="dataset.unpublished"><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_USE_MULTIDOMAIN_FLAG_HINT'|translate"></span>  </li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+

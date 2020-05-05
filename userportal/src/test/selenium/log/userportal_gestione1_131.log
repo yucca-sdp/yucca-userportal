@@ -1,0 +1,612 @@
+2015-09-15 12:06:17 [info] Playing test case Creazione SmartObject Application
+2015-09-15 12:06:18 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:06:19 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:06:21 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:06:22 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:06:22 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:06:23 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:06:23 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:06:24 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:06:24 [error] false
+2015-09-15 12:06:25 [info] Executing: |click | css=a.btn.btn-new > span.ng-scope |  |
+2015-09-15 12:06:25 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:06:26 [info] Executing: |select | id=inputType | Application |
+2015-09-15 12:06:26 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:06:27 [info] Executing: |type | id=inputVirtualentityCode | CodeForaaTestApplication |
+2015-09-15 12:06:27 [info] Executing: |type | id=inputVirtualentityName | aaTestApplication |
+2015-09-15 12:06:28 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrApplication |
+2015-09-15 12:06:29 [info] Executing: |click | css=a.btn.btn-wizard-next.ng-scope |  |
+2015-09-15 12:06:29 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:06:30 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:06:30 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:06:31 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:06:32 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:06:32 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:06:33 [info] Executing: |type | id=inputVirtualentityFloor | Pian |
+2015-09-15 12:06:33 [info] Executing: |type | id=inputVirtualentityRoom | 0 |
+2015-09-15 12:06:34 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:06:34 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:06:35 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:06:36 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:06:36 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:06:37 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:06:37 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:06:37 [error] false
+2015-09-15 12:06:37 [info] Test case failed
+2015-09-15 12:06:37 [info] Playing test case Creazione SmartObject Device
+2015-09-15 12:06:38 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:06:39 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:06:41 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:06:42 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:06:42 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:06:43 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:06:44 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:06:44 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:06:45 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:06:45 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:06:46 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:06:46 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:06:47 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:06:48 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice |
+2015-09-15 12:06:48 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice |
+2015-09-15 12:06:49 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:06:49 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:06:50 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:06:51 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:06:51 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:06:52 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:06:52 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:06:53 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:06:53 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:06:54 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:06:55 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:06:55 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:06:56 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:06:56 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:06:57 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:06:58 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:06:58 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:06:59 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:06:59 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:07:00 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:07:00 [info] Test case passed
+2015-09-15 12:07:00 [info] Playing test case Creazione SmartObject Device_NOPOSITION
+2015-09-15 12:07:00 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:07:02 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:07:04 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:07:04 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:07:05 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:07:05 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:07:06 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:07:06 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:07:07 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:07:08 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:07:08 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:07:09 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:07:09 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:07:10 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice_nopos |
+2015-09-15 12:07:11 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice_nopos |
+2015-09-15 12:07:11 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:07:12 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:07:12 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:07:13 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:07:13 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:07:14 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:07:15 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:07:15 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:07:16 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:07:16 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:07:17 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:07:17 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:07:18 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:07:19 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:07:19 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:07:20 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:07:20 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:07:20 [info] Test case passed
+2015-09-15 12:07:20 [info] Playing test case Creazione SmartObject TweetFeed with LoginTwitter
+2015-09-15 12:07:21 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:07:22 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:07:24 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:07:25 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:07:25 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:07:26 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:07:27 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:07:27 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:07:28 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:07:28 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:07:29 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:07:29 [info] Executing: |clickAtAndWait | link=Accedi a Twitter |  |
+2015-09-15 12:07:33 [info] Executing: |type | name=session[username_or_email] | tophans@gmail.com |
+2015-09-15 12:07:33 [info] Executing: |type | name=session[password] | Mappa..3e |
+2015-09-15 12:07:34 [info] Executing: |clickAndWait | id=allow |  |
+2015-09-15 12:07:35 [info] Executing: |type | id=inputTwtMaxStreams | 2 |
+2015-09-15 12:07:35 [error] Element id=inputTwtMaxStreams not found
+2015-09-15 12:07:35 [info] Test case failed
+2015-09-15 12:07:35 [info] Playing test case Creazione SmartObject TweetFeed without LoginTwitter
+2015-09-15 12:07:36 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:07:37 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:07:39 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:07:40 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:07:40 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:07:41 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:07:42 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:07:42 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:07:42 [error] false
+2015-09-15 12:07:43 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:07:43 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:07:44 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:07:45 [info] Executing: |type | id=inputTwtMaxStreams | 2 |
+2015-09-15 12:07:45 [info] Executing: |type | id=inputVirtualentityCode | aaMio |
+2015-09-15 12:07:46 [info] Executing: |type | id=inputVirtualentityName | nomeTest |
+2015-09-15 12:07:46 [info] Executing: |type | id=inputVirtualentityDescription | descrTest |
+2015-09-15 12:07:47 [info] Executing: |clickAt | link=Salva |  |
+2015-09-15 12:07:47 [info] Test case failed
+2015-09-15 12:07:47 [info] Test suite completed: 5 played, 3 failed
+2015-09-15 12:08:47 [info] Playing test case Creazione SmartObject Application
+2015-09-15 12:08:48 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:08:49 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:08:51 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:08:52 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:08:52 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:08:53 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:08:54 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:08:54 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:08:54 [error] false
+2015-09-15 12:08:55 [info] Executing: |click | css=a.btn.btn-new > span.ng-scope |  |
+2015-09-15 12:08:55 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:08:56 [info] Executing: |select | id=inputType | Application |
+2015-09-15 12:08:56 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:08:57 [info] Executing: |type | id=inputVirtualentityCode | javascript{Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8)} |
+2015-09-15 12:08:58 [info] Executing: |type | id=inputVirtualentityName | aaTestApplication |
+2015-09-15 12:08:58 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrApplication |
+2015-09-15 12:08:59 [info] Executing: |click | css=a.btn.btn-wizard-next.ng-scope |  |
+2015-09-15 12:08:59 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:09:00 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:09:01 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:09:01 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:09:02 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:09:02 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:09:03 [info] Executing: |type | id=inputVirtualentityFloor | Pian |
+2015-09-15 12:09:03 [info] Executing: |type | id=inputVirtualentityRoom | 0 |
+2015-09-15 12:09:04 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:09:05 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:09:05 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:09:06 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:09:06 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:09:07 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:09:08 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:09:08 [info] Test case failed
+2015-09-15 12:09:08 [info] Playing test case Creazione SmartObject Device
+2015-09-15 12:09:08 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:09:10 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:09:12 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:09:12 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:09:13 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:09:13 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:09:13 [error] testCase.debugContext.currentCommand(...) is undefined
+2015-09-15 12:09:13 [error] Unexpected Exception: TypeError: testCase.debugContext.currentCommand(...) is undefined. 
+2015-09-15 12:09:54 [info] Playing test case Creazione SmartObject Application
+2015-09-15 12:09:54 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:09:56 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:09:58 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:09:58 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:09:59 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:10:00 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:10:00 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:10:01 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:10:01 [info] Executing: |click | css=a.btn.btn-new > span.ng-scope |  |
+2015-09-15 12:10:02 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:10:03 [info] Executing: |select | id=inputType | Application |
+2015-09-15 12:10:03 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:10:04 [info] Executing: |type | id=inputVirtualentityCode | javascript{Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8)} |
+2015-09-15 12:10:04 [info] Executing: |type | id=inputVirtualentityName | aaTestApplication |
+2015-09-15 12:10:05 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrApplication |
+2015-09-15 12:10:05 [info] Executing: |click | css=a.btn.btn-wizard-next.ng-scope |  |
+2015-09-15 12:10:06 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:10:07 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:10:07 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:10:08 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:10:08 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:10:09 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:10:09 [info] Executing: |type | id=inputVirtualentityFloor | Pian |
+2015-09-15 12:10:10 [info] Executing: |type | id=inputVirtualentityRoom | 0 |
+2015-09-15 12:10:11 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:10:11 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:10:12 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:10:12 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:10:13 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:10:13 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:10:14 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:10:14 [info] Test case passed
+2015-09-15 12:10:14 [info] Playing test case Creazione SmartObject Device
+2015-09-15 12:10:15 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:10:16 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:10:18 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:10:19 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:10:19 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:10:20 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:10:20 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:10:21 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:10:22 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:10:22 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:10:23 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:10:23 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:10:24 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:10:25 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice |
+2015-09-15 12:10:25 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice |
+2015-09-15 12:10:26 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:10:26 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:10:27 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:10:27 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:10:28 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:10:29 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:10:29 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:10:30 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:10:30 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:10:31 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:10:32 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:10:32 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:10:33 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:10:33 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:10:34 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:10:34 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:10:35 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:10:36 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:10:36 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:10:37 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:10:37 [info] Test case passed
+2015-09-15 12:10:37 [info] Playing test case Creazione SmartObject Device_NOPOSITION
+2015-09-15 12:10:37 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:10:39 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:10:41 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:10:41 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:10:42 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:10:42 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:10:43 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:10:44 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:10:44 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:10:45 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:10:45 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:10:46 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:10:47 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:10:47 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice_nopos |
+2015-09-15 12:10:48 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice_nopos |
+2015-09-15 12:10:48 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:10:49 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:10:49 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:10:50 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:10:51 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:10:51 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:10:52 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:10:52 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:10:53 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:10:53 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:10:54 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:10:55 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:10:55 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:10:56 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:10:56 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:10:57 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:10:58 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:10:58 [info] Test case passed
+2015-09-15 12:10:58 [info] Playing test case Creazione SmartObject TweetFeed with LoginTwitter
+2015-09-15 12:10:58 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:10:59 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:11:02 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:11:02 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:11:03 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:11:03 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:11:04 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:11:04 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:11:04 [error] false
+2015-09-15 12:11:05 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:11:06 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:11:06 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:11:07 [info] Executing: |clickAtAndWait | link=Accedi a Twitter |  |
+2015-09-15 12:11:09 [info] Executing: |type | name=session[username_or_email] | tophans@gmail.com |
+2015-09-15 12:11:09 [error] Element name=session[username_or_email] not found
+2015-09-15 12:11:09 [info] Test case failed
+2015-09-15 12:11:09 [info] Playing test case Creazione SmartObject TweetFeed without LoginTwitter
+2015-09-15 12:11:10 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:11:11 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:11:14 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:11:14 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:11:15 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:11:15 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:11:16 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:11:16 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:11:17 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:11:18 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:11:18 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:11:19 [info] Executing: |type | id=inputTwtMaxStreams | 2 |
+2015-09-15 12:11:19 [info] Executing: |type | id=inputVirtualentityCode | aaMio |
+2015-09-15 12:11:20 [info] Executing: |type | id=inputVirtualentityName | nomeTest |
+2015-09-15 12:11:20 [info] Executing: |type | id=inputVirtualentityDescription | descrTest |
+2015-09-15 12:11:21 [info] Executing: |clickAt | link=Salva |  |
+2015-09-15 12:11:21 [info] Test case passed
+2015-09-15 12:11:21 [info] Test suite completed: 5 played, 1 failed
+2015-09-15 12:11:40 [info] Playing test case Creazione SmartObject Application
+2015-09-15 12:11:40 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:11:42 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:11:45 [info] Playing test case Creazione SmartObject Application
+2015-09-15 12:11:46 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:11:48 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:11:50 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:11:50 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:11:51 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:11:52 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:11:53 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:11:54 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:11:55 [info] Executing: |click | css=a.btn.btn-new > span.ng-scope |  |
+2015-09-15 12:11:55 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:11:56 [info] Executing: |select | id=inputType | Application |
+2015-09-15 12:11:57 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:11:58 [info] Executing: |type | id=inputVirtualentityCode | javascript{Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8)} |
+2015-09-15 12:11:59 [info] Executing: |type | id=inputVirtualentityName | aaTestApplication |
+2015-09-15 12:12:00 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrApplication |
+2015-09-15 12:12:00 [info] Executing: |click | css=a.btn.btn-wizard-next.ng-scope |  |
+2015-09-15 12:12:01 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:12:02 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:12:03 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:12:04 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:12:04 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:12:05 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:12:06 [info] Executing: |type | id=inputVirtualentityFloor | Pian |
+2015-09-15 12:12:07 [info] Executing: |type | id=inputVirtualentityRoom | 0 |
+2015-09-15 12:12:08 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:12:09 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:12:09 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:12:10 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:12:11 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:12:12 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:12:13 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:12:13 [info] Test case passed
+2015-09-15 12:12:13 [info] Playing test case Creazione SmartObject Device
+2015-09-15 12:12:14 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:12:15 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:12:17 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:12:18 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:12:19 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:12:20 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:12:21 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:12:21 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:12:22 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:12:23 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:12:24 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:12:25 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:12:25 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:12:26 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice |
+2015-09-15 12:12:27 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice |
+2015-09-15 12:12:28 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:12:29 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:12:30 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:12:30 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:12:31 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:12:32 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:12:33 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:12:34 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:12:34 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:12:35 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:12:36 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:12:37 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:12:38 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:12:39 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:12:39 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:12:40 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:12:41 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:12:42 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:12:43 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:12:43 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:12:43 [info] Test case passed
+2015-09-15 12:12:43 [info] Playing test case Creazione SmartObject Device_NOPOSITION
+2015-09-15 12:12:44 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:12:46 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:12:48 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:12:49 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:12:50 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:12:50 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:12:51 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:12:52 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:12:53 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:12:54 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:12:55 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:12:55 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:12:56 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:12:57 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice_nopos |
+2015-09-15 12:12:58 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice_nopos |
+2015-09-15 12:12:59 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:13:00 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:13:00 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:13:01 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:13:02 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:13:03 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:13:04 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:13:04 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:13:05 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:13:06 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:13:07 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:13:08 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:13:09 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:13:09 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:13:10 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:13:11 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:13:12 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:13:12 [info] Test case passed
+2015-09-15 12:13:12 [info] Playing test case Creazione SmartObject TweetFeed with LoginTwitter
+2015-09-15 12:13:13 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:13:14 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:13:16 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:13:17 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:13:18 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:13:19 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:13:20 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:13:20 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:13:21 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:13:22 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:13:23 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:13:24 [info] Executing: |clickAtAndWait | link=Accedi a Twitter |  |
+2015-09-15 12:13:26 [info] Executing: |type | name=session[username_or_email] | tophans@gmail.com |
+2015-09-15 12:13:26 [error] Element name=session[username_or_email] not found
+2015-09-15 12:13:26 [info] Test case failed
+2015-09-15 12:13:26 [info] Playing test case Creazione SmartObject TweetFeed without LoginTwitter
+2015-09-15 12:13:27 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:13:29 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:13:31 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:13:32 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:13:33 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:13:34 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:13:35 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:13:35 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:13:36 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:13:37 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:13:38 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:13:39 [info] Executing: |type | id=inputTwtMaxStreams | 2 |
+2015-09-15 12:13:39 [info] Executing: |type | id=inputVirtualentityCode | aaMio |
+2015-09-15 12:13:40 [info] Executing: |type | id=inputVirtualentityName | nomeTest |
+2015-09-15 12:13:41 [info] Executing: |type | id=inputVirtualentityDescription | descrTest |
+2015-09-15 12:13:42 [info] Executing: |clickAt | link=Salva |  |
+2015-09-15 12:13:42 [info] Test case passed
+2015-09-15 12:13:42 [info] Test suite completed: 5 played, 1 failed
+2015-09-15 12:14:07 [info] Playing test case Creazione SmartObject Application
+2015-09-15 12:14:08 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:14:10 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:14:13 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:14:14 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:14:15 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:14:16 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:14:17 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:14:17 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:14:18 [info] Executing: |click | css=a.btn.btn-new > span.ng-scope |  |
+2015-09-15 12:14:19 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:14:20 [info] Executing: |select | id=inputType | Application |
+2015-09-15 12:14:21 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:14:21 [info] Executing: |type | id=inputVirtualentityCode | javascript{Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8)} |
+2015-09-15 12:14:22 [info] Executing: |type | id=inputVirtualentityName | aaTestApplication |
+2015-09-15 12:14:23 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrApplication |
+2015-09-15 12:14:24 [info] Executing: |click | css=a.btn.btn-wizard-next.ng-scope |  |
+2015-09-15 12:14:25 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:14:26 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:14:26 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:14:27 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:14:28 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:14:29 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:14:30 [info] Executing: |type | id=inputVirtualentityFloor | Pian |
+2015-09-15 12:14:30 [info] Executing: |type | id=inputVirtualentityRoom | 0 |
+2015-09-15 12:14:31 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:14:32 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:14:33 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:14:34 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:14:35 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:14:35 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:14:36 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:14:36 [info] Test case passed
+2015-09-15 12:14:36 [info] Playing test case Creazione SmartObject Device
+2015-09-15 12:14:37 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:14:39 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:14:41 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:14:42 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:14:43 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:14:43 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:14:44 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:14:45 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:14:46 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:14:47 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:14:48 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:14:48 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:14:49 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:14:50 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice |
+2015-09-15 12:14:51 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice |
+2015-09-15 12:14:52 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:14:52 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:14:53 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:14:54 [info] Executing: |type | id=inputVirtualentityLatitude | 1 |
+2015-09-15 12:14:55 [info] Executing: |type | id=inputVirtualentityLongitude | 1 |
+2015-09-15 12:14:56 [info] Executing: |type | id=inputVirtualentityElevation | 1 |
+2015-09-15 12:14:57 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:14:57 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:14:58 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:14:59 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:15:00 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:15:01 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:15:02 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:15:02 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:15:03 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:15:04 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:15:05 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:15:06 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:15:06 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:15:07 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:15:07 [info] Test case passed
+2015-09-15 12:15:07 [info] Playing test case Creazione SmartObject Device_NOPOSITION
+2015-09-15 12:15:08 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:15:10 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:15:12 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:15:13 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:15:14 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:15:14 [info] Executing: |waitForElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:15:15 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:15:16 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:15:17 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:15:18 [info] Executing: |waitForText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:15:19 [info] Executing: |select | id=inputType | Device |
+2015-09-15 12:15:19 [info] Executing: |select | id=inputCategory | Gateway |
+2015-09-15 12:15:20 [info] Executing: |click | link=Genera |  |
+2015-09-15 12:15:21 [info] Executing: |type | id=inputVirtualentityName | aaTestDevice_nopos |
+2015-09-15 12:15:22 [info] Executing: |type | id=inputVirtualentityDescription | aaTestDescrDevice_nopos |
+2015-09-15 12:15:23 [info] Executing: |click | link=Prosegui |  |
+2015-09-15 12:15:23 [info] Executing: |click | id=RadioGroupPositionType_0 |  |
+2015-09-15 12:15:24 [info] Executing: |click | id=RadioGroupEsposition_0 |  |
+2015-09-15 12:15:25 [info] Executing: |type | id=inputVirtualentityBuilding | Ed |
+2015-09-15 12:15:26 [info] Executing: |type | id=inputVirtualentityFloor | 1 |
+2015-09-15 12:15:27 [info] Executing: |type | id=inputVirtualentityRoom | Stanza |
+2015-09-15 12:15:28 [info] Executing: |click | xpath=(//a[contains(text(),'Prosegui')])[2] |  |
+2015-09-15 12:15:28 [info] Executing: |type | id=inputVirtualentityModel | Mod |
+2015-09-15 12:15:29 [info] Executing: |click | id=RadioGroupSupply_0 |  |
+2015-09-15 12:15:30 [info] Executing: |type | id=inputVirtualentityAdministrationURI | URI |
+2015-09-15 12:15:31 [info] Executing: |type | id=inputVirtualentitySoftwareVersion | 1 |
+2015-09-15 12:15:32 [info] Executing: |click | xpath=(//a[contains(text(),'Salva')])[2] |  |
+2015-09-15 12:15:33 [info] Executing: |verifyElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:15:33 [info] Executing: |waitForText | //div[2]/div[2]/div/div[2]/div[2] | indoor |
+2015-09-15 12:15:34 [info] Executing: |verifyText | //div[2]/div[3]/div[2] | Ed |
+2015-09-15 12:15:35 [info] Executing: |verifyText | //div[3]/div[4] | 1 |
+2015-09-15 12:15:36 [info] Executing: |verifyText | //div[3]/div[6] | Stanza |
+2015-09-15 12:15:36 [info] Test case passed
+2015-09-15 12:15:36 [info] Playing test case Creazione SmartObject TweetFeed with LoginTwitter
+2015-09-15 12:15:37 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:15:38 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:15:40 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:15:41 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:15:42 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:15:43 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:15:44 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:15:45 [info] Executing: |waitForElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:15:45 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:15:46 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:15:47 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:15:48 [info] Executing: |clickAtAndWait | link=Accedi a Twitter |  |
+2015-09-15 12:15:51 [info] Executing: |type | name=session[username_or_email] | tophans@gmail.com |
+2015-09-15 12:15:52 [info] Executing: |type | name=session[password] | Mappa..3e |
+2015-09-15 12:15:53 [info] Executing: |clickAndWait | id=allow |  |
+2015-09-15 12:15:54 [info] Executing: |type | id=inputTwtMaxStreams | 2 |
+2015-09-15 12:15:54 [error] Element id=inputTwtMaxStreams not found
+2015-09-15 12:15:54 [info] Test case failed
+2015-09-15 12:15:54 [info] Playing test case Creazione SmartObject TweetFeed without LoginTwitter
+2015-09-15 12:15:55 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:15:57 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:15:59 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:16:00 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:16:01 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:16:02 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:16:02 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:16:03 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:16:04 [info] Executing: |click | link=Crea nuovo Smart Object |  |
+2015-09-15 12:16:05 [info] Executing: |assertText | css=div.pull-left > h3 > span.ng-scope | Registra lo Smart Object |
+2015-09-15 12:16:06 [info] Executing: |select | id=inputType | Feed Tweet |
+2015-09-15 12:16:07 [info] Executing: |type | id=inputTwtMaxStreams | 2 |
+2015-09-15 12:16:07 [info] Executing: |type | id=inputVirtualentityCode | aaMio |
+2015-09-15 12:16:08 [info] Executing: |type | id=inputVirtualentityName | nomeTest |
+2015-09-15 12:16:09 [info] Executing: |type | id=inputVirtualentityDescription | descrTest |
+2015-09-15 12:16:10 [info] Executing: |clickAt | link=Salva |  |
+2015-09-15 12:16:10 [info] Test case passed
+2015-09-15 12:16:10 [info] Test suite completed: 5 played, 1 failed

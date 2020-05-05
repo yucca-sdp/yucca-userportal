@@ -1,0 +1,91 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class="form-group">
+		<label for="requestername" class="col-sm-2 control-label"><span translate-cloak translate>USER_FIELD_NAME</span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" ng-model="datasource.requestername"  id="requestername" placeholder="{{'USER_FIELD_NAME_PLACEHOLDER'|translate}}" ng-required="true" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="requestersurname" class="col-sm-2 control-label"><span translate-cloak translate>USER_FIELD_SURNAME</span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" ng-model="datasource.requestersurname"  id="requestersurname" placeholder="{{'USER_FIELD_SURNAME_PLACEHOLDER'|translate}}" ng-required="true" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="requestermail" class="col-sm-2 control-label"><span translate-cloak translate>USER_FIELD_EMAIL</span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" ng-model="datasource.requestermail"  id="requestermail" placeholder="{{'USER_FIELD_EMAIL_PLACEHOLDER'|translate}}" ng-required="true" >
+		</div>
+	</div>		
+	
+	
+	<div class="form-group">
+		<label for="privacyAcceptance" class="col-sm-2 control-label"><span ng-bind-html="'USER_FIELD_PRIVACY'|translate"></span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-10">
+			<div class="form-control terms-of-privacy" readonly>
+				<span ng-bind-html="'USER_FIELD_ACCEPT_PRIVACY_' + yuccaPortal |translate"></span>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-2 text-left">
+			<div class="radio">
+				<label>
+					<input type="radio" name="privacyAcceptance" value="1" ng-model="privacyAcceptance" ng-required="true" ng-change='changePrivacy(privacyAcceptance)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>USER_FIELD_ACCEPT_YES</span>
+				</label>
+			</div>
+		</div>
+		
+		
+		<div class="col-sm-5 text-left">
+			<div class="radio">
+				<label>
+					<input type="radio" name="privacyAcceptance" value="0" ng-model="privacyAcceptance" ng-required="true" ng-change='changePrivacy(privacyAcceptance)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>USER_FIELD_ACCEPT_NO</span>
+				</label>
+			</div>
+		</div>
+	</div>
+		
+
+
+	<div class="form-group">
+		<label for="responsabilityAcceptance" class="col-sm-2 control-label"><span ng-bind-html="'USER_FIELD_RESPONSABILITY'|translate"></span> <span class='required-asterisk'>*</span></label>						
+		<div class="col-sm-10">
+			<div class="form-control terms-of-privacy" readonly>
+				<span ng-bind-html="'USER_FIELD_ACCEPT_DATASET_RESPONSABILITY_' + yuccaPortal |translate"></span>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-2 text-left">
+			<div class="radio">
+				<label>
+					<input type="radio" name="responsabilityAcceptance" value="1" ng-model="responsabilityAcceptance" ng-required="true" ng-change='changeResponsabilty(responsabilityAcceptance)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>USER_FIELD_ACCEPT_YES</span>
+				</label>
+			</div>
+		</div>
+		<div class="col-sm-5 text-left">
+			<div class="radio">
+				<label>
+					<input type="radio" name="responsabilityAcceptance" value="0" ng-model="responsabilityAcceptance" ng-required="true" ng-change='changeResponsabilty(responsabilityAcceptance)'>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>USER_FIELD_ACCEPT_NO</span>
+				</label>
+			</div>
+		</div>
+	</div>
+</div>
+			

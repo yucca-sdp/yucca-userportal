@@ -1,0 +1,64 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_DATASET_TITLE</span> - <span translate-cloak translate>MANAGEMENT_NEW_DATASET_METADATA_SUBTITLE</span></h3></div>
+	<div class='pull-right'><h3><small>Step 3/5</small></h3></div>
+</div>
+<form class="form-horizontal" role="form" name="metadataDatasetForm" ng-cloak>
+	<div class='row'>
+		<div class="col-sm-7">
+		   	<datasource-detail-info datasource='dataset' ng-if='datasetReady'></datasource-detail-info>
+			<datasource-sharing datasource='dataset' ng-if='datasetReady'></datasource-sharing>
+			<datasource-legal-info datasource='dataset' ng-if='datasetReady'></datasource-legal-info>
+			<datasource-dcat datasource='dataset' ng-if='datasetReady'></datasource-dcat>
+			<div class="row">
+				<div class=" col-sm-12 form-toolbar">
+					<a ng-click='goToRequestor()' class="btn " translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_PREV</a>
+					<a ng-click='goToChooseType()' class="btn btn-wizard-next" ng-disabled="!isOwner() || metadataDatasetForm.$invalid || checkTag(dataset)" translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_NEXT</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4 panel-hint col-sm-offset-1">
+			<div class='panel-hint-content'>
+				<h2><span class='icon-hint'><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>&nbsp;<span translate>MANAGEMENT_PANEL_METADATA_HINT_TITLE</span></h2>
+				<ul class='fa-ul'>
+				<!-- <li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_METADATA_DESCRIPTION_HINT'|translate"></span></li> -->
+					<li class='hint-item'>
+						<i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i>
+						<strong class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_METADATA_MANDATORY_HINT'|translate"></strong>
+						<ul class='fa-ul'>
+							<li >
+								<i class='fa fa-square-o' ng-if='checkTag(dataset)'></i>
+								<span class='text-success'><i class='fa fa-check-square-o ' ng-if='!checkTag(dataset)'></i></span>
+								<span translate>MANAGEMENT_DATASET_MATADATA_TAG_HINT</span>
+							</li>
+							<li ng-if='!dataset.unpublished'>
+								
+								<strong translate>MANAGEMENT_DATASET_MATADATA_DCAT_HINT</strong>
+							</li>
+							<li ng-if='!dataset.unpublished'>
+								<i class='fa fa-square-o' ng-if='dataset.dcat.dcatrightsholdername==null'></i>
+								<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.dcat.dcatrightsholdername!=null'></i></span>
+								<span translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span>
+							</li>
+							<li ng-if='!dataset.unpublished'>
+								<i class='fa fa-square-o' ng-if='dataset.dcat.dcatnomeorg==null'></i>
+								<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.dcat.dcatnomeorg!=null'></i></span>
+								<span translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span>
+							</li>
+							<li ng-if='!dataset.unpublished'>
+								<i class='fa fa-square-o' ng-if='dataset.dcat.dcatemailorg==null'></i>
+								<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.dcat.dcatemailorg!=null'></i></span>
+								<span translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span>
+							</li>
+												
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>	
+	</div>
+</form>

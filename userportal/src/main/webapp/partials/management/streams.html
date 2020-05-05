@@ -1,0 +1,300 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementStreamListCtrl as streamsCtrl"  ng-cloak>
+	<div class='container'>
+		<!-- <h3><span translate-cloak translate>MANAGEMENT_STREAM_SUBTITLE</span></h3> -->
+		<div class='content table-toolbar table-toolbar-border'>
+			<div class='row'>
+				<div class="col-sm-12">
+		        	<a  href="#/management/newStream/{{tenantCode}}" class="btn  btn-new" ng-disabled="!isAuthorized('management/streams/update') || !isOwner()">
+						<span class="glyphicon glyphicon-plus "></span>&nbsp;<span translate-cloak translate>MANAGEMENT_STREAM_LIST_NEW_STREAM</span>
+					</a>
+					<!-- button  href="javascript:void(0)" ng-click='editStream()' class="btn  btn-edit" ng-disabled="!isAuthorized('management/streams/update') || !isOwner() || !canEdit()" title="{{'MANAGEMENT_STREAM_LIST_EDIT_STREAM_BUTTON_HINT'|translate}}">
+						<span class="glyphicon glyphicon-pencil "></span>&nbsp;<span translate-cloak translate>MANAGEMENT_STREAM_LIST_EDIT_STREAM</span>
+					</button> -->
+					<a  ng-href='{{editStream()}}' class="btn btn-edit" ng-if="isOwner() && isAuthorized('management/datasets/update')" ng-disabled="!canEdit()">
+						<span class="glyphicon glyphicon-pencil "></span> {{'MANAGEMENT_VIEW_DATASET_EDIT_BUTTON'|translate}}
+					</a>
+					<a  href ng-click='multiInstall()' class="btn btn-edit" ng-if="isOwner() && isAuthorized('management/datasets/update')" ng-disabled="!canMultiInstall()">
+						<span class="glyphicon glyphicon-save "></span> {{'MANAGEMENT_VIEW_STREAM_INSTALL_BUTTON'|translate}}
+					</a>
+					<button href="javascript:void(0)" ng-click='deleteStream()'class="btn  btn-delete" ng-hide="true" title="{{'MANAGEMENT_STREAM_LIST_DELETE_STREAM_BUTTON_HINT'|translate}}">
+						<span class="glyphicon glyphicon-trash "></span>&nbsp;<span translate-cloak translate>MANAGEMENT_STREAM_LIST_DELETE_STREAM</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class='content management-filter-panel'>
+			<div class='clearfix'>
+				<form class="form form-horizontal-compact pull-right" role="form">   
+				 	 <div class="form-group">						 	
+						<div class="dropdown checkbox-dropdown" dropdown>
+							<div class="dropdown-toggle form-horizontal-compact-filter-dropdown" id="dropdownMenuFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<i class='fa fa-filter'  aria-hidden="true"></i><span translate>MANAGEMENT_STREAM_LIST_FILTERS_MENU</span>
+						    	<a href dropdown-toggle><span class="caret"></span></a>
+							</div>
+						  	<ul class="dropdown-menu" aria-labelledby="dropdownMenuFilters" ng-click="$event.stopPropagation()">
+							    <li>
+							    	<div class="checkbox">
+
+										<label>
+											<input type="checkbox" ng-model="viewUnistalledCheck">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span translate-cloak translate title="{{'MANAGEMENT_STREAM_LIST_SHOW_UNINSTALLED_HINT'|translate}}">MANAGEMENT_STREAM_LIST_SHOW_UNINSTALLED&nbsp;</span>
+											<span class='semimute'>({{deletedCount}})</span>
+										</label>
+									</div>	
+								</li>
+							    <li>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" ng-model="viewUnpublishedCheck">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span translate-cloak translate title="{{'MANAGEMENT_STREAM_LIST_SHOW_UNPUBLISHED_HINT'|translate}}">MANAGEMENT_STREAM_LIST_SHOW_UNPUBLISHED&nbsp;</span>
+											<span class='semimute'>({{unpublishedCount}})</span>
+										</label>
+									</div>
+							    </li>
+							    <li role="separator" class="divider"></li>
+							    <li class="dropdown-header" ng-init='showDomainListFilter=false' ng-click='showDomainListFilter = !showDomainListFilter'>
+							    	<strong translate>MANAGEMENT_STREAM_LIST_FILTERS_DOMAIN</strong>
+							    	<i class="fa fa-chevron-down" aria-hidden="true" ng-if='!showDomainListFilter' ></i>
+							    	<i class="fa fa-chevron-up" aria-hidden="true" ng-if='showDomainListFilter'></i>
+							    </li>
+							    
+							    <li ng-if='showDomainListFilter'>
+							    	<div class='dropdown-element dropdown-inline-toolbar'>
+							    		 <span translate>MANAGEMENT_STREAM_LIST_FILTERS_SELECT</span>
+								   		 <a href ng-click='selectDomainsFilter("all")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_ALL</small></a>	
+								   		 <!-- <a href ng-click='selectDomainsFilter("none")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_NONE</small></a> -->	
+								   		 <a href ng-click='selectDomainsFilter("toggle")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_TOGGLE</small></a>
+								   	</div>											   		 
+							    </li>
+							    <li ng-if='showDomainListFilter' ng-repeat='domain in domainsFilter track by $index;'>	
+							    	<div class="checkbox nowrap">
+										<label  class=''>
+											<input type="checkbox" ng-model="domain.checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<span translate-cloak translate title="{{domain.key|translate}}">{{domain.key}}</span> 
+											<span class='semimute'>({{domain.count}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+										</label>
+									</div>	    
+							    </li>
+							    <li role="separator" class="divider"></li>
+							    <li class="dropdown-header" ng-init='showTenantsListFilter=false' ng-click='showTenantsListFilter = !showTenantsListFilter'>
+							    	<strong translate>MANAGEMENT_STREAM_LIST_FILTERS_TENANTS</strong>
+							    	<i class="fa fa-chevron-down" aria-hidden="true" ng-if='!showTenantsListFilter' ></i>
+							    	<i class="fa fa-chevron-up" aria-hidden="true" ng-if='showTenantsListFilter'></i>
+							    </li>
+							    
+							    <li ng-if='showTenantsListFilter'>
+							    	<div class='dropdown-element dropdown-inline-toolbar'>
+							    		 <span translate>MANAGEMENT_STREAM_LIST_FILTERS_SELECT</span>
+								   		 <a href ng-click='selectTenantsFilter("all")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_ALL</small></a>	
+								   		 <!-- <a href ng-click='selectTenantsFilter("none")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_NONE</small></a>	-->
+								   		 <a href ng-click='selectTenantsFilter("toggle")'><small translate>MANAGEMENT_STREAM_LIST_FILTERS_TOGGLE</small></a>
+								   	</div>											   		 
+							    </li>
+							    <li ng-if='showTenantsListFilter' ng-repeat='t in tenantsFilter track by $index;'>	
+							    	<div class="checkbox nowrap">
+										<label  class='nowrap'>
+											<input type="checkbox" ng-model="t.checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											<strong title="{{t.key|translate}}" ng-if='tenant==t.tenant.tenantcode'>{{t.tenant.tenantcode}}  <span class='semimute'>({{t.count}})</span></strong>
+											<span title="{{t.key|translate}}" ng-if='tenant!=t.tenant.tenantcode'>{{t.tenant.tenantcode}} <span class='semimute'>({{t.count}})</span></span>
+										</label>
+									</div>	    
+							    </li>
+							  </ul>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="statusFilter" placeholder="{{'STREAM_LIST_STATUS_FILTER'|translate}}" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="nameFilter" placeholder="{{'STREAM_LIST_NAME_FILTER'|translate}}" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="codeFilter" placeholder="{{'STREAM_LIST_CODE_FILTER'|translate}}" />
+					</div>
+				</form>
+			</div>
+			<div class='text-right'>
+				<span class='text-right management-datasetList-total-label' title='{{"STREAM_LIST_COUNT_TOTAL_LABEL_HINT"|translate}}'>
+					<small><span translate translate-cloack>STREAM_LIST_COUNT_TOTAL_LABEL</span>: <strong>{{streamsList.length}}</strong></small>
+				</span>
+				<span class='text-right management-datasetList-total-label'>
+					<small><span translate translate-cloack>STREAM_LIST_COUNT_FILTERED_LABEL</span>: <strong>{{filteredStreamsList.length}}</strong></small>
+				</span>
+				
+			</div>
+			<div class="table-responsive management-datasourceList-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<!--  
+								<div class="dropdown checkbox-dropdown" dropdown>
+									<div class="checkbox dropdown-toggle" id="dropdownMenuSelectStreams" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<label title='Select All'>
+											<input type="checkbox" ng-model='selectStreamFlag' ng-click='toggleSelectStreams(selectStreamsFlag)' checked="checked">
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										</label>
+								   		 <a href dropdown-toggle><span class="caret"></span></a>
+									</div>
+								  	<ul class="dropdown-menu" aria-labelledby="dropdownMenuSelectTables">
+									    <li><a href ng-click="selectStreams('all')" translate>MANAGEMENT_STREAMS_SELECT_ALL</a></li>
+									    <li><a href ng-click="selectStreams('none')" translate>MANAGEMENT_STREAMS_SELECT_NONE</a></li>
+									    <li><a href ng-click="selectStreams('invert')" translate>MANAGEMENT_STREAMS_SELECT_INVERT</a></li>
+									    <li role="separator" class="divider"></li>
+									    <li><a href ng-click="selectStreams('draft')" translate>MANAGEMENT_STREAMS_SELECT_DRAFT</a></li>
+									</ul>
+								</div>
+								-->
+							</th>
+							<th>
+							</th>
+							<th class='text-left'>
+								<a href="" ng-click="predicate = 'streamcode'; reverse=!reverse"><span translate-cloak translate>STREAM</span> 
+								<span ng-show="predicate=='streamcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='streamcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+							<th class='text-left'>
+								<a href="" ng-click="predicate = 'smartobject.socode'; reverse=!reverse"><span translate-cloak translate>VIRTUALENTITY</span> 
+								<span ng-show="predicate=='smartobject.socode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='smartobject.socode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'domain.domaincode|translate'; reverse=!reverse"><span translate-cloak translate>STREAM_FIELD_DOMAIN</span> 
+								<span ng-show="predicate=='domain.domaincode|translate' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='domain.domaincode|translate' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'registrationdate'; reverse=!reverse"><span translate-cloak translate>STREAM_FIELD_CREATION_DATE</span> 
+								<span ng-show="predicate=='registrationdate' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='registrationdate' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'status.statuscode|translate'; reverse=!reverse"><span translate-cloak translate>STREAM_FIELD_STATUS</span> 
+								<span ng-show="predicate=='status.statuscode|translate' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='status.statuscode|translate' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'version'; reverse=!reverse"><span translate-cloak translate>STREAM_FIELD_VERSION</span> 
+								<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+							<th>
+								<a href="" ng-click="predicate = 'visibility'; reverse=!reverse"><span translate-cloak translate>DATASET_FIELD_METADATA_VISIBILITY</span>
+								<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+							</th>
+						</tr>
+					</thead>
+					<tbody  >
+						<tr ng-if="showLoading">
+							<td colspan='9' >
+								<div class='ajax-loading-container'>
+									<span class='ajax-loading-big'></span>
+									<h4>Loading...</h4>
+								</div>
+							</td>
+						</tr>
+						<tr ng-if="admin_response.message">
+							<td colspan='9' >
+								<alert-panel content='admin_response'></alert-panel>
+							</td>
+						</tr>
+						<tr ng-repeat="stream in filteredStreamsList = (streamsList | filter: searchCodeFilter | filter: searchNameFilter | filter: viewUnpublishedFilter | filter: searchStatusFilter| filter: viewUnistalledFilter| filter: searchTenantFilter | filter:searchDomainFilter | orderBy:predicate:reverse) |startFrom:(currentPage-1)*pageSize | limitTo:pageSize ">
+							<!-- <td><input type="checkbox" name="selected" ng-checked="isSelected(stream)"  ng-click="updateSelection($event, stream)"/></td>  -->
+							<td>
+								<div class="checkbox"  ng-if='tenant==stream.tenantManager.tenantcode'>
+									<label>
+										<input type="checkbox" ng-checked="isSelected(stream)"  ng-click="updateSelection($event, stream)">
+										<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									</label>
+								</div>
+								<i class="glyphicon glyphicon-ban-circle mute" ng-if='tenant!=stream.tenantManager.tenantcode' title="{{'DATASET_LIST_READONLY_TOOLTIP'|translate}}"></i>
+							</td>
+							
+							
+							<td class='text-center no-border-right'>					
+								<a href="#/management/viewDatasource/stream/{{stream.tenantManager.tenantcode}}/{{stream.streamcode}}/{{stream.idstream}}">
+							<!-- 	<a href="#/management/viewStream/{{tenant}}/{{stream.smartobject.socode}}/{{stream.streamcode}}/{{stream.idstream}}">-->
+									<img ng-if="stream.hasIcon == true" ng-src="{{streamIconUrl(stream.organization.organizationcode,stream.idstream)}}" alt="logo stream" class='list-entity-icon-preview-img' >
+									<img ng-if="stream.hasIcon == false" ng-src="./img/stream-icon-default_{{yuccaPortal}}.png" alt="logo stream {{yuccaPortal}}" class='list-entity-icon-preview-img' >
+								</a>
+							</td>
+							<td class='text-left no-border-left'>
+								<a href="#/management/viewDatasource/stream/{{stream.tenantManager.tenantcode}}/{{stream.streamcode}}/{{stream.idstream}}">
+									<strong title='{{"STREAM_FIELD_CODE"|translate}}'>{{stream.streamcode}}</strong> <br> 
+									<span title='{{"STREAM_FIELD_NAME"|translate}}'>{{stream.streamname}}</span>
+								</a>
+							</td>
+							
+							<td class='text-left'>
+								<strong title='{{"VIRTUALENTITY_FIELD_CODE"|translate}}'>{{stream.smartobject.socode}}</strong> <br> 
+								<span title='{{"VIRTUALENTITY_FIELD_NAME"|translate}}'>{{stream.smartobject.name}}</span>
+							</td>
+							<td><div class='domain-column'><i class="icon-{{stream.domain.domaincode}} domain-icon" title="{{stream.domain.domaincode|translate}}"></i></div></td>
+							<td>{{stream.registrationdate|smartobject_date_format}}</td>
+							<td class='text-left'><span class="stream-status stream-status-{{stream.status.statuscode}}" title="{{stream.status.statuscode|translate}}">{{stream.status.statuscode|translate|string_ellipse:12}}</span></td>
+							<td><span>{{stream.version}}</span> <strong class='text-icon entity-uninstalled-icon' ng-if="stream.status.idStatus==5 || stream.status.idStatus==4" title='{{"DATASET_FIELD_CONFIGDATA_DELETED"|translate}}'>D</strong></td>
+							<td>
+								<span translate-cloak translate>{{stream.visibility}}</span> <strong class='text-icon entity-unpublished-icon' ng-if="stream.unpublished" title='{{"DATASET_FIELD_UNPUBLISHED_TRUE"|translate}}'>NP</strong>
+								<br/><small class='mute'>{{stream.tenantManager.tenantcode}}</small>
+							
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				<div  class='text-center'>
+					<pagination boundary-links="true" total-items="filteredStreamsList.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+						next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+					></pagination>
+	
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="multiUnistallDatasetModal.html">
+	<div class='modal-header'>
+       	 <h3 class='modal-title'>{{'MANAGEMENT_STREAM_MULTI_INSTALL_TITLE'|translate}}</h3>
+	</div>
+   	<div class='modal-body'>
+		<div class="panel panel-default">
+			<span translate translate-values="{ totalStream: totalStream}">MANAGEMENT_STREAM_MULTI_INSTALL_INTRO</span>
+    	</div>
+		<alert-panel content='multiinstall_response'></alert-panel>
+		<div class='row'>
+			<div class='col-sm-4' ng-if="updatedStream.length>0">
+				<div><strong translate>MANAGEMENT_STREAM_MULTI_INSTALL_UPDATED_STREAM</strong></div>
+				<div ng-repeat='s in updatedStream track by $index'>{{s.streamcode}}</div>	
+			</div>
+			<div class='col-sm-4' ng-if="notDraftStream.length>0">
+				<div><strong translate>MANAGEMENT_STREAM_MULTI_INSTALL_NO_DRAFT_STREAM</strong></div>
+				<div ng-repeat='s in notDraftStream track by $index'>{{s.streamcode}}</div>	
+			</div>
+			<div class='col-sm-4' ng-if="errorStream.length>0">
+				<div><strong translate>MANAGEMENT_STREAM_MULTI_INSTALL_ERROR_STREAM</strong></div>
+				<div ng-repeat='s in errorStream track by $index'>{{s.streamcode}}</div>	
+			</div>
+
+
+   	</div>
+	<div class="modal-footer" ng-if="update.loading">
+		<div class='text-right' translate>LOADING</div>
+	</div>
+	<div class="modal-footer" ng-if="!update.loading" >
+	 	<button class="btn " ng-click="close()" translate>CLOSE</button>
+    </div>
+</script>

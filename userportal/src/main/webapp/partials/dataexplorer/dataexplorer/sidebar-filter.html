@@ -1,0 +1,59 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class="panel panel-default panel-dataexplorer-sidebar">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class='glyphicon glyphicon-filter'></i>&nbsp;
+			<span translate-cloak translate>DATA_EXPLORER_FILTER_PANEL_TITLE</span>
+			<a href ng-click="currentSidebar = 'none'" class='panel-hide-button'>&times;</a>
+		</h3>
+	</div>
+	<div class="panel-body">
+		<div class='clearfix'>
+			<h4><span translate-cloak translate>DATA_EXPLORER_FILTER_ADD_FILTER</span></h4>
+			<div class="alert alert-warning" ng-show='addFilterError!=null'>
+				{{addFilterError|translate}}
+			</div>
+			<div class="row-fluid add-filter-panel">
+  				<div class="col-xs-3">
+					<select ng-model="newFilter.column" ng-options="column.label for column in columnsForFilter track by column.label" class='form-control input-sm'></select>
+				</div>
+			  	<div class="col-xs-2">
+					<select ng-model="newFilter.operator" ng-options="operator.label for operator in newFilter.column.operators track by operator.value" class='form-control input-sm input-hide-control'></select>
+				</div>
+			  	<div ng-controller="DatepickerCtrl" class="col-xs-5" ng-switch on="newFilter.column.dataType"> <!-- -->
+		           <p class="input-group">
+					<input ng-switch-when="string" type="text" ng-model="newFilter.value" class='form-control input-sm '/> 
+					<input ng-switch-when="date" type="text" ng-model="newFilter.value" class='form-control input-sm input-hide-control' datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="dd/mm/yyyy"/>
+		             <span ng-switch-when="date">
+		               <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		             </span>
+					<input ng-switch-when="boolean" type="text" ng-model="newFilter.value" class='form-control input-sm' /> 
+					<input ng-switch-default type="number" ng-model="newFilter.value" class='form-control input-sm'/> 
+		           </p>
+				</div>
+			</div>
+			<div class="bottom-toolbar text-right">
+				<a id="addFilterBtn" href ng-click='addFilter($index); loadData();' class='btn btn-default'><i class='glyphicon glyphicon-plus'></i>&nbsp;<span translate-cloak translate>DATA_EXPLORER_FILTER_APPLY</span></a>
+			</div>
+			<h4><span translate-cloak translate>DATA_EXPLORER_FILTER_PREVIEW_FILTER</span></h4>
+			<p ng-show="filters.length==0">
+				<i><span translate-cloak translate>DATA_EXPLORER_FILTER_PREVIEW_FILTER_NO_FILTER</span></i>
+			</p>
+			<table class='table table-dataexplorer-filter-list'>
+				<tbody>
+					<tr ng-repeat='filter in filters'>
+						<td class="text-nowrap text-left">{{filter.column}}</td>
+						<td class="text-nowrap text-left">{{filter.operator.label}}</td>
+						<td class="text-nowrap text-left" ng-show='filter.operator.isDate'>{{filter.value|date:"dd/MM/yyyy"}}</td>
+						<td class="text-nowrap text-left" ng-show='!filter.operator.isDate'>{{filter.value}}</td>
+						<td class="remove-colunm"><a href ng-click='removeFilter($index); loadData();'><i class='glyphicon glyphicon-trash'></i></a></td>
+					</tr>
+				</tbody>
+			</table> 
+		</div>
+	</div>
+</div>

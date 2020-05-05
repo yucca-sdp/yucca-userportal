@@ -1,0 +1,360 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='section-dashboard' ng-controller="DashboardDataStreamCtrl as streamsDataCtrl" ng-cloak>
+	<div class='page-top-panel'>
+		<div class="title-container" ng-cloak>
+			<div class='container clearfix'>
+				<h1  class='pull-left'><span translate-cloak translate>DASHBOARD_STREAM_TITLE</span> <strong>{{metadata.stream.code}}</strong></h1>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class='clearfix entity-info entity-info-top'>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>STREAM_FIELD_NAME</span></small></div>
+				<div class='main-info'><strong>{{metadata.name}}</strong></div>
+			</div>
+			<div class='pull-right text-right'>
+				<div><small><span translate-cloak translate>STREAM_FIELD_CREATION_DATE</span></small></div>
+				<div><strong>{{metadata.registrationDateMillis|date}}</strong></div>
+			
+			</div>
+		</div>
+		<div class='clearfix entity-info entity-info-bottom'>
+			<p>&nbsp;</p>
+			<div class='pull-left'>
+				<div><small><span translate-cloak translate>DASHBOARD_STREAM_WS_URL_TITLE</span></small></div>
+				<div class='url'><strong>{{wsUrl}}</strong></div>
+			</div>
+			<div class='pull-right text-right'>
+				<div><small><span translate-cloak translate>STREAM_FIELD_VERSION</span></small></div>
+				<div><strong>{{metadata.version}}</strong></div>
+			
+			</div>
+		</div>
+		<div class='clearfix'>
+			<div class='pull-left'>
+				<p>
+					<span translate-cloak translate>DASHBOARD_STREAM_REALTIME_FPS</span>  <span class='important'>{{metadata.stream.fps|number_ellipse:0.01:1000}}</span> - <span translate-cloak translate>DASHBOARD_STREAM_REALTIME_SEC_BTW_EVENTS</span>  <span class='important'>{{metadata.stream.secondsBtwEvents|number_ellipse:0.01:1000}}</span> | 
+					<span translate-cloak translate>DASHBOARD_STREAM_REALTIME_FPM</span>  <span class='important'>{{metadata.stream.fpm|number_ellipse:0.01:1000}}</span> - <span translate-cloak translate>DASHBOARD_STREAM_REALTIME_MIN_BTW_EVENTS</span>   <span class='important'>{{metadata.stream.minutesBtwEvents|number_ellipse:0.01:1000}}</span>
+				</p>
+				<p>
+					<span class="clientConnectBullet {{clientConnectionClass}}"></span> {{clientConnection}} &nbsp;
+				</p>
+			</div> 
+			<div class="pull-right text-right">
+				<img ng-src="{{metadata.icon}}" alt="logo stream" class='dashboard-card-icon-preview-img' >
+			</div>
+		</div>
+		<div class='row'>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tab-panel" id='chart-container'>
+				<tabset>
+    				<tab heading="{{'DASHBOARD_STREAM_DATA_CHART_TITLE'|translate}}">
+						<div class='row' ng-show="isTwitter">
+							<div class="col-sm-6" >
+								<h4><span translate-cloak translate>DASHBOARD_STREAM_DATA_LAST_TWEET_TITLE</span></h4>
+								<div class='tweets-container'>
+									<div class='tweet-panel' ng-repeat="tweet in tweetData" ng-click="showTweetDetail(tweet)">
+										<div><strong>{{tweet.components.userName}}</strong></div>
+										<p ng-bind-html="tweet.components.getText|prettifyTweet"></p>
+										<div class='clearfix tweet-info'>
+											<div class='pull-left tweet-statistic-icons'>
+												<i class="fa fa-retweet" ng-class="{'tweet-retweet': tweet.components.retweetCount>0}"></i> <span>{{tweet.components.retweetCount}}</span>
+												<i class="fa fa-star"  ng-class="{'tweet-favorite': tweet.components.favoriteCount>0}"></i> <span>{{tweet.components.favoriteCount}}</span>
+											</div>
+											<div class='pull-right tweet-date'>{{tweet.components.createdAt|date:"MM/dd/yyyy  H:mm"}}</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6" >
+								<h4><span translate-cloak translate>DASHBOARD_STREAM_DATA_TWEET_DETAIL_TITLE</span></h4>
+								<div class='tweet-detail-container'>
+									<div ng-repeat="(key, value) in tweetDetail.components">
+										<div class='row'>
+											<div class='col-sm-3'><strong>{{key}}</strong></div>
+											<div class='col-sm-9' ng-bind-html="value|prettifyTweet"></div>
+										</div>
+									</div>
+									<p>&nbsp;</p>
+									<div class='text-center' ng-show="tweetDetail!=null">
+										<a href='https://twitter.com/{{tweetDetail.components.userScreenName}}/status/{{tweetDetail.components.tweetid}}' class='btn btn-twitter' target='_blank'>
+											<i class="fa fa-twitter"></i> <span translate-cloak translate>DASHBOARD_STREAM_VIEW_ON_TWITTER_BUTTON</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class='row' ng-show="!isTwitter">
+							<div class="col-sm-12 input-range-panel">
+  								<label for="maxDataResult" translate-cloak translate>DASHBOARD_STREAM_DATA_MAX_RESULT_INTERVAL</label> 
+  								<input class='input-range' type="range" id="maxDataResult" name="maxDataResult" ng-model="maxDataResult.value" min="{{maxDataResultMin}}" max="{{maxDataResultMax}}">
+	  							<span class='input-range-value'>{{maxDataResult.value}}</span>
+	  							<a href class='btn input-range-refresh' ng-click='reloadData()'><i class='glyphicon glyphicon-refresh'></i> <span translate-cloak translate>REFRESH</span></a>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+								<strong><span translate-cloak translate>DASHBOARD_STREAM_DATA_FILTER_CHART_LABEL</span></strong>&nbsp;
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+								<label class="checkbox-inline chart-legend-checkbox"  style='background-color: {{component.color}}' ng-repeat="component in chartComponentNames ">
+						  			<input type="checkbox" ng-model="component.view" ng-change="updateChart()" ng-disabled="!component.enabled">{{component.name}}
+								</label>
+							</div>
+						</div>
+						<div class='row' ng-show="!isTwitter">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class='graph-container' id='stream-data-chart'>
+									<nvd3-line-chart 
+										data="chartData" 
+										id="nvDataChart" 
+										width="{{chartWidth - 50}}"
+										height="300" 
+										showXAxis="true" 
+										showYAxis="true" 
+										tooltips="true" 
+										interactive="true" 
+										objectEquality="true" 
+										xAxisTickFormat="xAxisTickFormatFunction()"
+							            tooltipcontent="toolTipContentFunction()"
+										> <svg></svg> 
+									</nvd3-line-chart>
+								</div>
+							</div>
+						</div>
+					</tab>
+    				<tab heading="{{'DASHBOARD_STREAM_WS_STATISTICS_CHART_TITLE'|translate}}">
+						<div class='row'>
+							<div class="col-sm-6 input-range-panel">
+  								<label for="statisticTimeInterval" translate-cloak translate>DASHBOARD_STREAM_WS_STATISTICS_CHART_TIME_INTERVAL</label> 
+  								<input type="range" id="statisticTimeInterval" name="statisticTimeInterval" ng-model="statisticTimeInterval.interval" min="{{statisticTimeIntervalMin}}" max="{{statisticTimeIntervalMax}}">
+	  							<span class='input-range-value'>{{statisticTimeInterval.interval|format_time_from_seconds}}</span>
+							</div>
+							<div class="col-sm-6 input-range-panel">
+  								<label for="samplingFrequency" translate-cloak translate>DASHBOARD_STREAM_WS_STATISTICS_SAMPLING_FREQUENCY</label> 
+  								<input type="range" id="samplingFrequency" name="samplingFrequency" ng-model="samplingFrequency.value" min="{{samplingFrequencyMin}}" max="{{samplingFrequencyMax}}">
+	  							<span class='input-range-value'>{{samplingFrequency.value|format_time_from_seconds}}</span>
+							</div>
+							
+							
+							
+						</div>
+						<div class='row'>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+								<div class='graph-container' id='stream-statistic-chart'>
+			    					<nvd3-line-chart 
+										data="nvWsStatisticData" 
+										id="nvStatisticChart" 
+										width="{{chartWidth}}"
+										height="300" 
+										showXAxis="true" 
+										showYAxis="true" 
+										tooltips="true" 
+										interactive="true" 
+										interpolate="true"
+										objectEquality="true" 
+							           
+										> <svg></svg> 
+									</nvd3-line-chart>
+								</div>
+							</div>
+    					</div>
+    				</tab>
+  				</tabset>
+			</div>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+	<accordion close-others="false">
+		<accordion-group is-open="status1.open">
+			<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>DASHBOARD_STREAM_DATA_MAIN_INFO_TITLE</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status1.open, 'glyphicon-plus': !status1.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_CODE</span></strong></div>
+						<div class="col-sm-10">{{metadata.stream.code}}</div>
+					</div>			
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_VERSION</span></strong></div>
+						<div class='col-sm-10'>{{metadata.version|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_STATUS</span></strong></div>
+						<div class='col-sm-10' translate>inst</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TAGS</span></strong></div>
+						<div class='col-sm-10'>
+							<ul class="list-inline">
+								<li ng-repeat="tag in metadata.tags"><span class="label label-custom label-tag"><span ng-bind-html="tag|translate"></span></span></li>
+							</ul>
+						</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_DOMAIN</span></strong></div>
+						<div class='col-sm-10'>{{metadata.domainCode|translate}}<span ng-show='metadata.subdomainCode != metadata.domainCode'> - {{metadata.subdomainCode|translate}}</span></div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>TENANT</span></strong></div>
+						<div class='col-sm-10'>{{metadata.tenantCode|nvl:''}} {{metadata.tenantName|nvl:''}}</div>
+					</div>	
+				</div>
+			</div>
+		</accordion-group>
+		<accordion-group is-open="statusSO.open" ng-show="metadata.stream!=null">
+				<accordion-heading>
+					<div class='container'>
+						<span translate-cloak translate>VIRTUALENTITY</span>
+			 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': statusSO.open.open, 'glyphicon-plus': !statusSO.open.open}"></i>
+		 			</div>
+				</accordion-heading>
+				<div class='container'>
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_NAME</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.name|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CODE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.code|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_DESCRIPTION</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.description|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_TYPE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.type|nvl:''}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_CATEGORY</span></strong></div>
+						<div class='col-sm-10'>{{metadata.stream.smartobject.category|nvl:''}}</div>
+					</div>	
+					<div class="row card-row"  ng-show="metadata.stream.smartobject.latitude && metadata.stream.smartobject.longitude ">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_POSITION</span></strong></div>
+						<div class='col-sm-4'>[{{metadata.stream.smartobject.latitude}};{{metadata.stream.smartobject.longitude}}]</div>
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>VIRTUALENTITY_FIELD_ELEVATION</span></strong></div>
+						<div class='col-sm-4'>{{metadata.stream.smartobject.altitude|nvl:' -'}}</div>
+					</div>	
+				</div>
+		</accordion-group>
+		
+		<accordion-group is-open="status2.open">
+			<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>DASHBOARD_STREAM_DATA_DETAIL_INFO_TITLE</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status2.open, 'glyphicon-plus': !status2.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<table class='table dashboard-table-components'>
+						<thead>
+							<tr>
+								<th>{{'STREAM_FIELD_COMPONENTS_NAME'|translate}}</th>
+								<th><span ng-bind-html="'STREAM_FIELD_COMPONENTS_UNIT_OF_MEASUREMENT'|translate"></span></th>
+								<th>{{'STREAM_FIELD_COMPONENTS_TOLERANCE'|translate}}</th>
+								<th>{{'STREAM_FIELD_COMPONENTS_PHENOMENON'|translate}}</th>
+								<th>{{'STREAM_FIELD_COMPONENTS_DATA_TYPE'|translate}}</th>
+		
+							</tr>	
+						</thead>
+						<tbody>
+							<tr ng-repeat="component in metadata.components">
+								<td>{{component.name}}</td>
+								<td>{{component.measureUnitCategory}}: {{component.measureUnit}}</td>
+								<td>{{component.tolerance}}</td>
+								<td>{{component.phenomenonCategory}}: {{component.phenomenon}}</td>
+								<td>{{component.datatype}}</td>
+							</tr>	
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status3.open">
+			<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>DASHBOARD_STREAM_DATA_SHARE_INFO_TITLE</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status3.open, 'glyphicon-plus': !status3.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_LICENCE</span></strong></div>
+						<div class='col-sm-10'>{{metadata.license|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_DISCLAIMER</span></strong></div>
+						<div class='col-sm-10'>{{metadata.disclaimer}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_COPYRIGHT</span></strong></div>
+						<div class='col-sm-10'>{{metadata.copyright|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span ng-bind-html="'STREAM_FIELD_VISIBILITY'|translate"></span></strong></div>
+						<div class='col-sm-10'>{{metadata.visibility|nvl:' -'}}</div>
+					</div>	
+					<div class="row card-row">
+						<div class="col-sm-2 card-label"><strong><span translate-cloak translate>DATASET_FIELD_METADATA_EXTERNAL_REFERENCE</span></strong></div>
+						<div class='col-sm-2'>{{metadata.externalreference|nvl:' -'}}</div>
+					</div>	
+				</div>
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status5.open"  ng-show="isTwitter">
+			<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>DASHBOARD_STREAM_TWITTER_INFO_TITLE</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status5.open, 'glyphicon-plus': !status5.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_QUERY</span></strong></div>
+					<div class='col-sm-6'>{{metadata.stream.twitter.twtQuery}}</div>
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_LANG</span></strong></div>
+					<div class='col-sm-2'>{{metadata.stream.twitter.twtLang}}</div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_GEO</span></strong></div>
+					<div class='col-sm-6'><span ng-show="metadata.stream.twitter.twtGeolocLat!=0 || metadata.stream.twitter.twtGeolocLon!=0">{{metadata.stream.twitter.twtGeolocLat}},{{metadata.stream.twitter.twtGeolocLon}}</span></div>
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_GEO_RADIUS</span></strong></div>
+					<div class='col-sm-2'><span ng-show="metadata.stream.twitter.twtGeolocRadius!=0">{{metadata.stream.twitter.twtGeolocRadius}} {{metadata.stream.twitter.twtUnit}}</span></div>
+				</div>	
+				<div class="row card-row">
+					<div class="col-sm-2 card-label"><strong><span translate-cloak translate>STREAM_FIELD_TWT_RATE</span></strong></div>
+					<div class='col-sm-10'>{{twitterPollingInterval}}</div>
+				</div>	
+			</div>
+		</accordion-group>
+		<accordion-group is-open="status4.open">
+			<accordion-heading>
+				<div class='container'>
+		 			<span translate-cloak translate>DASHBOARD_STREAM_WS_LASTMESSAGE_PANEL_TITLE</span>
+		 			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status4.open, 'glyphicon-plus': !status4.open}"></i>
+				</div>
+			</accordion-heading>
+			<div class='container'>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="lastMessageNotReceivedHint!=''">
+					<div class='alert alert-info'>
+						<span translate-cloak translate>{{lastMessageNotReceivedHint}}</span>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<pre pretty-json="wsLastMessageToShow" />
+				</div>
+			</div>
+		</accordion-group>
+	</accordion>
+</div>
+
+

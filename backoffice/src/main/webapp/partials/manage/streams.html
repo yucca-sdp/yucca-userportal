@@ -1,0 +1,302 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div ng-controller="StreamCtrl as streamsCtrl" class='container-fluid'>
+	<div class='' ng-cloak>
+		<div class='clearfix  content-toolbar'>	
+			<h3 class='content-title'>Stream <small title="{{'DASHBOARD_STREAM_INTRO'|translate}}">{{'DASHBOARD_STREAM_INTRO'|translate|string_ellipse:50}}</small></h3>
+			<div class=" content-toolbar-end">
+				<form class="form-inline" role="form">
+					<div class="form-group" >
+						<input type="text" class="form-control input-sm" ng-model="virtualentityFilter" placeholder="{{'STREAM_LIST_VIRTUALENTITY_FILTER'|translate}}" />
+					</div>
+					<div class="form-group" >
+						<input type="text" class="form-control input-sm" ng-model="statusFilter" placeholder="{{'STREAM_LIST_STATUS_FILTER'|translate}}" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="tenantsFilter" placeholder="{{'STREAM_LIST_TENANT_FILTER'|translate}}" />
+					</div>
+					<div class="form-group" >
+						<input type="text" class="form-control input-sm" ng-model="codeFilter" placeholder="{{'STREAM_LIST_CODE_FILTER'|translate}}" />
+					</div>
+					<div class="form-group" >
+						<a class='btn btn-primary-negative' href ng-click='loadStreams()'><i class='glyphicon glyphicon-refresh'></i> <span translate>RELOAD</span></a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="table-responsive dashboard-list-table">
+			<table class="table table-actions">
+				<thead>
+					<tr>
+						<th class='text-center'>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="selectAll"  ng-click="selectAll($event)"  />
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'stream.streamcode'; reverse=!reverse"><span translate>STREAM_FIELD_NAME</span> 
+								<span ng-show="predicate=='stream.streamcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='stream.streamcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+							</a>
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'stream.tenantManager.tenantcode'; reverse=!reverse"><span translate>TENANT</span> 
+							<span ng-show="predicate=='stream.tenantManager.tenantcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='stream.tenantManager.tenantcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'stream.smartobject.socode'; reverse=!reverse"><span translate>VIRTUALENTITY</span> 
+							<span ng-show="predicate=='stream.smartobject.socode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='stream.smartobject.socode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'stream.smartobject.description'; reverse=!reverse"><span translate>STREAM_FIELD_VIRTUALENTITY_DESCRIPTION</span> 
+							<span ng-show="predicate=='stream.smartobject.description' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='stream.smartobject.description' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						
+						</th>
+						<th>
+							<span translate>STREAM_FIELD_VERSION</span> 
+						</th>
+						<th>
+							<span translate>STREAM_FIELD_VISIBILITY</span> 
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'stream.status.statuscode'; reverse=!reverse"><span translate>STREAM_FIELD_STATUS</span> 
+							<span ng-show="predicate=='stream.status.statuscode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='stream.status.statuscode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						</th>
+						<th>
+							&nbsp;
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-show="showLoading">
+						<td colspan='10' >
+							<div class='ajax-loading-container'>
+								<span class='ajax-loading-big'></span>
+								<h4>Loading...</h4>
+							</div>
+						</td>
+					</tr>
+					
+					<tr  class='table-data-row' ng-class='{"table-action-selected-row": row.isSelected}' 
+						ng-repeat="row in filteredStreams = (streamsList | filter: searchCodeFilter | filter: searchTenantsFilter | filter: searchStatusFilter | filter: searchVirtualentityFilter | orderBy:predicate:reverse )|startFrom:(currentPage-1)*pageSize | limitTo:pageSize  ">
+						<td class='table-data-row-first'>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="row.isSelected" ng-click="updateSelection($event, row.rowIndex)" ng-disabled='row.disabled'/> 
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>
+						
+						
+						</td>
+						<td class='text-left'>
+							<!--<img ng-src="{{row.stream.streamIcon}}" alt="logo stream" class='list-entity-icon-preview-img' >  -->
+							<img ng-src="{{streamIconUrl(row.stream.organization.organizationcode,row.stream.idstream)}}" alt="logo stream" class='list-entity-icon-preview-img' >
+							<strong>{{row.stream.streamcode}}</strong> - {{row.stream.streamname|string_ellipse:row.ellipseNameLimit}}
+						</td>
+						<td><small>{{row.stream.tenantManager.tenantcode}}</small></td>
+						<td><small>{{row.stream.smartobject.socode}}</small></td>
+						<td><span title='{{row.stream.smartobject.description}}'><small>{{row.stream.smartobject.description|string_ellipse:15}}</small></span></td>
+						<td><small>{{row.stream.version}}</small></td>
+						<td><small>{{row.stream.visibility}}</small></td>
+						<td class='text-left'><span ng-bind-html="row.statusIcon"></span> <small>{{row.deploymentStatusCodeTranslated}}</small></td>
+						<!-- <td class='text-right'> 
+							<a class='btn btn-default btn-sm' href ng-click='openTest(row.stream)' title="{{'DASHBOARD_STREAM_TEST_BUTTON_HINT'|translate}}"><span translate>DASHBOARD_STREAM_TEST_BUTTON</span></a>
+							<a class='btn btn-default btn-sm' href ng-click='openLog(row)' title="{{'DASHBOARD_STREAM_LOG_BUTTON_HINT'|translate}}"><span translate>DASHBOARD_STREAM_LOG_BUTTON</span></a>
+							<span>{{row.update_feedback}}</span>
+						</td>-->
+						<td class='text-right'> 
+							<i class='{{row.feedbackIcon}}'></i>
+							<span class='row-feedback-{{row.feedback}}'>{{row.feedback}}</span>
+							<a class='btn btn-default btn-sm' href ng-click='openLog(row)' title="{{'DASHBOARD_STREAM_LOG_BUTTON_HINT'|translate}}" ng-if='row.feedbackLog'>
+								<span translate>DASHBOARD_STREAM_LOG_BUTTON</span>
+							</a>
+						</td>
+					</tr>
+					<!--<tr ng-repeat-end class='table-action-row table-action-selected-row' ng-show="row.isSelected || row.updated">
+						<td class='table-action-row-first'>&nbsp;</td>
+						<td colspan='3'>
+							<form class="form-inline install-form-inline">
+  								<div class="form-group">
+   									<label for="streamAction"><small><span translate>DASHBOARD_STREAM_ACTION_LABEL</span></small></label>&nbsp;
+   									<select class="form-control input-sm"  ng-model="row.action" ng-options="action as action for action in actions"></select>
+  								</div>
+		  						<div class="form-group">
+	  								<span translate>DASHBOARD_STREAM_STEP_LABEL</span>&nbsp;
+   									<label for="stepStart"><small><span translate>DASHBOARD_STREAM_START_STEP_LABEL</span></small></label>&nbsp;
+   									<input type="number" class="form-control input-sm input-step" ng-model="row.startStep"/>
+  								</div>
+  								<div class="form-group">
+   									<label for="stepEnd"><small><span translate>DASHBOARD_STREAM_END_STEP_LABEL</span></small></label>&nbsp;
+   									<input type="number" class="form-control input-sm input-step" ng-model="row.endStep"/>
+  								</div>
+							</form>	
+						</td>
+						<td colspan='6'>
+							<div class='install-feedback-inline'>
+								<div ng-show='row.errorValidation!=null'>
+									<span class="text-danger">{{row.errorValidation|translate}}</span>
+								</div>
+								
+								
+								<div ng-show='row.actionFeedback!=null'>
+									<div class='clearfix install-feedback-info'>
+										<div class='pull-left' ng-show='row.actionFeedback!=null'><i class="{{row.actionIconClass}}" title="{{row.actionFeedback}}"></i>&nbsp; {{row.actionFeedback}}</div>
+										<div class='pull-right'>Step <strong>{{row.feedback.lastStep.actionType}}</strong> - status: <strong>{{row.feedback.lastStep.status}}</strong></div>
+									</div>
+									<div class='install-progress-panel'>
+										<a href ng-repeat="step in row.feedback.steps" title="{{step.actionName}} - {{step.actionType}}" ng-class='step.style' style="{{step.width}}">
+											{{step.stepNum}}
+										</a>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>				-->
+					
+				</tbody>
+			</table>
+		</div>
+		<div class='table-toolbar'>
+			<pagination boundary-links="true" total-items="filteredStreams.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+				next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+			></pagination>
+		</div>
+		<div class='table-toolbar'>	
+			<div class='form-inline table-toolbar-item'>
+				<select class='form-control input-sm' ng-model='newStatus'>
+					<option>Scegli uno stato...</option>
+					<option ng-repeat="status in datasourceStatus track by $index" value='{{status.id_status}}'>{{status.statuscode|translate}} - <strong>{{status.statuscode}}</strong></option>
+				</select>
+				<a class='btn btn-default' href ng-click='changeStatus()' title="{{'DASHBOARD_STREAM_CHANGESTATUS_BUTTON_HINT'|translate}}"><span translate>DASHBOARD_STREAM_CHANGESTATUS_BUTTON</span></a>
+			</div>
+			<div class='table-toolbar-item'>
+				<a class='btn btn-default ' href ng-click="execActions('delete')"><span translate>DASHBOARD_STREAM_UNINSTALL_BUTTON</span></a>
+			</div>
+			<div class='table-toolbar-item'>
+				<a class='btn btn-default ' href ng-click="execActions('install')"><span translate>DASHBOARD_STREAM_INSTALL_BUTTON</span></a>
+			</div>		</div>
+		<!--
+		<div class="alert alert-danger text-left" ng-show='errors.length>0'>
+			<strong translate>ERROR</strong>
+			<ul><li ng-repeat="error in errors"><span translate>{{error}}</span></li></ul>
+		</div>
+		<div class="alert alert-warning text-left" ng-show='warnings.length>0'>
+			<strong translate>WARNING</strong>
+			<ul><li ng-repeat="warning in warnings"><span translate>{{warning}}</span></li></ul>
+		</div>
+		<div class="alert alert-info text-left" ng-show='infos.length>0'>
+			<strong translate>INFO</strong>
+			<ul><li ng-repeat="info in infos "><span translate>{{info}}</span></li></ul>
+			<p><a href ng-click='loadStreams()' translate>REFRESH_STREAMS</a></p>
+		</div> -->
+		<p>&nbsp;</p>
+	</div>
+	
+	<script type="text/ng-template" id="streamInstalLog.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Installation log <small>{{streamName}}</small> </h3>
+        </div>
+        <div class="modal-body">
+			<div class='clearfix'>
+				<div class='pull-left'>
+					<form class="form-inline">
+  						<div class="form-group">
+   							<label for="streamAction"><span translate>DASHBOARD_STREAM_ACTION_LABEL</span></label>&nbsp;
+   							<select class="form-control "  ng-model="logAction" ng-options="action as action for action in actions" ng-change="showLog(logAction)"></select>
+  						</div>
+						<button class="btn btn-default" ng-click="showLog(logAction)" ng-enabled='logAction!=null && logAction!=""'>Open</button>
+					</form>
+				</div>	
+				<div class='pull-right'><a ng-href="{{extendedLogUrl}}" target='_blank' ng-show='logAction!=null && logAction!=""'>Show log in a new window</a></div>
+			</div>
+			<div class="alert alert-danger text-left" ng-show='error!=null'>
+				<strong translate>ERROR</strong> 
+				<p><span ng-bind-html="error"></span></p>
+			</div>
+			<div class='ajax-loading-container' ng-show="showLoading">
+				<span class='ajax-loading-big'></span>
+				<h4>Loading...</h4>
+			</div>
+			<div class='dashboard-log-panel-container'>
+				<div class='dashboard-log-panel' ng-show='extendedLog!=null'>
+					 <p ng-bind-html="extendedLog"></p>
+				</div>
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="close()">OK</button>
+        </div>
+    </script>
+	<script type="text/ng-template" id="streamTest.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Test stream <small>{{streamName}}</small> </h3>
+        </div>
+        <div class="modal-body dashboard-stream-test-dialog">
+			<div ng-show='true' class='form-panel'>
+				<div class='row'>
+					<div class='col-sm-2 col-offset-sm-1'><strong>User</strong></div>
+					<div class='col-sm-3'><input type='text' class="form-control " ng-model="user" ng-change = "createTestUrl()" /></div>
+					<div class='col-sm-2'><strong>Password</strong></div>
+					<div class='col-sm-3'><input type="password" class="form-control " ng-model="password" /></div>
+				</div>
+				<div class='row'><div class='col-sm-12'><p><strong>Components</strong></div></div>
+				<div class='row row-component' ng-repeat="c in stream.componenti.element">
+					<div class='col-sm-2 col-offset-sm-1 text-right component-label'>{{c.nome}}</div>
+   					<div class='col-sm-8'><input type='text' class="form-control " ng-model="components[$index]" ng-change="createParamsJson()" /></div>
+				</div>
+				<div class='row'><div class='col-sm-12'><div> &nbsp;</div></div></div>
+				<div class='row'>
+					<div class='col-sm-12 text-right'>
+						<button class="btn btn-default " ng-click="execTest()" ng-enabled='password!=null && password!="" && user!=null && user!=""'>Run</button>
+					</div>
+				</div>
+			</div>	
+			<div class='params-panel'>
+				<div class='row'>
+					<div class='col-sm-2'><strong>Test url</strong></div>
+					<div class='col-sm-10'><pre>{{testUrl}}</pre></div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2'><strong>Message params</strong></div>
+					<div class='col-sm-10'><pre>{{paramsJson}}</pre></div>
+				</div>
+			</div>
+			<div class="alert alert-warning text-left" ng-show='warning!=null'>
+				<strong translate>WARNING</strong> 
+				<p><span ng-bind-html="warning"></span></p>
+			</div>
+
+			<div class='dashboard-stream-test-feedbackpanel'>
+				<div class='ajax-loading-container' ng-show="showLoading">
+					<span class='ajax-loading-big'></span>
+					<h4>Loading...</h4>
+				</div>
+				<div class='test-result-ok' ng-show="testResult == 'ok'"> 
+					<h3><i class="fa fa-check"></i> Test ok</h3>
+				</div>
+				<div class='test-result-ko' ng-show="testResult == 'ko'"> 
+					<h3> <i class="fa fa-times"></i> Test ko</h3>
+					<div class="alert alert-danger"><span ng-bind-html="testResultData"></span></div>
+				</div>
+				
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="close()">Close</button>
+        </div>
+    </script>
+</div>

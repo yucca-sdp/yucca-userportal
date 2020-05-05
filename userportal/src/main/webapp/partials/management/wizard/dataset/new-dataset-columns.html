@@ -1,0 +1,29 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_DATASET_TITLE</span> - <span translate-cloak translate>MANAGEMENT_NEW_DATASET_COLUMNS_SUBTITLE</span></h3></div>
+	<div class='pull-right'><h3><small>Step 5/5</small></h3></div>
+</div>
+<form class="form-horizontal" role="form" name="columnsDatasetForm" >
+	<div class="">
+		<ng-include src=" 'partials/management/wizard/dataset/new-dataset-' + columnDefinitionType + '-columns.html?'+buildTimestamp "></ng-include>
+	</div>
+	
+	<div class="row" ng-show="updateStatus=='ready' && isAuthorized('management/datasets/update')" ng-cloak>
+		<div class=" col-sm-12 form-toolbar">
+			<a ng-click='goToChooseType()' class="btn " translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_PREV</a>
+			<a ng-click='createDataset()' class="btn btn-default" ng-disabled="!isOwner() || columnsDatasetForm.$invalid || columnsDatasetHasError()" translate-cloak translate>MANAGEMENT_NEW_DATASET_WIZARD_END</a>
+		</div>
+	</div>
+	<div class="row"  ng-show="updateStatus=='update' || updateStatus=='upload'" ng-cloak>
+		<div class=" col-sm-12 col-lg-12 form-toolbar">
+			<div class='ajax-loading'>
+				<span translate-cloak translate ng-if=" updateStatus=='update'">MANAGEMENT_NEW_DATASET_CREATE_METADATA</span>
+				<span translate-cloak translate ng-if=" updateStatus=='upload'">MANAGEMENT_NEW_DATASET_UPLOAD_DATA</span>
+			</div>
+		</div>				
+	</div>
+</form>

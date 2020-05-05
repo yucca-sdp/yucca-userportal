@@ -1,0 +1,300 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementCtrl as navigationCtrl" class="section-management">
+	<div class='page-top-panel'>
+		<div class="title-container" ng-cloak>
+			<div class='container clearfix'>
+				<h1  class=''><span translate-cloak translate>MANAGEMENT_TITLE</span><small> {{tenant}}</small></h1>
+				<div class=" title-menu">
+					<a ng-disable="!isAuthorized('management/smartobjects/*')" href="#/management/virtualentities/{{activeTenantCode}}" ng-class="{active: isMenuActive('virtualentities')}"  class='btn  btn-top-toolbar btn-virtualentity' ng-if='canManageStream()'>
+						<span translate-cloak translate>MANAGEMENT_MENU_VIRTUAL_ENTITIES</span>
+					</a>
+					<a ng-disable="!isAuthorized('management/streams/*')" href="#/management/streams/{{activeTenantCode}}" ng-class="{active: isMenuActive('streams')}" class='btn btn-top-toolbar btn-stream' ng-if='canManageStream()'>
+						<span translate-cloak translate>MANAGEMENT_MENU_STREAMS</span>
+					</a>
+					<a class='btn btn-top-promo ' ng-if='!canManageStream()' href='mailto:smartdatanet@csi.it' target='_blank' >
+						<span ng-bind-html="'MANAGEMENT_MENU_STREAM_UPGRADE'|translate"></span>
+					</a>
+					<a ng-disable="!isAuthorized('management/datasets/*')" href="#/management/datasets/{{activeTenantCode}}" ng-class="{active: isMenuActive('datasets')}" class='btn btn-top-toolbar btn-dataset'>
+						<span translate-cloak translate>MANAGEMENT_MENU_DATASET</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		<ng-include src=" 'partials/management/' + managementTab+ '.html?'+buildTimestamp "></ng-include>
+	</div>
+</div>
+
+
+<script type="text/ng-template" id="tagChooerDialog.html">
+	<div class="modal-body modal-compact">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title"><span translate >MANAGEMENT_EDIT_STREAM_TAG_TOOLTIP_TITLE</span></h3>
+        </div>
+		<div class="modal-body">
+
+			<div class='choose-tag-table'>
+				<div ng-repeat='(firstLetter, tags) in tagMap track by $index'>
+					<div class='choose-tag-table-section'><h4>{{firstLetter}}</h4></div>
+					<div class='row'>
+						<div class='col-sm-2' ng-repeat='tag in tags track by $index'>
+							<div class='choose-tag-table-item' ng-click='chooseTag(tag)'>{{tag.tagLabel}}</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+
+
+
+
+		</div>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="tenantChooerDialog.html">
+	<div class="modal-body modal-compact">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title"><span translate >MANAGEMENT_EDIT_STREAM_TENANT_TOOLTIP_TITLE</span></h3>
+        </div>
+		<div class="modal-body">
+
+			<div class='choose-tenant-table'>
+				<div class='row'>
+					<div ng-repeat='tenant in tenantsList track by $index'>
+						<div class='col-sm-3' >
+							<div class='choose-tenant-table-item' ng-click='chooseTenant(tenant)'>{{tenant.name}}</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="dataFormatHint.html">
+	<div class="modal-compact">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Date Format</h4>
+        </div>
+		<div class="modal-body">
+			<div ng-bind-html="dataFormatHintTable"></div>
+		</div>
+		<div class='modal-footer date-time-hint-footer'>
+			<div><strong><i class="glyphicon glyphicon-time"></i></strong>&nbsp;Default timezone <strong>Europe/Rome</strong></div>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="DecimalSeparatorChooseDialog.html">
+	<div class="modal-compact">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" translate>DECIMAL_SEPARATOR_DIALOG_TITLE</h4>
+        </div>
+		<div class="modal-body">
+			<p translate>DECIMAL_SEPARATOR_DIALOG_INTRO</p>
+			<div class="radio">
+				<label>
+					<input type="radio" name="decimalSeparator" value="DOT" ng-model="decimalSeparator" '>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>DECIMAL_SEPARATOR_DOT</span>
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" name="decimalSeparator" value="COMMA" ng-model="decimalSeparator" '>
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>DECIMAL_SEPARATOR_COMMA</span>
+				</label>
+			</div>
+		</div>
+		<div class='modal-footer'>
+		 	<button class="btn " ng-click="cancel()" translate>CLOSE</button>
+	 		<button type="submit" class="btn btn-default" ng-click="ok()" translate>OK</button>
+		</div>
+	</div>
+</script>
+
+	<script type="text/ng-template" id="ChooseDatasetGroupDialog.html">
+		<div class="modal-compact">
+			<div class='new-datasource-form-inline-container-overlay' ng-if='newGroup.show==1'></div>
+			<div class="modal-header clearfix">
+				<h3 translate class='pull-left'>DATASET_GROUP_CHOOSE_DIALOG_TITLE</h3>
+				<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close" ng-click="cancel()" ><span aria-hidden="true">&times;</span></button>
+			</div>
+			
+			<div class="modal-body">
+				<p class='modal-intro'><span translate>DATASET_GROUP_CHOOSE_DIALOG_INTRO</span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href ng-click="newGroup.show = 1" ng-init="newGroup.show = 0" class='btn btn-sm btn-light' translate translate-cloack>DATASET_GROUP_CHOOSE_DIALOG_NEW_BUTTON</a></p>
+				<div class='new-datasource-form-inline-container' ng-if='newGroup.show==1'>
+					<div class='new-datasource-form-inline-container-content'>
+						<h3 translate>DATASET_GROUP_NEW_DIALOG_TITLE</h3>
+						<form class="form-inline">
+							<div class="form-group">
+		   						<input type="text" class="form-control input-sm" ng-model="newGroup.group.name" required name="groupname" placeholder="{{'DATASET_GROUP_NAME'|translate}}">
+    						</div>
+ 							<div class="form-group">
+    							<select id="datasetGroupType" name="grouptype" class=" form-control " ng-model="newGroup.group.idDatasourcegroupType" ng-change='chooseTypeChanged()'>
+								   <optgroup label="{{'DATASET_GROUP_TYPE_USER_DEFINED'|translate}}">		
+										 <option value="1">User Defined</option>
+								   </optgroup>			
+								   <optgroup label="{{'DATASET_GROUP_TYPE_SPECIAL'|translate}}" ng-if='isCsiTenant()' >		
+										 <option ng-repeat="groupType in DATASET_GROUP_TYPE track by $index" value="{{groupType.idDatasourcegroupType}}" ng-if='groupType.idDatasourcegroupType>1'>{{groupType.description}}</option>
+								   </optgroup>			
+								</select>
+
+			 				</div>
+  							<div class="form-group">
+		   						<color-picker color="newGroup.group.color" css="input-group-sm" isdisabled='isdisabled=newGroup.group.idDatasourcegroupType>1'></color-picker>
+		 					</div>  	
+							<a href class="btn btn-light" translate ng-disabled="newGroup.group.name == null || newGroup.group.idDatasourcegroupType== null" ng-click="createDatasourceGroup()">OK</a>
+							<a href class="mute" translate ng-click="newGroup.show=0">CANCEL</a>
+						</form>
+					</div>
+					<div class='semimute' ng-if='newGroup.group.idDatasourcegroupType>1'><i class='fa fa-info-circle' ></i> <span translate>DATASET_GROUP_NEW_COLOR_SPECIAL_INFO</span></div>
+				</div>
+				<alert-panel content='admin_response'></alert-panel>
+				<table class="table table-condensed table-only-rows">
+							<thead>
+								<tr>
+									<th></th>
+									<th>							
+										<span translate-cloak translate>DATASET_GROUP_NAME</span>
+										<!--<a href="" ng-click="predicate  = 'name'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_NAME</span>
+										<span ng-show="predicate=='name' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='name' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>-->
+									</th>
+									<th>
+										<span translate-cloak translate>DATASET_GROUP_TYPE</span>
+										<!--<a href="" ng-click="predicate = 'type'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_TYPE</span>
+										<span ng-show="predicate=='type' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='type' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>-->
+									</th>
+									<th >
+										<span translate-cloak translate>DATASET_GROUP_VERSION</span>
+										<!--<a href="" ng-click="predicate = 'version'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_VERSION</span>
+										<span ng-show="predicate=='version' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='version' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>-->
+									</th>
+									<th>
+										<span translate-cloak translate>DATASET_GROUP_STATUS</span>
+										<!--<a href="" ng-click="predicate = 'status'; reverse=!reverse"><span translate-cloak translate>DATASET_GROUP_STATUS</span>
+										<span ng-show="predicate=='status' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='status' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>-->
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-show="showLoading">
+									<td colspan='6' >
+										<div class='ajax-loading-container'>
+											<span class='ajax-loading-big'></span>
+											<h4>Loading...</h4>
+										</div>
+									</td>
+								</tr>
+								<tr ng-repeat="group in groupList ">
+									<td>
+										<div class="radio" >
+											<label ng-show="group.type.description != 'special' || group.status != 'consolidato' ">
+												<input type="radio" ng-model="selectedGroup.index" name="datasetGroupSelection" value="{{$index}}">
+												<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											</label>
+										</div>
+										<i class="glyphicon glyphicon-ban-circle mute" ng-if='tenant!=dataset.tenantManager.tenantcode' title="{{'DATASET_LIST_READONLY_TOOLTIP'|translate}}"></i>
+									</td>
+									<td class='text-left'>									
+										<div class='label-custom label-100 label-datasourcegroup'   style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}}' >{{group.name}}</div>														
+									</td>
+									<td class='text-left'>
+										<span>{{group.type.description}}</span>
+									</td>
+									<td class='text-left' ">
+										<span  ng-if='group.type.idDatasourcegroupType>1'>{{group.datasourcegroupversion}}</span>
+									</td>
+									<td class='text-left'" >
+										<span  ng-if='group.type.idDatasourcegroupType>1'>{{'DATASOURCEGROUP_STATUS_'+group.status|translate}}</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+				<div class='modal-footer'>
+					<button class="btn " ng-click="cancel()" translate>CLOSE</button>
+					<button type="submit" class="btn btn-default" ng-click="ok()" ng-disabled = "selectedGroup.index<0" translate>OK</button>
+				</div>
+		</div>	
+	</script>
+<script type="text/ng-template" id="MultipleUploadCsvDialog.html">
+	<div class="modal-compact">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" translate>MANAGEMENT_UPLOAD_CSV_MULTIPLE_MODAL_TITLE</h4>
+        </div>
+		<div class="modal-body">
+			<alert-panel type='success' message='MANAGEMENT_UPLOAD_CSV_MULTIPLE_MODAL_NEW_DATASET_TITLE' detail='{{"MANAGEMENT_UPLOAD_CSV_MULTIPLE_MODAL_NEW_DATASET"|translate}}'  ng-if='isNew'></alert-panel>
+			<p translate  translate-values="{numParts:csvParts.length}" totalStream: totalStream}" ng-if="csvParts.length>1">MANAGEMENT_UPLOAD_CSV_MULTIPLE_MODAL_INTRO</p>
+			<alert-panel type='warning' message='MANAGEMENT_UPLOAD_CSV_MULTIPLE_MODAL_ONE_FAILED_TITLE' detail='{{"MANAGEMENT_UPLOAD_CSV_MULTIPLE_MODAL_ONE_FAILED"|translate}}'  ng-if='onefailed'></alert-panel>
+			<alert-panel content='admin_multiple_response'></alert-panel>
+			<table class='table table-onlyrows'>
+				<thead>
+					<tr>
+						<th translate translate-cloack ng-if="csvParts.length>1">MANAGEMENT_UPLOAD_CSV_MULTIPLE_TABLE_PART</th>
+						<th translate translate-cloack ng-if="csvParts.length==1">MANAGEMENT_UPLOAD_CSV_MULTIPLE_TABLE_PART_SINGLE</th>
+						<th translate translate-cloack>MANAGEMENT_UPLOAD_CSV_MULTIPLE_TABLE_STATUS</th>
+						<th translate translate-cloack>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='part in csvParts track by $index' >
+						<td class='text-left nowrap'>{{part.info.selectedFile.name}}</td>
+						<td class='nowrap slim-td text-left'>
+							<span ng-if='part.status=="imported"' title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_IMPORTED_HINT'|translate}}">
+								<i class='fa fa-warning warning warning fa-fw' ></i> 
+								<span translate translate-cloack class='mute'>MANAGEMENT_UPLOAD_CSV_MULTIPLE_IMPORTED</span>
+							</span>
+							<span ng-if='part.status=="success"' title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_SUCCESS_HINT'|translate}}">
+								<i class='fa fa-check success fa-fw' ></i> 
+								<span translate translate-cloack>MANAGEMENT_UPLOAD_CSV_MULTIPLE_SUCCESS</span>
+							</span>
+							<span ng-if='part.status=="failed"' title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_FAILED_HINT'|translate}}">
+								<i class='fa fa-close danger fa-fw' ></i> 
+								<span translate translate-cloack>MANAGEMENT_UPLOAD_CSV_MULTIPLE_FAILED</span>
+							</span>
+							<span ng-if='part.status=="pending"' title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_PENDING_HINT'|translate}}">
+								<i class='fa fa-clock-o fa-fw'></i> 
+								<span translate translate-cloack>MANAGEMENT_UPLOAD_CSV_MULTIPLE_PENDING</span>&hellip;
+							</span>
+							<span ng-if='part.status=="uploading"' title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOADING_HINT'|translate}}">
+								<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> 
+								<span translate translate-cloack>MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOADING</span>&hellip;
+							</span>						
+						</td>
+						<td class='text-right slim-td'>
+							<a href ng-click='uploadSingle($index)' class='btn btn-default btn-xs' ng-if='(part.status=="ready" || part.status=="failed" || part.status=="imported") && csvParts.length>1 ' translate translate-cloack ng-enabled='updateStatus=="ready"
+								title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_SINGLE_BUTTON_HINT'|translate}}">MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_SINGLE_BUTTON</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div class='modal-footer'>
+		 	<button class="btn " ng-click="cancel()" translate>CLOSE</button>
+			<button ng-click='downloadCsvParts()' ng-if="csvParts.length>1" class="btn btn-default" translate-cloak translate>MANAGEMENT_UPLOAD_CSV_MULTIPLE_DOWNLOAD_PARTS_BUTTON</button>
+	 		<button type="submit" class="btn btn-default" ng-click="uploadAll()"  ng-enabled='updateMultipleStatus=="ready"'>
+				<span translate title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_ALL_BUTTON_HINT'|translate}}" ng-if="csvParts.length>1">MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_ALL_BUTTON</span>
+				<span translate title="{{'MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_ALL_BUTTON_HINT'|translate}}" ng-if="csvParts.length==1">MANAGEMENT_UPLOAD_CSV_MULTIPLE_UPLOAD_SINGLE_BUTTON</span>
+			</button>
+		</div>
+	</div>
+</script>

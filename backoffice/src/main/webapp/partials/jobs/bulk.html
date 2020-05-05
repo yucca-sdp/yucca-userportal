@@ -1,0 +1,363 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div ng-controller="BulkCtrl as bulkCtrl" class='container-fluid dataset-panel'>
+		<div class='clearfix  content-toolbar'>	
+			<h3 class='content-title'>Modifica Bulk Dataset <small title="{{'DASHBOARD_BULK_INTRO'|translate}}">{{'DASHBOARD_BULK_INTRO'|translate|string_ellipse:120}}</small></h3>
+			<div class="btn-group  content-toolbar-end">
+				<form class='form-inline'>
+					<div class=' form-group'>
+						<span translate>DASHBOARD_DATASET_CHOOSE_DATASET_LABEL</span> &nbsp;&nbsp;
+						<select class='form-control input-sm' ng-model='tenantForDataset' ng-change='loadGroups(getTenant(tenantForDataset))'>
+							<option>Scegli un tenant...</option>
+							<option ng-repeat="tenant in allTenants track by $index" value='{{tenant.tenantcode}}'>{{tenant.tenantcode}}</option>
+						</select>
+					</div>
+					<div class=' form-group'>
+						<span translate>DASHBOARD_BULK_CHOOSE_GROUP_LABEL</span>
+						<select class='form-control input-sm' ng-model='datasourcegroup'>
+							<option value=''>Scegli un gruppo...</option>
+							<option ng-repeat="group in allGroups track by $index" value='{{group.idDatasourcegroup}}'> {{group.idDatasourcegroup}} - {{group.name}} - {{group.type.description}}</option>
+						</select>
+						<input type="text" class="form-control input-sm" ng-required = "versionRequired()" ng-model="datasourcegroupversion" placeholder="{{'DASHBOARD_BULK_GROUPVERSION_PLACEHOLDER'|translate}}" />
+						<a class='btn btn-default' href ng-click='loadDatasets()'><span translate>Carica Dataset</span></a>
+					</div>
+					
+				</form>
+			</div>
+			
+			
+		</div>
+		<div ng-if='!lastTenantUsed' class='big-message && !showLoading' translate>DASHBOARD_DATASET_CHOOSE_BULK_START_LABEL</div>
+		<div ng-if='lastTenantUsed && datasetsList.length==0 && !showLoading' class='big-message'>
+			<span class='{{bigMessage.style}}'  translate translate-values="{ lastTenantUsed: lastTenantUsed}"> {{bigMessage.message}}</span>
+			<span class='big-message-detail {{bigMessage.style}}'> {{bigMessage.detail}}</span>
+		</div>
+		<div ng-if="showLoading" class='ajax-loading-container'>
+			<span class='ajax-loading-big'></span>
+			<h4>Loading...</h4>
+		</div>
+		
+		<div ng-if='lastTenantUsed && datasetsList.length>0' >
+			<div class='clearfix  content-toolbar'>
+				<div class="btn-group content-toolbar-end">
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="viewUnistalledCheck">  
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									<span translate>UNINSTALLED_FILTER</span>		
+								</label>
+							</div>
+						</div>
+<!-- 						<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="filter.nameFilter" placeholder="{{'STREAM_LIST_NAME_FILTER'|translate}}" />
+						</div>
+-->
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="filter.codeFilter" placeholder="{{'STREAM_LIST_CODE_FILTER'|translate}}" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="filter.domainFilter" placeholder="{{'DATASET_BULK_LIST_DOMAIN_FILTER'|translate}}" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" ng-model="filter.subdomainFilter" placeholder="{{'DATASET_BULK_LIST_SUBDOMAIN_FILTER'|translate}}" />
+						</div>
+						<div class="form-group" >
+							<a class='btn btn-primary-negative' href ng-click='loadDatasets()'><i class='glyphicon glyphicon-refresh'></i> <span translate>RELOAD</span></a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class='import-content-panel'>
+				<div class="table-responsive dashboard-list-table">
+					<table class="table table-actions table-editable text-left">
+						<thead>
+							<tr>
+								<th class='text-center'>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="selectAll"  ng-click="selectAll($event)"  />
+											<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+										</label>
+									</div>
+								
+								</th>
+								<th>
+									<a href="" ng-click="predicate = 'dataset.datasetcode'; reverse=!reverse"><span translate>STREAM_FIELD_CODE</span> - <span translate>STREAM_FIELD_VERSION</span> 
+										<span ng-show="predicate=='dataset.datasetcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='dataset.datasetcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+									</a>
+								</th>
+								<th>
+									<a href="" ng-click="predicate = 'dataset.datasetSubtype.datasetSubtype'; reverse=!reverse" class='td-double-row-top' >
+										<span translate>DATASET_FIELD_TYPE</span> 
+										<span ng-show="predicate=='dataset.datasetSubtype.datasetSubtype' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='dataset.datasetSubtype.datasetSubtype' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+									</a>
+									<a href="" ng-click="predicate = 'dataset.status.statuscode'; reverse=!reverse" class='td-double-row-bottom'>
+										<span translate>STREAM_FIELD_STATUS</span> 
+										<span ng-show="predicate=='dataset.status.statuscode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										<span ng-show="predicate=='dataset.status.statuscode' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+									</a>
+									
+								</th> 
+								<!--  <th>
+									<a href="" ng-click="predicate = 'dataset.datasetname'; reverse=!reverse"><span translate>STREAM_FIELD_NAME</span> 
+									<span ng-show="predicate=='dataset.datasetname' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+									<span ng-show="predicate=='dataset.datasetname' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+								
+								</th>-->
+								<th>
+									<span class='td-double-row-top'  translate>DOMAIN</span> 
+									<span class='td-double-row-bottom'  translate>SUBDOMAIN</span> 
+									
+								</th>
+								
+								<!-- 
+								<th>
+									<a href="" ng-click="predicate = 'dataset.domain.domaincode'; reverse=!reverse" class='td-double-row-top' >
+										 <span translate>DOMAIN</span>
+										 <span ng-show="predicate=='dataset.domain.domaincode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										 <span ng-show="predicate=='dataset.domain.domaincode' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+									</a>
+									<a href="" ng-click="predicate = 'dataset.subdomain.subdomaincode'; reverse=!reverse" class='td-double-row-bottom'>
+										 <span translate >SUBDOMAIN</span>
+										 <span ng-show="predicate=='dataset.subdomain.subdomaincode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+										 <span ng-show="predicate=='dataset.subdomain.subdomaincode' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+									</a>
+								
+								</th>-->
+							<!--	<th>
+									<a href="" ng-click="predicate = 'dataset.datasetname'; reverse=!reverse"><span translate>SUBDOMAIN</span> 
+									<span ng-show="predicate=='dataset.datasetname' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+									<span ng-show="predicate=='dataset.datasetname' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+								
+								</th>-->
+								<!-- <th>
+									<a href="" ng-click="predicate = 'dataset.description'; reverse=!reverse"><span translate>STREAM_FIELD_VIRTUALENTITY_DESCRIPTION</span> 
+									<span ng-show="predicate=='dataset.description' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+									<span ng-show="predicate=='dataset.description' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+								
+								</th> 
+								<th>
+									<span translate>STREAM_FIELD_VERSION</span> 
+								</th>
+								<th>
+									<a href="" ng-click="predicate = 'dataset.status.statuscode'; reverse=!reverse"><span translate>STREAM_FIELD_STATUS</span> 
+									<span ng-show="predicate=='dataset.status.statuscode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+									<span ng-show="predicate=='dataset.status.statuscode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+								</th>-->
+								<th><span translate>DATASET_FIELD_HIVE_SCHEMA</span></th>
+								<th><span translate>DATASET_FIELD_HIVE_TABLE</span></th>
+								<th><span translate>DATASET_FIELD_JDBC_SCHEMA</span></th>
+								<th><span translate>DATASET_FIELD_JDBC_TABLE</span></th>
+								<th>
+									<span title='Flag availablehive'>H</span>
+								</th>
+								<th>
+									<span title='Flag availablespeed'>S</span>
+								</th>
+								<th>
+									<span title='Flag istransformed'>T</span>
+								</th>
+								<th translate>DATASET_FIELD_GROUP</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  class='table-data-row' ng-class='{"selected-row": row.isSelected, "modified-row": row.isModified}' 
+								ng-repeat="row in filter.filteredDatasets = (datasetsList | filter: searchCodeFilter | filter: searchNameFilter | filter: searchDomainFilter | filter: searchSubdomainFilter| filter: viewUnistalledFilter| orderBy:predicate:reverse )|startFrom:(currentPage-1)*pageSize | limitTo:pageSize  ">
+								<td class='table-data-row-first'>
+									<div class='checkbox-badge-td'>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" ng-model="row.isSelected" ng-click="updateSelection($event, row.rowIndex)" />
+												<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											</label>
+										</div>
+										<div><a href class="detail-button {{css}}" ng-click="openDataset(row)"><i class="fa fa-info-circle" title = "Dettaglio dataset"></i></a></div>
+									</div>
+								</td>
+								<td class='text-left td-readonly nowrap'>
+									<!--<img ng-src="{{row.dataset.datasetIcon}}" alt="logo dataset" class='list-entity-icon-preview-img' >  -->
+									<strong>{{row.dataset.datasetcode}} <span class='version'>{{row.version}}</span></strong>  
+								</td>
+								<!--  <td> {{row.dataset.datasetname|string_ellipse:row.ellipseNameLimit}}</td>-->
+								<td class='td-readonly'> 
+									<span class='td-double-row-top'>{{row.dataset.datasetSubtype.datasetSubtype|translate}}</span>
+									<span class='td-double-row-bottom'>
+										<span class='status-color-{{row.deploymentStatusCode}}' title='{{row.deploymentStatusCodeTranslated}}'>{{row.deploymentStatusCodeTranslated|string_ellipse:12}}</span>
+									</span>
+								
+								</td>
+								<td class='td-readonly'>
+									<span class='td-double-row-top'>{{row.domain.domaincode}}</span>
+									<span class='td-double-row-bottom' title='{{row.subdomain.subdomaincode}}'>{{row.subdomain.subdomaincode|string_ellipse:12}}</span>
+								</td>
+								<!-- <td class='td-readonly'> {{row.subdomain.subdomaincode}}</td>-->
+								<!-- <td><span title='{{row.dataset.description}}'>{{row.dataset.description|string_ellipse:15}}</span></td> 
+								<td class='td-readonly'>{{row.version}}</td>
+								<td class='text-left td-readonly'>
+									<span class='square-bullet square-bullet-status-{{row.deploymentStatusCode}}' title='{{row.deploymentStatusCodeTranslated}}'>{{row.deploymentStatusCodeBullet}}</span>
+								</td>-->
+								<td ng-if='row.isSelected'><input type='text' title='Hive Schema' ng-model='row.dataset.dbhiveschema' class="form-control input-sm" placeholder='Insert Hive Schema...'/></td>
+								<td ng-if='!row.isSelected' class='text-left td-readonly'>{{row.dataset.dbhiveschema}}</td>
+								<td ng-if='row.isSelected'><input type='text' title='Hive Table' ng-model='row.dataset.dbhivetable' class="form-control input-sm"  placeholder='Insert Hive Table...'/></td>
+								<td ng-if='!row.isSelected' class='text-left td-readonly'>{{row.dataset.dbhivetable}}</td>
+
+								<td class='td-readonly'>{{row.dataset.jdbcdbschema}}</td>
+								<td class='td-readonly'>{{row.dataset.jdbctablename}}</td>
+								<td ng-class='{"td-readonly":!row.isSelected}' >
+									<div class='checkbox-badge-td checkbox-nolabel'>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" ng-model="row.dataset.availablehive" ng-disabled='!row.isSelected' />
+												<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											</label>
+										</div>
+									</div>
+								</td>
+								<td ng-class='{"td-readonly":!row.isSelected}' >
+									<div class='checkbox-badge-td checkbox-nolabel'>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" ng-model="row.dataset.availablespeed"  ng-disabled='!row.isSelected' />
+												<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											</label>
+										</div>
+									</div>								
+									<!--<span class='flag-badge flag-badge-true' title='availablespeed true' ng-if='row.dataset.availablespeed'><i class='fa fa-check-square-o'></i></span>
+									<span class='flag-badge flag-badge-false' title='availablespeed false' ng-if='!row.dataset.availablespeed'><i class='fa fa-square-o'></i></span> -->
+								</td>
+								<td ng-class='{"td-readonly":!row.isSelected}' >
+									<div class='checkbox-badge-td checkbox-nolabel'>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" ng-model="row.dataset.istransformed"  ng-disabled='!row.isSelected' />
+												<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+											</label>
+										</div>
+									</div>	
+									<!--  <span class='flag-badge flag-badge-true' title='istransformed true' ng-if='row.dataset.istransformed'><i class='fa fa-check-square-o'></i></span>
+									<span class='flag-badge flag-badge-false' title='istransformed false' ng-if='!row.dataset.istransformed'><i class='fa fa-square-o'></i></span>-->
+								
+								</td>
+								<td class='td-readonly'> 								
+									<div ng-repeat="group in row.groups">
+										<div ng-if='group.type.idDatasourcegroupType>1' title="{{group.name}}{{datasourceGroupTypeHint(group.type.idDatasourcegroupType)}}" class='label-custom' style='background-color: {{group.color}}; color: {{group.color|guessForegroundColor}};'>
+											<span class='text-capitalize' ng-if='group.type.idDatasourcegroupType>1'>{{group.name}}</span>
+											<!-- <span ng-if='group.type.idDatasourcegroupType==1'>&nbsp;</span>-->
+											<!-- <div ng-if='group.type.idDatasourcegroupType>1' class='datasourcegroup-special-badge'>{{specialDatasourceGroupLetterIcon(group.type.idDatasourcegroupType)}}</div>-->
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class='common-field-import-hive' >
+					<h3><span translate class = 'nowrap'>DASHBOARD_BULK_DEFAULT_TITLE</span><br><small translate>DASHBOARD_BULK_COMMON_FIELDS_INTRO</small></h3>
+				    <div class='inline-alert' ng-if='defaultWarning'>
+				    	<span class='icon-warning'><i class='fa fa-warning'></i></span>&nbsp;
+				    	<span translate>{{defaultWarning.message}}</span>
+				    </div>
+					<form>
+					  	<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="flagHive.availableHiveDefault" />
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									<span>Flag availablehive (H)</span>
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="flagHive.availableSpeedDefault" />
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									<span>Flag availablespeed (S)</span>
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="flagHive.isTransformedDefault" />
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									<span>Flag istransformed (T)</span>
+								</label>
+							</div>
+						</div>
+						<div class=' form-group'>
+							<label translate>DATASET_BULK_CHOOSE_DB_TYPE_LABEL</label>
+							<select ng-model='dbTypeSelect' class="form-control" >
+								<option ng-repeat="type in dbType track by $index" value='{{type.id}}'>{{type.label}}</option>
+							</select>
+						</div>
+						<legend translate>DATASET_BULK_TABLE_NAME_LABEL</legend>
+						<div class="form-group">
+							 <label translate for='defaulprefix' class='ng-hide'>defaulprefix</label>
+							 <input type="text" class="form-control" id="defaulprefix" placeholder="{{'PREFIX'|translate}}" ng-model='defaultPrefix'>
+						</div>
+						<div class=' form-group'>
+							 <label for='jdbcdscode' class='ng-hide'>jdbcdscode</label>
+							 <select ng-model='jdbcdscodeSelect' id='jdbcdscode' class="form-control" >			
+								<option ng-repeat="val in jdbcdscode track by $index" value='{{val.id}}'>{{val.description}}</option>
+							</select>
+						</div>
+						<div class=' form-group'>
+							 <label translate for='defaultSuffix' class='ng-hide'>defaultSuffix</label>
+							 <input type="text" class="form-control" id="defaultSuffix" placeholder="{{'SUFFIX'|translate}}" ng-model='defaultSuffix'><br>
+						</div>
+						
+						<div class = "nowrap text-right" >
+							<a class='btn ' href ng-click="cancelDefault()"><span translate>DATASET_BULK_RESET_BUTTON</span></a>
+							<a class='btn btn-default ' href ng-click="saveDefault(dbTypeSelect,jdbcdscodeSelect,defaultPrefix,defaultSuffix)"><span translate>DATASET_BULK_PREVIEW_BUTTON</span></a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class='table-toolbar'>
+				<pagination boundary-links="true" total-items="filter.filteredDatasets.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+					next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+				></pagination>
+				<div class='table-toolbar-separator'>&nbsp;</div>
+				<div class='table-toolbar-item'>
+						<a class='btn btn-default ' href ng-click="updateDatasets()"><span translate>DASHBOARD_BULK_UPDATE_ALL_BUTTON</span></a>
+				</div>
+			</div>
+
+		<p>&nbsp;</p>
+	</div>
+	<script type="text/ng-template" id="detailDialog.html">
+    	<div class="help-page-modal">
+	        <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="yes()"><span aria-hidden="true">&times;</span></button>
+    	   		<h3 class="">DETTAGLIO DATASET -  {{datasetname}}</h3>
+        	</div>
+	       	<div class="modal-body">
+				<ng-include src="'partials/help/'+help.section+'/'+help.page + '_' + currentLang() + '.html?time='+currentmillis"></ng-include>
+				<label><span translate>DATASET_FIELD_IDDATASET</span></label>: {{iddataset}} </br>
+				<label><span translate>DATASET_FIELD_NAME</span></label>: {{datasetname}} </br>
+				<label><span translate>DATASET_FIELD_DOMAIN</span></label>: {{domain}} </br>
+				<label><span translate>DATASET_FIELD_SUBDOMAIN</span></label>: {{subdomain}} </br>
+				<label><span translate>DATASET_FIELD_DESCRIPTION</span></label>: {{description}} </br>
+				<label><span translate>DATASET_FIELD_VERSION</span></label>: {{version}} </br>
+				<label><span translate>DATASET_FIELD_STATUS</span></label>: {{status}} </br>
+				<label><span translate>DATASET_FIELD_JDBC_TABLE</span></label>: {{jdbctable}} </br>
+				<label><span translate>DATASET_FIELD_JDBC_NAME</span></label>: {{jdbcname}} </br>
+				<label><span translate>DATASET_FIELD_JDBC_SCHEMA</span></label>: {{jdbcschema}} </br>
+				
+			</div>
+			<div class="modal-footer" >
+				<a ng-click='yes()' class="btn btn-default" translate-cloak translate>CLOSE</a>
+			</div>
+		</div>
+	</script>
+	
+</div>

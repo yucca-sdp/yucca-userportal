@@ -1,0 +1,71 @@
+2015-09-15 12:19:58 [info] Playing test case Scarica DataSet
+2015-09-15 12:19:58 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:20:00 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:20:02 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:03 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:20:04 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:05 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:20:06 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:20:07 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:20:07 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:20:08 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:20:09 [info] Executing: |type | //input[@type='text'] | Prova dataset store 2 |
+2015-09-15 12:20:10 [info] Executing: |click | link=ProvaDataset_62 |  |
+2015-09-15 12:20:11 [info] Executing: |click | //div[2]/div/h4/a/i |  |
+2015-09-15 12:20:12 [info] Executing: |click | //div[6]/div/h4/a/i |  |
+2015-09-15 12:20:12 [info] Executing: |click | //div[7]/div/h4/a/i |  |
+2015-09-15 12:20:13 [info] Executing: |click | link=Scarica |  |
+2015-09-15 12:20:14 [info] Executing: |click | link=exact:https://int-userportal.smartdatanet.it/store/apis/info?name=ProvaDataset_62_odata&version=1.0&provider=admin |  |
+2015-09-15 12:20:14 [warn] Link has target '_blank', which is not supported in Selenium!  Randomizing target to be: selenium_blank82896
+2015-09-15 12:20:14 [error] Unexpected Exception: TypeError: result is null. 
+2015-09-15 12:20:14 [info] Test case failed
+2015-09-15 12:20:14 [info] Playing test case Search Dataset
+2015-09-15 12:20:15 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:20:17 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:20:19 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:20 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:20:21 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:21 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:20:22 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:20:23 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:20:24 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:20:25 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:20:26 [info] Executing: |type | //input[@type='text'] | test |
+2015-09-15 12:20:26 [info] Executing: |verifyElementPresent | css=td.text-left |  |
+2015-09-15 12:20:27 [info] Executing: |click | link=ds_Teststreamse_213 |  |
+2015-09-15 12:20:28 [info] Executing: |verifyElementPresent | css=div.url |  |
+2015-09-15 12:20:28 [info] Test case passed
+2015-09-15 12:20:28 [info] Playing test case Search SmartObject
+2015-09-15 12:20:29 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:20:31 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:20:33 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:34 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:20:34 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:35 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:20:36 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:20:37 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-15 12:20:38 [info] Executing: |waitForElementPresent | xpath=(//input[@name='selected'])[2] |  |
+2015-09-15 12:20:39 [info] Executing: |type | //input[@type='text'] | PippoPlutoEPaperino |
+2015-09-15 12:20:39 [info] Executing: |verifyElementNotPresent | css=tr.ng-scope > td |  |
+2015-09-15 12:20:40 [info] Executing: |type | //input[@type='text'] | codice |
+2015-09-15 12:20:41 [info] Executing: |verifyElementPresent | link=codicePrimoTweet |  |
+2015-09-15 12:20:42 [info] Executing: |click | link=codicePrimoTweet |  |
+2015-09-15 12:20:43 [info] Executing: |verifyElementPresent | //div[4]/div[2] |  |
+2015-09-15 12:20:43 [info] Test case passed
+2015-09-15 12:20:43 [info] Playing test case Search Stream
+2015-09-15 12:20:44 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:20:45 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:20:47 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:48 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:20:49 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:20:50 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:20:51 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:20:51 [info] Executing: |verifyElementPresent | link=Stream | link=Gestione |
+2015-09-15 12:20:52 [info] Executing: |click | link=Stream |  |
+2015-09-15 12:20:53 [info] Executing: |type | xpath=(//input[@type='text'])[2] | twe |
+2015-09-15 12:20:54 [info] Executing: |waitForElementPresent | css=td.text-left |  |
+2015-09-15 12:20:55 [info] Executing: |click | //tr[3]/td[2]/a/strong |  |
+2015-09-15 12:20:56 [info] Executing: |click | css=img.list-entity-icon-preview-img |  |
+2015-09-15 12:20:56 [error] Element css=img.list-entity-icon-preview-img not found
+2015-09-15 12:20:56 [info] Test case failed
+2015-09-15 12:20:56 [info] Test suite completed: 4 played, 2 failed

@@ -1,0 +1,86 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-if='extra.isInternal'>
+	<h3 class='text-left form-section-title'  translate-cloak translate><span ng-bind-html="'STREAM_INPUT_FIELDS'|translate"></span></h3>
+	<div ng-if='datasource.internalStreamsCreate.length>0' class="form-group">
+		<label  class="col-sm-2 control-label"><span translate-cloak translate>STREAM_INTERNAL_SELECTED_STREAM</span></label>
+		<div class="col-sm-10 internal-streams-selected-panel">
+			<div ng-repeat="streamInt in datasource.internalStreamsCreate track by $index">
+				<div class='row internal-streams-selected-panel-first-row' ng-class="parentClass">
+					<div class='col-sm-9'>{{streamInt.tenantManager.tenantcode}} - {{streamInt.stream.streamname}} - {{streamInt.stream.smartobject.name}} ( {{streamInt.stream.smartobject.socode}})</div>
+					<div class='col-sm-2'> as input{{$index}}</div>
+					<div class='col-sm-1'>
+						<a  ng-click='removeStreamFromArray($index)' class="btn btn-remove btn-sm" ng-mouseenter="parentClass = 'highlight-delete'" ng-mouseleave="parentClass = ''">
+							<i class='glyphicon glyphicon-trash'></i>
+						</a>
+					</div>
+				</div>
+				<div class='row internal-streams-selected-panel-last-row'  ng-class="parentClass">
+					<div class='col-sm-9'>
+						<table class="components-table">
+							<thead>
+								<tr>
+									<th><span translate-cloak translate>STREAM_FIELD_COMPONENTS_NAME</span></th>
+									<th><span ng-bind-html="'STREAM_FIELD_COMPONENTS_UNIT_OF_MEASUREMENT'|translate"></span></th>
+									<th><span translate-cloak translate>STREAM_FIELD_COMPONENTS_TOLERANCE</span></th>
+									<th><span translate-cloak translate>STREAM_FIELD_COMPONENTS_PHENOMENON</span></th>
+									<th><span translate-cloak translate>STREAM_FIELD_COMPONENTS_DATA_TYPE</span></th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="el in streamInt.components">
+									<td><span style="display: none"> {{el.idComponent}}</span>{{el.name}}</td>
+									<td>{{el.measureUnit.measureunitcategory}} : {{el.measureUnit.measureunit}}</td>
+									<td>{{el.tolerance}} </td>
+									<td>{{el.phenomenon.phenomenoncetegory}} : {{el.phenomenon.phenomenonname}}</td>
+									<td>{{el.dataType.description}}</td>									
+								</tr>
+							</tbody>
+						</table>
+					</div> 
+				</div>
+			</div>					
+		</div>
+	</div>
+					
+	<div class="form-group">
+		<label for="streamNameToAdd" class="col-sm-2 control-label"><span translate-cloak translate>STREAM_TYPE_DEFINITION</span> <span class='required-asterisk'>*</span></label>
+		<div class="col-sm-8">
+			<select class="form-control col-sm-8" ng-model="streamSelectedItem">
+				  <option ng-repeat="streamItem in streamsList" class="{{streamItem.cssClass}}" value="{{streamItem.idstream}}">{{streamItem.label}}</option>
+			</select>
+			<div class='option-warning'><i class="fa fa-lightbulb-o"></i> <span translate>MANAGEMENT_EDIT_STREAM_INTERNAL_STREAM_DRAFT_WARNING</span></div>
+		</div>
+		<div class="col-sm-2">
+			<div ng-if='showAddInternalStreamLoading' class='ajax-loading'><span translate-cloak translate></span></div>
+			<a ng-if='!showAddInternalStreamLoading' href ng-click='addInternalStream(streamSelectedItem)' class="btn btn-sm btn-default "><i class='glyphicon glyphicon-plus'></i>  <span translate>ADD</span></a>
+		</div>	
+	</div>
+						
+					
+
+	<div class="form-group">
+		<div class="col-sm-2">
+			<label for="streamSiddhiQueryLabel" class="control-label"><span translate-cloak translate>STREAM_SIDDHI_QUERY</span> <span class='required-asterisk'>*</span></label>
+			<div>
+				<a href="http://developer.smartdatanet.it/docs/specifiche-di-creazione-stream-a-partire-da-stream-esistenti/" target="_blank" class="link-help mute" ><i class="fa fa-question-circle-o"></i> Help</a>
+			</div>
+		</div>
+		<div class="col-sm-8 text-left">		
+		
+			<alert-panel content='siddhiQueryValidationMessages'></alert-panel>
+				
+			<div class="alert alert-danger" ng-hide='validationRes!=1'><p >{{validateSiddhiError|translate}}</p></div>
+			<div class="alert alert-success" ng-hide='validationRes!=0'><p ><span translate-cloak translate>STREAM_SIDDHI_QUERY_SUCCESS</span></p></div>
+			<textarea id="code" class="form-control" ui-codemirror="cmOption" ng-model="streamSiddhiQuery" ui-refresh='visible'></textarea>
+		</div>
+		<div class="col-sm-2">
+			<a href  class="btn btn-default" ng-click="valideteSiddhi(streamSiddhiQuery)"><span translate-cloak translate>STREAM_SIDDHI_VALIDATE_BUTTON</span></a>
+		</div>					
+	</div>
+						
+</div>

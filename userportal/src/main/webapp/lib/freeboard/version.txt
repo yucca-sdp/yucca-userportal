@@ -1,0 +1,2 @@
+freeboard v1.1.0
+https://github.com/Freeboard/freeboard

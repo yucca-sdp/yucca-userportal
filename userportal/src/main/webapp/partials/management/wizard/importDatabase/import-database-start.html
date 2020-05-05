@@ -1,0 +1,52 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class='clearfix wizard-title' ng-cloak>
+	<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_TITLE</span> - <strong><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_START_SUBTITLE</span></strong></h3></div>
+	<div class='pull-right'><h3><small>Step 1/7</small></h3></div>
+</div>
+
+<div class='row'>
+	<div class='col-sm-10 col-sm-offset-1'>
+		<div>
+			<div class='wizard-step-intro'>
+				<div class='icon-hint '><i class='fa fa-lightbulb-o'></i></div>
+				<div class='wizard-step-intro-text' ng-bind-html="'MANAGEMENT_IMPORT_DATABASE_STEP_START_INTRO'|translate"></div>
+			</div>
+			<h3 class='new-dataset-choose-panel-question'><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_TYPE_QUESTION</span></h3>
+			<div class='import-dataset-choose-panel-question'>
+				<div class="row ">
+					<div class='col-sm-4 new-dataset-choose-panel-container col-sm-offset-1'>
+						<h3><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_TYPE_DB_TITLE</span></h3>
+						<div class='wizard-choose-panel' id='import-database-choose-source-db'>
+							<div  class='wizard-choose-panel-icons'>
+								<!-- <i class="fa fa-film" id='new-dataset-choose-panel-movie-icon'></i>
+								<i class="fa fa-camera" id='new-dataset-choose-panel-camera-icon'></i>
+								<i class="fa  fa-file-pdf-o" id='new-dataset-choose-panel-pdf-icon'></i> -->
+								<i class="fa fa-database" id="import-database-choose-source-db-icon"></i>
+								<i class="fa fa-plug" id="import-database-choose-source-connect-icon"></i>
+							</div>
+							<div class='wizard-choose-panel-action'><a class='btn btn-wizard-next'  href ng-click='chooseSourceType("database")'><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_DATABASE</span></a></div>
+							<p class='wizard-choose-panel-desc' translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_DATABASE_DESC</p>
+						</div>
+					</div>
+					<div class='col-sm-4 new-dataset-choose-panel-container col-sm-offset-2 coming-soon-panel-container'>
+						<div class='coming-soon-panel'><div class='coming-soon-panel-label'>Coming soon</div></div>
+						<h3><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_TYPE_SCRIPT_TITLE</span></h3>
+						<div class='wizard-choose-panel' id='import-database-choose-source-script'>
+							<div  class='wizard-choose-panel-icons'>
+								<span id="import-database-choose-source-sql-icon">SQL</span>
+								<i class="fa fa-file-o" id="import-database-choose-source-script-icon"></i>
+								<i class="fa fa-cog" id="import-database-choose-source-cogs-icon"></i>
+							</div>
+							<div class='wizard-choose-panel-action'><a class='btn btn-wizard-next'  href ng-click='chooseSourceType("script")' ng-disable='true'><span translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_SCRIPT</span></a></div>
+							<p class='wizard-choose-panel-desc' translate-cloak translate>MANAGEMENT_IMPORT_DATABASE_SOURCE_SCRIPT_DESC</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

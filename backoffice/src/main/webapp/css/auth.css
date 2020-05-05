@@ -1,0 +1,39 @@
+body{font-family: Helvetica, Arial, Sans-Serif;font-size: 14px;line-height: 20px;font-weight: 100;}
+
+body{background:#fff;}
+
+.header-strip{ background:#fff; height:1em;}
+.header-back{background:none;height:85px;}
+.header-text{background:#000; color: #f00;font-size:13px;text-align:center;}
+.header-text strong{color:#333;font-size:14px;}
+
+.logo{background:transparent url(../img/auth/logo.png) no-repeat left top;display:block;cursor:pointer;}
+
+.btn{border-radius: 0px; font-size: 17px; border: 0px solid #ccc; padding: 6px 12px;} 
+.btn-primary { background: #009640; }
+
+
+.login-header{  background: #007a35;}
+
+h1{ margin-top:20px;color:#333;font-weight:normal;font-size:36px;}
+
+.main-login-container{background:none;-webkit-box-shadow: none;-moz-box-shadow:none;box-shadow: none; border-top: solid 3px #009640; }
+
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] { color: #ffffff;background: #007135; /* Old browsers */}
+
+.btn-primary:active,
+.btn-primary.active {  background-color: #007135 \9;}
+input, textarea, .uneditable-input{font-size: 14px; line-height: 20px; padding: 8px;}
+label, .control-label{font-size: 14px;line-height: 20px; padding: 8px;}
+
+.different-login-container {background:none;-webkit-box-shadow: none;-moz-box-shadow:none;box-shadow: none; border-top: solid 3px #009640;border-bottom: solid 1px lightgray;}
+a.main-link[title~="SistemaPiemonte"] {background: url(../img/auth/logo-csi.png) no-repeat left top; }
+/* a.main-link[title~="CSI_indentity"]:after{content: ' - CSI Piemonte';} */
+.different-login-container a.main-link{font-size: 22px;line-height: 74px; padding-left: 86px;}
+div.different-login-container a.truncate{width: 400px!important;}

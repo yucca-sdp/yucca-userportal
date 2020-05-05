@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://appweb.reteunitaria.piemonte.it/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>store</td>
+	<td>1</td>
+	<td>i</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>2</td>
+	<td>loop</td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>${i} &lt; ${loop}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>readCSV</td>
+	<td>file:\d:/Installazione_applicativo_fromMail.csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeCellValue</td>
+	<td>descr</td>
+	<td>${i},1</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${i}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----&nbsp;&nbsp;${descr}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>title=BMC Remedy (Search)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>css=div.ardbnCustomer &gt; textarea</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>css=div.ardbnCustomer &gt; textarea</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>css=div.ardbnCustomer &gt; textarea</td>
+	<td>GARABUGGIO MARTA</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.ardbnz3Btn_SearchHPDCustomer &gt; div &gt; img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>title=People Search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=.ardbnz3BtnSelect &gt; div.btntextdiv &gt; div.f1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>title=BMC Remedy (Search)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=div.ardbnDescription &gt; textarea</td>
+	<td>Installazione stream</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=div.ardbnDescription + div &gt; textarea</td>
+	<td>${descr}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Menu for Livello categorizzazione operativa 1+']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;1L - Assistenza applicativa&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;1L - Assistenza applicativa&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;1L - Assistenza applicativa&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Menu for Operational Categorization Tier 2']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;Installazione applicativo&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;Installazione applicativo&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;Installazione applicativo&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Menu for Operational Categorization Tier 3']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;Public Sector Information&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;Public Sector Information&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;Piattaforma Smart Data Platform&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;Piattaforma Smart Data Platform&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Menu for Assigned Group*+']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;APP PIATSDP AS&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;APP PIATSDP AS&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;APP PIATSDP AS&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Menu for Assignee+']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;PARODI CLAUDIO&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;PARODI CLAUDIO&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;PARODI CLAUDIO&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Effort Time']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>title=Effort Time Spent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=div.ardbnEffortTimeSpentMinutes &gt; div &gt; input</td>
+	<td>180</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.ardbnBtn_Save &gt;&nbsp;&nbsp;div.btntextdiv &gt; div.f1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>title=BMC Remedy (Search)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.ardbnStatus &gt; div &gt; a &gt; img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;Resolved&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;Resolved&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;Resolved&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Menu for Status Reason']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;No Further Action Required&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;No Further Action Required&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;No Further Action Required&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=div.ardbnResolution &gt; textarea</td>
+	<td>Stream installato</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.ardbnReportedSource &gt; div &gt; a &gt; img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td:contains(&quot;Email&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td:contains(&quot;Email&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td:contains(&quot;Email&quot;)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//img[@alt='Editor for Data']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=ardivpok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.ardbnz3Btn_SaveForm &gt; div &gt; div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotText</td>
+	<td>css=div.ardbnDescription &gt; textarea</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${i}+1</td>
+	<td>i</td>
+</tr>
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

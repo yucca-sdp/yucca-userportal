@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>Smart Data Platform User Portal</display-name>
+	<description>
+       This is the user portal of The Smart Data Platform
+    </description>
+	<servlet>
+		<servlet-name>AuthorizeServlet</servlet-name>
+		<init-param>
+			<param-name>Issuer</param-name>
+			<param-value>userportal</param-value>
+		</init-param>
+		<init-param>
+			<param-name>IdpUrl</param-name>
+			<param-value>https://tst-sdnet-sec1.sdp.csi.it:9444/samlsso</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ConsumerUrl</param-name>
+			<param-value>http://tst-sdnet-up1.sdp.csi.it/userportal/api/authorize</param-value>
+		</init-param>
+		<init-param>
+			<param-name>AttributeConsumingServiceIndex</param-name>
+			<param-value>627970293</param-value>
+		</init-param>
+		<init-param>
+			<param-name>IdpLoginPageStylePath</param-name>
+			<param-value>http://tst-sdnet-up1.sdp.csi.it/userportal/css/auth.css</param-value>
+		</init-param>
+	</servlet>
+</web-app>     

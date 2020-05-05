@@ -1,0 +1,26 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class='clearfix wizard-title' ng-cloak>
+		<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_STREAM_WIZARD_STEP_SHARE_TITLE</span></h3></div>
+		<div class='pull-right'><h3><small>Step 5/5</small></h3></div>
+	</div>
+	<form class="form-horizontal" role="form" name="shareStreamForm" ng-cloak>
+		<datasource-sharing datasource='stream' ng-if='datasourceReady'></datasource-sharing>
+		<datasource-legal-info datasource='stream' ng-if='datasourceReady'></datasource-legal-info>
+		<datasource-dcat datasource='stream' ng-if='datasourceReady'></datasource-dcat>
+		<div class="form-group">
+			<div class=" col-sm-12 form-toolbar" ng-show="!isUpdating" >
+				<a ng-click='goToComponents()' class="btn " translate-cloak translate>BACK</a>
+				<a ng-click='save()' class="btn btn-wizard-next" ng-disabled="!isOwner() || shareStreamForm.$invalid " translate-cloak translate>SAVE_DRAFT</a>
+			</div>
+			<div class=" col-sm-12 col-lg-12 form-toolbar " ng-show="isUpdating" > 
+				<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+			</div>				
+
+		</div>
+	</form>
+</div>

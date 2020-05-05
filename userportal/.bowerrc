@@ -1,0 +1,6 @@
+{
+	"proxy":"http://proxy.csi.it:3128",
+	"https-proxy":"http://proxy.csi.it:3128",
+    "strict-ssl": false,
+	"directory": "src/main/webapp/lib"
+}

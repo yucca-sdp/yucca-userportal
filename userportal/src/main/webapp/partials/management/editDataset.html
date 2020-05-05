@@ -1,0 +1,117 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div ng-controller="ManagementEditCtrl as editCtrl"  ng-cloak>
+	<div ng-controller="ManagementDatasetCtrl as datasetCtrl"  ng-cloak>
+		<div class='container'>
+			<h3 class='content-edit-title'><span translate-cloak translate>DATASET</span> <small><span translate-cloak translate>MANAGEMENT_EDIT_DATASET_SUBTITLE</span>  {{dataset.datasetcode}} - {{dataset.datasetname}}</small></h3>
+			<datasource-intro datasource='inputDatasource' ng-if='datasetReady'></datasource-intro>
+		</div>
+		<div class='content-gray'>
+			<div class='container'>
+				<div class='row'>
+					<div ng-class="showHint?'col-sm-7': 'col-sm-11'">
+						<div class='alert alert-sandbox ng-hide' ng-show='tenant=="sandbox"'><strong><i class="fa fa-exclamation-triangle"></i>&nbsp;<span translate-cloak translate>WARNING_TITLE</span></strong>&nbsp;&nbsp;<span translate-cloak translate>MANAGEMENT_SANDBOX_WARNING</span></div>
+						<p>&nbsp;</p>
+						 <div class='row'>
+						 	<alert-panel content='admin_response'></alert-panel>
+						</div>
+						<div class='row'>
+							<div class="col-sm-12">
+								<form class="form-horizontal" role="form" name="editDatasetForm" accept-charset="UTF-8">
+									<div class='form-group'  style='display:none'>
+										<a href ng-click="provaDire();">debug</a>
+									</div>
+
+									<datasource-main-info datasource='dataset' datasource-domain='{{datasetDomain}}' datasource-subdomain='{{datasetSubdomain}}' operation='update'
+										ng-if='datasetReady'></datasource-main-info>
+									<datasource-detail-info datasource='dataset' ng-if='datasetReady'></datasource-detail-info>
+									<datasource-sharing datasource='dataset' ng-if='datasetReady'></datasource-sharing>
+									<datasource-legal-info datasource='dataset' ng-if='datasetReady'></datasource-legal-info>
+									<datasource-dcat datasource='dataset' ng-if='datasetReady'></datasource-dcat>
+									<datasource-components datasource='dataset' preview='preview' ng-if='datasetReady'  action='editDatasource' status="{{inputDatasource.status.statuscode}}"></datasource-components>
+									
+									<div class="row"  ng-show="updateStatus!='update'">
+										<div class=" col-sm-12 form-toolbar" ng-show="isAuthorized('management/datasets/update')">
+											<a  href='#/management/viewDatasource/dataset/{{tenant}}/{{dataset.datasetcode}}/{{dataset.iddataset}}' class="btn" translate-cloak translate>MANAGEMENT_EDIT_DATASET_FINISH_BUTTON</a>
+											<a  ng-click='updateDataset()'  class="btn btn-default" ng-disabled="!isOwner() || editDatasetForm.$invalid || checkTag(dataset)" translate-cloak translate>MANAGEMENT_EDIT_DATASET_SAVE_BUTTON</a>
+										</div>
+									</div>
+									<div class="row"  ng-show="updateStatus=='update'" ng-cloak>
+										<div class=" col-sm-12 col-lg-12 form-toolbar">
+											<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+										</div>				
+									</div>
+								</form>
+								</div>
+						</div>
+					</div>
+					<div class="panel-hint" ng-class="showHint?'col-sm-5': 'col-sm-1'">
+						<div class='panel-hint-content' ng-if='showHint'>
+							<h2>
+								<a href ng-click='showHintToggle()' class='icon-toggle'><i class="fa fa-caret-right" aria-hidden="true"></i></a>
+								<span class='icon-hint'><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>
+								&nbsp;<span translate>MANAGEMENT_PANEL_METADATA_HINT_TITLE</span>
+							</h2>
+							<ul class='fa-ul'>
+								<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_START_NAME_HINT'|translate"></span>  </li>
+								<li class='hint-item'><i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i><span class='hint-message' ng-bind-html="'MANAGEMENT_EDIT_DATASET_UNPUBLISHED_FLAG_HINT'|translate"></span>  </li>
+								<li class='hint-item'>
+									<i class="fa-li fa fa-angle-double-right" aria-hidden="true"></i>
+									<strong class='hint-message' ng-bind-html="'MANAGEMENT_DATASET_METADATA_MANDATORY_HINT'|translate"></strong>
+									<ul class='fa-ul'>
+										<li >
+											<i class='fa fa-square-o' ng-if='dataset.datasetname==null'></i>
+											<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.datasetname!=null'></i></span>
+											<span translate>DATASET_FIELD_METADATA_NAME</span>
+										</li>
+										<li >
+											<i class='fa fa-square-o' ng-if='dataset.description==null'></i>
+											<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.description!=null'></i></span>
+											<span translate>DATASET_FIELD_METADATA_DESCRIPTION</span>
+										</li>
+										<li >
+											<i class='fa fa-square-o' ng-if='checkTag(dataset)'></i>
+											<span class='text-success'><i class='fa fa-check-square-o ' ng-if='!checkTag(dataset)'></i></span>
+											<span translate>MANAGEMENT_DATASET_MATADATA_TAG_HINT</span>
+										</li>
+										
+										<li ng-if='!dataset.unpublished'>
+											
+											<strong translate>MANAGEMENT_DATASET_MATADATA_DCAT_HINT</strong>
+										</li>
+										<li ng-if='!dataset.unpublished'>
+											<i class='fa fa-square-o' ng-if='dataset.dcat.dcatrightsholdername==null'></i>
+											<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.dcat.dcatrightsholdername!=null'></i></span>
+											<span translate>DATASET_FIELD_METADATA_DCAT_RIGHTHOLDERNAME</span>
+										</li>
+										<li ng-if='!dataset.unpublished'>
+											<i class='fa fa-square-o' ng-if='dataset.dcat.dcatnomeorg==null'></i>
+											<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.dcat.dcatnomeorg!=null'></i></span>
+											<span translate>DATASET_FIELD_METADATA_DCAT_NOMEORG</span>
+										</li>
+										<li ng-if='!dataset.unpublished'>
+											<i class='fa fa-square-o' ng-if='dataset.dcat.dcatemailorg==null'></i>
+											<span class='text-success'><i class='fa fa-check-square-o ' ng-if='dataset.dcat.dcatemailorg!=null'></i></span>
+											<span translate>DATASET_FIELD_METADATA_DCAT_EMAILORG</span>
+										</li>
+															
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div ng-if='!showHint' class='panel-hint-closed'>
+							<h2>
+								<a href ng-click='showHintToggle()' class='icon-toggle'><i class="fa fa-caret-left" aria-hidden="true"></i></a>
+								<a href ng-click='showHintToggle()' class='icon-hint'><i class="fa fa-lightbulb-o" aria-hidden="true"></i></a>
+							</h2>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

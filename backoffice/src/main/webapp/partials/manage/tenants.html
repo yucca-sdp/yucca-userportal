@@ -1,0 +1,428 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+
+<div ng-controller="TenantCtrl as tenantsCtrl" class='container-fluid'>
+	<div class='' ng-cloak>
+		<div class='clearfix  content-toolbar'>	
+			<h3 class='content-title'><span translate>TENANTS</span> <small title="{{'DASHBOARD_TENANT_INTRO'|translate}}">{{'DASHBOARD_TENANT_INTRO'|translate|string_ellipse:50}}</small></h3>
+			<div class="btn-group content-toolbar-end">
+				<form class="form-inline" role="form">
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="statusFilter" placeholder="{{'TENANT_LIST_STATUS_FILTER'|translate}}" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="nameFilter" placeholder="{{'TENANT_LIST_NAME_FILTER'|translate}}" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" ng-model="codeFilter" placeholder="{{'TENANT_LIST_CODE_FILTER'|translate}}" />
+					</div>
+					<div class="form-group">
+						<a class='btn btn-primary-negative' href ng-click='loadTenants()'><i class='glyphicon glyphicon-refresh'></i> <span translate>RELOAD</span></a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="table-responsive dashboard-list-table">
+			<table class="table table-actions">
+				<thead>
+					<tr>
+						<th class='text-center'>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="selectAll"  ng-click="selectAll($event)"  />
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>
+						
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'tenant.idTenant'; reverse=!reverse"><span translate>TENANT_FIELD_ID</span> 
+								<span ng-show="predicate=='tenant.idTenant' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+								<span ng-show="predicate=='tenant.idTenant' && reverse" class="glyphicon glyphicon-chevron-down small"></span>
+							</a>
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'tenant.name'; reverse=!reverse"><span translate>TENANT_FIELD_NAME</span> 
+							<span ng-show="predicate=='tenant.name' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='tenant.name' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'tenant.tenantcode'; reverse=!reverse"><span translate>TENANT_FIELD_CODE</span> 
+							<span ng-show="predicate=='tenant.tenantcode' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='tenant.tenantcode' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'tenant.description'; reverse=!reverse"><span translate>TENANT_FIELD_DESCRIPTION</span> 
+							<span ng-show="predicate=='tenant.description' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='tenant.description' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						
+						</th>
+						<th>
+							<span translate>TENANT_FIELD_MAX_DATASET_NUM</span> 
+						</th>
+						<th>
+							<span translate>TENANT_FIELD_MAX_STREAM_NUM</span> 
+						</th>
+						<th>
+							<a href="" ng-click="predicate = 'tenant.tenantStatus.description'; reverse=!reverse"><span translate>STREAM_FIELD_STATUS</span> 
+							<span ng-show="predicate=='tenant.tenantStatus.description' && !reverse" class="glyphicon glyphicon-chevron-up small"></span>
+							<span ng-show="predicate=='tenant.tenantStatus.description' && reverse" class="glyphicon glyphicon-chevron-down small"></span></a>
+						</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-show="showLoading">
+						<td colspan='10' >
+							<div class='ajax-loading-container'>
+								<span class='ajax-loading-big'></span>
+								<h4>Loading...</h4>
+							</div>
+						</td>
+					</tr>
+					<tr  class='table-data-row' ng-class='{"table-action-selected-row": row.isSelected}' 
+						ng-repeat="row in filteredTenants = (tenantsList | filter: searchCodeFilter | filter: searchNameFilter | filter: searchStatusFilter | orderBy:predicate:reverse )|startFrom:(currentPage-1)*pageSize | limitTo:pageSize  ">
+						<td class='table-data-row-first '>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="row.isSelected" ng-click="updateSelection($event, row.rowIndex)" ng-disabled='row.disabled'/> 
+									<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+								</label>
+							</div>							
+						</td>
+						<td class='text-left'>
+							<strong>{{row.tenant.idTenant}}</strong>
+						</td>
+						<td><small>{{row.tenant.name}}</small></td>
+						<td><small>{{row.tenant.tenantcode}}</small></td>
+						<td><span title='{{row.tenant.description}}'><small>{{row.tenant.description|string_ellipse:15}}</small></span></td>
+						<td><small>{{row.tenant.bundles.maxdatasetnum}}</small></td>
+						<td><small>{{row.tenant.bundles.maxstreamsnum}}</small></td>
+						<td class='text-left'><span ng-bind-html="row.statusIcon"></span> <small>{{row.tenant.tenantStatus.description}}</small></td>
+						<td class='text-right'> 
+							<a class='btn btn-default btn-sm' href ng-click='prepareMail(row)' title="{{'DASHBOARD_TENANT_PREPARE_MAIL_BUTTON_HINT'|translate}}">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>	<span translate>DASHBOARD_TENANT_PREPARE_MAIL_BUTTON</span>
+							</a>
+						</td>
+						<td class='text-right'> 
+							<i class='{{row.feedbackIcon}}'></i>
+							<span class='row-feedback-{{row.feedback}}'>{{row.feedback}}</span>
+							<a class='btn btn-default btn-sm' href ng-click='openLog(row)' title="{{'DASHBOARD_STREAM_LOG_BUTTON_HINT'|translate}}" ng-if='row.feedbackLog'>
+								<span translate>DASHBOARD_STREAM_LOG_BUTTON</span>
+							</a>
+						</td>
+					</tr>
+<!--  					<tr ng-repeat-end class='table-action-row table-action-selected-row' ng-show="row.isSelected || row.updated">
+						<td class='table-action-row-first'>&nbsp;</td>
+						<td colspan='3'>
+							<form class="form-inline install-form-inline">
+  								<div class="form-group">
+   									<label for="streamAction"><small><span translate>DASHBOARD_STREAM_ACTION_LABEL</span></small></label>&nbsp;
+   									<select class="form-control input-sm"  ng-model="row.action" ng-options="action as action for action in actions"></select>
+  								</div>
+		  						<div class="form-group">
+	  								<span translate>DASHBOARD_STREAM_STEP_LABEL</span>&nbsp;
+   									<label for="stepStart"><small><span translate>DASHBOARD_STREAM_START_STEP_LABEL</span></small></label>&nbsp;
+   									<input type="number" class="form-control input-sm input-step" ng-model="row.startStep"/>
+  								</div>
+  								<div class="form-group">
+   									<label for="stepEnd"><small><span translate>DASHBOARD_STREAM_END_STEP_LABEL</span></small></label>&nbsp;
+   									<input type="number" class="form-control input-sm input-step" ng-model="row.endStep"/>
+  								</div>
+							</form>	
+						</td>
+						<td colspan='6'>
+							<div class='install-feedback-inline'>
+								<div ng-show='row.errorValidation!=null'>
+									<span class="text-danger">{{row.errorValidation|translate}}</span>
+								</div>
+								
+								
+								<div ng-show='row.actionFeedback!=null'>
+									<div class='clearfix install-feedback-info'>
+										<div class='pull-left' ng-show='row.actionFeedback!=null'><i class="{{row.actionIconClass}}" title="{{row.actionFeedback}}"></i>&nbsp; {{row.actionFeedback}}</div>
+										<div class='pull-right'>Step <strong>{{row.feedback.lastStep.actionType}}</strong> - status: <strong>{{row.feedback.lastStep.status}}</strong></div>
+									</div>
+									<div class='install-progress-panel'>
+										<a href ng-repeat="step in row.feedback.steps" title="{{step.actionName}} - {{step.actionType}}" ng-class='step.style' style="{{step.width}}">
+											{{step.stepNum}}
+										</a>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>				-->
+					
+				</tbody>
+			</table>
+		</div>
+		<div class='table-toolbar'>
+			<pagination boundary-links="true" total-items="filteredTenants.length" ng-model="currentPage" ng-change="selectPage()" class="pagination-sm" previous-text="&lsaquo;"
+				next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+			></pagination>
+		</div>
+		<div class='table-toolbar'>
+			<div class='form-inline table-toolbar-item'>
+				<select class='form-control input-sm' ng-model='newStatus'>
+					<option>Scegli uno stato...</option>
+					<option ng-repeat="status in tenantStatus track by $index" value='{{status.id_tenant_status}}'>{{status.tenantstatuscode|translate}} - {{status.tenantstatuscode}}</option>
+				</select>
+				<a class='btn btn-default' href ng-click='changeStatus()' title="{{'DASHBOARD_STREAM_CHANGESTATUS_BUTTON_HINT'|translate}}"><span translate>DASHBOARD_STREAM_CHANGESTATUS_BUTTON</span></a>
+			</div>
+			<div class='table-toolbar-separator'>&nbsp;</div>
+			<div class='table-toolbar-item'>
+				<a class='btn btn-default ' href ng-click="openNewTenant()"><span translate>DASHBOARD_TENANT_NEW_BUTTON</span></a>
+			</div>	
+			<div class='table-toolbar-separator'>&nbsp;</div>
+			<div class='table-toolbar-item'>
+				<a class='btn btn-default ' href ng-click="execActions('delete')"><span translate>DASHBOARD_TENANT_UNINSTALL_BUTTON</span></a>
+			</div>
+			<div class='table-toolbar-item'>
+				<a class='btn btn-default ' href ng-click="execActions('install')"><span translate>DASHBOARD_TENANT_INSTALL_BUTTON</span></a>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+		
+	</div>
+	
+
+
+	<script type="text/ng-template" id="newTenant.html">
+        <div class="modal-header">
+			<button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title">New Tenant</small></h3>
+        </div>
+        <div class="modal-body dashboard-tenant-new-tenant-dialog">
+
+			<div class="alert alert-success text-left" ng-show='info!=null'>
+				<strong translate>INFO</strong> 
+				<p><span ng-bind-html="info"></span></p>
+			</div>
+			<div class="alert alert-danger text-left" ng-show='error!=null'>
+				<strong translate>ERROR</strong> 
+				<p><span ng-bind-html="error"></span></p>
+			</div>
+			<div class="alert alert-warning text-left" ng-show='warning!=null'>
+				<strong translate>WARNING</strong> 
+				<p><span ng-bind-html="warning"></span></p>
+			</div>
+
+
+			 <form class='form' role="form" name="forms.newTenantForm" ng-class="{submitted:forms.newTenantForm.submitted}" >
+				<div class='row'>
+				  <div class='form-section form-section-1 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_INFO</span></h4></legend>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_name" translate>TENANT_FIELD_NAME</label>
+						<input type='text' class="form-control " ng-model="newTenant.name" ng-required="true" placeholder="{{'TENANT_FIELD_NAME'|translate}}" id="newTenant_name"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_description" translate>TENANT_FIELD_DESCRIPTION</label>
+						<input type='text' class="form-control " ng-model="newTenant.description" placeholder="{{'TENANT_FIELD_DESCRIPTION'|translate}}" id="newTenant_description"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_idOrganization" translate>TENANT_FIELD_ORGANIZATION</label>
+						<select class="form-control " ng-model="newTenant.idOrganization" id="newTenant_idOrganization" ng-change="organizationCodeChange()" ng-required="true" >
+							<option value="" disabled selected translate>TENANT_FIELD_ORGANIZATION</option>
+							<option value='{{organization.idOrganization}}' title='{{organization.organizationcode}}' ng-repeat="organization in organizationList track by $index">{{organization.organizationcode}}</option>
+						</select>
+					</div>
+				  </div>
+				  <div class='form-section form-section-1 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_USER</span></h4></legend>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_username" translate>TENANT_FIELD_USERNAME</label>
+						<input type='text' class="form-control " ng-model="newTenant.username" ng-required="true" placeholder="{{'TENANT_FIELD_USERNAME'|translate}}" id="newTenant_username"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_userfirstname" translate>TENANT_FIELD_USER_FIRSTNAME</label>
+						<input type='text' class="form-control " ng-model="newTenant.userfirstname" ng-required="true" placeholder="{{'TENANT_FIELD_USER_FIRSTNAME'|translate}}" id="newTenant_userfirstname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_userlastname" translate>TENANT_FIELD_USER_LASTTNAME</label>
+						<input type='text' class="form-control " ng-model="newTenant.userlastname" ng-required="true" placeholder="{{'TENANT_FIELD_USER_LASTTNAME'|translate}}" id="newTenant_userlastname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_useremail" translate>TENANT_FIELD_USER_EMAIL</label>
+						<input type='email' class="form-control " ng-model="newTenant.useremail" ng-required="true" placeholder="{{'TENANT_FIELD_USER_EMAIL'|translate}}" id="newTenant_useremail"/>
+					</div>
+				  </div>
+  			<div class='form-section form-section-1 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_BIM</span></h4></legend>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_userfirstname" translate>TENANT_FIELD_USER_FIRSTNAME</label>
+						<input type='text' class="form-control " ng-model="productContactBim.name"  placeholder="{{'TENANT_FIELD_USER_FIRSTNAME'|translate}}" id="newTenant_bimname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_useremail" translate>TENANT_FIELD_USER_EMAIL</label>
+						<input type='email' class="form-control " ng-required = "productContactBim.name" ng-model="productContactBim.email"  placeholder="{{'TENANT_FIELD_USER_EMAIL'|translate}}" id="newTenant_bimmail"/>
+					</div>
+				  </div>
+
+				  <div class='form-section form-section-1 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_PM</span></h4></legend>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_userfirstname" translate>TENANT_FIELD_USER_FIRSTNAME</label>
+						<input type='text' class="form-control " ng-model="productContactPm.name"  placeholder="{{'TENANT_FIELD_USER_FIRSTNAME'|translate}}" id="newTenant_pmtname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_useremail" translate>TENANT_FIELD_USER_EMAIL</label>
+						<input type='email' class="form-control " ng-required = "productContactPm.name" ng-model="productContactPm.email"  placeholder="{{'TENANT_FIELD_USER_EMAIL'|translate}}" id="newTenant_pmemail"/>
+					</div>
+				  </div>
+				
+				
+			</div>
+			<div class='row'>
+			<div class='form-section form-section-1 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_CONFIG</span></h4></legend>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_idTenantType" translate>TENANT_FIELD_TYPE</label>					
+						<select class="form-control " ng-model="newTenant.idTenantType" id="newTenant_idTenantType"  ng-required="true" >
+							<option value="" disabled selected translate>TENANT_FIELD_TYPE</option>
+							<option value='{{tenantType.idTenantType}}' title='{{tenantType.tenanttypecode}}' ng-repeat="tenantType in tenantTypeList track by $index">{{tenantType.tenanttypecode}}</option>
+						</select>
+					</div> 		
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_maxOdataResultPerPage" translate>TENANT_FIELD_MAX_ODATA_RESULT_PER_PAGE</label>
+						<input type='number'  min="1" class="form-control " ng-model="newTenant.bundles.maxOdataResultPerPage" ng-required="true" placeholder="{{'TENANT_FIELD_MAX_ODATA_RESULT_PER_PAGE'|translate}}" id="newTenant_maxOdataResultPerPage"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label"  translate>TENANT_FIELD_HAS_STAGE</label>
+						<input type='text'   class="form-control " ng-model="newTenant.bundles.hasstage" ng-required="true" placeholder="{{'TENANT_FIELD_HAS_STAGE'|translate}}" id="newTenant_hasstage"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label"  translate>TENANT_FIELD_MAX_DATASET_NUM</label>
+						<input type='number'  class="form-control " ng-model="newTenant.bundles.maxdatasetnum" ng-required="true" placeholder="{{'TENANT_FIELD_MAX_DATASET_NUM'|translate}}" id="newTenant_maxdatasetnum"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label"  translate>TENANT_FIELD_MAX_STREAM_NUM</label>
+						<input type='number'   class="form-control " ng-model="newTenant.bundles.maxstreamsnum" ng-required="true" placeholder="{{'TENANT_FIELD_MAX_STREAM_NUM'|translate}}" id="newTenant_maxstreamsnum"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label"  translate>TENANT_FIELD_ZEPPELIN</label>
+						<input type='text'  class="form-control " ng-model="newTenant.bundles.zeppelin" ng-required="true" placeholder="{{'TENANT_FIELD_ZEPPELIN'|translate}}" id="newTenant_zeppelin"/>
+					</div>
+				</div>
+				 
+    
+				 <div class='form-section form-section-2 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_SOLR_COLLECTION</span></h4></legend>
+					<input type="checkbox" ng-model="checked" /> Modifica campi
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_datasolrcollectionname" translate>Data collection </label>
+						<input type='text' class="form-control " ng-disabled="!checked" ng-model="newTenant.datasolrcollectionname"  placeholder="Data collection name" id="newTenant_datasolrcollectionname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_measuresolrcollectionname" translate>Measures collection</label>
+						<input type='text' class="form-control " ng-disabled="!checked" ng-model="newTenant.measuresolrcollectionname" placeholder="Measures collection name" id="newTenant_measuresolrcollectionname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_socialsolrcollectionname" translate>Social collection</label>
+						<input type='text' class="form-control " ng-disabled="!checked" ng-model="newTenant.socialsolrcollectionname"  placeholder="Social collection name" id="newTenant_socialsolrcollectionname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_mediasolrcollectionname" translate>Media collection</label>
+						<input type='text' class="form-control " ng-disabled="!checked" ng-model="newTenant.mediasolrcollectionname"  placeholder="Media collection name" id="newTenant_mediasolrcollectionname"/>
+					</div>
+				  </div>
+	  			  <div class='form-section form-section-3 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_PHOENIX_SCHEMA</span></h4></legend>
+					<input type="checkbox" ng-model="checkedPh" /> Modifica campi
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_dataphoenixschemaname" translate>Data schema name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPh" ng-model="newTenant.dataphoenixschemaname"  placeholder="Data schema name" id="newTenant_dataphoenixschemaname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_measuresphoenixschemaname" translate>Measures schema name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPh" ng-model="newTenant.measuresphoenixschemaname"  placeholder="Measures schema name" id="newTenant_measuresphoenixschemaname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_socialphoenixschemaname" translate>Social schema name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPh" ng-model="newTenant.socialphoenixschemaname"  placeholder="Social schema name" id="newTenant_socialphoenixschemaname"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_mediaphoenixschemaname" translate>Media schema name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPh" ng-model="newTenant.mediaphoenixschemaname"  placeholder="Media schema name" id="newTenant_mediaphoenixschemaname"/>
+					</div>
+				  </div>
+				  <div class='form-section form-section-4 col-sm-3'>
+					<legend class='form-section-title'><h4><span translate>TENANT_FORM_PHOENIX_TABLE</span></h4></legend>
+					<input type="checkbox" ng-model="checkedPhTable" /> Modifica campi
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_dataphoenixtablename" translate>Data table name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPhTable" ng-model="newTenant.dataphoenixtablename"  placeholder="Data table name" id="newTenant_dataphoenixtablename" value="DATA"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_measuresphoenixtablename" translate>Measures table name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPhTable" ng-model="newTenant.measuresphoenixtablename" placeholder="Measures table name" id="newTenant_measuresphoenixtablename" value="MEASURES"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_socialphoenixtablename" translate>Social table name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPhTable" ng-model="newTenant.socialphoenixtablename"  placeholder="Social table name" id="newTenant_socialphoenixtablename" value="SOCIAL"/>
+					</div>
+					<div class='form-group'>
+						<label class="small-label" for="newTenant_mediaphoenixtablename" translate>Media table name</label>
+						<input type='text' class="form-control " ng-disabled="!checkedPhTable" ng-model="newTenant.mediaphoenixtablename"  placeholder="Media table name" id="newTenant_mediaphoenixtablename" value="MEDIA"/>
+					</div>
+			</div>
+		    <div class='form-group'><div class='col-sm-12'>&nbsp;</div></div>
+				  <div class='form-group'>
+					<div class='col-sm-12 text-right'>
+						<button class="btn btn-default " ng-click="createNewTenant()"  g-disabled="forms.newTenantForm.$invalid ">Create</button>
+					</div>
+		    </div>
+		</form>	
+        </div>
+    </script>
+        
+    <script type="text/ng-template" id="tenantMailPreview.html">
+        <div class="modal-header">
+			<button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title">Mail for <small>{{streamName}}</small> </h3>
+        </div>
+        <div class="modal-body">
+			<div class='clearfix' ng-show="!tenantMail.loading">
+				<div>
+					<form role="form" class="form-horizontal">
+                		<div class="form-group">
+                  			<label class="col-sm-2" for="mailTenantTo">To</label>
+                 			<div class="col-sm-10"><input class="form-control" id="mailTenantTo" placeholder="comma separated list of recipients" type="email" ng-model="tenantMail.destinatario"></div>
+                		</div>
+                		<div class="form-group">
+                 			<label class="col-sm-2" for="mailTenantSubject">Subject</label>
+                  			<div class="col-sm-10"><input class="form-control" id="mailTenantSubject" placeholder="subject" type="text" ng-model="tenantMail.soggetto"></div>
+                		</div>
+                		<div class="form-group">
+                  			<label class="col-sm-12" for="mailTenantBody">Message</label>
+                  			<div class="col-sm-12"><textarea class="form-control" id="mailTenantBody" rows="18" ng-model="tenantMail.testo"></textarea></div>
+                		</div>
+					</form>
+				</div>	
+			</div>
+			<div class="alert alert-danger text-left" ng-show='tenantMail.error!=null'>
+				<strong translate>ERROR</strong> 
+				<p><span ng-bind-html="tenantMail.error"></span></p>
+			</div>
+			<div class='ajax-loading-container' ng-show="tenantMail.loading">
+				<span class='ajax-loading-big'></span>
+				<h4>Loading&hellip;</h4>
+			</div>
+        </div>
+        <div class="modal-footer">
+			<div class='clearfix'>
+				<div class='pull-left'><a href ng-click="close()" translate>CANCEL</a></div>
+				<div class='pull-right'>
+					<span class="hint-icon fa fa-lightbulb-o"></span> <span translate>DASHBOARD_TENANT_PREPARE_MAIL_POPUP_BUTTON_HINT</span>
+            		<button class="btn btn-primary" ng-click="sendMail()"><span translate>DASHBOARD_TENANT_SEND_MAIL_BUTTON</span></button>
+				</div>	
+			</div>
+        </div>
+    </script>
+   
+</div>

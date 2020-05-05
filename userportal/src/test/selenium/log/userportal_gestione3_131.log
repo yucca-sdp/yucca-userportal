@@ -1,0 +1,179 @@
+2015-09-15 12:32:15 [info] Playing test case Creazione DataSet con allegati private to public
+2015-09-15 12:32:16 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:32:18 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:32:21 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:32:21 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:32:22 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:32:23 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:32:24 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:32:25 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:32:26 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:32:26 [info] Executing: |verifyElementPresent | //td[2] |  |
+2015-09-15 12:32:26 [error] false
+2015-09-15 12:32:27 [info] Executing: |click | //a/span[2] |  |
+2015-09-15 12:32:28 [info] Executing: |type | id=inputDatasetName | testDataSet |
+2015-09-15 12:32:29 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div/new-dataset-wizard-start/form/div[2]/div/select | Salute |
+2015-09-15 12:32:30 [info] Executing: |click | link=Next |  |
+2015-09-15 12:32:31 [info] Executing: |type | id=requestorName | nome |
+2015-09-15 12:32:31 [info] Executing: |type | id=requestorSurname | cognome |
+2015-09-15 12:32:32 [info] Executing: |type | id=requestorEmail | mymail |
+2015-09-15 12:32:33 [info] Executing: |click | name=accettazionePrivacy |  |
+2015-09-15 12:32:34 [info] Executing: |click | name=accettazioneResponsability |  |
+2015-09-15 12:32:35 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[2] |  |
+2015-09-15 12:32:37 [info] Executing: |verifyElementPresent | //td[2] |  |
+2015-09-15 12:33:39 [info] Playing test case Creazione DataSet con allegati private to public
+2015-09-15 12:33:40 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:33:42 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:33:43 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:33:44 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:33:44 [error] false
+2015-09-15 12:33:45 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:33:45 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:33:46 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:33:46 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:33:47 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:33:47 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:33:48 [info] Executing: |click | //a/span[2] |  |
+2015-09-15 12:33:49 [info] Executing: |type | id=inputDatasetName | testDataSet |
+2015-09-15 12:33:50 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div/new-dataset-wizard-start/form/div[2]/div/select | Salute |
+2015-09-15 12:33:50 [info] Executing: |click | link=Next |  |
+2015-09-15 12:33:51 [info] Executing: |type | id=requestorName | nome |
+2015-09-15 12:33:51 [info] Executing: |type | id=requestorSurname | cognome |
+2015-09-15 12:33:52 [info] Executing: |type | id=requestorEmail | mymail |
+2015-09-15 12:33:53 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:33:54 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-15 12:34:20 [info] Playing test case Creazione DataSet con allegati private to public
+2015-09-15 12:34:21 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:34:22 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:34:24 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:34:25 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:34:25 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:34:26 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:34:26 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:34:27 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:34:27 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:34:28 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:34:29 [info] Executing: |click | //a/span[2] |  |
+2015-09-15 12:34:30 [info] Executing: |type | id=inputDatasetName | testDataSet |
+2015-09-15 12:34:30 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div/new-dataset-wizard-start/form/div[2]/div/select | Salute |
+2015-09-15 12:34:31 [info] Executing: |click | link=Next |  |
+2015-09-15 12:34:31 [info] Executing: |type | id=requestorName | nome |
+2015-09-15 12:34:32 [info] Executing: |type | id=requestorSurname | cognome |
+2015-09-15 12:34:32 [info] Executing: |type | id=requestorEmail | mymail |
+2015-09-15 12:34:33 [info] Executing: |click | name=accettazionePrivacy |  |
+2015-09-15 12:34:33 [info] Executing: |click | name=accettazioneResponsability |  |
+2015-09-15 12:34:34 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[2] |  |
+2015-09-15 12:34:34 [info] Executing: |type | id=inputDatasetDesc | testDescr |
+2015-09-15 12:34:35 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/div/select | Fuoco |
+2015-09-15 12:34:35 [info] Executing: |click | css=i.glyphicon.glyphicon-plus |  |
+2015-09-15 12:34:36 [info] Executing: |verifyElementPresent | //div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/p/span/span |  |
+2015-09-15 12:34:36 [info] Executing: |click | id=RadioGroupVisibility_1 |  |
+2015-09-15 12:34:37 [info] Executing: |type | id=inputDatasetLicence | lic |
+2015-09-15 12:34:37 [info] Executing: |type | id=inputDatasetDisclaimer | restr |
+2015-09-15 12:34:38 [info] Executing: |type | id=inputDatasetCopyright | copy |
+2015-09-15 12:34:38 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[3] |  |
+2015-09-15 12:34:39 [info] Executing: |click | link=Definisci le colonne |  |
+2015-09-15 12:34:40 [info] Executing: |type | xpath=(//input[@type='text'])[10] | uno |
+2015-09-15 12:34:40 [info] Executing: |type | xpath=(//input[@type='text'])[11] | due |
+2015-09-15 12:34:41 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[4]/div[4]/select | int |
+2015-09-15 12:34:41 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[4]/div[6]/select | sec |
+2015-09-15 12:34:42 [info] Executing: |click | //input[@type='checkbox'] |  |
+2015-09-15 12:34:42 [info] Executing: |click | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[4]/div[10]/a/i |  |
+2015-09-15 12:34:43 [info] Executing: |type | xpath=(//input[@type='text'])[16] | ssss |
+2015-09-15 12:34:43 [info] Executing: |type | xpath=(//input[@type='text'])[17] | ffff |
+2015-09-15 12:34:44 [info] Executing: |click | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[7]/div[3]/div[4]/a/i |  |
+2015-09-15 12:34:44 [info] Executing: |click | link=Crea dataset |  |
+2015-09-15 12:34:45 [info] Executing: |waitForElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:34:53 [info] Executing: |click | link=Modifica |  |
+2015-09-15 12:34:53 [info] Executing: |click | id=RadioGroupVisibility_0 |  |
+2015-09-15 12:34:54 [info] Executing: |click | link=Salva |  |
+2015-09-15 12:34:54 [info] Executing: |waitForElementPresent | //div[2]/div/div[2]/div/div[2] |  |
+2015-09-15 12:34:55 [info] Executing: |click | link=Fine modifica |  |
+2015-09-15 12:34:55 [info] Test case passed
+2015-09-15 12:34:55 [info] Playing test case Creazione DataSet con allegati
+2015-09-15 12:34:56 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:34:57 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:34:59 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:34:59 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:35:00 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:35:00 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:35:01 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:35:02 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:35:02 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:35:03 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:35:03 [info] Executing: |click | //a/span[2] |  |
+2015-09-15 12:35:04 [info] Executing: |type | id=inputDatasetName | testDataSet |
+2015-09-15 12:35:05 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div/new-dataset-wizard-start/form/div[2]/div/select | Salute |
+2015-09-15 12:35:05 [info] Executing: |click | link=Next |  |
+2015-09-15 12:35:06 [info] Executing: |type | id=requestorName | nome |
+2015-09-15 12:35:06 [info] Executing: |type | id=requestorSurname | cognome |
+2015-09-15 12:35:07 [info] Executing: |type | id=requestorEmail | mymail |
+2015-09-15 12:35:07 [info] Executing: |click | name=accettazionePrivacy |  |
+2015-09-15 12:35:08 [info] Executing: |click | name=accettazioneResponsability |  |
+2015-09-15 12:35:08 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[2] |  |
+2015-09-15 12:35:09 [info] Executing: |type | id=inputDatasetDesc | testDescr |
+2015-09-15 12:35:09 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/div/select | Fuoco |
+2015-09-15 12:35:10 [info] Executing: |click | css=i.glyphicon.glyphicon-plus |  |
+2015-09-15 12:35:10 [info] Executing: |verifyElementPresent | //div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/p/span/span |  |
+2015-09-15 12:35:11 [info] Executing: |click | id=RadioGroupVisibility_0 |  |
+2015-09-15 12:35:11 [info] Executing: |type | id=inputDatasetLicence | lic |
+2015-09-15 12:35:12 [info] Executing: |type | id=inputDatasetDisclaimer | restr |
+2015-09-15 12:35:13 [info] Executing: |type | id=inputDatasetCopyright | copy |
+2015-09-15 12:35:13 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[3] |  |
+2015-09-15 12:35:14 [info] Executing: |click | link=Definisci le colonne |  |
+2015-09-15 12:35:14 [info] Executing: |type | xpath=(//input[@type='text'])[10] | uno |
+2015-09-15 12:35:15 [info] Executing: |type | xpath=(//input[@type='text'])[11] | due |
+2015-09-15 12:35:15 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[4]/div[4]/select | int |
+2015-09-15 12:35:16 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[4]/div[6]/select | sec |
+2015-09-15 12:35:16 [info] Executing: |click | //input[@type='checkbox'] |  |
+2015-09-15 12:35:17 [info] Executing: |click | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[4]/div[10]/a/i |  |
+2015-09-15 12:35:17 [info] Executing: |type | xpath=(//input[@type='text'])[16] | ssss |
+2015-09-15 12:35:18 [info] Executing: |type | xpath=(//input[@type='text'])[17] | ffff |
+2015-09-15 12:35:18 [info] Executing: |click | //div[@id='newDatasetWizard']/div/div[6]/new-dataset-wizard-columns/form/div/ng-include/div/div[7]/div[3]/div[4]/a/i |  |
+2015-09-15 12:35:19 [info] Executing: |click | link=Crea dataset |  |
+2015-09-15 12:35:20 [info] Executing: |waitForElementPresent | css=div.url > strong.ng-binding |  |
+2015-09-15 12:35:26 [info] Test case passed
+2015-09-15 12:35:26 [info] Playing test case Creazione DataSet senza allegati
+2015-09-15 12:35:26 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:35:28 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:35:30 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:35:31 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:35:31 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:35:32 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:35:32 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:35:33 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:35:33 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:35:34 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:35:34 [info] Executing: |click | link=Carica nuovo Dataset |  |
+2015-09-15 12:35:35 [info] Executing: |type | id=inputDatasetName | testDataSet |
+2015-09-15 12:35:36 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div/new-dataset-wizard-start/form/div[2]/div/select | Salute |
+2015-09-15 12:35:36 [info] Executing: |click | link=Next |  |
+2015-09-15 12:35:37 [info] Executing: |type | id=requestorName | nome |
+2015-09-15 12:35:37 [info] Executing: |type | id=requestorSurname | cognome |
+2015-09-15 12:35:38 [info] Executing: |type | id=requestorEmail | mymail |
+2015-09-15 12:35:38 [info] Executing: |click | name=accettazionePrivacy |  |
+2015-09-15 12:35:39 [info] Executing: |click | name=accettazioneResponsability |  |
+2015-09-15 12:35:39 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[2] |  |
+2015-09-15 12:35:40 [info] Executing: |type | id=inputDatasetDesc | testDescr |
+2015-09-15 12:35:40 [info] Executing: |select | //div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/div/select | Fuoco |
+2015-09-15 12:35:41 [info] Executing: |click | css=i.glyphicon.glyphicon-plus |  |
+2015-09-15 12:35:41 [info] Executing: |verifyElementPresent | //div[@id='newDatasetWizard']/div/div[3]/new-dataset-wizard-metadata/form/div[2]/div/p/span/span |  |
+2015-09-15 12:35:42 [info] Executing: |click | id=RadioGroupVisibility_0 |  |
+2015-09-15 12:35:42 [info] Executing: |type | id=inputDatasetLicence | lic |
+2015-09-15 12:35:43 [info] Executing: |type | id=inputDatasetDisclaimer | restr |
+2015-09-15 12:35:44 [info] Executing: |type | id=inputDatasetCopyright | copy |
+2015-09-15 12:35:44 [info] Executing: |click | xpath=(//a[contains(text(),'Next')])[3] |  |
+2015-09-15 12:35:44 [info] Test case passed
+2015-09-15 12:35:44 [info] Playing test case Creazione DataSet
+2015-09-15 12:35:45 [info] Executing: |open | http://www.google.it |  |
+2015-09-15 12:35:46 [info] Executing: |open | /userportal/#/home |  |
+2015-09-15 12:35:48 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:35:49 [info] Executing: |waitForElementPresent | link=Login |  |
+2015-09-15 12:35:49 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-15 12:35:50 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-15 12:35:50 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-15 12:35:51 [info] Executing: |verifyElementPresent | link=Dataset |  |
+2015-09-15 12:35:51 [info] Executing: |click | link=Dataset |  |
+2015-09-15 12:35:52 [info] Executing: |waitForElementPresent | //td[2] |  |
+2015-09-15 12:35:52 [info] Test case passed
+2015-09-15 12:35:52 [info] Test suite completed: 4 played,  all passed!

@@ -1,0 +1,134 @@
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |verifyElementPresent | link=Accedi allo store |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | Ambiente |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertElementPresent | link=Umidità dell'ufficio 223 |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-piu-parole
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | Ambiente Energia |
+[info] Executing: |selectWindow | null |  |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertElementPresent | link=Stream di dati soccer |  |
+[info] Executing: |assertElementPresent | //div[@id='wrap']/div[7]/div/div[2]/div[3]/div/div[2]/ul/li[3]/div |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-tag e paginazione
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |waitForElementPresent | link=Agricoltura |  |
+[error] Timed out after 30000ms
+[info] Executing: |clickAndWait | link=Agricoltura |  |
+[error] Element link=Agricoltura not found
+[info] Test case failed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola-che non dia risultati
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | tttttttt |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextPresent | No matching results |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola-inglese
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |verifyElementPresent | link=Accedi allo store |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | lake |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-piu-parola-inglese
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | lake focus environment |
+[info] Executing: |selectWindow | null |  |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola-con_caratteri_speciali
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |verifyElementPresent | link=Accedi allo store |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | *ergia |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Executing: |type | name=query | *erg* |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Test case passed
+[info] Test suite completed: 7 played, 1 failed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |verifyElementPresent | link=Accedi allo store |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | Ambiente |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertElementPresent | link=Umidità dell'ufficio 223 |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-piu-parole
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | Ambiente Energia |
+[info] Executing: |selectWindow | null |  |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertElementPresent | link=Stream di dati soccer |  |
+[info] Executing: |assertElementPresent | //div[@id='wrap']/div[7]/div/div[2]/div[3]/div/div[2]/ul/li[3]/div |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-tag e paginazione
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |waitForElementPresent | link=Agricoltura |  |
+[info] Executing: |clickAndWait | link=Agricoltura |  |
+[info] Executing: |verifyElementPresent | id=title-section-id |  |
+[info] Executing: |assertElementPresent | css=div.api-count-display |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola-che non dia risultati
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | tttttttt |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextPresent | No matching results |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola-inglese
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |verifyElementPresent | link=Accedi allo store |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | lake |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-piu-parola-inglese
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | lake focus environment |
+[info] Executing: |selectWindow | null |  |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Test case passed
+[info] Playing test case Test-YUCCA-150-ricerca-per-parola-con_caratteri_speciali
+[info] Executing: |open | /userportal/#/home |  |
+[info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+[info] Executing: |verifyElementPresent | link=Accedi allo store |  |
+[info] Executing: |clickAndWait | link=Accedi allo store |  |
+[info] Executing: |type | name=query | *ergia |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Executing: |type | name=query | *erg* |
+[info] Executing: |clickAndWait | //div[@id='wrap']/div[6]/div/div/div/form/button |  |
+[info] Executing: |assertTextNotPresent | No matching results |  |
+[info] Test case passed
+[info] Test suite completed: 7 played,  all passed! 

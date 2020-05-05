@@ -1,0 +1,223 @@
+/* titillium-web-300italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 300;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300italic.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Light Italic'), local('TitilliumWeb-LightItalic'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300italic.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-300 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Light'), local('TitilliumWeb-Light'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-300.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-regular - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-regular.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-italic.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-italic.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-600 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web SemiBold'), local('TitilliumWeb-SemiBold'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-600italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 600;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600italic.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web SemiBold Italic'), local('TitilliumWeb-SemiBoldItalic'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600italic.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-600italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-700italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700italic.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700italic.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-700 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-700.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+/* titillium-web-900 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../../font/google/TitilliumWeb/titillium-web-v6-latin-900.eot'); /* IE9 Compat Modes */
+  src: local('Titillium Web Black'), local('TitilliumWeb-Black'),
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-900.woff') format('woff'), /* Modern Browsers */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../font/google/TitilliumWeb/titillium-web-v6-latin-900.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+#nivola-landing *{font-family: 'Titillium Web', sans-serif;}
+#nivola-landing h1, #nivola-landing h2, #nivola-landing h3{font-weight: 700;}
+#nivola-landing h1{font-size: 48px;}
+#nivola-landing h2{font-size: 42px;}
+#nivola-landing h2{font-size: 36px;}
+
+#header {background-color: #ffffff;}
+#header .brand-navbar .navbar-brand {background: #ffffff url(../../img/nivola/logoyucca_header.jpg) no-repeat center;width: 397px;height: 55px;}
+#header .navbar-box .navbar .nav-item-dx{display: none;}
+#nivola-landing  #landing-section-intro{background: #ffffff url(../../img/nivola/intro_background.jpg) no-repeat center center; background-size: cover;     
+	padding:120px 0; height: auto; color: white; display: flex;}
+
+#header .brand-navbar .header-button .btn-login{color: #fff; background-color: #0098ca; border-radius: 0;}
+#nivola-landing #landing-section-intro h1{width: 65%;}
+#nivola-landing #landing-section-intro p{width: 50%; font-size: 1.2em;}
+
+#nivola-landing #landing-section-whatcando{background: #fff; text-align: center;}
+#nivola-landing #landing-section-whatcando h2{margin-top: 64px; text-align: center;}
+#nivola-landing #landing-section-whatcando .whatcando-item{padding: 64px 32px; font-size: 18px;}
+#nivola-landing #landing-section-whatcando .whatcando-item .whatcando-item_image{margin: 0 20% 32px; width: 60%; height: auto;}
+
+#nivola-landing #landing-section-howitworks{background: #fff; text-align: center;}
+#nivola-landing #landing-section-howitworks h2{margin: 64px 0 36px 0; text-align: center;}
+#nivola-landing #landing-section-howitworks .howitworks-image{width: 100%; height: auto;}
+#nivola-landing #landing-section-howitworks .howitworks-item{text-align: left; font-size: 1.1em;}
+
+#nivola-landing  #landing-section-functionality{background: transparent url(../../img/nivola/functionality_background.jpg) no-repeat center center; 
+background-size: cover; height: auto; color: white;}
+#nivola-landing  #landing-section-functionality h2{margin: 64px 0 ; text-align: center;}
+#nivola-landing  #landing-section-functionality .functionality-content{display: flex; align-items: center;}
+#nivola-landing  #landing-section-functionality .functionality-intro{font-size: 2em; flex-basis:100%; padding: 0 64px 48px 0;}
+#nivola-landing  #landing-section-functionality .functionality-item{border-left: solid 2px #0098ca; padding: 0 6px; margin:0 24px 48px 24px; }
+
+#nivola-landing  #landing-section-analitycs{background: #fff; text-align: center; padding-bottom: 64px;}
+#nivola-landing #landing-section-analitycs h2{margin: 64px 0 36px 0; text-align: center;}
+#nivola-landing #landing-section-analitycs .analitycs-intro{margin: 0 25% 48px; font-size: 1.2em;} 
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet{font-weight: 700; font-size: 80px; color: #0199cb; border: solid 3px #0199cb; 
+	border-radius: 100%; width: 1.2em; height: 1.2em; line-height: 1.2em;	display: flex; align-items: center;	text-align: center;transform: rotate(-45deg)}
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet-in{flex-grow:1}
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet-out{border: solid 6px #fff;display: inline-block; border-radius: 50%;transform: rotate(45deg); -ms-transform: rotate(45deg);}
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet-out-1{border-top-color: #f13544;}
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet-out-2{border-color: #f13544 #f13544 #fff #fff;}
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet-out-3{border-color: #f13544 #f13544 #f13544 #fff;}
+#nivola-landing #landing-section-analitycs .analitycs-item-bullet-out-4{border-color: #f13544;}
+#nivola-landing #landing-section-analitycs  .analitycs-item-desc{padding: 32px; font-size: 18px;}
+
+
+#datasearch .search-inputpanel{background-color:#0098CA;}
+#datasearch .search-domains .search-toolbar .btn-default {background-color: #91e9ff;border-color: #0098CA;}
+#datasearch .search-domains .search-toolbar .btn-default.active {background-color: #0098CA;}
+#datasearchresult .side-panel-facet-item.active:after {
+    border-left-color: #91e9ff;
+}
+#datasearchresult .side-panel-facet-item.active{background-color: #91e9ff;border-color: #0098CA;}
+.label-tag {background-color: #005774;}
+.btn-icon-edit{color: #0098CA;}
+.panel-hint .icon-hint {color: #09C2FF;}
+.panel-hint-content .text-success {color: #09C2FF;}
+.required-asterisk {color: #09C2FF;}
+.title-container{border-color: #F03443;}
+.title-container .btn-top-toolbar.active, .title-container .btn-top-toolbar:hover {background-color: #F03443;color: #fff;border-color: #F03443;}
+.wizard-nav .nav-pills>li.active>a, .wizard-nav .nav-pills>li.active>a:hover, .wizard-nav .nav-pills>li.active>a:focus {background-color: #F03443; color: white;}
+.title-container .btn-top-toolbar.active:after{border-top-color: #F03443;}
+.btn-wizard-next {background-color: #0098CA;}
+.btn-wizard-next:hover {background-color: #025976;}
+.btn-wizard-next::after{border-color: transparent transparent transparent #0098CA;}
+.btn-wizard-next:hover::after{border-color: transparent transparent transparent #025976;}
+.wizard-nav .nav-pills>li.active>a .wizard-step-label-notlast::after {border-color: transparent transparent transparent #F03443;}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {background-color: #005774;}
+.tab-panel .tab-pane{border-color:#F03443;}
+
+#footer .row{display: inline;}
+#footer{background-color: #000000;}
+#footer .footer-menu .row {border-top: none;}
+#footer .footer-info { background: url(../../img/nivola/logo_sdn_bw.jpg) no-repeat; background-size: 100% auto;}
+#footer .footer-menu .footer-menu-box {text-align: right;}
+#footer .footer-menu .footer-menu-box ul li {padding-top: 20px;}
+
+/* function custom */
+#importMetadataDatasetButton{display: none;}
+
+
+@media (min-width: 768px){
+}
+
+@media (max-width: 767.98px){
+	#header{background: #ffffff url(../../img/nivola/logoyucca_header_mobile.jpg) no-repeat 15px center; background-size: auto 60px; min-height: 60px; display: flex;}
+	#header .brand-navbar .header-button .btn-login {background-color: #ffffff ; color:#000; margin-right: 12px;margin-left: 12px;}
+	#nivola-landing h1{font-size: 42px;}
+	#nivola-landing h2{font-size: 36px;}
+	#nivola-landing h3{font-size: 32px;}
+	#nivola-landing #landing-section-intro{padding: 48px 0;}
+	#nivola-landing #landing-section-intro h1{width: 100%;}
+	#nivola-landing #landing-section-intro p{width: 100%;}
+	#nivola-landing #landing-section-whatcando .whatcando-item{padding: 16px 32px;}
+	#nivola-landing #landing-section-analitycs .analitycs-intro {margin: 0 3% 48px;}
+	#nivola-landing #landing-section-functionality .functionality-content{flex-direction: column;}
+	#nivola-landing #landing-section-functionality .functionality-intro {margin: 0 3% 48px; padding: 0;}
+	#nivola-landing #landing-section-functionality .functionality-item{margin: 0 24px 24px 24px;}
+	#footer{padding-top: 0;}
+	footer ul li + li::before  { content: ""; font-size: .8em; }
+	#footer .footer-info, #footer .footer-banner{max-width: 100%; justify-content: center; }	
+	#footer .footer-menu .footer-menu-box ul li {display: block; text-align: left; padding-top: 0px;}
+	#footer .footer-menu .footer-menu-box{padding-left: 0px; padding-top: 10px;}
+	#footer h3{font-size: 18px;}
+}

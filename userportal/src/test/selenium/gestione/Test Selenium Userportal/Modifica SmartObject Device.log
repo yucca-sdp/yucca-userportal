@@ -1,0 +1,1770 @@
+2015-09-03 11:55:03 [info] Playing test case Modifica SmartObject Device
+2015-09-03 11:55:03 [debug] createForWindow
+2015-09-03 11:55:03 [debug] browserName: Netscape
+2015-09-03 11:55:03 [debug] userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:39.0) Gecko/20100101 Firefox/39.0
+2015-09-03 11:55:03 [debug] modifyWindow seleniumMarker1441274103948:undefined
+2015-09-03 11:55:03 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:04 [debug] isPollingForLoad false, this.pollingForLoad[1]: undefined
+2015-09-03 11:55:04 [debug] Starting pollForLoad (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:04 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:04 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:04 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:04 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:04 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:04 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:04 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:04 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:04 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:04 [debug] modifyWindow seleniumMarker1441274103948:undefined
+2015-09-03 11:55:04 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:04 [debug] frameElement.name=
+2015-09-03 11:55:04 [debug] isPollingForLoad false, missing uniqueId seleniumMarker1441274103948: undefined
+2015-09-03 11:55:04 [debug] Starting pollForLoad (selenium1441274104259): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:04 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:04 [debug] frameElement.name=
+2015-09-03 11:55:04 [debug] modifySeparateTestWindowToDetectPageLoads: this window is a frame; attaching a load listener
+2015-09-03 11:55:04 [debug] dgf this.uniqueId=seleniumMarker1441274103948
+2015-09-03 11:55:04 [debug] dgf marker=selenium1441274104259
+2015-09-03 11:55:04 [debug] dgf frameElement['frame'+this.uniqueId]=selenium1441274104259
+2015-09-03 11:55:04 [debug] dgf frameElement[this.uniqueId]=selenium1441274104259
+2015-09-03 11:55:04 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:04 [debug] currentTest.start()
+2015-09-03 11:55:04 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:04 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:05 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:05 [debug] runScheduledPollers
+2015-09-03 11:55:05 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:05 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:05 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:05 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:05 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:05 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:05 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:05 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:05 [debug] runScheduledPollers DONE
+2015-09-03 11:55:05 [info] Executing: |open | http://www.google.it |  |
+2015-09-03 11:55:05 [debug] Command found, going to execute open
+2015-09-03 11:55:05 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274104002
+2015-09-03 11:55:05 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:05 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274104002
+2015-09-03 11:55:05 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:05 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:05 [debug] frameElement.name=
+2015-09-03 11:55:05 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274104259
+2015-09-03 11:55:05 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:05 [debug] openLocation newPageLoaded = false
+2015-09-03 11:55:05 [debug] runScheduledPollers
+2015-09-03 11:55:05 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:05 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:05 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:05 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:05 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:06 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:06 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:06 [debug] runScheduledPollers DONE
+2015-09-03 11:55:06 [debug] runScheduledPollers
+2015-09-03 11:55:06 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:06 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:06 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:06 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:06 [debug] runScheduledPollers DONE
+2015-09-03 11:55:06 [debug] runScheduledPollers
+2015-09-03 11:55:06 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:06 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:06 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:06 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:06 [debug] runScheduledPollers DONE
+2015-09-03 11:55:06 [debug] runScheduledPollers
+2015-09-03 11:55:06 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:06 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:06 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:06 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:06 [debug] runScheduledPollers DONE
+2015-09-03 11:55:06 [debug] runScheduledPollers
+2015-09-03 11:55:06 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:06 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:06 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:06 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:06 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:06 [debug] runScheduledPollers DONE
+2015-09-03 11:55:06 [debug] runScheduledPollers
+2015-09-03 11:55:06 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:06 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:06 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:06 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:06 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:07 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:07 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:07 [debug] runScheduledPollers DONE
+2015-09-03 11:55:07 [debug] runScheduledPollers
+2015-09-03 11:55:07 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:07 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:07 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:07 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:07 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:07 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:07 [debug] runScheduledPollers DONE
+2015-09-03 11:55:07 [debug] runScheduledPollers
+2015-09-03 11:55:07 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:07 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:07 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:07 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:07 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:07 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:07 [debug] runScheduledPollers DONE
+2015-09-03 11:55:07 [debug] runScheduledPollers
+2015-09-03 11:55:07 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:07 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:07 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:07 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:07 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:07 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:07 [debug] runScheduledPollers DONE
+2015-09-03 11:55:07 [debug] runScheduledPollers
+2015-09-03 11:55:07 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:07 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:07 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:07 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:07 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:08 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:08 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:08 [debug] runScheduledPollers DONE
+2015-09-03 11:55:08 [debug] runScheduledPollers
+2015-09-03 11:55:08 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:08 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:08 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:08 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:08 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:08 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:08 [debug] runScheduledPollers DONE
+2015-09-03 11:55:08 [debug] runScheduledPollers
+2015-09-03 11:55:08 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:08 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:08 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:08 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:08 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:08 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:08 [debug] runScheduledPollers DONE
+2015-09-03 11:55:08 [debug] runScheduledPollers
+2015-09-03 11:55:08 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:08 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:08 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:08 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:08 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:08 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:08 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:08 [debug] runScheduledPollers DONE
+2015-09-03 11:55:08 [debug] runScheduledPollers
+2015-09-03 11:55:08 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:08 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:09 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:09 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:09 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:09 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:09 [debug] pollForLoad continue (selenium1441274104002): undefined
+2015-09-03 11:55:09 [debug] runScheduledPollers DONE
+2015-09-03 11:55:09 [debug] runScheduledPollers
+2015-09-03 11:55:09 [debug] pollForLoad original (selenium1441274104002): https://int-userportal.smartdatanet.it/userportal/#/management/viewVirtualentity/sandbox/50c3c17d-73cd-4d60-a41e-d57e71ff9c49
+2015-09-03 11:55:09 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:09 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:09 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:09 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:09 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:09 [debug] pollForLoad FINISHED (selenium1441274104002): complete (https://www.google.it/?gws_rd=ssl)
+2015-09-03 11:55:09 [debug] modifyWindow seleniumMarker1441274103948:undefined
+2015-09-03 11:55:09 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:09 [debug] isPollingForLoad false, this.pollingForLoad[1]: undefined
+2015-09-03 11:55:09 [debug] Starting pollForLoad (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:09 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:09 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:09 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:09 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:09 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:09 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:09 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:09 [debug] pollForLoad (selenium1441274104002) restarting selenium1441274109409
+2015-09-03 11:55:09 [debug] Page load detected
+2015-09-03 11:55:09 [debug] Page load location=https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:09 [debug] runScheduledPollers DONE
+2015-09-03 11:55:09 [debug] condition satisfied; let's continueTest()
+2015-09-03 11:55:09 [debug] Command complete
+2015-09-03 11:55:09 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:09 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:10 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:10 [debug] runScheduledPollers
+2015-09-03 11:55:10 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:10 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:10 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:10 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:10 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:10 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:10 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:10 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:10 [debug] runScheduledPollers DONE
+2015-09-03 11:55:10 [info] Executing: |open | /userportal/#/home |  |
+2015-09-03 11:55:11 [debug] Command found, going to execute open
+2015-09-03 11:55:11 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274109409
+2015-09-03 11:55:11 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:11 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274109409
+2015-09-03 11:55:11 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:11 [debug] openLocation newPageLoaded = false
+2015-09-03 11:55:11 [debug] runScheduledPollers
+2015-09-03 11:55:11 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:11 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:11 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:11 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:11 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:11 [debug] runScheduledPollers DONE
+2015-09-03 11:55:11 [debug] runScheduledPollers
+2015-09-03 11:55:11 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: currentHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:11 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:11 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:11 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:11 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:11 [debug] runScheduledPollers DONE
+2015-09-03 11:55:11 [debug] runScheduledPollers
+2015-09-03 11:55:11 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:11 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:11 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:11 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:11 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:11 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:11 [debug] runScheduledPollers DONE
+2015-09-03 11:55:11 [debug] runScheduledPollers
+2015-09-03 11:55:11 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:11 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:11 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:11 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:11 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:11 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:11 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:11 [debug] runScheduledPollers DONE
+2015-09-03 11:55:11 [debug] runScheduledPollers
+2015-09-03 11:55:12 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:12 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:12 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:12 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:12 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:12 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:12 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:12 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:12 [debug] runScheduledPollers DONE
+2015-09-03 11:55:12 [debug] runScheduledPollers
+2015-09-03 11:55:12 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:12 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:12 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:12 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:12 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:12 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:12 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:12 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:12 [debug] runScheduledPollers DONE
+2015-09-03 11:55:12 [debug] runScheduledPollers
+2015-09-03 11:55:12 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:12 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:12 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:12 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:12 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:12 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:12 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:12 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:12 [debug] runScheduledPollers DONE
+2015-09-03 11:55:13 [debug] runScheduledPollers
+2015-09-03 11:55:13 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:13 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:13 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:13 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:13 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:13 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:13 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:13 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:13 [debug] runScheduledPollers DONE
+2015-09-03 11:55:13 [debug] runScheduledPollers
+2015-09-03 11:55:13 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:13 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:13 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:13 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:13 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:13 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:13 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:14 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:14 [debug] runScheduledPollers DONE
+2015-09-03 11:55:14 [debug] runScheduledPollers
+2015-09-03 11:55:14 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:14 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:14 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:14 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:14 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:14 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:14 [debug] runScheduledPollers DONE
+2015-09-03 11:55:14 [debug] runScheduledPollers
+2015-09-03 11:55:14 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:14 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:14 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:14 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:14 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:14 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:14 [debug] runScheduledPollers DONE
+2015-09-03 11:55:14 [debug] runScheduledPollers
+2015-09-03 11:55:14 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:14 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:14 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:14 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:14 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:14 [debug] pollForLoad continue (selenium1441274109409): undefined
+2015-09-03 11:55:14 [debug] runScheduledPollers DONE
+2015-09-03 11:55:14 [debug] runScheduledPollers
+2015-09-03 11:55:14 [debug] pollForLoad original (selenium1441274109409): https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:14 [debug] _isSamePage: originalHref: https://www.google.it/?gws_rd=ssl
+2015-09-03 11:55:14 [debug] _isSamePage: sameDoc: false
+2015-09-03 11:55:15 [debug] _isSamePage: sameLoc: false
+2015-09-03 11:55:15 [debug] _isSamePage: sameHref: false
+2015-09-03 11:55:15 [debug] _isSamePage: markedLoc: undefined
+2015-09-03 11:55:15 [debug] pollForLoad FINISHED (selenium1441274109409): complete (https://int-userportal.smartdatanet.it/userportal/#/home)
+2015-09-03 11:55:15 [debug] modifyWindow seleniumMarker1441274103948:undefined
+2015-09-03 11:55:15 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:15 [debug] isPollingForLoad false, this.pollingForLoad[1]: undefined
+2015-09-03 11:55:15 [debug] Starting pollForLoad (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:15 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:15 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:15 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:15 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:15 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:15 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:15 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:15 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:15 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:15 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:15 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:15 [debug] pollForLoad (selenium1441274109409) restarting selenium1441274115107
+2015-09-03 11:55:15 [debug] Page load detected
+2015-09-03 11:55:15 [debug] Page load location=https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:15 [debug] runScheduledPollers DONE
+2015-09-03 11:55:15 [debug] condition satisfied; let's continueTest()
+2015-09-03 11:55:15 [debug] Command complete
+2015-09-03 11:55:15 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:15 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:16 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:16 [debug] runScheduledPollers
+2015-09-03 11:55:16 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:16 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:16 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:16 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:16 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:16 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:16 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:16 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:16 [debug] runScheduledPollers DONE
+2015-09-03 11:55:16 [info] Executing: |waitForElementPresent | css=a.btn.main-action-button > span.ng-scope |  |
+2015-09-03 11:55:16 [debug] Command found, going to execute waitForElementPresent
+2015-09-03 11:55:16 [debug] runScheduledPollers
+2015-09-03 11:55:16 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:16 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:16 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:16 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:16 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:16 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:16 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:16 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:16 [debug] runScheduledPollers DONE
+2015-09-03 11:55:16 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:16 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:16 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:16 [debug] modifyWindow seleniumMarker1441274103948:undefined
+2015-09-03 11:55:16 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:17 [debug] frameElement.name=
+2015-09-03 11:55:17 [debug] isPollingForLoad false, missing uniqueId seleniumMarker1441274103948: undefined
+2015-09-03 11:55:17 [debug] Starting pollForLoad (selenium1441274117022): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:17 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:17 [debug] frameElement.name=
+2015-09-03 11:55:17 [debug] modifySeparateTestWindowToDetectPageLoads: this window is a frame; attaching a load listener
+2015-09-03 11:55:17 [debug] dgf this.uniqueId=seleniumMarker1441274103948
+2015-09-03 11:55:17 [debug] dgf marker=selenium1441274117022
+2015-09-03 11:55:17 [debug] dgf frameElement['frame'+this.uniqueId]=selenium1441274117022
+2015-09-03 11:55:17 [debug] dgf frameElement[this.uniqueId]=selenium1441274117022
+2015-09-03 11:55:17 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:17 [debug] condition satisfied; let's continueTest()
+2015-09-03 11:55:17 [debug] Command complete
+2015-09-03 11:55:17 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:17 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:18 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:18 [debug] runScheduledPollers
+2015-09-03 11:55:18 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:18 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:18 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:18 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:18 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:18 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:18 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:18 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:18 [debug] runScheduledPollers DONE
+2015-09-03 11:55:18 [info] Executing: |verifyElementPresent | link=Login |  |
+2015-09-03 11:55:18 [debug] Command found, going to execute verifyElementPresent
+2015-09-03 11:55:18 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:18 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:18 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:18 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:18 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:18 [debug] frameElement.name=
+2015-09-03 11:55:18 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:18 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:18 [debug] runScheduledPollers
+2015-09-03 11:55:18 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:18 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:18 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:18 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:18 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:18 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:18 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:18 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:18 [debug] runScheduledPollers DONE
+2015-09-03 11:55:18 [debug] null condition; let's continueTest()
+2015-09-03 11:55:19 [debug] Command complete
+2015-09-03 11:55:19 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:19 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:20 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:20 [debug] runScheduledPollers
+2015-09-03 11:55:20 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:20 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:20 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:20 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:20 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:20 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:20 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:20 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:20 [debug] runScheduledPollers DONE
+2015-09-03 11:55:20 [info] Executing: |click | css=small > a.btn.main-action-button > span.ng-scope |  |
+2015-09-03 11:55:20 [debug] Command found, going to execute click
+2015-09-03 11:55:20 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:20 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:20 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:20 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:20 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:20 [debug] frameElement.name=
+2015-09-03 11:55:20 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:20 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:20 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:20 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:20 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:20 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:20 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:20 [debug] frameElement.name=
+2015-09-03 11:55:20 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:20 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:20 [debug] triggerMouseEvent assumes setting screenX and screenY to 0 is ok
+2015-09-03 11:55:20 [debug] runScheduledPollers
+2015-09-03 11:55:20 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:20 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:20 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:20 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:20 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:20 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:20 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:20 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:20 [debug] runScheduledPollers DONE
+2015-09-03 11:55:20 [debug] null condition; let's continueTest()
+2015-09-03 11:55:20 [debug] Command complete
+2015-09-03 11:55:20 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:20 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:21 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:21 [debug] runScheduledPollers
+2015-09-03 11:55:21 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:21 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:22 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:22 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:22 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:22 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:22 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:22 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:22 [debug] runScheduledPollers DONE
+2015-09-03 11:55:22 [info] Executing: |verifyElementPresent | //button[@type='submit'] | Cerca |
+2015-09-03 11:55:22 [debug] Command found, going to execute verifyElementPresent
+2015-09-03 11:55:22 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:22 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:22 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:22 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:22 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:22 [debug] frameElement.name=
+2015-09-03 11:55:22 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:22 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:22 [debug] runScheduledPollers
+2015-09-03 11:55:22 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:22 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:22 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:22 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:22 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:22 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:22 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:22 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:22 [debug] runScheduledPollers DONE
+2015-09-03 11:55:22 [debug] null condition; let's continueTest()
+2015-09-03 11:55:22 [debug] Command complete
+2015-09-03 11:55:22 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:22 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:23 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:23 [debug] runScheduledPollers
+2015-09-03 11:55:23 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:23 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:23 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:23 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:23 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:23 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:23 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:23 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:23 [debug] runScheduledPollers DONE
+2015-09-03 11:55:23 [info] Executing: |click | css=a.main-menu-item.main-menu-item-management > span.ng-scope |  |
+2015-09-03 11:55:23 [debug] Command found, going to execute click
+2015-09-03 11:55:23 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:23 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:23 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:23 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:23 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:23 [debug] frameElement.name=
+2015-09-03 11:55:23 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:23 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:23 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:24 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:24 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:24 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:24 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:24 [debug] frameElement.name=
+2015-09-03 11:55:24 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:24 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:24 [debug] triggerMouseEvent assumes setting screenX and screenY to 0 is ok
+2015-09-03 11:55:24 [debug] runScheduledPollers
+2015-09-03 11:55:24 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:24 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:24 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:24 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:24 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:24 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:24 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:24 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:24 [debug] runScheduledPollers DONE
+2015-09-03 11:55:24 [debug] null condition; let's continueTest()
+2015-09-03 11:55:24 [debug] Command complete
+2015-09-03 11:55:24 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:24 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:25 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:25 [debug] runScheduledPollers
+2015-09-03 11:55:25 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:25 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:25 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:25 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:25 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:25 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:25 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:25 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:25 [debug] runScheduledPollers DONE
+2015-09-03 11:55:25 [info] Executing: |verifyElementPresent | //tr[3]/td[2] |  |
+2015-09-03 11:55:25 [debug] Command found, going to execute verifyElementPresent
+2015-09-03 11:55:25 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:25 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:25 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:25 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:25 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:25 [debug] frameElement.name=
+2015-09-03 11:55:25 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:25 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:25 [debug] runScheduledPollers
+2015-09-03 11:55:25 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:25 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:25 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:25 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:25 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:25 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:26 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:26 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:26 [debug] runScheduledPollers DONE
+2015-09-03 11:55:26 [debug] null condition; let's continueTest()
+2015-09-03 11:55:26 [debug] Command complete
+2015-09-03 11:55:26 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:26 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:27 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:27 [debug] runScheduledPollers
+2015-09-03 11:55:27 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:27 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:27 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:27 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:27 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:27 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:27 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:27 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:27 [debug] runScheduledPollers DONE
+2015-09-03 11:55:27 [info] Executing: |type | //input[@type='text'] | 50c3c17d-73cd-4d60-a41e-d57e71ff9c49 |
+2015-09-03 11:55:27 [debug] Command found, going to execute type
+2015-09-03 11:55:27 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:27 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:27 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:27 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:27 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:27 [debug] frameElement.name=
+2015-09-03 11:55:27 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:27 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:27 [debug] runScheduledPollers
+2015-09-03 11:55:27 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:27 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:27 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:27 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:27 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:27 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:27 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:27 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:27 [debug] runScheduledPollers DONE
+2015-09-03 11:55:27 [debug] null condition; let's continueTest()
+2015-09-03 11:55:27 [debug] Command complete
+2015-09-03 11:55:27 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:27 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:28 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:28 [debug] runScheduledPollers
+2015-09-03 11:55:28 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:28 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:28 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:28 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:28 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:28 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:28 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:29 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:29 [debug] runScheduledPollers DONE
+2015-09-03 11:55:29 [info] Executing: |click | link=50c3c17d-73cd-4d60-a41e-d57e71ff9c49 |  |
+2015-09-03 11:55:29 [debug] Command found, going to execute click
+2015-09-03 11:55:29 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:29 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:29 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:29 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:29 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:29 [debug] frameElement.name=
+2015-09-03 11:55:29 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:29 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:29 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:29 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:29 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:29 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:29 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:29 [debug] frameElement.name=
+2015-09-03 11:55:29 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:29 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:29 [debug] triggerMouseEvent assumes setting screenX and screenY to 0 is ok
+2015-09-03 11:55:29 [debug] runScheduledPollers
+2015-09-03 11:55:29 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:29 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:29 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:29 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:29 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:29 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:29 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:29 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:29 [debug] runScheduledPollers DONE
+2015-09-03 11:55:29 [debug] null condition; let's continueTest()
+2015-09-03 11:55:29 [debug] Command complete
+2015-09-03 11:55:29 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:29 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:30 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:30 [debug] runScheduledPollers
+2015-09-03 11:55:30 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:30 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:30 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:30 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:30 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:30 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:30 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:30 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:30 [debug] runScheduledPollers DONE
+2015-09-03 11:55:30 [info] Executing: |click | link=Modifica |  |
+2015-09-03 11:55:30 [debug] Command found, going to execute click
+2015-09-03 11:55:30 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:31 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:31 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:31 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:31 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:31 [debug] frameElement.name=
+2015-09-03 11:55:31 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:31 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:31 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:31 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:31 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:31 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:31 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:31 [debug] frameElement.name=
+2015-09-03 11:55:31 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:31 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:31 [debug] triggerMouseEvent assumes setting screenX and screenY to 0 is ok
+2015-09-03 11:55:31 [debug] runScheduledPollers
+2015-09-03 11:55:31 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:31 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:31 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:31 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:31 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:31 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:31 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:31 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:31 [debug] runScheduledPollers DONE
+2015-09-03 11:55:31 [debug] null condition; let's continueTest()
+2015-09-03 11:55:31 [debug] Command complete
+2015-09-03 11:55:31 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:31 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:32 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:32 [debug] runScheduledPollers
+2015-09-03 11:55:32 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:32 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:32 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:32 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:32 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:32 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:32 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:32 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:32 [debug] runScheduledPollers DONE
+2015-09-03 11:55:32 [info] Executing: |type | id=inputVirtualentityName | aaTestDeviceMod |
+2015-09-03 11:55:32 [debug] Command found, going to execute type
+2015-09-03 11:55:32 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:32 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:32 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:32 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:33 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:33 [debug] frameElement.name=
+2015-09-03 11:55:33 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:33 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:33 [debug] runScheduledPollers
+2015-09-03 11:55:33 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:33 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:33 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:33 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:33 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:33 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:33 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:33 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:33 [debug] runScheduledPollers DONE
+2015-09-03 11:55:33 [debug] null condition; let's continueTest()
+2015-09-03 11:55:33 [debug] Command complete
+2015-09-03 11:55:33 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:33 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:34 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:34 [debug] runScheduledPollers
+2015-09-03 11:55:34 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:34 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:34 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:34 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:34 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:34 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:34 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:34 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:34 [debug] runScheduledPollers DONE
+2015-09-03 11:55:34 [info] Executing: |click | link=Salva |  |
+2015-09-03 11:55:34 [debug] Command found, going to execute click
+2015-09-03 11:55:34 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:34 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:34 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:34 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:34 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:34 [debug] frameElement.name=
+2015-09-03 11:55:34 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:34 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:34 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:34 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:34 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:34 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:34 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:34 [debug] frameElement.name=
+2015-09-03 11:55:34 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:34 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:34 [debug] triggerMouseEvent assumes setting screenX and screenY to 0 is ok
+2015-09-03 11:55:34 [debug] runScheduledPollers
+2015-09-03 11:55:34 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:34 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:35 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:35 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:35 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:35 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:35 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:35 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:35 [debug] runScheduledPollers DONE
+2015-09-03 11:55:35 [debug] null condition; let's continueTest()
+2015-09-03 11:55:35 [debug] Command complete
+2015-09-03 11:55:35 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:35 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:36 [debug] currentTest.resume() - actually execute
+2015-09-03 11:55:36 [debug] runScheduledPollers
+2015-09-03 11:55:36 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:36 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:36 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:36 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:36 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:36 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:36 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:36 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:36 [debug] runScheduledPollers DONE
+2015-09-03 11:55:36 [info] Executing: |clickAndWait | link=Fine modifica |  |
+2015-09-03 11:55:36 [debug] Command found, going to execute clickAndWait
+2015-09-03 11:55:36 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:36 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:36 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:36 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:36 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:36 [debug] frameElement.name=
+2015-09-03 11:55:36 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:36 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:36 [debug] modifyWindow seleniumMarker1441274103948:selenium1441274115107
+2015-09-03 11:55:36 [debug] _getFrameElement: frameElement=null
+2015-09-03 11:55:36 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274115107
+2015-09-03 11:55:36 [debug] modifyWindow seleniumMarker1441274103948:1
+2015-09-03 11:55:36 [debug] _getFrameElement: frameElement=[object HTMLIFrameElement]
+2015-09-03 11:55:36 [debug] frameElement.name=
+2015-09-03 11:55:36 [debug] modifySeparateTestWindowToDetectPageLoads: already polling this window: selenium1441274117022
+2015-09-03 11:55:36 [debug] getCurrentWindow newPageLoaded = false
+2015-09-03 11:55:36 [debug] triggerMouseEvent assumes setting screenX and screenY to 0 is ok
+2015-09-03 11:55:36 [debug] runScheduledPollers
+2015-09-03 11:55:36 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:36 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:36 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:36 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:37 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:37 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:37 [debug] runScheduledPollers DONE
+2015-09-03 11:55:37 [debug] runScheduledPollers
+2015-09-03 11:55:37 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:37 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:37 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:37 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:37 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:37 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:37 [debug] runScheduledPollers DONE
+2015-09-03 11:55:37 [debug] runScheduledPollers
+2015-09-03 11:55:37 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:37 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:37 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:37 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:37 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:37 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:37 [debug] runScheduledPollers DONE
+2015-09-03 11:55:37 [debug] runScheduledPollers
+2015-09-03 11:55:37 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:37 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:37 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:37 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:37 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:37 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:37 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:37 [debug] runScheduledPollers DONE
+2015-09-03 11:55:38 [debug] runScheduledPollers
+2015-09-03 11:55:38 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:38 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:38 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:38 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:38 [debug] runScheduledPollers DONE
+2015-09-03 11:55:38 [debug] runScheduledPollers
+2015-09-03 11:55:38 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:38 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:38 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:38 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:38 [debug] runScheduledPollers DONE
+2015-09-03 11:55:38 [debug] runScheduledPollers
+2015-09-03 11:55:38 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:38 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:38 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:38 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:38 [debug] runScheduledPollers DONE
+2015-09-03 11:55:38 [debug] runScheduledPollers
+2015-09-03 11:55:38 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:38 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:38 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:38 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:38 [debug] runScheduledPollers DONE
+2015-09-03 11:55:38 [debug] runScheduledPollers
+2015-09-03 11:55:38 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:38 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:38 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:38 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:39 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:39 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:39 [debug] runScheduledPollers DONE
+2015-09-03 11:55:39 [debug] runScheduledPollers
+2015-09-03 11:55:39 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:39 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:39 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:39 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:39 [debug] runScheduledPollers DONE
+2015-09-03 11:55:39 [debug] runScheduledPollers
+2015-09-03 11:55:39 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:39 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:39 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:39 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:39 [debug] runScheduledPollers DONE
+2015-09-03 11:55:39 [debug] runScheduledPollers
+2015-09-03 11:55:39 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:39 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:39 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:39 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:39 [debug] runScheduledPollers DONE
+2015-09-03 11:55:39 [debug] runScheduledPollers
+2015-09-03 11:55:39 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:39 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:39 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:39 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:39 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:39 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:39 [debug] runScheduledPollers DONE
+2015-09-03 11:55:39 [debug] runScheduledPollers
+2015-09-03 11:55:39 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:39 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:40 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:40 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:40 [debug] runScheduledPollers DONE
+2015-09-03 11:55:40 [debug] runScheduledPollers
+2015-09-03 11:55:40 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:40 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:40 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:40 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:40 [debug] runScheduledPollers DONE
+2015-09-03 11:55:40 [debug] runScheduledPollers
+2015-09-03 11:55:40 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:40 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:40 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:40 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:40 [debug] runScheduledPollers DONE
+2015-09-03 11:55:40 [debug] runScheduledPollers
+2015-09-03 11:55:40 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:40 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:40 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:40 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:40 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:40 [debug] runScheduledPollers DONE
+2015-09-03 11:55:40 [debug] runScheduledPollers
+2015-09-03 11:55:40 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:40 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:40 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:41 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:41 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:41 [debug] runScheduledPollers DONE
+2015-09-03 11:55:41 [debug] runScheduledPollers
+2015-09-03 11:55:41 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:41 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:41 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:41 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:41 [debug] runScheduledPollers DONE
+2015-09-03 11:55:41 [debug] runScheduledPollers
+2015-09-03 11:55:41 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:41 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:41 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:41 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:41 [debug] runScheduledPollers DONE
+2015-09-03 11:55:41 [debug] runScheduledPollers
+2015-09-03 11:55:41 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:41 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:41 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:41 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:41 [debug] runScheduledPollers DONE
+2015-09-03 11:55:41 [debug] runScheduledPollers
+2015-09-03 11:55:41 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:41 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:41 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:41 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:41 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:41 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:41 [debug] runScheduledPollers DONE
+2015-09-03 11:55:41 [debug] runScheduledPollers
+2015-09-03 11:55:41 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:42 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:42 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:42 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:42 [debug] runScheduledPollers DONE
+2015-09-03 11:55:42 [debug] runScheduledPollers
+2015-09-03 11:55:42 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:42 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:42 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:42 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:42 [debug] runScheduledPollers DONE
+2015-09-03 11:55:42 [debug] runScheduledPollers
+2015-09-03 11:55:42 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:42 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:42 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:42 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:42 [debug] runScheduledPollers DONE
+2015-09-03 11:55:42 [debug] runScheduledPollers
+2015-09-03 11:55:42 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:42 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:42 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:42 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:42 [debug] runScheduledPollers DONE
+2015-09-03 11:55:42 [debug] runScheduledPollers
+2015-09-03 11:55:42 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:42 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:42 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:42 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:42 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:42 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:42 [debug] runScheduledPollers DONE
+2015-09-03 11:55:43 [debug] runScheduledPollers
+2015-09-03 11:55:43 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:43 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:43 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:43 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:43 [debug] runScheduledPollers DONE
+2015-09-03 11:55:43 [debug] runScheduledPollers
+2015-09-03 11:55:43 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:43 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:43 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:43 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:43 [debug] runScheduledPollers DONE
+2015-09-03 11:55:43 [debug] runScheduledPollers
+2015-09-03 11:55:43 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:43 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:43 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:43 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:43 [debug] runScheduledPollers DONE
+2015-09-03 11:55:43 [debug] runScheduledPollers
+2015-09-03 11:55:43 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:43 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:43 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:43 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:43 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:43 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:43 [debug] runScheduledPollers DONE
+2015-09-03 11:55:43 [debug] runScheduledPollers
+2015-09-03 11:55:43 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:44 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:44 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:44 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:44 [debug] runScheduledPollers DONE
+2015-09-03 11:55:44 [debug] runScheduledPollers
+2015-09-03 11:55:44 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:44 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:44 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:44 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:44 [debug] runScheduledPollers DONE
+2015-09-03 11:55:44 [debug] runScheduledPollers
+2015-09-03 11:55:44 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:44 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:44 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:44 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:44 [debug] runScheduledPollers DONE
+2015-09-03 11:55:44 [debug] runScheduledPollers
+2015-09-03 11:55:44 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:44 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:44 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:44 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:44 [debug] runScheduledPollers DONE
+2015-09-03 11:55:44 [debug] runScheduledPollers
+2015-09-03 11:55:44 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:44 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:44 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:44 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:45 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:45 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:45 [debug] runScheduledPollers DONE
+2015-09-03 11:55:45 [debug] runScheduledPollers
+2015-09-03 11:55:45 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:45 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:45 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:45 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:45 [debug] runScheduledPollers DONE
+2015-09-03 11:55:45 [debug] runScheduledPollers
+2015-09-03 11:55:45 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:45 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:45 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:45 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:45 [debug] runScheduledPollers DONE
+2015-09-03 11:55:45 [debug] runScheduledPollers
+2015-09-03 11:55:45 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:45 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:45 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:45 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:45 [debug] runScheduledPollers DONE
+2015-09-03 11:55:45 [debug] runScheduledPollers
+2015-09-03 11:55:45 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:45 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:45 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:45 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:45 [debug] runScheduledPollers DONE
+2015-09-03 11:55:45 [debug] runScheduledPollers
+2015-09-03 11:55:45 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:45 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:45 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:45 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:46 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:46 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:46 [debug] runScheduledPollers DONE
+2015-09-03 11:55:46 [debug] runScheduledPollers
+2015-09-03 11:55:46 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:46 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:46 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:46 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:46 [debug] runScheduledPollers DONE
+2015-09-03 11:55:46 [debug] runScheduledPollers
+2015-09-03 11:55:46 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:46 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:46 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:46 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:46 [debug] runScheduledPollers DONE
+2015-09-03 11:55:46 [debug] runScheduledPollers
+2015-09-03 11:55:46 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:46 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:46 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:46 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:46 [debug] runScheduledPollers DONE
+2015-09-03 11:55:46 [debug] runScheduledPollers
+2015-09-03 11:55:46 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:46 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:46 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:46 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:46 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:46 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:47 [debug] runScheduledPollers DONE
+2015-09-03 11:55:47 [debug] runScheduledPollers
+2015-09-03 11:55:47 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:47 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:47 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:47 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:47 [debug] runScheduledPollers DONE
+2015-09-03 11:55:47 [debug] runScheduledPollers
+2015-09-03 11:55:47 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:47 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:47 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:47 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:47 [debug] runScheduledPollers DONE
+2015-09-03 11:55:47 [debug] runScheduledPollers
+2015-09-03 11:55:47 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:47 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:47 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:47 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:47 [debug] runScheduledPollers DONE
+2015-09-03 11:55:47 [debug] runScheduledPollers
+2015-09-03 11:55:47 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:47 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:47 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:47 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:47 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:47 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:48 [debug] runScheduledPollers DONE
+2015-09-03 11:55:48 [debug] runScheduledPollers
+2015-09-03 11:55:48 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:48 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:48 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:48 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:48 [debug] runScheduledPollers DONE
+2015-09-03 11:55:48 [debug] runScheduledPollers
+2015-09-03 11:55:48 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:48 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:48 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:48 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:48 [debug] runScheduledPollers DONE
+2015-09-03 11:55:48 [debug] runScheduledPollers
+2015-09-03 11:55:48 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:48 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:48 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:48 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:48 [debug] runScheduledPollers DONE
+2015-09-03 11:55:48 [debug] runScheduledPollers
+2015-09-03 11:55:48 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:48 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:48 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:48 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:48 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:48 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:48 [debug] runScheduledPollers DONE
+2015-09-03 11:55:48 [debug] runScheduledPollers
+2015-09-03 11:55:49 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:49 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:49 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:49 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:49 [debug] runScheduledPollers DONE
+2015-09-03 11:55:49 [debug] runScheduledPollers
+2015-09-03 11:55:49 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:49 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:49 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:49 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:49 [debug] runScheduledPollers DONE
+2015-09-03 11:55:49 [debug] runScheduledPollers
+2015-09-03 11:55:49 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:49 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:49 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:49 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:49 [debug] runScheduledPollers DONE
+2015-09-03 11:55:49 [debug] runScheduledPollers
+2015-09-03 11:55:49 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:49 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:49 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:49 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:49 [debug] runScheduledPollers DONE
+2015-09-03 11:55:49 [debug] runScheduledPollers
+2015-09-03 11:55:49 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:49 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:49 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:49 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:49 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:49 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:50 [debug] runScheduledPollers DONE
+2015-09-03 11:55:50 [debug] runScheduledPollers
+2015-09-03 11:55:50 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:50 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:50 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:50 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:50 [debug] runScheduledPollers DONE
+2015-09-03 11:55:50 [debug] runScheduledPollers
+2015-09-03 11:55:50 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:50 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:50 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:50 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:50 [debug] runScheduledPollers DONE
+2015-09-03 11:55:50 [debug] runScheduledPollers
+2015-09-03 11:55:50 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:50 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:50 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:50 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:50 [debug] runScheduledPollers DONE
+2015-09-03 11:55:50 [debug] runScheduledPollers
+2015-09-03 11:55:50 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:50 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:50 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:50 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:50 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:50 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:50 [debug] runScheduledPollers DONE
+2015-09-03 11:55:50 [debug] runScheduledPollers
+2015-09-03 11:55:51 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:51 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:51 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:51 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:51 [debug] runScheduledPollers DONE
+2015-09-03 11:55:51 [debug] runScheduledPollers
+2015-09-03 11:55:51 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:51 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:51 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:51 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:51 [debug] runScheduledPollers DONE
+2015-09-03 11:55:51 [debug] runScheduledPollers
+2015-09-03 11:55:51 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:51 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:51 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:51 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:51 [debug] runScheduledPollers DONE
+2015-09-03 11:55:51 [debug] runScheduledPollers
+2015-09-03 11:55:51 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:51 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:51 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:51 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:51 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:51 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:51 [debug] runScheduledPollers DONE
+2015-09-03 11:55:51 [debug] runScheduledPollers
+2015-09-03 11:55:51 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:52 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:52 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:52 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:52 [debug] runScheduledPollers DONE
+2015-09-03 11:55:52 [debug] runScheduledPollers
+2015-09-03 11:55:52 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:52 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:52 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:52 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:52 [debug] runScheduledPollers DONE
+2015-09-03 11:55:52 [debug] runScheduledPollers
+2015-09-03 11:55:52 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:52 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:52 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:52 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:52 [debug] runScheduledPollers DONE
+2015-09-03 11:55:52 [debug] runScheduledPollers
+2015-09-03 11:55:52 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:52 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:52 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:52 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:52 [debug] runScheduledPollers DONE
+2015-09-03 11:55:52 [debug] runScheduledPollers
+2015-09-03 11:55:52 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:52 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:52 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:52 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:52 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:53 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:53 [debug] runScheduledPollers DONE
+2015-09-03 11:55:53 [debug] runScheduledPollers
+2015-09-03 11:55:53 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:53 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:53 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:53 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:53 [debug] runScheduledPollers DONE
+2015-09-03 11:55:53 [debug] runScheduledPollers
+2015-09-03 11:55:53 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:53 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:53 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:53 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:53 [debug] runScheduledPollers DONE
+2015-09-03 11:55:53 [debug] runScheduledPollers
+2015-09-03 11:55:53 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:53 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:53 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:53 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:53 [debug] runScheduledPollers DONE
+2015-09-03 11:55:53 [debug] runScheduledPollers
+2015-09-03 11:55:53 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:53 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:53 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:53 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:53 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:53 [debug] runScheduledPollers DONE
+2015-09-03 11:55:53 [debug] runScheduledPollers
+2015-09-03 11:55:53 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:53 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:53 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:54 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:54 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:54 [debug] runScheduledPollers DONE
+2015-09-03 11:55:54 [debug] runScheduledPollers
+2015-09-03 11:55:54 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:54 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:54 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:54 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:54 [debug] runScheduledPollers DONE
+2015-09-03 11:55:54 [debug] runScheduledPollers
+2015-09-03 11:55:54 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:54 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:54 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:54 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:54 [debug] runScheduledPollers DONE
+2015-09-03 11:55:54 [debug] runScheduledPollers
+2015-09-03 11:55:54 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:54 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:54 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:54 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:54 [debug] runScheduledPollers DONE
+2015-09-03 11:55:54 [debug] runScheduledPollers
+2015-09-03 11:55:54 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:54 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:54 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:54 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:54 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:54 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:54 [debug] runScheduledPollers DONE
+2015-09-03 11:55:55 [debug] runScheduledPollers
+2015-09-03 11:55:55 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:55 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:55 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:55 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:55 [debug] runScheduledPollers DONE
+2015-09-03 11:55:55 [debug] runScheduledPollers
+2015-09-03 11:55:55 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:55 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:55 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:55 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:55 [debug] runScheduledPollers DONE
+2015-09-03 11:55:55 [debug] runScheduledPollers
+2015-09-03 11:55:55 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:55 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:55 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:55 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:55 [debug] runScheduledPollers DONE
+2015-09-03 11:55:55 [debug] runScheduledPollers
+2015-09-03 11:55:55 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:55 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:55 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:55 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:55 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:55 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:55 [debug] runScheduledPollers DONE
+2015-09-03 11:55:56 [debug] runScheduledPollers
+2015-09-03 11:55:56 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:56 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:56 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:56 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:56 [debug] runScheduledPollers DONE
+2015-09-03 11:55:56 [debug] runScheduledPollers
+2015-09-03 11:55:56 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:56 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:56 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:56 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:56 [debug] runScheduledPollers DONE
+2015-09-03 11:55:56 [debug] runScheduledPollers
+2015-09-03 11:55:56 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:56 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:56 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:56 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:56 [debug] runScheduledPollers DONE
+2015-09-03 11:55:56 [debug] runScheduledPollers
+2015-09-03 11:55:56 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:56 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:56 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:56 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:56 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:56 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:56 [debug] runScheduledPollers DONE
+2015-09-03 11:55:56 [debug] runScheduledPollers
+2015-09-03 11:55:57 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:57 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:57 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:57 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:57 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:57 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:57 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:57 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:57 [debug] runScheduledPollers DONE
+2015-09-03 11:55:57 [debug] runScheduledPollers
+2015-09-03 11:55:57 [debug] pollForLoad original (selenium1441274115107): https://int-userportal.smartdatanet.it/userportal/#/home
+2015-09-03 11:55:57 [debug] _isSamePage: currentHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:57 [debug] _isSamePage: originalHref: https://int-userportal.smartdatanet.it/userportal/
+2015-09-03 11:55:57 [debug] _isSamePage: sameDoc: true
+2015-09-03 11:55:57 [debug] _isSamePage: sameLoc: true
+2015-09-03 11:55:57 [debug] _isSamePage: sameHref: true
+2015-09-03 11:55:57 [debug] _isSamePage: markedLoc: true
+2015-09-03 11:55:57 [debug] pollForLoad continue (selenium1441274115107): undefined
+2015-09-03 11:55:57 [debug] runScheduledPollers DONE
+2015-09-03 11:55:57 [debug] XHR response code being ignored. Nothing to abort.
+2015-09-03 11:55:57 [debug] currentTest.continueTest() - acquire the next command
+2015-09-03 11:55:57 [debug] currentTest.continueTestAtCurrentCommand()
+2015-09-03 11:55:57 [debug] testComplete: failed=true
+2015-09-03 11:55:57 [info] Test case passed

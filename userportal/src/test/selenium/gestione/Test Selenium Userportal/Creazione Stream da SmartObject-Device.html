@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://int-userportal.smartdatanet.it/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://www.google.it</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/userportal/#/home</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=a.btn.main-action-button &gt; span.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=small &gt; a.btn.main-action-button &gt; span.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//button[@type='submit']</td>
+	<td>Cerca</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.main-menu-item.main-menu-item-management &gt; span.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Stream</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Stream</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td.text-left</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Nuovo</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div/new-stream-wizard-register/div/form/div[2]/div/select</td>
+	<td>DeviceClood</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputStreamCode</td>
+	<td>testStreamDeviceBis</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputStreamName</td>
+	<td>test Device bis</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div/new-stream-wizard-register/div/form/div[5]/div/select</td>
+	<td>Energia</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Prosegui</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nomeRichiedente</td>
+	<td>nome</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cognomeRichiedente</td>
+	<td>cognome</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=mailRichiedente</td>
+	<td>mymail</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=accettazionePrivacy</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=accettazioneResponsability</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Prosegui')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div[3]/new-stream-wizard-detail/div/form/div/div/div/select</td>
+	<td>Foresta</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=i.glyphicon.glyphicon-plus</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputStreamFps</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Prosegui')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=newComponentName</td>
+	<td>wind</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div[4]/new-stream-wizard-components/div/form/div[7]/div[2]/table/tbody/tr/td[2]/select</td>
+	<td>sec</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=newComponentTolerance</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div[4]/new-stream-wizard-components/div/form/div[7]/div[2]/table/tbody/tr/td[4]/select</td>
+	<td>rain</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='newDatasetWizard']/div/div[4]/new-stream-wizard-components/div/form/div[7]/div[2]/table/tbody/tr/td[5]/select</td>
+	<td>long</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='newDatasetWizard']/div/div[4]/new-stream-wizard-components/div/form/div[7]/div[2]/table/tbody/tr/td[6]/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Prosegui')])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputStreamLicense</td>
+	<td>lic</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputStreamDisclaimer</td>
+	<td>restr</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputStreamCopyright</td>
+	<td>copy</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Salva bozza</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Richiedi Installazione</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

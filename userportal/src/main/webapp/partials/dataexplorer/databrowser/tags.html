@@ -1,0 +1,39 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div class=''>
+
+	<div ng-repeat='tag in tagList' ng-if="$index % 4 == 0" class="row">
+	
+		<div class='clearfix col-xs-3 browsedata-choosing-tag-box' ng-click='selectTag(tagList[$index])'  ng-class="{'browsedata-choosing-tag-box-selected':isTagSelected(tagList[$index])}">
+			<span ng-show='isTagSelected(tagList[$index])'><i class="fa fa-check-square-o"></i></span>
+			<span ng-show='!isTagSelected(tagList[$index])'><i class="fa fa-square-o"></i></span>
+			<span translate-cloak translate>{{tagList[$index]}}</span>
+		</div>
+
+		<div class='clearfix col-xs-3 browsedata-choosing-tag-box' ng-click='selectTag(tagList[$index+1])' ng-class="{'browsedata-choosing-tag-box-selected':isTagSelected(tagList[$index+1])}">
+			<span ng-show='isTagSelected(tagList[$index+1])'><i class="fa fa-check-square-o"></i></span>
+			<span ng-show='!isTagSelected(tagList[$index+1])'><i class="fa fa-square-o"></i></span>
+			<span translate-cloak translate>{{tagList[$index+1]}}</span>
+		</div>
+
+		<div class='clearfix col-xs-3 browsedata-choosing-tag-box' ng-click='selectTag(tagList[$index+2])'  ng-class="{'browsedata-choosing-tag-box-selected':isTagSelected(tagList[$index+2])}">
+			<span ng-show='isTagSelected(tagList[$index+2])'><i class="fa fa-check-square-o"></i></span>
+			<span ng-show='!isTagSelected(tagList[$index+2])'><i class="fa fa-square-o"></i></span>
+			<span translate-cloak translate>{{tagList[$index+2]}}</span>
+		</div>
+
+		<div class='clearfix col-xs-3 browsedata-choosing-tag-box' ng-click='selectTag(tagList[$index+3])'  ng-class="{'browsedata-choosing-tag-box-selected':isTagSelected(tagList[$index+3])}">
+			<span ng-show='isTagSelected(tagList[$index+3])'><i class="fa fa-check-square-o"></i></span>
+			<span ng-show='!isTagSelected(tagList[$index+3])'><i class="fa fa-square-o"></i></span>
+			<span translate-cloak translate>{{tagList[$index+3]}}</span>
+		</div>
+		
+	</div>
+	<div class='browsedata-toolbar'>
+		<a ng-click='goToChooseDomains()' class="btn btn-default" translate-cloak translate>BACK</a>
+		<a ng-click='goToResults("browse")' class="btn btn-default" translate-cloak translate>DATABROWSER_GO_TO_RESULTS_BTN</a>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class='clearfix entity-info entity-info-top'>
+		<div class='pull-left'>
+			<div><small><span translate-cloak translate>DATASET_FIELD_METADATA_NAME</span></small></div>
+			<div class='main-info'>
+				<strong  ng-if="datasource.stream">{{datasource.stream.streamname}}</strong>
+				<strong  ng-if="!datasource.stream">{{datasource.dataset.datasetname}}</strong>
+			</div>
+		</div>
+		<div class='pull-right text-right'>
+			<div><small><span translate-cloak translate>DATASET_FIELD_METADATA_REGISTRATIONDATE</span></small></div>
+			<div><strong>{{datasource.registrationDate|dataset_date_format}}</strong></div>
+		
+		</div>
+	</div>
+	<!-- 
+	<div class='clearfix entity-info'>
+		<div class='pull-left' ng-if="datasource.stream">
+			<div><small><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span></small></div>
+			<div class='url'><strong>{{datasource.stream.streamcode}}</strong></div>
+		</div>
+		<div class='pull-left' ng-if="!datasource.stream">
+			<div><small><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span></small></div>
+			<div class='url'><strong>{{datasource.dataset.datasetcode}}</strong></div>
+		</div>
+		<div class='pull-right text-right'>
+			<div><small><span translate-cloak translate>DATASOURCE_TYPE</span></small></div>
+			<div>
+				<strong ng-if="!datasource.stream">{{'DATASET_SUBTYPE_'+datasource.dataset.datasetSubtype.datasetSubtype|translate}}</strong>
+				<strong ng-if="datasource.stream.smartobject.soType.description" translate translate-cloak>{{datasource.stream.smartobject.soType.description}}</strong>
+			</div>
+		</div>
+	</div>-->
+	<div class='clearfix entity-info '>
+		<div class='pull-left entity-info-websocket'  ng-if="datasource.stream">
+			<div><small><span translate-cloak translate>DASHBOARD_STREAM_WS_URL_TITLE</span></small></div>
+			<div class=''><strong>{{datasource.stream.wsUrl}}</strong></div>
+		</div>
+	</div>
+	<div class='clearfix entity-info entity-info-bottom'>
+		<div class='pull-left' >
+			<div><small><span translate-cloak translate>DATASET_FIELD_CONFIGDATA_CODE</span></small></div>
+			<div class=''><strong>{{datasource.dataset.datasetcode}}</strong></div>
+		</div>
+		<div class='pull-right text-right'>
+			<div><small><span translate-cloak translate>DATASET_FIELD_VERSION</span></small></div>
+			<div>
+				<strong>{{datasource.version}}</strong>&nbsp;
+				<span class="stream-status stream-status-{{datasource.status.statuscode}}">{{datasource.status.statuscode|translate}}</span>
+				<!-- <strong class='entity-uninstalled' ng-if="dataset.configData.deleted==1" translate-cloak translate>DATASET_FIELD_CONFIGDATA_DELETED</strong>-->
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

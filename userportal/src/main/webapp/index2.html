@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html used-lang ng-app="userportal" lang='it'>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <base href="/userportal/"> -->
+<title ng-bind="'Yucca - ' + (pageTitle|translate)">Smart Data Platform</title>
+<!-- Bootstrap -->
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" type="text/css" href="../ris/userportal/lib/ng-prettyjson/dist/ng-prettyjson.min.css">
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="../ris/userportal/lib/nvd3/nv.d3.min.css">
+<link rel="stylesheet" type="text/css" href="../ris/userportal/lib/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="../ris/userportal/lib/codemirror/addon/hint/show-hint.css" />
+
+<link rel="stylesheet" type="text/css" href="css/app.css">
+<!--  <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/app.css"> -->
+<link rel="stylesheet" type="text/css" href="css/responsive.css">
+<link rel="stylesheet" type="text/css" href="css/smartdatanet-domains.css">
+<link rel="stylesheet" type="text/css" href="../ris/userportal/lib/openlayers/ol.css">
+
+<link href="../ris/userportal/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- build:js js-min/i18n/strings_en.js -->
+<script type="text/javascript" src="js/i18n/strings_en.js"></script>
+<!-- endbuild -->
+
+<!-- build:js js-min/i18n/strings_it.js -->
+<script type="text/javascript" src="js/i18n/strings_it.js"></script>
+<!-- endbuild -->
+
+<link rel="shortcut icon" href="favicon.png">
+<!-- Optional theme -->
+<!--  <link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+-->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<script type='text/javascript'>
+		if(!console){
+			var console = window.console || { log: function() {} };
+		}
+		if(!console.debug)
+			console.debug = window.console.log;
+	</script>
+</head>
+<body>
+	<div ng-controller="GlobalCtrl as globalCtrl">
+		<div class='main-news main-news-{{mainNews.type}} ng-hide' ng-cloak ng-if='mainNews' ng-show='mainNews' >
+			<div class='main-news-inner text-center'>
+				<i class='main-news-icon fa fa-info-circle' ng-if='mainNews.type=="info"'></i> 
+				<i class='main-news-icon fa fa-exclamation-triangle' ng-if='mainNews.type=="warning"'></i> 
+				<i class='main-news-icon fa fa-exclamation-circle' ng-if='mainNews.type=="danger"'></i> 
+				<span class="main-news-title">{{mainNews.title}}</span>
+				<span class="main-news-content" ng-bind-html='mainNews.content'></span>
+			</div>
+		</div>
+		<div class='cookie-alert ng-hide' ng-show="showCookieMessage">
+			<span translate translate-cloak>COOKIE_MESSAGE</span>&nbsp;
+			<a href='http://smartdatanet.it/yucca-cookies-policy.html' target='_blank'>Cookie Policy</a>&nbsp;
+			<a class='btn' ng-click='acceptCookie()' translate-cloak translate>OK</a>
+		</div>
+		<main-navbar2 ng-if="!isHomepage"></main-navbar2>
+		<home-header ng-if="isHomepage"></home-header>
+		<div ng-view class='main-body'></div>
+		<main-footer></main-footer>
+	</div>
+	
+	<!-- 
+	<script type="text/ng-template" id="HPModalContent.html">
+		<div class="modal-content-panel" modal-transclude>
+	        <div class="modal-header modal-top-panel">
+    	        <h1 class="modal-title-container">{{'WARNING_TITLE'|translate}}</h1>
+        	</div>
+	        <div class="modal-body modal-middle-panel" ng-show="!resultTTFormOK && !resultTTFormKO && !resultTPFormOK && !resultTPFormKO">
+    	        <div class="modal-title-container" ng-if="authParam == 'strong'"><b>{{'HOME_LOGGED_NOT_STRONG_AUTHENTICATION'|translate}}</b></div>
+        	    <div class="modal-title-container" ng-if="authParam == 'tecnical'"><b>{{'HOME_LOGGED_TECHNICAL_AUTHENTICATION'|translate}}</b></div>
+        	    <div class="modal-title-container" ng-if="authParam == 'social' || authParam == 'tenant'"><b>{{'HOME_LOGGED_NOT_TENANT_AUTHENTICATION'|translate}}</b></div>
+        	    <div class="modal-title-container" ng-if="authParam == 'newTT'"><b>{{'MENU_MODAL_TRAIL_FULL_TEXT'|translate}}</b></div>
+        	    <div class="modal-title-container" ng-if="authParam == 'newTP'"><b>{{'MENU_MODAL_PERSONAL_FULL_TEXT'|translate}}</b></div>
+	        </div>
+    	    <div class="modal-footer modal-footer-panel" id="modal-footer-force" ng-show="authParam != 'newTT' && authParam != 'newTP' && !resultTTFormOK && !resultTTFormKO && !resultTPFormOK && !resultTPFormKO">
+        	    <a class="btn modal-action" ng-click="showTTForm = !showTTForm" ng-show="authParam != 'tecnical' && authParam != 'strong'"><span translate>HOME_TENANT_TRIAL_BUTTON</span></a>
+        	    <a class="btn modal-action" ng-click="showTPForm = !showTPForm" ng-show="authParam != 'tecnical' && authParam != 'strong' && authParam != 'social'"><span translate>HOME_TENANT_PERSONAL_BUTTON</span></a>
+            	<a class="btn modal-action" href="/userportal/api/authorize?logout={{user.username}}&returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor"><span translate>HOME_FORCE_LOGOUT_BUTTON</span></a>
+    	    </div>
+			<div class="showTTForm-details" ng-show="resultTTFormOK">
+				<div class="modal-title-container" ng-if="authParam == 'newTT' || authParam == 'newTP' || authParam == 'social' || authParam == 'tenant'"><b>{{'MENU_MODAL_RESPONSE_TEXT_OK'|translate:codiceTenantData}}</b> <span>{{tenantTest.userEmail}}</span></div>
+				<div class="modal-footer modal-footer-panel">
+        	    	<a ng-click='cancel()' class="btn modal-action" translate-cloak translate>HOME_TTFORUM_CLOSE</a>
+				</div>
+    		</div>
+			<div class="showTTForm-details" ng-show="resultTTFormKO">
+				<div class="modal-title-container" ng-if="authParam == 'newTT' || authParam == 'newTP' || authParam == 'social' || authParam == 'tenant'"><b>{{'MENU_MODAL_RESPONSE_TEXT_KO'|translate}}</b></div>
+				<div class="modal-footer modal-footer-panel">
+        	    	<a ng-click='cancel()' class="btn modal-action" translate-cloak translate>HOME_TTFORUM_CLOSE</a>
+				</div>
+    		</div>
+			<div class="showTTForm-details" ng-show="resultTPFormOK">
+				<div class="modal-title-container" ng-if="authParam == 'newTT' || authParam == 'newTP' || authParam == 'social' || authParam == 'tenant'"><b>{{'MENU_MODAL_RESPONSE_TEXT_OK'|translate:codiceTenantData}}</b> <span>{{tenantTest.userEmail}}</span></div>
+				<div class="modal-footer modal-footer-panel">
+        	    	<a ng-click='cancel()' class="btn modal-action" translate-cloak translate>HOME_TTFORUM_CLOSE</a>
+				</div>
+    		</div>
+			<div class="showTTForm-details" ng-show="resultTPFormKO">
+				<div class="modal-title-container" ng-if="authParam == 'newTT' || authParam == 'newTP' || authParam == 'social' || authParam == 'tenant'"><b>{{'MENU_MODAL_RESPONSE_TEXT_KO'|translate}}</b></div>
+				<div class="modal-footer modal-footer-panel">
+        	    	<a ng-click='cancel()' class="btn modal-action" translate-cloak translate>HOME_TTFORUM_CLOSE</a>
+				</div>
+    		</div>
+    	</div>
+        <div class="showTTForm-details" ng-show="showTTForm || showTPForm">
+			<div class='container' ng-cloak>
+				<div class='row'>
+					<div class="col-sm-6" >
+						<form class="form-horizontal" role="form" name="TestTenantForm" accept-charset="UTF-8">
+							<div class="form-group">
+								<label for="inputTestUserName" class="col-sm-3 control-label"><span translate-cloak translate>HOME_TTFORUM_USERNAME</span> <span class='required-asterisk'>*</span></label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" ng-readonly="truthyTTForm('username')" ng-model="tenantNew.userName" id="inputTestUserName" ng-required="true" maxlength="40">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputTestUserFirstName" class="col-sm-3 control-label"><span translate-cloak translate>HOME_TTFORUM_USERFIRSTNAME</span> <span class='required-asterisk'>*</span></label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" ng-readonly="truthyTTForm('firstname')" ng-model="userFirstNameTT" id="inputTestUserFirstName" placeholder="{{'HOME_TTFORUM_USERFIRSTNAME_PLACEHOLDER'|translate}}" ng-required="true" maxlength="40">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputTestUserLastName" class="col-sm-3 control-label"><span translate-cloak translate>HOME_TTFORUM_USERLASTNAME</span> <span class='required-asterisk'>*</span></label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" ng-readonly="truthyTTForm('lastname')" ng-model="userLastNameTT" id="inputTestUserLastName" placeholder="{{'HOME_TTFORUM_USERLASTNAME_PLACEHOLDER'|translate}}" ng-required="true" maxlength="40">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputTestUserEmail" class="col-sm-3 control-label"><span translate-cloak translate>HOME_TTFORUM_USEREMAIL</span> <span class='required-asterisk'>*</span></label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" ng-readonly="truthyTTForm('email')" ng-model="userEmailTT" id="inputTestUserEmail" placeholder="{{'HOME_TTFORUM_USEREMAIL_PLACEHOLDER'|translate}}" ng-required="true" maxlength="40">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="modal-footer modal-footer-panel">
+        	    					<a ng-click='cancel()' class="btn modal-action" translate-cloak translate>HOME_TTFORUM_CANCEL</a>
+									<a ng-click='goToRequestor()' class="btn modal-action" ng-disabled="TestTenantForm.$invalid " translate-cloak translate>HOME_TTFORUM_SUBMIT</a>
+								</div>
+							</div>
+      	   				</form>
+         			</div>
+         		</div>
+         	</div>
+         </div>
+    	</script>
+    	 -->
+    	<script type="text/ng-template" id="termAndConditionModal.html">
+        	<div class="modal-header">
+       	    	<h3 class="modal-title">{{'TERM_CONDITION_TITLE'|translate}}</h3>
+        	</div>
+        	<div class="modal-body">
+            	<div><p ng-bind-html="'TERM_CONDITION_INTRO'|translate"></p></div>
+            	<div><p class='termConditionContent'><ng-include src="termConditionContent"></ng-include></p></div>
+				<div ng-show='showLoading'>Please wait...</div>
+        	</div>
+        	<div class="modal-footer" id="modal-footer">
+				<a class="btn main-action-button" href="/userportal/api/authorize?logout={{user.username}}&returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor"><span translate>TERM_CONDITION_CANCEL_BUTTON</span></a>
+            	<a class="btn main-action-button" 
+					href ng-click='acceptTermAndCondition();'>
+					<span translate>TERM_CONDITION_ACCEPT_BUTTON</span>
+				</a>
+        	</div>
+    	</script>
+    	<script type="text/ng-template" id="requestTenant.html">
+			
+    	
+    		<div class="home-page-modal">
+	        	<div class="modal-header">
+    	       		<h1 class="">{{modalTitle|translate}}</h1>
+        		</div>
+	        	<div class="modal-body">
+					<div class="intro" ng-if='hasNoTenant && status=="start"'>{{'HOME_LOGGED_NOT_TENANT_AUTHENTICATION'|translate}}</div>
+	        	    <div class="intro" ng-if='status=="start"'>{{modalIntro|translate}}</div>
+					<form class="form-horizontal" role="form" name="tenantForm" accept-charset="UTF-8" ng-if='status=="start" && missingEmail'>
+						<alert-panel ng-if='validationError.message' message="{{'WARNING_TITLE'|translate}}" detail='{{validationError.message|translate}}'  type='warning'></alert-panel>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span translate-cloak translate>HOME_TTFORUM_USEREMAIL</span></label>
+							<div class="col-sm-8">
+								<input type="email" class="form-control" ng-model="installationTenantRequest.useremail" id="inputTestUserEmail" placeholder="{{'HOME_TTFORUM_USEREMAIL_PLACEHOLDER'|translate}}" ng-required="true" maxlength="40">
+							</div>
+						</div>
+      	   			</form>
+					<div ng-if='status=="sending"'>
+						<div class='ajax-loading'><span translate-cloak translate>REQUEST_TENANT_SENDING</span></div>
+					</div>
+					<div ng-if='status=="finish"'>
+						<div ng-if='!requestTenantError'><b>{{'MENU_MODAL_RESPONSE_TEXT_OK'|translate:requestResponse.tenantcode}}</b> <span>{{installationTenantRequest.useremail}}</span></div>
+						<div  ng-if='requestTenantError'><b>{{'MENU_MODAL_RESPONSE_TEXT_KO'|translate}}</b> </div>
+						<alert-panel content='requestTenantError' ng-if='requestTenantError'></alert-panel>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a ng-if='status=="start" || !hasNoTenant' ng-click='cancel()' class="btn " translate-cloak translate>HOME_TTFORUM_CLOSE</a>
+					<a ng-if='status=="start"' ng-click='requestTenant()' class="btn btn-default" translate-cloak translate>HOME_TTFORUM_SUBMIT</a>
+					<a ng-if='status=="finish" && hasNoTenant' href="/userportal/api/authorize?logout={{user.username}}&returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor" class="btn btn-default" translate-cloak translate>HOME_TTFORUM_CLOSE</a>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/ng-template" id="forceLogout.html">
+    		<div class="home-page-modal">
+	        	<div class="modal-header">
+    	       		<h1 class="">{{'WARNING_TITLE'|translate}}</h1>
+        		</div>
+	        	<div class="modal-body">
+					<div class="intro" ng-bind-html='modalIntro'></div>
+				</div>
+				<div class="modal-footer">
+					<a  href="/userportal/api/authorize?logout={{user.username}}&returnUrl=%23%2Fhome%3FscrollTo%3Dhome-operation-section-anchor" class="btn btn-default" translate-cloak translate>HOME_FORCE_LOGOUT_BUTTON</a>
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/ng-template" id="confirmDialog.html">
+    		<div class="home-page-modal">
+	        	<div class="modal-header">
+    	       		<h1 class="">{{'QUESTION_TITLE'|translate}}</h1>
+        		</div>
+	        	<div class="modal-body">
+					<div class="intro"><strong>{{question.title|translate}}</strong></div>
+					<div class="intro">{{question.message|translate}}</div>
+				</div>
+				<div class="modal-footer">
+					<a ng-click='no()' class="btn btn-default" translate-cloak translate>NO</a>
+					<a ng-click='yes()' class="btn " translate-cloak translate>YES</a>
+				</div>
+			</div>
+		</div>
+	</script>
+	<script type="text/ng-template" id="htmlPopover.html">
+	<div class="modal-compact">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" translate>{{title}}</h4>
+        </div>
+		<div class="modal-body">
+			<div ng-bind-html="htmlContent"></div>
+		</div>
+		<div class='modal-footer date-time-hint-footer' ng-if='htmlFooter'>
+			<div ng-bind-html="htmlFooter"></div>
+		</div>
+	</div>
+	</script>	
+	
+	<script type="text/ng-template" id="helpDialog.html">
+    	<div class="help-page-modal">
+	        <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="yes()"><span aria-hidden="true">&times;</span></button>
+    	   		<h2 class="">{{help.title|translate}}</h2>
+        	</div>
+	       	<div class="modal-body">
+				<ng-include src="'partials/help/'+help.section+'/'+help.page + '_' + currentLang() + '.html?time='+currentmillis"></ng-include>
+			</div>
+			<div class="modal-footer">
+				<a ng-click='yes()' class="btn btn-default" translate-cloak translate>CLOSE</a>
+			</div>
+		</div>
+	</script>
+
+
+  	<script type="text/javascript" src="../ris/userportal/lib/openlayers/ol.js"></script>
+	
+	<script type="text/javascript" src="../ris/userportal/lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+	<!--  <script type="text/javascript" src="../ris/userportal/lib/angular-cookies/angular-cookies.min.js"></script> -->
+	<script type="text/javascript" src="../ris/userportal/lib/angular-sanitize/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angular-translate/angular-translate.min.js"></script>
+
+	<!-- commented d3.js because use the version compliant with nvd3 -->
+	<!-- <script type="text/javascript" src="../ris/userportal/lib/d3/d3.min.js"></script> -->
+	<script type="text/javascript" src="../ris/userportal/lib/stomp/stomp.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
+	
+	<script type="text/javascript" src="../ris/userportal/lib/angular-deckgrid/angular-deckgrid.js"></script>
+	
+	
+	<!-- <script type="text/javascript" src="../ris/userportal/lib/nvd3/d3.v3.min.js"></script> -->
+	<!--  <script type="text/javascript" src="../ris/userportal/lib/d3/d3.min.js"></script> -->
+	<script type="text/javascript" src="../ris/userportal/lib/nvd3/lib/d3.v3.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/nvd3/nv.d3.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/codemirror/addon/hint/show-hint.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/codemirror/addon/hint/sql-hint.js"></script>
+	<script type="text/javascript" src="js/customization/codemirror/mode/sql/sql.js"></script>
+	<script type="text/javascript" src="js/customization/x2js/xml2json.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angular-ui-codemirror/ui-codemirror.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.min.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/ng-file-upload/angular-file-upload-shim.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/ng-file-upload/angular-file-upload.js"></script>
+	<script type="text/javascript" src="../ris/userportal/lib/ngDraggable/ngDraggable.js"></script>
+	
+	<!-- <script type="text/javascript" src="../ris/userportal/news.js"></script>-->
+	<script>document.write('<script src="../ris/userportal/news.js?v=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
+
+
+	<!-- 
+	<script src="sql.js"></script>
+	<script type="text/javascript" src="api/i18n?language=it"></script>
+	<script type="text/javascript" src="api/i18n?language=en"></script>	
+ 	-->
+	<script type="text/javascript" src="api/config"></script>
+	<script type="text/javascript" src="js/build_info.js"></script>
+
+
+	<script type="text/javascript" src="/userportal/api/tags?language=en"></script>
+	<script type="text/javascript" src="/userportal/api/tags?language=it"></script>
+	<script type="text/javascript" src="/userportal/api/domains?language=en"></script>
+	<script type="text/javascript" src="/userportal/api/domains?language=it"></script>
+	<script type="text/javascript" src="/userportal/api/subdomains?language=en"></script>
+	<script type="text/javascript" src="/userportal/api/subdomains?language=it"></script>	
+	
+	
+	<!-- build:js js-min/app.js -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/helpers.js -->
+	<script type="text/javascript" src="js/helpers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/constants.js -->
+	<script type="text/javascript" src="js/constants.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/services.js -->
+	<script type="text/javascript" src="js/services/services.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/userportalServices.js -->
+	<script type="text/javascript" src="js/services/userportalServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/adminServices.js -->
+	<script type="text/javascript" src="js/services/adminServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/metadataapiServices.js -->
+	<script type="text/javascript" src="js/services/metadataapiServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/websocketServices.js -->
+	<script type="text/javascript" src="js/services/websocketServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/odataServices.js -->
+	<script type="text/javascript" src="js/services/odataServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/services/storeServices.js -->
+	<script type="text/javascript" src="js/services/storeServices.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/controllers.js -->
+	<script type="text/javascript" src="js/controllers.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dashboard/DashboardController.js -->
+	<script type="text/javascript" src="js/business/dashboard/DashboardController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/management/ManagementController.js -->
+	<script type="text/javascript" src="js/business/management/ManagementController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/management/ManagementStreamController.js -->
+	<script type="text/javascript" src="js/business/management/ManagementStreamController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/management/ManagementVirtualentityController.js -->
+	<script type="text/javascript" src="js/business/management/ManagementVirtualentityController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/management/ManagementDatasetController.js -->
+	<script type="text/javascript" src="js/business/management/ManagementDatasetController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/management/ManagementImportDatabaseController.js -->
+	<script type="text/javascript" src="js/business/management/ManagementImportDatabaseController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dataExplorer/DataExplorerController.js -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataExplorerController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dataExplorer/DataSearchController.js -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataSearchController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dataExplorer/DataExplorerSubscribeModalController.js -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataExplorerSubscribeModalController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dataExplorer/DataExplorerDetailController.js -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataExplorerDetailController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dataExplorer/DataSubscriptionsController.js -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataSubscriptionsController.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/filters.js -->	
+	<script type="text/javascript" src="js/filters.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/directives.js -->
+	<script type="text/javascript" src="js/directives.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dashboard/DashboardDirectives.js -->
+	<script type="text/javascript" src="js/business/dashboard/DashboardDirectives.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/management/ManagementDirectives.js -->
+	<script type="text/javascript" src="js/business/management/ManagementDirectives.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/business/dataExplorer/DataExplorerDirectives.js -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataExplorerDirectives.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/Lang_ISO_639-1.js -->
+	<script type="text/javascript" src="js/Lang_ISO_639-1.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/widgets/force-directed.js -->
+	<script type="text/javascript" src="js/widgets/force-directed.js"></script>
+	<!-- endbuild -->
+	<!-- build:js js-min/widgets/browse-tree.js -->
+	<script type="text/javascript" src="js/widgets/browse-tree.js"></script>
+	<!-- endbuild -->
+	
+	<!-- demo -->
+	<script type="text/javascript" src="js/business/dataExplorer/DataSearchDemoController.js"></script>
+	
+</body>
+</html>

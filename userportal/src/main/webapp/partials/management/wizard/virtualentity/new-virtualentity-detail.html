@@ -1,0 +1,58 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<div class='clearfix wizard-title' ng-cloak>
+		<div class='pull-left'><h3><span translate-cloak translate>MANAGEMENT_NEW_VIRTUALENTITY_WIZARD_STEP_DETAIL_TITLE</span></h3></div>
+		<div class='pull-right'><h3><small>Step 3/3</small></h3></div>
+	</div>
+	<form class="form-horizontal" role="form" name="detailVirtualentityForm" ng-cloak>
+		<div class="form-group" ng-show="isDevice()">
+			<label for="inputVirtualentityModel" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_MODEL</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityModel" placeholder="{{'VIRTUALENTITY_FIELD_MODEL'|translate}}" ng-model="so.model">
+			</div>
+		</div>			
+		<div class="form-group   has-feedback">
+			<label for="RadioGroupSupply" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_SUPPLY_TYPE</span></label>
+			<div class="col-sm-10 text-left">
+				<div class="radio pull-left" ng-repeat="su in supplyTypeList track by $index">
+					<label>
+						<input type="radio" name="RadioGroupSupply" value="{{su.idSupplyType}}" ng-model="so.idSupplyType" id="RadioGroupSupply_{{$index}}">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>{{su.description}}</span>
+					</label>
+				</div>
+			
+			<!-- 
+				<label class="radio-inline" ng-repeat="su in supplyTypeList track by $index">
+					<input type="radio" name="RadioGroupSupply" value="{{su.idSupplyType}}" id="RadioGroupSupply_{{$index}}" ng-model="so.idSupplyType">{{su.description}}
+				</label>  -->
+			</div>
+		</div>
+		<div class="form-group has-feedback">
+			<label for="inputVirtualentityAdministrationURI" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_ADMIN_URI</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentityAdministrationURI" placeholder="{{'VIRTUALENTITY_FIELD_ADMIN_URI'|translate}}" ng-model="so.urladmin">
+			</div>
+		</div>			
+		<div class="form-group has-feedback">
+			<label for="inputVirtualentitySoftwareVersion" class="col-sm-2 control-label"><span translate-cloak translate>VIRTUALENTITY_FIELD_SOFTWARE_VERSION</span></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputVirtualentitySoftwareVersion" placeholder="{{'VIRTUALENTITY_FIELD_SOFTWARE_VERSION'|translate}}" ng-model="so.swclientversion">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class=" col-sm-12 form-toolbar" ng-show="!isUpdating">
+				<a ng-click='goToPosition()' class="btn " translate-cloak translate>BACK</a>
+				<a ng-click='save()' class="btn btn-wizard-next" ng-disabled="!isOwner() || detailVirtualentityForm.$invalid " translate-cloak translate>SAVE</a>
+			</div>
+			<div class=" col-sm-12 col-lg-12 form-toolbar " ng-show="isUpdating" > 
+				<div class='ajax-loading'><span translate-cloak translate>LOADING</span></div>
+			</div>				
+		</div>
+	</form>
+</div>

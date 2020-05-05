@@ -1,0 +1,123 @@
+<!--
+SPDX-License-Identifier: EUPL-1.2
+(C) Copyright 2019 Regione Piemonte
+-->
+
+<div>
+	<h3 class='text-left form-section-title'  translate-cloak translate><span ng-bind-html="'MANAGEMENT_EDIT_DATASET_VISIBILITY_AND_SHARING'|translate"></span></h3>
+	<div class="form-group">
+		<label for="RadioGroupVisibility" class="col-sm-3 control-label"><span ng-bind-html="'DATASET_FIELD_METADATA_VISIBILITY'|translate"></span></label>
+		<div class="col-sm-9 text-left">
+			<div class="clearfix">
+				<div class="radio pull-left">
+					<label>
+						<input type="radio" name="RadioGroupVisibility" value="public" ng-model="datasource.visibility" ng-change="setOpenData(datasource.visibility)" ng-disabled='!canCreatePublicDataset() || datasource.unpublished'>
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_VISIBILITY_PUBLIC</span>
+					</label>
+				</div>			
+				<div class="radio pull-left">
+					<label>
+						<input type="radio" name="RadioGroupVisibility" value="private" ng-model="datasource.visibility" ng-change="setOpenData(datasource.visibility)" ng-disabled='!canCreatePublicDataset() || datasource.unpublished'>
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_VISIBILITY_PRIVATE</span>
+					</label>
+				</div>		
+			</div>	
+			<!-- 
+			<label class="radio-inline">
+				<input type="radio" name="RadioGroupVisibility" value="public" id="RadioGroupVisibility_0" ng-model="datasource.visibility" ng-disabled='!canCreatePublicDataset() || datasource.unpublished'>
+          		<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_VISIBILITY_PUBLIC</span>
+        	</label>
+			<label class="radio-inline">
+      			<input type="radio" name="RadioGroupVisibility" value="private" id="RadioGroupVisibility_1" ng-model="datasource.visibility" ng-disabled='!canCreatePublicDataset() || datasource.unpublished'>
+      			<span translate-cloak translate>MANAGEMENT_EDIT_DATASET_VISIBILITY_PRIVATE</span>
+      		</label> -->      		
+			<div ng-if="datasource.visibility == 'public'" class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>VISIBILITY_STREAM_DATASET_OPENDATA</span></div>
+		</div>	
+	</div>		
+							
+	<div class="form-group" ng-show="datasource.visibility=='private' && canShareDataset()">
+		<label for="inputStreamAddTenantSharing" class="col-sm-3 control-label"><span translate-cloak translate>DATASET_FIELD_TENANTSSHARING</span></label>
+		<div class="col-sm-4 text-left">
+			<div class="input-group input-group-sm popover-html tag-html-tooltip-container text-left">
+				<input type="text" ng-model="newTenantSharing.value" typeahead="tenant as tenant.name for tenant in tenantsList | filter:{name:$viewValue} | limitTo:8" class="form-control"
+						typeahead-editable="false" typeahead-on-select="onTenantSharingSelect($item, $model, $label)"/>
+				<span class="input-group-addon tag-html-tooltip-button" ng-click="showChooseTenantTable()"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+			</div>	
+		</div>
+		<div class="col-sm-5 text-left">
+			<div>
+				<span  ng-repeat="tenantSharing in datasource.sharingTenants">
+					<span class="label label-custom label-tenant-sharing"><span title="{{tenantSharing.tenantcode}} - {{tenantSharing.description}}">{{tenantSharing.name}}</span> &nbsp;
+					<a href ng-click='removeTenantSharing($index)' class='close-button'>&times;</a>
+					</span> &nbsp;
+				</span>
+			</div>						
+		</div>
+	</div>
+	<div >
+		<div class="form-group">
+			<label for="RadioGroupOpenadata" class="col-sm-3 control-label" ng-show = "false"'><span ng-bind-html="'DATASET_FIELD_METADATA_OPENDATA'|translate"></span></label>
+			<div class="col-sm-9 text-left" >
+			<!-- 
+				<label class="radio-inline">
+	            			<input type="radio" name="RadioGroupOpenadata" value="true" id="RadioGroupOpenadata_0" ng-model="datasource.opendata.isOpendata" ng-disabled="datasource.visibility!='public'">
+	            			<span translate-cloak translate>YES</span>
+	          		</label>
+				<label class="radio-inline">
+	            			<input type="radio" name="RadioGroupOpenadata" value="false" id="RadioGroupOpenadata_1" ng-model="datasource.opendata.isOpendata" ng-disabled="datasource.visibility!='public'">
+	            			<span translate-cloak translate>NO</span>
+	          		</label>
+		    	<div class="radio pull-left">
+					<label>
+						<input type="radio" name="RadioGroupOpenadata" ng-value="true"   ng-model="datasource.opendata.isOpenData" >
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>YES</span>
+					</label>
+				</div>
+		        <div class="radio pull-left">
+					<label>
+						<input type="radio" name="RadioGroupOpenadata" ng-value="false" ng-model="datasource.opendata.isOpenData" >
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						<span translate-cloak translate>NO</span>
+					</label>
+				</div> -->
+			</div>
+		</div>
+		<div ng-show="datasource.visibility=='public'">
+			<div class="form-group">
+				<label for="inputDatasetOpendataAuthor" class="col-sm-3 control-label" translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_AUTHOR</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="inputDatasetOpendataAuthor" placeholder="{{'DATASET_FIELD_METADATA_OPENDATA_AUTHOR_PLACEHOLDER'|translate}}" 
+					ng-model="datasource.opendata.opendataauthor" >
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="inputDatasetDomain" class="col-sm-3 control-label"translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_LANG</label>
+				<div class="col-sm-9">
+					<select id="inputDatasetDomain" class="input-sm form-control" ng-model="datasource.opendata.opendatalanguage" ng-options="k as v for (k, v) in OPENDATA_LANGUAGES">
+	   					<option value="" translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_LANG_PLACEHOLDER</option>
+	   				</select>
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="inputDatasetOpendataDataUpdateDate" class="col-sm-3 control-label" translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_DATE</label>
+				<div class="col-sm-9">
+					<input type="date" value="{{datasource.opendata.opendataupdatedate|date}} class="form-control" id="inputDatasetOpendataDataUpdateDate" ng-model="datasource.opendata.opendataupdatedate" ng-change='formatOpendataUpdateDate(opendataupdatedate)' close-text="Close" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputDatasetOpendataUpdateFrequency" class="col-sm-3 control-label"translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_DATA_UPDATE_FREQUENCY</label>
+				<div class="col-sm-9">
+				<!-- Vocabolario: http://publications.europa.eu/mdr/resource/authority/frequency/skos/frequencies-skos.rdf -->
+					<select id="inputDatasetDomain" class="input-sm form-control" ng-model="datasource.opendata.opendataupdatefrequency" 
+						ng-options="frequency as 'OPENDATA_UPDATE_FREQUENCY_'+frequency|translate  for frequency in OPENDATA_UPDATE_FREQUENCY">
+	   					<option value="" translate-cloak translate>DATASET_FIELD_METADATA_OPENDATA_UPDATE_FREQUENCY_PLACEHOLDER</option>
+	   				
+	   				</select>
+				</div>
+			</div>				
+		</div>
+	</div>
+</div>
