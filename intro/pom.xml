@@ -1,0 +1,222 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.csi.yucca.intro</groupId>
+	<artifactId>intro</artifactId>
+	<version>1.0.0-001</version>
+	<packaging>war</packaging>
+	<name>intro</name>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<testSource>1.7</testSource>
+					<testTarget>1.7</testTarget>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.0</version>
+				<configuration>
+					<workingDirectory>src/main/angular/intro/</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v10.21.0</nodeVersion>
+							<npmVersion>6.14.5</npmVersion>
+							<!-- https://nodejs.org/en/download/releases/ <nodeVersion>v9.11.2</nodeVersion> 
+								<npmVersion>5.6.0</npmVersion> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<!--<arguments>run build</arguments> -->
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>buildWebapp</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<!--<arguments>run-script build</arguments> -->
+							<arguments>run ${npmScript}</arguments>
+						</configuration>
+						<phase>generate-resources</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<!--<plugin> <groupId>org.apache.maven.plugins</groupId> <version>2.4</version> 
+				<artifactId>maven-assembly-plugin</artifactId> <configuration> <descriptor>src/assembly/resources-web.xml</descriptor> 
+				<finalName>resources-web-${project.version}</finalName> </configuration> 
+				<executions> <execution> <phase>package</phase> <goals> <goal>single</goal> 
+				</goals> </execution> </executions> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/angular/intro/dist/intro</directory>
+							<targetPath>.</targetPath>
+						</resource>
+					</webResources>
+					<!-- <packagingExcludes>lib/angular/,lib/angular-bootstrap/,lib/angular-route/,lib/angular-sanitize/,lib/angular-translate/,lib/angularjs-nvd3-directives/,lib/d3/,lib/freeboard/,lib/jquery/,lib/ng-prettyjson/,lib/nvd3/,lib/openlayers/,lib/reconnecting-websocket/,lib/stomp/,freeboard/</packagingExcludes> -->
+					<webXml>${webXmlPath}/web.xml</webXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>apache-maven2-repo</id>
+			<name>Apache Maven2 Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>xerces-api</id>
+			<url>http://central.maven.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>org.apache.xalan</id>
+			<url>http://central.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>local</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>conf/local/web</directory>
+					</resource>
+				</resources>
+			</build>
+			<properties>
+				<npmScript>buildLocal</npmScript>
+				<webXmlPath>conf/local/web/WEB-INF</webXmlPath>
+			</properties>
+		</profile>
+		<profile>
+			<id>int</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>conf/int/web</directory>
+					</resource>
+				</resources>
+			</build>
+			<properties>
+				<npmScript>buildInt</npmScript>
+				<webXmlPath>conf/int/web/WEB-INF</webXmlPath>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>conf/prod/web</directory>
+					</resource>
+				</resources>
+			</build>
+			<properties>
+				<npmScript>buildProduction</npmScript>
+				<webXmlPath>conf/prod/web/WEB-INF</webXmlPath>
+			</properties>
+		</profile>
+	</profiles>
+</project>

@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -186,6 +186,23 @@ appControllers.controller('DataExplorerDetailCtrl', [ '$scope', '$route', '$rout
 		}
 		return result;
 	};
+	
+	$scope.apiContexts = ["odata", "odatarupar", "search", "searchrupar"];
+	
+	$scope.showSubscribeButton = function(apiContext){
+		var result = false;
+		if($scope.metadata.apiContexts){
+			for (var i = 0; i < $scope.metadata.apiContexts.length; i++) {
+				if($scope.metadata.apiContexts[i] == apiContext){
+					result = true;
+					break;
+				}	
+			}
+		}
+		else // $scope.metadata.apiContexts undefined
+			result = true
+		return result;
+	}
 	
 	$scope.openModalViewSubscribe = function(size, apiType) {
 		$scope.modalInstance = $modal.open({

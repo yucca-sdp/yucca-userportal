@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -205,14 +205,23 @@ appControllers.controller('ManagemenImportDatabasetWizardCtrl', [ '$scope', '$ro
 		$scope.alert.admin_response = {};
 		if($scope.importConfig.dbType == "" || $scope.importConfig.dbType == null)
 			$scope.alert.admin_response = {'type': 'warning','message':'MANAGEMENT_IMPORT_DATABASE_DBTYPE_NULL_WARNING'};
-		
+		console.log("importConfig", $scope.importConfig.dbType);
 		if($scope.importConfig.sourceType == "database"){
-			if($scope.importConfig.dbType!='HIVE' && 
+			if($scope.importConfig.dbType!='HIVE' && $scope.importConfig.dbType!='HIVE_HDP3' && 
 			    ($scope.importConfig.jdbcHostname == null || $scope.importConfig.jdbcHostname == "" ||
-				 $scope.importConfig.jdbcDbname == null || $scope.importConfig.jdbcDbname == ""  ||
+//				 $scope.importConfig.jdbcDbname == null || $scope.importConfig.jdbcDbname == ""  ||
 				 $scope.importConfig.jdbcUsername == null || $scope.importConfig.jdbcUsername == "" ||
 				 $scope.importConfig.jdbcPassword == null || $scope.importConfig.jdbcPassword == "")){
 				$scope.alert.admin_response = {'type': 'warning','message':'MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING'};
+			}else if(($scope.importConfig.jdbcDbname == null || $scope.importConfig.jdbcDbname == "" ) 
+					&& ($scope.importConfig.jdbcDbservice == null || $scope.importConfig.jdbcDbservice == "") 
+						&& $scope.importConfig.dbType!='HIVE' && $scope.importConfig.dbType!='HIVE_HDP3'){
+				$scope.alert.admin_response = {'type': 'warning','message':'MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING_SCHEMA_DBNAME_NULL'};
+			}else if ($scope.importConfig.jdbcDbname != null && $scope.importConfig.jdbcDbname != "" 
+				&& $scope.importConfig.jdbcDbservice != null && $scope.importConfig.jdbcDbservice != "" 
+					&& $scope.importConfig.dbType!='HIVE' && $scope.importConfig.dbType!='HIVE_HDP3'){ 
+				// se sono valorizzati jdbcDbname e jdbcService
+				$scope.alert.admin_response = {'type': 'warning','message':'MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING_SCHEMA_DBNAME_FULL'};
 			}
 
 		}
@@ -220,8 +229,7 @@ appControllers.controller('ManagemenImportDatabasetWizardCtrl', [ '$scope', '$ro
 			if($scope.importConfig.sqlSourcefile==null){
 				$scope.alert.admin_response = {'type': 'warning','message':'MANAGEMENT_IMPORT_DATABASE_SOURCEFILE_NULL_WARNING'};
 			}
-		}
-		
+		}		
 		$scope.importConfig.organizationCode = info.getActiveTenant().organization.organizationcode;
 		$scope.importConfig.tenantCode = info.getActiveTenant().tenantcode;
 
@@ -311,6 +319,13 @@ appControllers.controller('ManagemenImportDatabasetWizardCtrl', [ '$scope', '$ro
 	
 	$scope.goToCustomize  = function(){
 		console.log("defaultMetadata", $scope.defaultMetadata);
+		
+		var apiContexts = [];
+		if($scope.defaultMetadata.apiOdataEnabled)
+			apiContexts.push($scope.defaultMetadata.apiOdata);
+		if($scope.defaultMetadata.apiSearchEnabled)
+			apiContexts.push($scope.defaultMetadata.apiSearch);
+
 		for (var tableIndex = 0; tableIndex < $scope.tables.length; tableIndex++) {
 			
 			if($scope.tables[tableIndex].importTable && !$scope.isTableCustomized(tableIndex) && $scope.tables[tableIndex].status == 'new'){
@@ -326,6 +341,7 @@ appControllers.controller('ManagemenImportDatabasetWizardCtrl', [ '$scope', '$ro
 				    $scope.tables[tableIndex].dataset.openData = angular.copy($scope.defaultMetadata.openData);
 				    $scope.tables[tableIndex].dataset.sharingTenants = angular.copy($scope.defaultMetadata.sharingTenants);
 				    $scope.tables[tableIndex].dataset.tags = angular.copy($scope.defaultMetadata.tags);
+				    $scope.tables[tableIndex].dataset.apiContexts = angular.copy(apiContexts);
 
 				}
 			}

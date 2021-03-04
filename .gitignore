@@ -24,3 +24,6 @@ userportal/src/main/resources/prod/server.properties
 userportal/src/main/resources/prod/server.properties
 backoffice/.settings/
 userportal/.settings/
+/.metadata/
+.settings/org.eclipse.m2e.core.prefs
+

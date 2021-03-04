@@ -1,0 +1,52 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<h1>
+    <div class="container" translate>projects</div>
+</h1>
+<div class="container project-panel">
+    <div class='back-link'>
+        <a routerLink='/projects'>
+            <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp;<span translate>back_projects_page</span>
+        </a>
+    </div>
+    <span class="title" translate>{{project.key}}_title</span>
+    <div class='row'>
+        <div class='col'>
+            <div>
+                <span [innerHtml]="project.key+'_description' | translate"></span>
+            </div>
+            <div class="section-title">
+                <h2><strong translate>detail_project_data_shared_title</strong></h2>
+                <div>
+                    <span [innerHtml]="project.key+'_shared_data'|translate"></span>
+                </div>
+            </div>
+            <div *ngIf="project.websites">
+                <strong><span translate>detail_project_web_site_title</span>:</strong>
+                <div *ngFor="let site of project.websites">
+                    <a [href]='site.url' target='_blank'>{{site.label}}</a>
+                </div>
+            </div>
+
+        </div>
+        <div class='col'>
+            <h3 translate>detail_project_subject_title</h3>
+            <div><span [innerHtml]="project.key+'_related'|translate"></span></div>
+            <h3 class="h3-margin" translate>detail_project_geographic_area_title</h3>
+            <div><span [innerHtml]="project.key+'_geographic_area'|translate"></span></div>
+            <h3 class="h3-margin" translate>detail_project_pa_title</h3>
+            <div><span [innerHtml]="project.key+'_related_pa'|translate"></span></div>
+            <h3 class="h3-margin" translate>detail_project_shared_title</h3>
+            <a href="http://www.facebook.com/share.php" target='_blank'>
+                <fa-icon [icon]="faFacebook" class="icon"></fa-icon>
+            </a>
+            <a href="https://twitter.com/home" target='_blank'>
+                <fa-icon [icon]="faTwitterSquare" class="icon"></fa-icon>
+            </a>
+
+        </div>
+    </div>
+</div>

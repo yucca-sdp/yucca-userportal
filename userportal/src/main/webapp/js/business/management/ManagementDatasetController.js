@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -716,6 +716,7 @@ appControllers.controller('ManagementDatasetCtrl', [ '$scope', '$route', '$route
 
 	$scope.admin_response = {};
 	var loadedDataset =  null;
+	
 	var loadDatasource = function(){
 		adminAPIservice.loadDatasource(Constants.DATASOURCE_TYPE_DATASET,  info.getActiveTenant(),$routeParams.id_datasource).success(function(response) {
 			console.log("LoadDataset", response);
@@ -727,6 +728,28 @@ appControllers.controller('ManagementDatasetCtrl', [ '$scope', '$route', '$route
 				loadedDataset = response;
 				$scope.dataset = Helpers.yucca.prepareDatasourceForUpdate(Constants.DATASOURCE_TYPE_DATASET,response);
 				$scope.datasetDomain = $scope.inputDatasource.domain['lang'+$translate.use()];
+				if (response.apiContexts && response.apiContexts.length>0) {
+			    	if(response.apiContexts.includes('odata')) {
+			    		$scope.dataset.apiOdataEnabled = true;
+			    		$scope.dataset.apiOdata = "odata";
+			    	}
+		
+			    	if(response.apiContexts.includes('odatarupar')) {
+			    		$scope.dataset.apiOdataEnabled = true;
+			    		$scope.dataset.apiOdata = "odatarupar";
+			    	}
+			    	
+			     	if(response.apiContexts.includes('search')) {
+			    		$scope.dataset.apiSearchEnabled = true;
+			    		$scope.dataset.apiSearch = "search";
+			    	}
+			     	
+			    	if(response.apiContexts.includes('searchrupar')) {
+			    		$scope.dataset.apiSearchEnabled = true;
+			    		$scope.dataset.apiSearch = "searchrupar";
+			    	}
+				}
+				
 				for (var property in $scope.inputDatasource.subdomain) {
 				    if ($scope.inputDatasource.subdomain.hasOwnProperty(property)) {
 				        if(property.toLowerCase() == "lang"+$translate.use()){
@@ -762,6 +785,8 @@ appControllers.controller('ManagementDatasetCtrl', [ '$scope', '$route', '$route
 				}
 					
 				console.warn("dopo", $scope.showHint)
+				
+				
 
 				$scope.originalDataset = JSON.stringify($scope.dataset);
 				$scope.datasetReady = true;
@@ -1178,6 +1203,11 @@ appControllers.controller('ManagementDatasetCtrl', [ '$scope', '$route', '$route
 		cleanDatasetBeforeUpdate();
 		
 		console.log("dataset dopo binary ", $scope.dataset);
+		$scope.dataset.apiContexts = [];
+		if($scope.dataset.apiOdataEnabled)
+			$scope.dataset.apiContexts.push($scope.dataset.apiOdata);
+		if($scope.dataset.apiSearchEnabled)
+			$scope.dataset.apiContexts.push($scope.dataset.apiSearch);
 		console.log("dataset ready", $scope.dataset);
 		if(!hasErrors){
 			$scope.updateStatus = 'update';
@@ -1326,6 +1356,13 @@ appControllers.controller('ManagementDatasetCtrl', [ '$scope', '$route', '$route
 	
 	var confirmUpdateDataset = function(){
 		$scope.dataset.name=$scope.dataset.datasetname;
+		
+		$scope.dataset.apiContexts = [];
+		if($scope.dataset.apiOdataEnabled)
+			$scope.dataset.apiContexts.push($scope.dataset.apiOdata);
+		if($scope.dataset.apiSearchEnabled)
+		$scope.dataset.apiContexts.push($scope.dataset.apiSearch);
+		
 		cleanDatasetBeforeUpdate();
 		if(loadedDataset != null && Helpers.yucca.deleteDcatId(loadedDataset.dcat, $scope.dataset.dcat))
 			delete $scope.dataset.dcat.idDcat;

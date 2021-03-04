@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 package org.csi.yucca.userportal.userportal.service;
@@ -24,11 +24,24 @@ import org.csi.yucca.userportal.userportal.utils.Config;
 public class ApiODataProxyServlet extends ApiProxyServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+
 	@Override
 	protected void setApiBaseUrl() {
 		try {
 			Properties config = Config.loadServerConfiguration();
-			apiBaseUrl = config.getProperty(Config.API_ODATA_URL_KEY);
+			log.info("[ApiServiceProxyServlet::setApiBaseUrl : apiContext]"+this.apiContext );
+			if(this.apiContext != null) {
+				if (this.apiContext.equals("odata"))
+					apiBaseUrl = config.getProperty(Config.API_ODATA_URL_KEY);
+				else if (this.apiContext.equals("odatarupar")) {
+					log.info("[ApiServiceProxyServlet::setApiBaseUrl : in if]"+this.apiContext );
+					apiBaseUrl = config.getProperty(Config.API_ODATARUPAR_URL_KEY);
+				}
+			}
+			else 
+				apiBaseUrl = config.getProperty(Config.API_ODATA_URL_KEY);
+			log.info("[ApiServiceProxyServlet::setApiBaseUrl : url]"+this.apiBaseUrl );
 		} catch (IOException e) {
 			log.error("[ApiServiceProxyServlet::setApiBaseUrl] - ERROR " + e.getMessage());
 			e.printStackTrace();
@@ -46,10 +59,14 @@ public class ApiODataProxyServlet extends ApiProxyServlet {
 
 	@Override
 	protected void beforeExecute(HttpServletRequest request, GetMethod method) {
+		//apiContext =  request.getParameter("apiContext");
+		//log.info("[createTargetUrlWithParameters::beforeExecute : apiContext]"+apiContext );
+		//this.setApiBaseUrl();
 	}
 
 	@Override
 	protected void beforeExecute(HttpServletRequest request, PostMethod method) throws ServletException {
+		
 	}
 
 }

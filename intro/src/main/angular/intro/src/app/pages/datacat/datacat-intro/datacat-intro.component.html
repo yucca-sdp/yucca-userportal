@@ -1,0 +1,45 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<div class='datacat-welcome'>
+    <div class="datacat-intro-panel jumbotron">
+        <div class="datacat-intro-left col-sm-8">
+            <div>
+                <a routerLink="/" class='back-home-link'>
+                    <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp;<span translate>back_home_page</span>
+                </a>
+            </div>
+            <div class="jumbotron-body">
+                <div class='logocontainer'>
+                    <img class="img-center" src="assets/images/home/datacat_logo.png" alt="datacat_logo">
+                </div>
+                <div class='titlecontainer'>
+                    <h2>Data Catalog</h2>
+                    <p>Lo strumento per la <strong>governance dei dati</strong></p>
+                </div>
+            </div>
+            <div class='datacat-btn'>
+                <a class='btn btn-third card-link' routerLink="/datacat/whatis" (mouseover)="section = 'datacat'">
+                    <div translate>datacat_intro_what_is_btn</div>
+                </a>
+                <a (mouseover)="section = 'login'" class='btn btn-primary card-link' href='{{datacatUrl}}'
+                    (mouseleave)="section = 'datacat'">
+                    <div translate>datacat_intro_login_btn</div>
+                </a>
+                <a (mouseover)="section = 'spid'" class='btn btn-secondary card-link' href='{{spidLoginUrl}}'
+                    (mouseleave)="section = 'datacat'">
+                    <div translate>datacat_intro_login_btn_spid</div>
+                </a>
+            </div>
+        </div>
+        <div class='datacat-intro-right col-sm-4'>
+            <div class='datacat-intro-panel'>
+                <p translate *ngIf="section == 'datacat'">datacat_intro_desc</p>
+                <p translate *ngIf="section == 'login'">login_intro_desc</p>
+                <p translate *ngIf="section == 'spid'">spid_intro_desc</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -110,6 +110,7 @@ var translations_it = {
 	VIRTUALENTITY : 'Smart Object',
 	DATASET : 'Dataset',
 	
+	BACK_TO_INTRO: 'Torna alla home page',
 	SHOW_ALL: 'Mostra tutti',
 	HIDE: 'Nascondi',
 	
@@ -973,6 +974,8 @@ var translations_it = {
 	MANAGEMENT_VIEW_DATASET_WARNING_EDIT_MANDATORY : 'Alcuni campi obbligatori non sono valorizzati, per salvare le modifiche è necessario inserirli',
 	MANAGEMENT_VIEW_DATASET_STAGE_AREA : 'Area di Stage',
 	MANAGEMENT_VIEW_DATASET_ADD_TO_DATASOURCEGROUP_BUTTON: 'Aggiungi a gruppo',
+	MANAGEMENT_VIEW_DATASET_API_ODATA: "Esposto tramite API Odata",
+	MANAGEMENT_VIEW_DATASET_API_SEARCH: "Esposto tramite API Search",
 	
 	MANAGEMENT_ACTIVE_FILTER_TITLE: 'Sono presenti filtri su: ',
 	MANAGEMENT_ACTIVE_FILTER_RESET: 'Clicca per pulire il filtro',
@@ -1241,9 +1244,15 @@ var translations_it = {
 	JDBC_PARAM_HOSTNAME_PLACEHOLDER : 'db.server.it:5123',
 	JDBC_PARAM_DBNAME : 'Db Name',
 	JDBC_PARAM_DBNAME_PLACEHOLDER : 'db_anagrafiche',
-	JDBC_PARAM_DBNAME_TOOLTIP : 'Se si vuole importare uno Schema specifico, indicare nome_db:nome_schema',
-	JDBC_PARAM_USERNAME_TOOLTIP : 'Se si vuole importare uno Schema specifico, indicare user:nome_schema',
+	JDBC_PARAM_DBNAME_HINT: 'Il Db Name è da usare in alternativa al Service Name',
+	//JDBC_PARAM_DBNAME_TOOLTIP : 'Se si vuole importare uno Schema specifico, indicare nome_db:nome_schema',
+	JDBC_PARAM_DBSCHEMA_TOOLTIP : 'Se non indicato verrà considerato come Db Schema lo User',
 	JDBC_PARAM_USERNAME : 'User',
+	JDBC_PARAM_SERVICE : 'Service Name',
+	JDBC_PARAM_SERVICE_PLACEHOLDER : 'service_anagrafiche_db',
+	JDBC_PARAM_DBSERVICE_HINT: 'Il Service Name è da usare in alternativa al Db Name',
+	JDBC_PARAM_SCHEMA : 'Db Schema',
+	JDBC_PARAM_SCHEMA_PLACEHOLDER : 'Db Schema',
 	JDBC_PARAM_USERNAME_PLACEHOLDER : 'admin',
 	JDBC_PARAM_PASSWORD : 'Password',
 	JDBC_PARAM_PASSWORD_PLACEHOLDER : 'secret',
@@ -1253,6 +1262,8 @@ var translations_it = {
 
 	MANAGEMENT_IMPORT_DATABASE_DATABASE_TYPE : 'Tipo di database',
 	MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING : 'Inserire tutti i parametri di connessione: url (hostname:port), nome istanza database, utente e password ',
+	MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING_SCHEMA_DBNAME_NULL : 'Valorizzare almeno un campo fra service e dbName ',
+	MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING_SCHEMA_DBNAME_FULL :'Valorizzare solo un campo fra service e dbName',
 	MANAGEMENT_IMPORT_DATABASE_DBTYPE_NULL_WARNING : 'Specificare il tipo di database',
 	MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_DROPAREA : 'Rilascia qui il file da caricare',
 	MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_OR : 'oppure',
@@ -1519,6 +1530,11 @@ var translations_it = {
 	DATA_EXPLORER_SUBSCRIBE_API_STREAM_BUTTON : 'Sottoscrivi API Stream',
 	DATA_EXPLORER_SUBSCRIBE_API_BUTTON : 'Sottoscrivi API',
 
+	DATA_EXPLORER_SUBSCRIBE_API_odata_BUTTON : 'Sottoscrivi API OData',
+	DATA_EXPLORER_SUBSCRIBE_API_odatarupar_BUTTON : 'Sottoscrivi API Odata Rupar',
+	DATA_EXPLORER_SUBSCRIBE_API_search_BUTTON : 'Sottoscrivi API Search',
+	DATA_EXPLORER_SUBSCRIBE_API_searchrupar_BUTTON : 'Sottoscrivi API Search Rupar',
+	
 	DATABROWSER_TITLE : 'Naviga fra dati e stream',
 	DATABROWSER_CHOOSE_DOMAIN_TITLE : 'Oppure scegli un ambito tematico',
 	DATABROWSER_CHOOSE_TAG_TITLE : 'Scegli uno o pi&ugrave; tag',
@@ -1629,6 +1645,7 @@ var translations_it = {
 	SUBSCRIPTIONS_GENERATE_TOKEN_BTN : 'Genera Token',
 	SUBSCRIPTIONS_RE_GENERATE_TOKEN_BTN : 'Rigenera Token',
 	SUBSCRIPTIONS_TOKEN_VALID_PLACEHOLDER : 'inserisci il timestamp',
+	SUBSCRIPTIONS_VIEW_TOKEN_AND_DATASET_HINT: 'Visualizza i token di accesso, e i dataset sottoscritti',
 	SUBSCRIPTIONS_ALERT_NO_SUBSCRIPTION : 'NON CI SONO API SOTTOSCRITTE A QUESTA APPLICAZIONE',
 	SUBSCRIPTIONS_API_SUBSCRIBED : 'API sottoscritte',
 
@@ -1706,4 +1723,13 @@ var translations_it = {
 	RELEASENOTES_LIST_TITLE: 'Note di release',
 	NEW_VERSION_FULL_REFRESH_LABEL: 'Per utilizzare le nuove funzionalità è necessario ricaricare la pagina',
 	NEW_VERSION_FULL_REFRESH_BUTTON: 'Ricarica ora',
+	API_DATA: 'Dati per API',
+	API_ODATA: 'Esponi tramite API Odata',
+	API_ODATA_YES: "Si",
+	API_ODATA_INTERNET: 'Internet',
+	API_ODATA_RUPAR: 'Intranet',
+	API_SEARCH: 'Esponi tramite API Search',
+	API_SEARCH_YES: "Si",
+	API_SEARCH_INTERNET: 'Internet',
+	API_SEARCH_RUPAR: 'Intranet'
 };

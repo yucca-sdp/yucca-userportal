@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -11,7 +11,7 @@
 
 var appServices = angular.module('userportal.services', [ 'userportal.config' ]);
 
-appServices.value('version', '2.1.2');
+appServices.value('version', '2.2.0');
 
 appServices.factory('readFilePreview', function($q) {
 	return {

@@ -1,0 +1,59 @@
+<div class='home-welcome '>
+	<div class='home-welcome-left'>
+		<div class="jumbotron ">
+			<div class='logocontainer'>
+				<img src='./images/yucca/logoyucca.png' alt='yucca'/>	
+			</div>
+			<div class='titlecontainer'>
+				<h1>Yucca Dashboard</h1>
+				<p>Una collezione di <strong>widget</strong> AngularJS pronti all'uso</p>
+			</div>
+		</div>
+		<div class="home-actionbutton ">
+			<div><a class="btn-home" href="#/install" role="button" ng-mouseover='currentAction = "getstarted"' ng-mouseout='currentAction = ""'><i class='fa fa-rocket'></i> Get Started</a></div>
+			<div><a class="btn-home" href="#/widget" role="button" ng-mouseover='currentAction = "discoverwidgets"' ng-mouseout='currentAction = ""'> <i class='fa fa-bar-chart'></i> Scopri i widget</a></div>
+			<div><a class="btn-home" href="#/composer" role="button" ng-mouseover='currentAction = "usecomposer"' ng-mouseout='currentAction = ""'> <i class='fa fa-magic'></i> Prova il composer</a></div>
+			<div><a class="btn-home btn-home-last" href="https://github.com/csipiemonte/yucca-angular-widgets" target='blanck' role="button" ng-mouseover='currentAction = "viewgithub"' ng-mouseout='currentAction = ""'>
+				<i class="fa fa-github" aria-hidden="true"></i> Guarda su Github</a>
+			</div>
+		</div>
+	</div>
+	<div class='home-welcome-right'>
+		<div class='home-welcome-intro-panel' ng-if='!currentAction'>
+			<p>I widget sono il modo pi&ugrave; immediato di visualizzare i dati ospitati sulla <a href='https://userportal.smartdatanet.it/userportal/' target='_blank'>piattaforma Yucca</a></p>
+		</div>
+		<div class='home-welcome-intro-panel' ng-if='currentAction == "getstarted"'>
+			<p>Includi i widget nelle pagine della tua <strong>webapp</strong>. Le configurazioni sono attributi del widget stesso</p>
+		</div>
+		<div class='home-welcome-intro-panel' ng-if='currentAction == "discoverwidgets"'>
+			<p>Ci sono <strong>tante tipologie di widget</strong>. Grafici, tabelle, mappe &hellip; Tutti <strong>interattivi</strong> e <strong>altamente personalizzabili</strong></p>
+		</div>
+		<div class='home-welcome-intro-panel' ng-if='currentAction == "usecomposer"'>
+			<p>Con il <strong>composer</strong> puoi creare la tua dashboard esportabile <strong>direttamente online</strong>, componendo  e provando i widget in tempo reale</p>
+		</div>
+		<div class='home-welcome-intro-panel' ng-if='currentAction == "viewgithub"'>
+			<p>Se non trovi il widget giusto, parti da <strong>Github</strong> per svilupparne uno tuo</p>
+		</div>
+		<!-- <div class="col-md-4">
+				<h2>Semplici da usare</h2>
+				<p>Installa la libreria tramite <a href='http://bower.io/' target='_blank'>bower</a>, o scarica il codice sorgente da 
+					<a href='https://github.com/csipiemonte/yucca-angular-widgets' target='_blank'>github</a>. Includi i widget che preferisci direttamente nelle pagine del tuo sito. 
+					Tutte le configurazioni sono attributi del widget stesso
+				</p>
+				<p>
+					<a class="btn btn-default" href="#/install" role="button">Inizia con l'installazione &raquo;</a>
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>Altamente personalizzabili</h2>
+				<p>
+					Ogni elemento presente nel widget ha una sua classe css, di cui si puo' semplicemente effettuare l'override. Puoi <strong>provare in tempo reale</strong> le
+					tue customizzazioni nella pagina di demo dei widget
+				</p>
+				<p>
+					<a class="btn btn-default" href="#/widget" role="button">Vai alla documentazione &raquo;</a>
+				</p>
+			</div>
+		</div>-->
+	</div>
+</div>

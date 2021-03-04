@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -19,8 +19,10 @@ appControllers.controller('DataExplorerSubscribeModalCtrl', [ '$scope', '$routeP
      	
      	$scope.updating = false;
      	
-		if($scope.metadata.dataset!=null && $scope.metadata.dataset.code!=null && apiType=='odata'){
-			$scope.apiName = $scope.metadata.dataset.code+"_odata";
+		if($scope.metadata.dataset!=null && $scope.metadata.dataset.code!=null && 
+				(apiType=='odata' || apiType=='odatarupar' || apiType=='search' || apiType=='searchrupar') ){
+			//$scope.apiName = $scope.metadata.dataset.code+"_odata";
+			$scope.apiName = $scope.metadata.dataset.code + "_"+apiType;
 			$scope.apiVersion = "1.0";
 			$scope.apiProvider = "admin";
 			$scope.metadata.name = $scope.metadata.dataset.name;

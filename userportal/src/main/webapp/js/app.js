@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -34,7 +34,7 @@ var app = angular.module('userportal', [
 app.config(['$routeProvider','YUCCA_HOME_PAGE', 'YUCCA_PORTAL', function($routeProvider,YUCCA_HOME_PAGE, YUCCA_PORTAL) {
 	
 	//$routeProvider.when('/home-old', {pageTitle: 'PAGE_TITLE_HOME',templateUrl: 'partials/common/home.html?t='+BuildInfo.timestamp, isHomepage: true});
-	$routeProvider.when('/landing', {pageTitle: 'PAGE_TITLE_HOME',templateUrl: 'partials/common/home/home.html?t='+BuildInfo.timestamp, isHomepage: true});
+	$routeProvider.when('/landing', {pageTitle: 'PAGE_TITLE_HOME',templateUrl: 'partials/common/home/home.html?t='+BuildInfo.timestamp, isHomepage: true});	
 	$routeProvider.when('/home', {redirectTo: function(routeParams) {window.location = YUCCA_HOME_PAGE;}});
 
 //	$routeProvider.when('/home-family-identity', {templateUrl: 'partials/common/home-family-identity.html?t='+BuildInfo.timestamp, isHomepage: true});

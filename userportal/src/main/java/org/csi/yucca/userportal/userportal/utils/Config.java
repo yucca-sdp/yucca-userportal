@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 package org.csi.yucca.userportal.userportal.utils;
@@ -17,6 +17,7 @@ public class Config {
 	public static final String API_SERVICES_URL_KEY = "API_SERVICES_URL";
 	public static final String API_MANAGEMENT_URL_KEY = "API_MANAGEMENT_URL";
 	public static final String API_ODATA_URL_KEY = "API_ODATA_URL";
+	public static final String API_ODATARUPAR_URL_KEY = "API_ODATARUPAR_URL";
 	public static final String API_STORE_URL_KEY = "API_STORE_URL";
 	public static final String API_METADATA_URL_KEY = "API_METADATA_URL";
 	public static final String API_ADMIN_URL_KEY = "API_ADMIN_URL";

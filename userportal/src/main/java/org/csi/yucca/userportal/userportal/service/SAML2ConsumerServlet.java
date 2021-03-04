@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 package org.csi.yucca.userportal.userportal.service;
@@ -129,7 +129,7 @@ public class SAML2ConsumerServlet extends HttpServlet {
 				if (result == null) {
 					// newUser = AuthorizeUtils.DEFAULT_USER;
 					returnPath = configClient.getProperty(Config.YUCCA_HOME_PAGE);
-					log.info("[SAML2ConsumerServlet::doPost] - result not logged");
+					log.info("[SAML2ConsumerServlet::doPost] - result not logged - returnPath: " + returnPath);
 				} else if (result.size() > 0) {
 					// setting User
 					newUser = new User();
@@ -243,7 +243,7 @@ public class SAML2ConsumerServlet extends HttpServlet {
 						returnPath = configClient.getProperty(Config.YUCCA_HOME_PAGE);
 
 				}
-				log.debug("[SAML2ConsumerServlet::doPost] - sendRedirect to " + returnPath);
+				log.info("[SAML2ConsumerServlet::doPost] - sendRedirect to " + returnPath);
 				response.sendRedirect(returnPath);
 			} else {
 				try {

@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -180,8 +180,34 @@ app.directive('datasourceMainInfo', function(adminAPIservice, info,$translate,EN
 	    	console.info("datasourceMainInfo.link datasource", scope.datasource);
 	    	console.info("datasourceMainInfo.link operation", scope.operation);
 	    	console.info("datasourceMainInfo.link extra", scope.extra);
+	    	
+	    	if(scope.operation == 'create' || scope.operation == 'importDatabase' ){
+	    		scope.datasource.apiOdataEnabled = true;
+	    		scope.datasource.apiOdata = 'odata';
+	    	}
 
-	    
+	    	if (scope.datasource.apiContexts) {
+		    	if(scope.datasource.apiContexts.includes('odata')) {
+		    		scope.datasource.apiOdataEnabled = true;
+		    		scope.datasource.apiOdata = "odata";
+		    	}
+	
+		    	if(scope.datasource.apiContexts.includes('odatarupar')) {
+		    		scope.datasource.apiOdataEnabled = true;
+		    		scope.datasource.apiOdata = "odatarupar";
+		    	}
+		    	
+		     	if(scope.datasource.apiContexts.includes('search')) {
+		    		scope.datasource.apiSearchEnabled = true;
+		    		scope.datasource.apiSearch = "search";
+		    	}
+		     	
+		    	if(scope.datasource.apiContexts.includes('searchrupar')) {
+		    		scope.datasource.apiSearchEnabled = true;
+		    		scope.datasource.apiSearch = "searchrupar";
+		    	}
+
+	    	}
 	    	
 	    	scope.validationPatternStreamCode = Constants.VALIDATION_PATTERN_CODE_STREAM;
 	    	scope.validationPatternSubdomain = Constants.VALIDATION_PATTERN_NO_SPACE;
@@ -378,8 +404,6 @@ app.directive('datasourceMainInfo', function(adminAPIservice, info,$translate,EN
 	    			delete scope.datasource["twitterInfo"];
 	    		}
 	    	};
-
-	    	
 	    }
 	};
 });
@@ -721,9 +745,7 @@ app.directive('datasourceSharing', function($modal, info, adminAPIservice) {
 	    		
 	 
 	    	};
-
-
-	    	
+	    		    	
 	    	// tenant sharing
 	    	scope.showChooseTenantTable = function(){
 	    		var chooseTenantDialog = $modal.open({

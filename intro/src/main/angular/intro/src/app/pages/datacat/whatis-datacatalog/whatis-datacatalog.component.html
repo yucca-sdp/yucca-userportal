@@ -1,0 +1,398 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<h1 class='page-main-title' id="top">
+    <div class="container">
+        <div translate>
+            whatis_main_title
+        </div>
+    </div>
+</h1>
+<div class="container">
+    <a routerLink="/datacat" class='back-home-link'>
+        <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp;<span translate>Torna al Datacatalog</span>
+    </a>
+</div>
+<div class='help-page' #page>
+    <svg id="thread-line"></svg>
+    <div class="help-sections">
+        <section class='help-section help-section-1 '>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <h2 #firstTitle>Che cosa è il <strong>catalogo dati?</strong></h2>
+                        <p class='help-content'>
+                            Se cerchiamo in letteratura la definizione di <em>catalogo</em> troviamo ad
+                            esempio:<br><i>“Il
+                                catalogo è un elenco
+                                ordinato e sistematico di più oggetti della stessa specie”</i>
+                        </p>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-2')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img src="assets/images/whatis/datacatalog-section-1.svg" alt="datacatalog section 1"  class="help-section-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section-2" class='help-section help-section-2'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container' #helpSection>
+                        <div class='help-content'>
+                            <h3>E questo catalogo <strong>a quale specie</strong> si riferisce?</h3>
+                            Si riferisce ai <strong>dati che sono contenuti nei sistemi</strong>&nbsp;<em>Big Data
+                                dell’Ente</em>
+                            che sono una raccolta <strong>di dati informativi così estesa</strong>
+                            da richiedere tecnologie e metodi analitici specifici per
+                            l’estrazione di valore o conoscenza.<br><br>
+                            Grazie a questo catalogo possiamo analizzare quali dati abbiamo a disposizione per
+                            comprendere i fenomeni del <strong>passato</strong> e prevedere
+                            quelli
+                            del <strong>futuro</strong>.
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-3')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-2.svg" alt="datacatalog section 2">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section-3" class='help-section help-section-3'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container' #helpSection>
+                        <div class='help-content'>
+                            <h3>Allora in questo catalogo <strong>non troverò i dati stessi</strong> ?</h3>
+                            <p>
+                                <strong>Esatto bravo.</strong> <br>
+                                Nel catalogo non troverai i singoli dati, <strong>ma le loro </strong>&nbsp;<em>schede
+                                    descrittive</em> e su
+                                queste potrai fare le tue ricerche.
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-4')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-3.svg" alt="datacatalog section 3">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="section-4" class='help-section-top'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-section-spacer' #spacer1>&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <section class='help-section help-section-4'>
+            <div class="row">
+                <div class="col-sm-9 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>Ma cosa intendi per <strong>“dato”</strong> ?</h3>
+                            <p>
+                                Per essere precisi non dovremmo parlare di catalogo dati ma di catalogo dei
+                                <em>“dataset”</em>. Il
+                                dataset è una collezione di dati strutturali e generalmente corrisponde ad una tabella.
+                                <br><br>
+                                Nella singola tabella/dataset possiamo avere dati di sensori (ad esempio ogni minuto si
+                                aggiunge una
+                                riga con la nuova temperatura misurata) o dati descrittivi di fenomeni (ad esempio le
+                                generalità di
+                                tutti i partecipanti ad un corso di formazione).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class='help-section-bottom'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-section-spacer' #spacer2>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-5')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="section-5" class='help-section help-section-5'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>Ma questi <strong>dati</strong> sono così <strong>tanti</strong> da aver <strong>bisogno
+                                    di
+                                    un catalogo</strong> ?</h3>
+                            <p>
+                                Pensa che oggi ci sono parecchie <em>migliaia</em>&nbsp;<strong>di dataset</strong>
+                                diversi
+                                e la crescita è notevole ogni anno.<br><br>
+                                È quindi essenziale governare tutti questi dati <strong>descrivendoli al meglio</strong>
+                                e
+                                consentendo così poi anche di <strong>poterli ricercare</strong>.
+                            </p>
+                        </div>
+                        <div role="button" (click)="scrollToId('section-6')" class="help-arrow-next-image">
+                            <img src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image-left" src="assets/images/whatis/datacatalog-section-5a.svg" alt="datacatalog section 5a">
+                        <img class="help-section-image-right" src="assets/images/whatis/datacatalog-section-5b.svg" alt="datacatalog section 5b">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class='help-section-bottom'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-section-spacer' #spacer3>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="section-6" class='help-section help-section-6'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>Ma allora come si <strong>descrive un dato</strong> ?</h3>
+                            <p>
+                                Il dato ha dei suoi attributi specifici che lo caratterizzano come il
+                                <strong>nome</strong>,
+                                la <strong>descrizione</strong>, l’<strong>ambito di appartenenza</strong>, la
+                                <strong>data di creazione&hellip;</strong> ma ha anche altri attributi che derivano
+                                dalla
+                                sua storia, che ne descrive i trattamenti subiti dalla sua origine fino all’uso
+                                finale.<br><br>
+                                Questa storia è quello che chiamiamo <em>“flusso dei dati”</em>.
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-7')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-6.svg" alt="datacatalog section 6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-7" class='help-section help-section-7'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3><strong>Flusso di dati</strong>? Quindi i dati <strong>si
+                                    muovono</strong>?</h3>
+                            <p>
+                                In un certo senso sì, tutti i dati nascono da qualche parte, poi
+                                vengono caricati sul sistema
+                                <em>Big Data dell’Ente</em>, lì vengono processati, ed infine questi
+                                nuovi dati processati sono
+                                passati ad un altro sistema che li utilizza come cruscotto, un sito
+                                web&hellip;
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-8')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-7.svg" alt="datacatalog section 7">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section-8" class='help-section help-section-8'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>Spiegami meglio questo <strong>flusso</strong>&hellip;</h3>
+                            <p>
+                                I dati, semplificando molto, possono nascere in 3 modi diversi: creati a mano da utenti,
+                                ad
+                                esempio con dei fogli di calcolo; oppure creati da un sistema di Software
+                                “gestionale” (ad esempio l’applicativo di anagrafe, oppure quello di bilancio, oppure
+                                quello di facility management&hellip;) o infine generati da sensori con flussi continui,
+                                ad esempio di temperatura, umidità transito di autoveicoli&hellip;.<br><br>
+                                Il posto dove nascono i dati lo chiamiamo <em>fonte</em>, proprio come la sorgente
+                                dell’acqua che poi scorre con il suo flusso.
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-9')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image-left" src="assets/images/whatis/datacatalog-section-8a.svg" alt="datacatalog section 8a">
+                        <img class="help-section-image-right" src="assets/images/whatis/datacatalog-section-8b.svg" alt="datacatalog section 8b">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class='help-section-bottom'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-section-spacer' #spacer4>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="section-9" class='help-section help-section-9'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3><span>Se, come dicevi nella descrizione del flusso dei dati, i dati originali e quindi
+                                    le
+                                    fonti,
+                                    vengono caricati nella piattaforma <strong>Big Data</strong>, dobbiamo caricare
+                                    tutte le
+                                    fonti?</span></h3>
+                            <p>
+                                L’operazione di caricamento, che in inglese si chiama <strong>ingestion</strong>,
+                                avviene solo per le
+                                fonti
+                                che saranno trattate nelle elaborazioni, per queste fonti si decide sempre se caricarle
+                                in
+                                modo <em>completo</em> oppure <em>parziale</em>. In pratica, si specifica sempre quanto
+                                questi caricamenti siano completi rispetto alle fonti e quanto invece parziali (potrei
+                                ad
+                                esempio caricare solo i dati meteo dell’ultimo anno, oppure caricare i dati dei
+                                residenti in
+                                un comune ma non quelli dello stato di famiglia&hellip;). In questo passaggio di
+                                Ingestion
+                                di solito si prendono tutte le precauzioni necessarie per garantire la tutela dei dati
+                                particolari (anonimazione, cifratura&hellip;)
+                            </p>
+                            <p>
+                                Nel flusso dei dati generalmente dopo l’ingestion si fanno le elaborazioni necessarie.
+                                Queste elaborazioni sono chiamate, sempre in inglese, <strong>preparation</strong> e si
+                                compiono con passaggi
+                                successivi, talvolta anche molti, fino ad ottenere i risultati desiderati. Magari nei
+                                primi
+                                passi si preparano i dati di base di ogni fonte, poi nei passaggi successivi
+                                si uniscono tali dati di base per ottenere informazioni che descrivono un fenomeno
+                                ed infine in un ultimo passaggio si estraggono dati si sintesi di tale fenomeno”
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-10')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-9.svg" alt="datacatalog section 9">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class='help-section-top'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-section-spacer' #spacer5>&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <section id="section-10" class='help-section help-section-10'>
+            <div class="row">
+                <div class="col-sm-9 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>E come <strong>terminano</strong> questi flussi di dati??</h3>
+                            <p>L’ultimo passaggio per noi è la <strong>fruizione dei dati</strong>. In pratica, <em>si
+                                    identificano i dati che interessa</em>&nbsp;<strong>utilizzare e le modalità con cui
+                                    li
+                                    si fruisce</strong>.<br><br>Solitamente si fruiscono i dati preparati nei passaggi
+                                finali di preparazione che sono ad esempio gli indicatori prodotti. Le modalità di
+                                fruizione
+                                possibili sono i <strong>cruscotti</strong>, i <strong>report</strong>, i
+                                <strong>siti</strong>&hellip; La fruizione finale è quindi esterna alla piattaforma di
+                                Big
+                                Data.
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-11')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class='help-section-bottom'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-section-spacer' #spacer6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="section-11" class='help-section help-section-11'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>Ma se come dicevi questi dataset sono migliaia, come faccio a gestire migliaia di
+                                flussi?
+                            </h3>
+                            <p>Gestirli tutti, soprattutto comprenderli tutti, sarebbe impossibile come è impossibile
+                                seguire ogni goccia d’acqua in un ruscello. <br><br>Allora usiamo un trucco particolare:
+                                invece di seguire il singolo dataset, che rappresenta la goccia, <em>iniziamo a
+                                    seguire
+                                    insiemi</em>&nbsp;<strong>di dataset</strong> , raggruppandoli in modo
+                                uniforme.<br><br>
+                                Per capire un flusso, ad
+                                esempio, mi basta sapere
+                                che prendo i dati dei residenti e quelli delle aziende, non mi importa in prima battuta
+                                sapere che le aziende in realtà comprendono tanti dataset per le sedi, i dipendenti, i
+                                fatturati, le produzioni&hellip; <em>In pratica, uso gli insiemi per astrarmi</em>&nbsp;
+                                <strong> ad un livello più alto che sarà più facilmente comprensibile e solo a questo
+                                    livello
+                                    descriverò il flusso dei dati. </strong>
+                            </p>
+                        </div>
+                        <div class="help-arrow-next-image">
+                            <img role="button" (click)="scrollToId('section-12')"
+                                src="assets/images/whatis/arrow-next.svg" alt="arrow next">
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-11.svg" alt="datacatalog section 11">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section-12" class='help-section help-section-12'>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class='help-container ' #helpSection>
+                        <div class='help-content'>
+                            <h3>Bene, provo a sintetizzare: Il flusso dei dati parte dalle fonti esterne, passa dagli
+                                insiemi di dataset di ingestion nella piattaforma, si perfeziona con gli insiemi di
+                                dataset
+                                delle preparation successive ed infine termina nelle fruizioni finali esterne alla
+                                piattaforma.</h3>
+                            <p><em>Perfetto</em>&nbsp;<strong> bravissimo!</strong> <br><br>
+
+                            </p>
+                        </div>
+                        <img class="help-section-image" src="assets/images/whatis/datacatalog-section-12.svg" alt="datacatalog section 12">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+<div class="back_to_top text-center">
+    <a routerLink="/datacat/whatis" (click)="scrollToId('top')">Torna su</a>
+</div>
+<p>&nbsp;</p>

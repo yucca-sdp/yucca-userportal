@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -402,6 +402,7 @@ appControllers.controller('DataSearchCtrl', [ '$scope', '$routeParams', '$locati
 		$location.path(data.detailPath);
 	};
 	
+	
 	$scope.noMoreSearchData = false;
 	
 	var metadataSearchFacet = {"field": "entityType,visibility,domainCode,subdomainCode,organizationCode,tenantCode,tagCode"};
@@ -512,7 +513,7 @@ appControllers.controller('DataSearchCtrl', [ '$scope', '$routeParams', '$locati
 		
 		// search(apiVersion,q, lang, pagination,filter, geolocalization, facet)
 		metadataapiAPIservice.search(null, $scope.metadataSearchInput.query, null, metadataSearchPagination,$scope.metadataSearchInput.filter, null, metadataSearchFacet).success(function(response) {
-			console.log("metadataapiAPIservice.search response", response);
+			console.log("metadataapiAPIservice.search1 response", response);
 			$scope.showSearchLoading = false;
 			$scope.metadataSearchOutput.totalFound = response.totalCount;
 			$scope.metadataSearchOutput.totalPages = response.totalCount;

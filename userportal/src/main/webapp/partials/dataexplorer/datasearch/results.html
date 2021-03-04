@@ -1,6 +1,6 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
 
 <div ng-controller="DataSearchCtrl as dataSearchCtrl" id="datasearchresult" class='section-store'  ng-cloak>
@@ -86,7 +86,7 @@ SPDX-License-Identifier: EUPL-1.2
 							<div class='result-item-domain'><i class="icon-{{data['domainCode']}} domain-icon" title="{{data['domainCode']|translate}}"></i></div>
 						</div>
 						<div class='result-item-body clearfix'>
-							<div class='result-item-icon' ng-click="openDetail(data)"><img ng-src="{{metadataSearchOutput.datasetList[$index].icon}}" alt="logo dataset" class="img-responsive" ></div>
+							<div class='result-item-icon' ng-click="openDetail(data)"><img ng-src="{{metadataSearchOutput.datasetList[$index].icon}}"  onerror="this.src=angular.element(this).scope().DEFAULT_DATASET_ICON" alt="logo dataset" class="img-responsive" ></div>
 							<div class='result-item-type' ng-click="openDetail(data)">{{data['type']}} </div>
 							<div class='result-item-description' ng-if='!data["description_show_all"]'>
 								<span ng-click="openDetail(data)" class='multiline-panel'>{{data["description"]|string_ellipse:300}}</span> 

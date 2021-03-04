@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -109,6 +109,8 @@ var translations_en = {
 	TENANT: 'Tenant',
 	VIRTUALENTITY: 'Smart Object', 
 	DATASET: 'Dataset',
+
+	BACK_TO_INTRO: 'Back to home page',
 	
 	SHOW_ALL: 'Show all',
 	HIDE: 'Hide',
@@ -1234,9 +1236,15 @@ var translations_en = {
 	JDBC_PARAM_HOSTNAME_PLACEHOLDER: 'db.server.it:5123',
 	JDBC_PARAM_DBNAME: 'Db Name',
 	JDBC_PARAM_DBNAME_PLACEHOLDER: 'db_anagrafiche',
-	JDBC_PARAM_DBNAME_TOOLTIP: 'If you want to import a specific schema, use db_name:schema_name',
-	JDBC_PARAM_USERNAME_TOOLTIP: 'If you want to import a specific schema, use user:schema_name',
+	JDBC_PARAM_DBNAME_HINT: 'The Db Name is to be used as an alternative to the Service Name',
+	//JDBC_PARAM_DBNAME_TOOLTIP: 'If you want to import a specific schema, use db_name:schema_name',
+	JDBC_PARAM_DBSCHEMA_TOOLTIP: 'If not indicated, the User will be considered as Db Schema ',
 	JDBC_PARAM_USERNAME: 'User',
+	JDBC_PARAM_SERVICE : 'Service Name',
+	JDBC_PARAM_SERVICE_PLACEHOLDER : 'service_anagrafiche_db',
+	JDBC_PARAM_DBSERVICE_HINT: 'The Service Name is to be used as an alternative to the Db Name',
+	JDBC_PARAM_SCHEMA : 'Db Schema',
+	JDBC_PARAM_SCHEMA_PLACEHOLDER : 'Db Schema',
 	JDBC_PARAM_USERNAME_PLACEHOLDER: 'admin',
 	JDBC_PARAM_PASSWORD: 'Password',
 	JDBC_PARAM_PASSWORD_PLACEHOLDER: 'secret',
@@ -1246,6 +1254,8 @@ var translations_en = {
 
 	MANAGEMENT_IMPORT_DATABASE_DATABASE_TYPE: 'Database type',
 	MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING: 'Enter all connection parameters: url (hostname: port), database instance name, user and password',
+	MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING_SCHEMA_DBNAME_NULL : 'Enhance only one field between Service Name and Db Name',
+	MANAGEMENT_IMPORT_DATABASE_JDBC_PARAMS_WARNING_SCHEMA_DBNAME_FULL :'Enhance only one field between Service Name and Db Name',
 	MANAGEMENT_IMPORT_DATABASE_DBTYPE_NULL_WARNING: 'Specify the database type',
 	MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_DROPAREA: 'Drop here the file to upload',
 	MANAGEMENT_IMPORT_DATABASE_UPLOAD_SOURCEFILE_OR: 'or',
@@ -1619,6 +1629,7 @@ var translations_en = {
 	SUBSCRIPTIONS_GENERATE_TOKEN_BTN: 'Generate Token',
 	SUBSCRIPTIONS_RE_GENERATE_TOKEN_BTN: 'Re-generate Token',
 	SUBSCRIPTIONS_TOKEN_VALID_PLACEHOLDER: 'insert timestamp',
+	SUBSCRIPTIONS_VIEW_TOKEN_AND_DATASET_HINT: 'Show access token, and  subscribed dataset',
 	SUBSCRIPTIONS_ALERT_NO_SUBSCRIPTION: 'NO API SUBSCRIBED TO THIS APPLICATION',
 	SUBSCRIPTIONS_API_SUBSCRIBED: 'API subscribed',
 

@@ -1,0 +1,74 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<div class="container container-md" role="main">
+    <div class='row  justify-content-center'>
+        <div class='col-10 col-md-8  box-shadowed main-panel'>
+            <h1>
+                <img src='assets/images/yucca-logo-light.png' alt="">
+                <div>
+                    Compila la richiesta per avere un’area di lavoro
+                </div>
+            </h1>
+            <div class='main-panel-content'>
+                <form [formGroup]="requestForm">
+
+                    <h6>Informazioni personali</h6>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' class='form-control' id='name' placeholder="Nome *"
+                            formControlName="name">
+                    </div>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' id='surname' placeholder="Cognome *"
+                            formControlName="surname">
+                    </div>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' id='role' placeholder="Ruolo *" formControlName="role">
+                    </div>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' id='email' placeholder="Email *"
+                            formControlName="email">
+                    </div>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' id='telephone' placeholder="Telefono *"
+                            formControlName="telephone">
+                    </div>
+
+                    <h6>{{entity=='company' ? 'Azienda' : 'Pubblica amministrazione'}}</h6>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' id='denomination' placeholder="Denominizazione *"
+                            formControlName="denomination">
+                    </div>
+                    <div class='form-row'>
+                        <input type='text' class='form-control' id='reason'
+                            placeholder="Per cosa pensi di usare yucca? *" formControlName="reason">
+                    </div>
+
+                    <div>
+                        <re-captcha (resolved)="resolved($event, null)" formControlName="recaptchaReactive"
+                            siteKey="6LcsrXYUAAAAANTisQR2vQMvmOTk49OlNRQcZuQ-"></re-captcha>
+                    </div>
+
+                    <div class='form-row'>
+                        <button class='btn btn-primary' (click)="onSubmit()"
+                            [disabled]='loading || !captchaToken || !requestForm.valid'>
+                            <span *ngIf='loading' class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            <span *ngIf='!loading'>Invia</span>
+                        </button>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" *ngIf="alertError">
+                        {{alertError}}
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="alertSuccess">
+                        {{alertSuccess}}
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

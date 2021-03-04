@@ -1,6 +1,6 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
 
 <div ng-controller="ManagementDetailCtrl as datasourceCtrl" ng-cloak>
@@ -70,6 +70,22 @@ SPDX-License-Identifier: EUPL-1.2
 								</ul>
 							</div>
 						</div>
+						<div class="row card-row" ng-show="stream==null">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>MANAGEMENT_VIEW_DATASET_API_ODATA</span></strong></div>
+							<div class='col-sm-10'>
+								<span ng-if="datasource.apiContexts.includes('odata')" translate>Internet</span>
+								<span ng-if="datasource.apiContexts.includes('odatarupar')" translate>Intranet </span>
+								<span ng-if="!datasource.apiContexts.includes('odata') && !datasource.apiContexts.includes('odatarupar')" translate>NO</span>
+							</div>
+						</div>	
+						<div class="row card-row" ng-show="stream==null">
+							<div class="col-sm-2 card-label"><strong><span translate-cloak translate>MANAGEMENT_VIEW_DATASET_API_SEARCH</span></strong></div>
+							<div class='col-sm-10'>
+								<span ng-if="datasource.apiContexts.includes('search','searchrupar')" translate>Internet</span>
+								<span ng-if="datasource.apiContexts.includes('searchrupar')" translate>Intranet</span> 
+								<span ng-if="!datasource.apiContexts.includes('search') && !datasource.apiContexts.includes('searchrupar')" translate>NO</span>
+							</div>
+						</div>	
 					</div>
 					<div class="col-sm-2 text-right">
 						<img ng-src="{{datasource.icon}}" alt="logo dataset" class='upload-icon-preview-img' ng-if='datasource.icon' >
@@ -126,7 +142,7 @@ SPDX-License-Identifier: EUPL-1.2
 				</div>	
 			</div>
 		</accordion-group>
-		<accordion-group is-open="status2.open" ng-show="stream!=null">
+		<accordion-group is-open="status2.open" ng-if="stream!=null">
 			<accordion-heading>
 				<div class='container'>
 					<span translate-cloak translate>VIRTUALENTITY</span>
@@ -162,7 +178,7 @@ SPDX-License-Identifier: EUPL-1.2
 				</div>	
 			</div>
 		</accordion-group>
-		<accordion-group is-open="status3.open" ng-show="stream!=null">
+		<accordion-group is-open="status3.open" ng-if="stream!=null">
 			<accordion-heading>
 				<div class='container'>
 					<span translate-cloak translate>STREAM</span>

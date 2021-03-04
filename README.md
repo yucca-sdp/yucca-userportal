@@ -3,6 +3,7 @@
 # Getting Started
 Il prodotto **Yucca Userportal** è composto dalle seguenti componenti:
 - [backoffice](https://github.com/yucca-sdp/yucca-userportal/tree/master/backoffice) (Front-End Web di amministrazione)
+- [intro](https://github.com/yucca-sdp/yucca-userportal/tree/master/intro) (Front-End Web vetrina)
 - [userportal](https://github.com/yucca-sdp/yucca-userportal/tree/master/userportal) (Front-End Web di fruizione)
 # Prerequisites
 I prerequisiti per l'installazione del prodotto sono i seguenti:
@@ -19,10 +20,11 @@ Nei file README.md delle singole componenti verranno elencate le variabili per l
 - Da riga di comando eseguire `mvn -Dmaven.test.skip=true -P dev clean package`
 - La compilazione genera le seguenti unità di installazione:
     - `backoffice/target/backoffice2.war`
-    - `backoffice/userportal/userportal.war`
-	- `backoffice/userportal/resources-web-2.01.0-002-resources-web.zip`
+	- `intro/target/intro.war`
+    - `userportal/target/userportal.war`
+	- `userportal/target/resources-web-2.01.0-002-resources-web.zip`
 ## Istruzioni per l'installazione
-- Effettuare il deploy dei file `backoffice2.war` e `userportal.war` secondo procedura standard JBoss.
+- Effettuare il deploy dei file `backoffice2.war`,`intro.war` e `userportal.war` secondo procedura standard JBoss.
 - Il file `resources-web-2.01.0-002-resources-web.zip` contiene le risorse statiche utilizzate dal prodotto. È possibile installarle nello stesso application server utilizzato precedentemente oppure su un server web dedicato, confiugrando opportunamente i puntamenti all'interno dei file di configurazione delle componenti.
 # Versioning
 Per la gestione del codice sorgente viene utilizzata la metodologia [Semantic Versioning](https://semver.org/).
@@ -31,7 +33,7 @@ Gli autori della piattaforma Yucca sono:
 - [Alessandro Franceschetti](mailto:alessandro.franceschetti@csi.it)
 - [Claudio Parodi](mailto:claudio.parodi@csi.it)
 # Copyrights
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 # License
 Questo software è distribuito con licenza [EUPL-1.2-or-later](https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12)
 

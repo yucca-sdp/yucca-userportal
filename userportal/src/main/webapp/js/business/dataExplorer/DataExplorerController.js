@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -79,7 +79,14 @@ appControllers.controller('DataExplorerCtrl', [ '$scope', '$routeParams', 'odata
 				//	    return elem.tenantCode;
 				//	}).join(",");
 			
-			odataAPIservice.getMetadataMultiToken($scope.metadata.dataset.code, $scope.tenantCode, tenantsSharingList).success(function(response) {
+			if (!$scope.metadata.apiContexts || $scope.metadata.apiContexts == 'undefined' || $scope.metadata.apiContexts == null ) {
+				$scope.metadata.apiContexts = [];
+				$scope.metadata.apiContexts.push('odata');
+			}
+			
+			console.log("loadMetadata",$scope.metadata);
+				
+			odataAPIservice.getMetadataMultiToken($scope.metadata.dataset.code, $scope.tenantCode, tenantsSharingList,$scope.metadata.apiContexts[0]).success(function(response) {
 				console.log("odataAPIservice.getMetadata - xml", response);
 				var x2js = new X2JS();
 				var metadataJson =  x2js.xml_str2json(response);
@@ -286,11 +293,15 @@ appControllers.controller('DataExplorerCtrl', [ '$scope', '$routeParams', 'odata
 		}
 		
 		console.log("filterParam", filterParam);
-		$scope.queryOdataLink = createQueryOdata($scope.datasetCode, filterParam, start, dataForPage, sort, datasetType, 'json');
-		$scope.queryOdataCsvLink = createQueryOdata($scope.datasetCode, filterParam, start, dataForPage, sort, datasetType, 'csv');
-		
 		console.log("queryOdataLink", $scope.queryOdataLink);
-		odataAPIservice.getStreamDataMultiToken($scope.datasetCode, filterParam, start, dataForPage, sort, datasetType, $scope.tenantCode, $scope.metadata.tenantDelegateCodes).success(function(response) {
+		if (!$scope.metadata.apiContexts || $scope.metadata.apiContexts == 'undefined' || $scope.metadata.apiContexts == null ) {
+			$scope.metadata.apiContexts = [];
+			$scope.metadata.apiContexts.push('odata');
+		}
+		$scope.queryOdataLink = createQueryOdata($scope.datasetCode, filterParam, start, dataForPage, sort, datasetType, 'json', $scope.metadata.apiContexts[0]);
+		$scope.queryOdataCsvLink = createQueryOdata($scope.datasetCode, filterParam, start, dataForPage, sort, datasetType, 'csv',$scope.metadata.apiContexts[0]);
+		
+		odataAPIservice.getStreamDataMultiToken($scope.datasetCode, filterParam, start, dataForPage, sort, datasetType, $scope.tenantCode, $scope.metadata.tenantDelegateCodes, $scope.metadata.apiContexts[0]).success(function(response) {
 			console.log("odataAPIservice.getStreamData",response, datasetType);
 			$scope.totalFound = response.d.__count;
 			var oDataResultList = response.d.results;
@@ -410,7 +421,7 @@ appControllers.controller('DataExplorerCtrl', [ '$scope', '$routeParams', 'odata
 		});
 	};
 	
-	var createQueryOdata = function(stream_code, filter, skip, top, orderby, collection, format){
+	var createQueryOdata = function(stream_code, filter, skip, top, orderby, collection, format, apiContext){
 		
 		var host = $location.host();
 		var env = host.substring(0,host.indexOf("userportal.smartdatanet.it"));
@@ -418,7 +429,12 @@ appControllers.controller('DataExplorerCtrl', [ '$scope', '$routeParams', 'odata
 			env = "int-";
 		}
 
-		var streamDataUrl = "http://"+env+"api.smartdatanet.it/api/"+stream_code+"/"+collection+"?$format="+format;
+		if(apiContext && apiContext=="odatarupar")
+			apiContext="apirupar";
+		else
+			apiContext="api";
+		
+		var streamDataUrl = "http://"+env+apiContext + ".smartdatanet.it/"+apiContext+"/"+stream_code+"/"+collection+"?$format="+format;
 		if(filter && filter!=null)
 			streamDataUrl += '&$filter='+filter;
 		if(skip && skip!=null)
@@ -434,7 +450,12 @@ appControllers.controller('DataExplorerCtrl', [ '$scope', '$routeParams', 'odata
 		console.log("loadBinaryDetail",rowNum,  column, $scope.dataList[rowNum][column]);
 		$scope.dataList[rowNum][column].showBinaryDetail = true;
 		$scope.dataList[rowNum][column].loadingBinaryDetail = true;
-		odataAPIservice.getBinaryAttachData($scope.dataList[rowNum][column].binaryBaseUrl,$scope.dataList[rowNum][column].value).success(function(response) {
+		if (!$scope.metadata.apiContexts || $scope.metadata.apiContexts == 'undefined' || $scope.metadata.apiContexts == null ) {
+			$scope.metadata.apiContexts = [];
+			$scope.metadata.apiContexts.push('odata');
+		}
+
+		odataAPIservice.getBinaryAttachData($scope.dataList[rowNum][column].binaryBaseUrl,$scope.dataList[rowNum][column].value,$scope.metadata.apiContexts[0]).success(function(response) {
 			console.log("getBinaryAttachData",response);
 			$scope.dataList[rowNum][column].loadingBinaryDetail = false;
 			if(response.d.results.length>0){

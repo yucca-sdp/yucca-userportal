@@ -102,6 +102,26 @@
 	#home-map-section .right-overlay-map{display: none;}
 	#home-map-section .left-overlay-map{display: none;}
 	
+	#sdp-landing .jumbotron{display: block;text-align: center; padding: 0;}
+	#sdp-landing .home-welcome{min-height: 0;}
+	#sdp-landing .home-welcome .home-welcome-left{width: 100%;padding-bottom:4rem;}
+	#sdp-landing .home-welcome .home-welcome-left .back_to_intro_link{position:static; padding: 1rem; }
+	#sdp-landing .jumbotron .logocontainer{display: none;}
+	#sdp-landing .jumbotron .titlecontainer{text-align: center; margin: 4rem 0 8rem 0; padding-left: 0;}
+	#sdp-landing .jumbotron .titlecontainer h1{font-size: 2.5rem}
+	#sdp-landing .jumbotron p {font-size: 1.8rem;}
+	#sdp-landing .home-actionbutton{display: none;}
+	#sdp-landing .home-actionbutton.home-actionbutton-desktop{display: none;}
+	#sdp-landing .home-actionbutton.home-actionbutton-mobile{display: block;}
+	#sdp-landing .home-welcome .home-welcome-right{display: none;}
+	#sdp-landing .home-actionbutton{margin: auto 30px;}
+	#sdp-landing .home-actionbutton .btn-home{width: 100%;padding: .75rem; margin: 12px 0;}
+	
+	#footer .row{display: block; text-align: center;}
+	#footer .footer-info, #footer .footer-banner {max-width: 100%; font-size: 1.4rem; text-align: center;}
+	#footer .footer-info {background-position: top center; background-size: 80%;}
+	
+	
 	#footer-family-identity p{text-align: center;}
 	#footer-family-identity .logo-csi{margin-top: 20px;}
 	#footer-family-identity ul{padding-left: 0;}

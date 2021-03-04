@@ -1,12 +1,12 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
-
-<a href='{{_baseUrl}}/api/authorize?returnUrl={{currentUrl()}}' ng-if="!user.loggedIn" class='btn btn-login navbar-btn navbar-right'>
+<!--
+<a href='{{_baseUrl}}/api/authorize?returnUrl={{currentUrl()}}&typeAuth=personal' ng-if="!user.loggedIn" class='btn btn-login navbar-btn navbar-right'>
 	<i class="fa fa-user-circle" aria-hidden="true" title='{{"MENU_SING_IN"|translate}}'></i>	
 	<span class='btn-login-label' translate-cloak translate>MENU_SING_IN</span>
-</a>
+</a>-->
 <ul class="nav navbar-nav navbar-right navbar-with-caret" ng-cloak ng-if="user.loggedIn">
 	<!-- <li class='main-menu-profile-item main-menu-item-with-caret' ></li>-->
 	

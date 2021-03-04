@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: EUPL-1.2
+// (C) Copyright 2019 - 2021 Regione Piemonte
+
+.hover
+    display: flex
+    align-items: center
+    z-index: 10
+    background: transparent
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    padding: 1rem
+    transition: all .4s ease-in-out
+    h3
+        font-size: 1.5rem
+        font-weight: bold
+    .hover-content
+        transition: all .4s ease-in-out
+        color: transparent
+        visibility: hidden
+
+.hover:hover
+    background: rgba(215,216,0, 0.95)
+    .hover-content
+        color: #000
+        visibility: visible

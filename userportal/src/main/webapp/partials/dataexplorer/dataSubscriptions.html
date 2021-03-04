@@ -1,6 +1,6 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
 
 <div ng-controller="DataSubscriptionsCtrl as subscriptionsCtrl" ng-cloak>
@@ -58,8 +58,8 @@ SPDX-License-Identifier: EUPL-1.2
 								<a ng-show="application.isEditing" href ng-click='cancelEditApplication($index)' class="btn btn-icon-plus btn-sm" title="{{'UNDO'|translate}}" ng-disable="!application.isBusy"><i class='glyphicon glyphicon-repeat'></i></a>
 							</td>
 							<td class='slim-td'>
-								<a ng-show="!application.isEditing" href ng-click='viewSubscription(application.id, application.name)' class="btn btn-icon-edit btn-sm" title="{{'EDIT'|translate}}" ng-disable="!application.isBusy">
-									<i class='glyphicon glyphicon-transfer'></i>
+								<a ng-show="!application.isEditing" href ng-click='viewSubscription(application.id, application.name)' class="btn btn-icon-edit btn-sm" title="{{'SUBSCRIPTIONS_VIEW_TOKEN_AND_DATASET_HINT'|translate}}" ng-disable="!application.isBusy">
+									<i class='fa fa-chevron-down caret-icon'></i>
 								</a>
 							</td>
 						</tr>
@@ -92,11 +92,24 @@ SPDX-License-Identifier: EUPL-1.2
 												</div>
 											</div>
 											<div><label><span translate>SUBSCRIPTIONS_API_SUBSCRIBED</span></label></div>
-											<div class='subscriptions-api-panel clearfix'>
-												<div ng-repeat="api in sub.subscriptions" class='subscription-api-panel '>
-													<img ng-src="{{api.newIcon}}" alt="{{api.name}}" title="{{api.name}}" class="upload-icon-preview-img img-thumbnail">
-													<div class='text-center'>{{api.name}}</div>
-												</div>
+											<div class='subscriptions-api-panel'>
+												<table class='table table-only-rows text-left'>
+													<thead><tr><th>Context</th><th>Name</th></tr></thead>
+													<tbody>
+														<tr ng-repeat="api in sub.subscriptions">
+															<td>{{api.context}}</td>
+															<td>{{api.name}}</td>
+														</tr>
+													</tbody>
+												</table>
+												<!-- 
+													<div ng-repeat="api in sub.subscriptions" class='subscription-api-panel '>
+													
+														<img ng-src="{{api.newIcon}}" alt="{{api.name}}" title="{{api.name}}" class="upload-icon-preview-img img-thumbnail">
+														<strong>Context</strong> {{api.context}}&
+														<strong>Name</strong> {{api.name}}
+													</div>
+												 -->
 											</div>
 										</div>
 									</div>

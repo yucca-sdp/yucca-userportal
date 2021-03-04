@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 package org.csi.yucca.userportal.userportal.info;
@@ -25,7 +25,7 @@ public class Info {
 	}
 
 	public Info() {
-		version = "2.1.2";
+		version = "2.2.0";
 	}
 
 	public User getUser() {

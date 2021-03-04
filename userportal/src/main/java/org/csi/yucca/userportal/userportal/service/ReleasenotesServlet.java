@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 package org.csi.yucca.userportal.userportal.service;
@@ -29,7 +29,7 @@ public class ReleasenotesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Logger log = Logger.getLogger(ReleasenotesServlet.class);
 
-	private static final String[] availableReleasenotes = new String[] { "2.1.0", "2.1.1", "2.1.2"};
+	private static final String[] availableReleasenotes = new String[] { "2.1.0", "2.1.1", "2.1.2", "2.2.0"};
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.debug("[InfoServlet::doGet] - START");

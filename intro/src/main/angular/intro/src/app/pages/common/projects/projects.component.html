@@ -1,0 +1,27 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<h1>
+    <div class="container" translate>projects</div>
+</h1>
+<div class="container projects-panel">
+    <div class='back-link'>
+        <a routerLink="/">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp;<span translate>back_home_page</span>
+        </a>
+    </div>
+    <div class='row ' *ngFor='let index of projectKeys; let i = index; let even = even'>
+        <div class='col col-sm-4 offset-sm-2' *ngIf="even" translate>
+            <a [routerLink]="['/project/',projects[i]]">
+                <intro-project-card [project]="projects[i]"></intro-project-card>
+            </a>
+        </div>
+        <div class='col col-sm-4' *ngIf="even && projects[i+1]" translate>
+            <a [routerLink]="['/project/',projects[i+1]]">
+                <intro-project-card [project]="projects[i+1]"></intro-project-card>
+            </a>
+        </div>
+    </div>
+</div>

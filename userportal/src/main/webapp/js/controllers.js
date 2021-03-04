@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -11,8 +11,8 @@
 
 var appControllers = angular.module('userportal.controllers', []);
 
-appControllers.controller('GlobalCtrl', [ '$scope', "$route", '$modal', 'info','$location', '$translate', 'upService', 'localStorageService', 'storeAPIservice','$window', '$rootScope', 'idleTimer', 'YUCCA_HOME_PAGE','version','ENABLE_PERSONAL','ENABLE_TRIAL', 'YUCCA_PORTAL',
-                                          function($scope, $route, $modal, info, $location, $translate, upService, localStorageService,storeAPIservice,$window,$rootScope, idleTimer,YUCCA_HOME_PAGE, version, ENABLE_PERSONAL, ENABLE_TRIAL,YUCCA_PORTAL) {
+appControllers.controller('GlobalCtrl', [ '$scope', "$route", '$modal', 'info','$location', '$translate', 'upService', 'localStorageService', 'storeAPIservice','$window', '$rootScope', 'idleTimer', 'YUCCA_HOME_PAGE','version','ENABLE_PERSONAL','ENABLE_TRIAL', 'YUCCA_PORTAL','YUCCA_INTRO_URL',
+                                          function($scope, $route, $modal, info, $location, $translate, upService, localStorageService,storeAPIservice,$window,$rootScope, idleTimer,YUCCA_HOME_PAGE, version, ENABLE_PERSONAL, ENABLE_TRIAL,YUCCA_PORTAL,YUCCA_INTRO_URL) {
 	$scope.$route = $route;
 	
 	$scope.currentLang = function(){return $translate.use();};
@@ -31,6 +31,8 @@ appControllers.controller('GlobalCtrl', [ '$scope', "$route", '$modal', 'info','
 			$scope.isHomepage = current.$$route.isHomepage;
 	     console.debug("isHomepage", $scope.isHomepage, current.activetab);
 	 });
+
+	$scope.yuccaIntroUrl = YUCCA_INTRO_URL;
 
 	$scope.enablePersonal = ENABLE_PERSONAL;
 	$scope.enableTrial = ENABLE_TRIAL;

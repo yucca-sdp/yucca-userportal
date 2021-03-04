@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -90,7 +90,7 @@ Helpers.yucca = {
 		var dsOut = {"datasourceType": datasourceType};
 		if(typeof dsIn != 'undefined' && dsIn!= null){
 			
-			
+			Helpers.util.copyPropSafe('apiContexts', dsIn, dsOut);
 			Helpers.util.copyPropSafe('copyright', dsIn, dsOut);
 			Helpers.util.copyPropSafe('disclaimer', dsIn, dsOut);
 			Helpers.util.copyPropSafe('externalreference', dsIn, dsOut);

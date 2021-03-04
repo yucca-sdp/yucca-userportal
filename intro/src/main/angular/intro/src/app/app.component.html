@@ -1,0 +1,28 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<!-- Toolbar -->
+<nav class="main-navbar navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/" title='Yucca - Smart Data Platform'>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <span class='navbar-nav mr-auto'>
+        &nbsp;
+      </span>
+      <a class="nav-item nav-link" href *ngIf="currentUser">
+        <fa-icon [icon]="faUserCircle"></fa-icon> {{currentUser.firstname}} {{currentUser.lastname}}
+      </a>
+      <a class="btn btn-login" *ngIf="currentRoute === '/whatsInYucca'" routerLink='datacat'
+        translate>go_to_datacatalog</a>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

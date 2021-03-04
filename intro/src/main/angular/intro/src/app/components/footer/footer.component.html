@@ -1,0 +1,41 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<div class="container-fluid footer-container">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <img class="smartdatanet-logo" src="assets/images/logo_sdn_bw.png" alt="smartdatanet">
+                </div>
+                <div class="footer-info">
+                    <p translate>footer_info</p>
+                </div>
+                <div class="email">
+                    <a href="{{'mailTo:' + SmartdatanetEmail}}">{{SmartdatanetEmail}}</a>
+                </div>
+            </div>
+            <div class="col right-panel">
+                <a [href]="RegionePiemonteUrl">
+                    <img class="regione-logo" src="assets/images/logo_regionepiemonte_footer.png"
+                        alt="regione piemonte">
+                </a>
+                <a [href]="CsiPiemonteUrl">
+                    <img class="csi-logo" src="assets/images/logo_csipiemonte_footer.png" alt="csi piemonte">
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col footer-links">
+                <a class="footer-link" [href]="PrivacyInfoUrl" translate>footer_privacy_info</a>
+                |
+                <a class="footer-link" [href]="CookiePolicyUrl" translate>footer_cookie_policy</a>
+                |
+                <a class="footer-link" [href]="UserportalInfoUrl" translate>footer_userportal_info</a>
+            </div>
+        </div>
+    </div>
+</div>

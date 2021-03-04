@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -34,11 +34,14 @@ appServices.factory('odataAPIservice', function($http, $q,info) {
 		});
 	}; 
 	
-	odataAPIservice.getStreamDataMultiToken = function(stream_code, filter, skip, top, orderby, collection, dstenantactive, dstenantsharing) {
+	odataAPIservice.getStreamDataMultiToken = function(stream_code, filter, skip, top, orderby, collection, dstenantactive, dstenantsharing, apiContext) {
 		if(!collection || collection == null)
 			collection = 'Measures';
 		//http://int-api.smartdatanet.it/odata/SmartDataOdataService.svc/ds_Provapositio_28/Measures?$format=json&$top=19&$skip=0&$orderby=time
 		var streamDataUrl = Constants.API_ODATA_URL+stream_code+"/"+collection+"?$format=json";
+		if(apiContext)
+			streamDataUrl += "&apiContext="+apiContext;
+
 		if(filter && filter!=null)
 			streamDataUrl += '&$filter='+filter;
 		if(skip && skip!=null)
@@ -146,9 +149,11 @@ appServices.factory('odataAPIservice', function($http, $q,info) {
 		});
 	};
 
-	odataAPIservice.getMetadataMultiToken  = function(stream_code, dstenantactive, dstenantsharing) {
+	odataAPIservice.getMetadataMultiToken  = function(stream_code, dstenantactive, dstenantsharing,apiContext) {
 		// https://int-api.smartdatanet.it/api/ds_Contgreciaon_201/$metadata
-		var metadataUrl = Constants.API_ODATA_URL+stream_code+"/$metadata";
+		var metadataUrl = Constants.API_ODATA_URL+stream_code+"/$metadata?";
+		if(apiContext)
+			metadataUrl += "apiContext="+apiContext + "&";
 		var tokenForRequest = null;
 		
 		angular.forEach(info.info.user.tenantsTokens, function(value, key) {
@@ -181,9 +186,11 @@ appServices.factory('odataAPIservice', function($http, $q,info) {
 	};
 	
 	
-	odataAPIservice.getBinaryAttachData = function(baseUrl, binaryCode){
+	odataAPIservice.getBinaryAttachData = function(baseUrl, binaryCode, apiContext){
 		//http://int-api.smartdatanet.it/odata/SmartDataOdataService.svc/Binariomerco_154/DataEntities('5625124873454fcbf9829960')/Binaries?$filter=idBinary%20eq%20%27provaDav2%27&$format=json
 		var binaryUrl = Constants.API_ODATA_URL+baseUrl+"?$filter=idBinary eq '"+binaryCode+"'&$format=json";
+		if(apiContext)
+			binaryUrl += "&apiContext="+apiContext;
 
 		var user = "Bearer "+info.info.user.token;
 		return $http({

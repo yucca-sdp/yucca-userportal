@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 package org.csi.yucca.userportal.userportal.service;
@@ -61,6 +61,7 @@ public abstract class ApiProxyServlet extends HttpServlet {
 	private int intMaxFileUploadSize = 5 * 1024 * 1024;
 
 	protected String apiBaseUrl;
+	protected String apiContext;
 
 	@Override
 	public void init() throws ServletException {
@@ -78,6 +79,7 @@ public abstract class ApiProxyServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
 		GetMethod getMethod = new GetMethod(createTargetUrlWithParameters(request));
 
@@ -381,6 +383,12 @@ public abstract class ApiProxyServlet extends HttpServlet {
 		// String tenantCode =
 		// AuthorizeUtils.getTenantsInSession(request).get(0).getTenantCode();
 
+		apiContext =  request.getParameter("apiContext");
+		if(apiContext != null) {
+			log.info("[createTargetUrlWithParameters:: : apiContext]"+apiContext );
+			this.setApiBaseUrl();
+		}
+	
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>(request.getParameterMap());
 
 		String parameters = cleanParameters(parameterMap);

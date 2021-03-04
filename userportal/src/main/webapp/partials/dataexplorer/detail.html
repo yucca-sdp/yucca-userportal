@@ -1,6 +1,6 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
 
 <div ng-controller="DataExplorerDetailCtrl as detailCtrl" ng-cloak class='section-store'>
@@ -422,12 +422,26 @@ SPDX-License-Identifier: EUPL-1.2
 						<a  href='#/dashboard/stream/{{tenantCode}}/{{metadata.stream.smartobject.code}}/{{metadata.stream.code}}' class="btn btn-edit" ng-if="metadata.stream">
 							<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{'MANAGEMENT_VIEW_STREAM_DASHBOARD_BUTTON'|translate}}
 						</a>
-	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","odata")' class="btn btn-subscribe"  ng-show="user.loggedIn" ng-if='metadata.dataset'>
-							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_ODATA_BUTTON'|translate}}
-						</a>
-	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","stream")' class="btn btn-subscribe"  ng-show="user.loggedIn" ng-if='metadata.stream'>
+	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","stream")' class="btn btn-subscribe"  ng-if='metadata.stream'>
 							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_STREAM_BUTTON'|translate}}
 						</a>
+	 					<a href ng-click='openModalViewSubscribe("lg",context)' class="btn btn-subscribe"  
+	 						ng-if='metadata.dataset && showSubscribeButton(context)' ng-repeat="context in apiContexts track by $index">
+							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_' + context +'_BUTTON'|translate}}
+						</a>
+						<!--
+	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","odata")' class="btn btn-subscribe"  ng-if='metadata.dataset && showSubscribeButton("odata")'>
+							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_ODATA_BUTTON'|translate}}
+						</a>
+						<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","odatarupar")' class="btn btn-subscribe" ng-if='metadata.dataset && showSubscribeButton("odatarupar")'>
+							<span class="glyphicon glyphicon-list-alt  "></span> Sottoscrivi API Rupar
+						</a>
+	 					<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","searchapi")' class="btn btn-subscribe"  ng-if='metadata.dataset  && showSubscribeButton("searchapi")'>
+							<span class="glyphicon glyphicon-list-alt  "></span> {{'DATA_EXPLORER_SUBSCRIBE_API_ODATA_BUTTON'|translate}}
+						</a>
+						<a href="javascript:void(0)" ng-click='openModalViewSubscribe("lg","searchapirupar")' class="btn btn-subscribe"  ng-if='metadata.dataset  && showSubscribeButton("searchapirupar")'>
+							<span class="glyphicon glyphicon-list-alt  "></span> Sottoscrivi API Rupar
+						</a>-->
 					</div>
 				</div>
 			</div>

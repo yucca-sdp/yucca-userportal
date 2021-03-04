@@ -1,6 +1,6 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
 
 <div class='clearfix wizard-title' ng-cloak>
@@ -25,30 +25,49 @@ SPDX-License-Identifier: EUPL-1.2
 				<label for="inputJDBCHostname" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_HOSTNAME</span></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" ng-model="importConfig.jdbcHostname" id="inputJDBCHostname" placeholder="{{'JDBC_PARAM_HOSTNAME_PLACEHOLDER'|translate}}"
-						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE' || importConfig.dbType=='HIVE_HDP3' ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputJDBCDBName" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_DBNAME</span></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" ng-model="importConfig.jdbcDbname" id="inputJDBCDBName" placeholder="{{'JDBC_PARAM_DBNAME_PLACEHOLDER'|translate}}"
-						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE' || importConfig.dbType=='HIVE_HDP3' ">
+					<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>JDBC_PARAM_DBNAME_HINT</span></div>
+				</div>
+				
+			</div>
+			<div class="form-group">
+				<label for="inputJDBCDBService" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_SERVICE</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model="importConfig.jdbcDbservice" id="inputJDBCDBService" placeholder="{{'JDBC_PARAM_SERVICE_PLACEHOLDER'|translate}}"
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE' || importConfig.dbType=='HIVE_HDP3' ">
+					<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>JDBC_PARAM_DBSERVICE_HINT</span></div>
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="inputJDBCDBSchema" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_SCHEMA</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model="importConfig.jdbcDbschema" id="inputJDBCDBSchema" placeholder="{{'JDBC_PARAM_SCHEMA_PLACEHOLDER'|translate}}"
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE' || importConfig.dbType=='HIVE_HDP3' ">
+						<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>JDBC_PARAM_DBSCHEMA_TOOLTIP</span></div>
+				</div>
+			</div>
+			
 			<div class="form-group">
 				<label for="inputJDBCDBUsername" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_USERNAME</span></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" ng-model="importConfig.jdbcUsername" id="inputJDBCDBUsername" placeholder="{{'JDBC_PARAM_USERNAME_PLACEHOLDER'|translate}}"
-						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
-						<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>JDBC_PARAM_USERNAME_TOOLTIP</span></div>
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE' || importConfig.dbType=='HIVE_HDP3' ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputJDBCDBPassword" class="col-sm-2 control-label"><span translate-cloak translate>JDBC_PARAM_PASSWORD</span></label>
 				<div class="col-sm-10">
 					<input type="password" class="form-control" ng-model="importConfig.jdbcPassword" id="inputJDBCDBPassword" placeholder="{{'JDBC_PARAM_PASSWORD_PLACEHOLDER'|translate}}"
-						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE'">
-					<p class="help-block text-left"><span translate>JDBC_PARAM_PASSWORD_HINT</span></p>
+						ng-required="importConfig.dbType!='HIVE'" ng-disabled="importConfig.dbType=='HIVE' || importConfig.dbType=='HIVE_HDP3' ">
+					<div class='text-left hint mute'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>JDBC_PARAM_PASSWORD_HINT</span></div>
 				</div>
 				
 			</div>	
@@ -82,17 +101,15 @@ SPDX-License-Identifier: EUPL-1.2
 			<div class='text-left'>File: <strong>{{importConfig.sqlSourcefile.name}}</strong> <small><span class='mute'> - Type: {{importConfig.sqlSourcefile.type}} - Size:{{importConfig.sqlSourcefile.size|format_filesize}}</span></small></div>
 		</div>
 		<h3 translate class='text-left'>MANAGEMENT_IMPORT_DATABASE_DATABASE_TYPE</h3>
-		<div class="row text-left">
-			<div class='col-sm-2' >
-				<div class="radio">
-					<label>
-						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="ORACLE">
-						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-						Oracle
-					</label>
-				</div>	
-			</div>						
-			<div class='col-sm-2' >
+		<div class="radio-buttons text-left">
+			<div class="radio">
+				<label>
+					<input type="radio" name="dbType" ng-model="importConfig.dbType" value="ORACLE">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					Oracle
+				</label>
+			</div>	
+			<div>
 				<div class="radio">
 					<label>
 						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="ORACLE_8">
@@ -100,8 +117,8 @@ SPDX-License-Identifier: EUPL-1.2
 						Oracle 8
 					</label>
 				</div>	
-			</div>						
-			<div class='col-sm-2' >
+			</div>
+			<div>
 				<div class="radio">
 					<label>
 						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="MYSQL">
@@ -109,8 +126,8 @@ SPDX-License-Identifier: EUPL-1.2
 						MySql
 					</label>
 				</div>		
-			</div>						
-			<div class='col-sm-2' >
+			</div>
+			<div>
 				<div class="radio">
 					<label>
 						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="POSTGRESQL">
@@ -118,17 +135,26 @@ SPDX-License-Identifier: EUPL-1.2
 						PostgreSQL
 					</label>
 				</div>
-			</div>			
-			<div class='col-sm-3' >
+			</div>
+			<div>
 				<div class="radio">
 					<label>
 						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="HIVE" >
 						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-						Yucca Datalake
+						Yucca Datalake v2
 					</label>
 				</div>
-			</div>		
-			
+			</div>
+
+			<div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="dbType" ng-model="importConfig.dbType" value="HIVE_HDP3" >
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						Yucca Datalake v3
+					</label>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class=" col-sm-12 form-toolbar" ng-if="!isLoadingDB">

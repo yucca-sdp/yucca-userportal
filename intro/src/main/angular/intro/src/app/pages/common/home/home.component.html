@@ -1,0 +1,244 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<div role="main" class='home'>
+  <h1>
+    <div class='container'>
+      <span translate>home_welcome</span>
+      <small translate>home_welcome2</small>
+    </div>
+  </h1>
+  <section class='welcome-section'>
+    <div class='container'>
+      <h2 translate>home_what_can_you_do</h2>
+      <div class="row text-center">
+        <div class="col-sm">
+          <div class="action-panel yucca-panel">
+            <!-- <h3><img src='assets/images/home/yucca-logo-bn.png' alt=""> <span translate>home_use_yucca</span></h3>-->
+            <div class='action-panel-header'>
+              <img src='assets/images/home/yucca_logo.png' alt="yucca logo">
+              <h3 translate>home_yucca_action_title</h3>
+            </div>
+            <p translate>home_yucca_action_desc</p>
+            <!--<a href='{{userportalAuthTrialUrl}}' class=''>
+            <span>Prova Yucca</span>
+            <fa-icon [icon]="faAngleRight"></fa-icon>
+          </a>
+          <a routerLink='/request-work-area'>
+            <span>Chiedi area di lavoro</span>
+            <fa-icon [icon]="faAngleRight"></fa-icon>
+          </a> -->
+            <a href='{{userportalHomeUrl}}' class='btn btn-default'>
+              <span translate>home_yucca_action_btn</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="action-panel datacat-panel">
+            <div class='action-panel-header'>
+              <img src='assets/images/home/datacat_logo.png' alt="datacat logo">
+              <h3 translate>home_datacat_action_title</h3>
+            </div>
+            <p translate>home_datacat_action_desc</p>
+            <a routerLink='datacat' class='btn btn-default'>
+              <span translate>home_datacat_action_btn</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="action-panel widget-panel">
+            <div class='action-panel-header'>
+              <img src='assets/images/home/widget_logo.png' alt="widget logo">
+              <h3 translate>home_widget_action_title</h3>
+            </div>
+            <p translate>home_widget_action_desc</p>
+            <a href='{{widgetHomeUrl}}' class='btn btn-default'>
+              <span translate>home_widget_action_btn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="used-for-section">
+    <div class='container'>
+      <h2 translate>home_yucca_is_used_to</h2>
+      <span class="d-none" translate>home_yucca_is_used_to2</span>
+      <img class='used-for-tree' src='assets/images/home/used_for_tree.png'
+        alt='Real time - Advanced Analytics - Business Intelligence'>
+    </div>
+  </section>
+  <section class="projects-section">
+    <div class='projects-card'>
+      <div class='row container'>
+        <div class="col-sm-4" *ngFor="let p of projects">
+          <div class='card project-card'>
+            <a [routerLink]="['/project/',p]"><img src="assets/images/projects/{{p}}-cover.jpg"
+                class='cover cover-home' alt="project bkg">
+              <h3 class='intro'>
+                <span translate>
+                  {{p}}_intro
+                </span>
+              </h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='projects-section-footer'>
+      <div class="row container">
+        <div class="col-sm-12 text-right ">
+          <a routerLink="projects" class='btn btn-secondary'>
+            <strong translate>show_all_projects</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="info-section">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="info-section-text vert-hor-center">
+            iot&nbsp;
+            <span class="evidenziato">+</span>&nbsp;
+            iop&nbsp;
+            <span class="evidenziato">+</span>&nbsp;
+            dati pubblici&nbsp;
+            <span class="evidenziato">+</span>&nbsp;
+            dati privati&nbsp;
+            <span class="evidenziato">+</span>&nbsp;
+            big data technology
+          </h2>
+        </div>
+      </div>
+      <div class="row info-section-row-pics">
+        <div class="col">
+          <p class="info-section-text-img" translate><img class="img-info-section"
+              src="assets/images/home/info-section/ico_1.png" alt="home info section 1">home_info_section_1</p>
+        </div>
+        <div class="col">
+          <p class="info-section-text-img" translate><img class="img-info-section"
+              src="assets/images/home/info-section/ico_2.png" alt="home info section 2">home_info_section_2</p>
+        </div>
+        <div class="col">
+          <p class="info-section-text-img" translate><img class="img-info-section"
+              src="assets/images/home/info-section/ico_3.png" alt="home info section 3">home_info_section_3</p>
+        </div>
+      </div>
+      <div class="row info-section-row-pics">
+        <div class="col">
+          <p class="info-section-text-img" translate><img class="img-info-section"
+              src="assets/images/home/info-section/ico_4.png" alt="home info section 4">home_info_section_4</p>
+        </div>
+        <div class="col">
+          <p class="info-section-text-img" translate><img class="img-info-section"
+              src="assets/images/home/info-section/ico_5.png" alt="home info section 5">home_info_section_5</p>
+        </div>
+        <div class="col">
+          <p class="info-section-text-img" translate><img class="img-info-section"
+              src="assets/images/home/info-section/ico_6.png" alt="home info section 6">home_info_section_6</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="statistics-section" *ngIf="statsData">
+    <div class='container'>
+      <div class="row">
+        <div class="col vert-hor-center">
+          <h3 translate>home_data_in_yucca</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col vert-hor-center">
+          <p class="total-yucca-data">{{statsData.totalData | number:'':'it-IT'}}</p>
+        </div>
+      </div>
+      <!-- Widgets -->
+      <div class="row widgets">
+        <div class="col">
+          <div class="row left-title">
+            <div class="col">
+              <h3 class="left stat-title" translate>home_opendata_widget</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col open-data-widget right-border">
+              <img class="widget-img-opendata" src="assets/images/home/data-widget/cerchione.png" alt="cerchione">
+              <div class="img-text-centered">
+                <p class="open-data-widget-number vert-hor-center">
+                  {{statsData.totalPublicData * 100 / statsData.totalData | number: '1.0-0'}}%
+                </p>
+                <div class="open-data-widget-text">
+                  open data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row right-title">
+            <div class="col">
+              <h3 class="stat-title" translate>home_domain_widget</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="first-domain">
+                <div class="domain-percentage">{{firstDomain.value * 100 / domainTotalCount | number: '1.0-0'}}%</div>
+                <div class="domain-percentage-subtext">{{"domain_label_" + firstDomain.key | translate}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img class="widget-img-domain" src="assets/images/home/data-widget/petali.png" alt="petali">
+              <div class="second-domain">
+                <div class="domain-percentage">{{secondDomain.value * 100 / domainTotalCount | number: '1.0-0'}}%</div>
+                <div class="domain-percentage-subtext">{{"domain_label_" + secondDomain.key | translate}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col third-domain">
+              <div class="domain-percentage">{{thirdDomain.value * 100 / domainTotalCount | number: '1.0-0'}}%</div>
+              <div class="domain-percentage-subtext">{{"domain_label_" + thirdDomain.key | translate}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row left-title">
+            <div class="col">
+              <h3 class="left stat-title" translate>home_companies_widget<abbr title="pubblica amministrazione "
+                  translate>home_PA_widget</abbr> <br translate>home_using_yucca_widget</h3>
+            </div>
+          </div>
+          <div class="row right-border">
+            <div class="col total-yucca-data-small">
+              <div class="left">
+                <!--{{organizationsCount}}-->44
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row right-title">
+            <div class="col">
+              <h3 class="stat-title" translate>home_yesterday_count_widget<br
+                  translate>home_yesterday_count_widget_sensors</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col total-yucca-data-small">
+              {{yesterdayMeasuresCount | number:'':'it-IT'}} mln
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,6 +1,6 @@
 <!--
 SPDX-License-Identifier: EUPL-1.2
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 -->
 
 <div>
@@ -146,7 +146,63 @@ SPDX-License-Identifier: EUPL-1.2
 					
 				<div class='text-left hint mute' ng-if='selectedDomain=="MULTI"'><i class='fa fa-lightbulb-o'></i>&nbsp;<span translate>MANAGEMENT_EDIT_DATASET_COD_SUB_DOMAIN_MULTI_VALIDATION</span></div>
 			</div>
-			
+		</div>
+	</div>
+	<div class="form-group" ng-if='!datasource.unpublished && !isStream()'>
+		<label  class="col-sm-3 control-label"><span translate-cloak translate>API_ODATA</span></label>
+		<div class="col-sm-1">
+			<div class="checkbox text-left">
+				<label>
+					<input type="checkbox" ng-model="datasource.apiOdataEnabled" >
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<strong translate>API_ODATA_YES</strong>
+				</label>
+			</div>
+		</div>
+		<div class="col-sm-6" ng-if="datasource.apiOdataEnabled">
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupApiOdata" value="odata" ng-model="datasource.apiOdata" ng-disabled = "!datasource.apiOdataEnabled"  >
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>API_ODATA_INTERNET</span>
+				</label>
+			</div>	
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupApiOdata" value="odatarupar" ng-model="datasource.apiOdata" ng-disabled = "!datasource.apiOdataEnabled">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>API_ODATA_RUPAR</span>
+				</label>
+			</div>			
+		</div>	
+	</div>
+
+	<div class="form-group" ng-if='!datasource.unpublished  && !isStream()'>
+		<label  class="col-sm-3 control-label"><span translate-cloak translate>API_SEARCH</span></label>
+		<div class="col-sm-1">
+			<div class="checkbox text-left">
+				<label>
+					<input type="checkbox" ng-model="datasource.apiSearchEnabled" >
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<strong translate>API_ODATA_YES</strong>
+				</label>
+			</div>
+		</div>
+		<div class="col-sm-6" ng-if="datasource.apiSearchEnabled">
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupApiOSearch" value="search" ng-model="datasource.apiSearch"  ng-disabled = "!datasource.apiSearchEnabled">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>API_SEARCH_INTERNET</span>
+				</label>
+			</div>	
+			<div class="radio pull-left">
+				<label>
+					<input type="radio" name="RadioGroupApiOSearch" value="searchrupar" ng-model="datasource.apiSearch" ng-disabled = "!datasource.apiSearchEnabled">
+					<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span translate-cloak translate>API_SEARCH_RUPAR</span>
+				</label>
+			</div>			
 		</div>
 	</div>
 </div>

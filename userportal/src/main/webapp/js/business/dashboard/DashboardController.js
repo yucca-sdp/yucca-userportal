@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: EUPL-1.2
  * 
- * (C) Copyright 2019 Regione Piemonte
+ * (C) Copyright 2019 - 2021 Regione Piemonte
  * 
  */
 
@@ -159,7 +159,12 @@ appControllers.controller('DashboardDataStreamCtrl', [ '$scope', '$routeParams',
 		if($scope.isTwitter){
 			collection = 'SocialFeeds';
 		}
-		odataAPIservice.getStreamDataMultiToken(apiCode, null, 0, $scope.maxDataResult.value, 'time%20desc',collection, $scope.metadata.tenantCode, $scope.metadata.tenantDelegateCodes).success(function(response) {
+		if (!$scope.metadata.apiContexts || $scope.metadata.apiContexts == 'undefined' || $scope.metadata.apiContexts == null ) {
+			$scope.metadata.apiContexts = [];
+			$scope.metadata.apiContexts.push('odata');
+		}
+
+		odataAPIservice.getStreamDataMultiToken(apiCode, null, 0, $scope.maxDataResult.value, 'time%20desc',collection, $scope.metadata.tenantCode, $scope.metadata.tenantDelegateCodes, $scope.metadata.apiContexts[0]).success(function(response) {
 			console.log("odataAPIservice.getStreamData",response, collection);
 			var oDataResultList = response.d.results;
 			if(oDataResultList.length >0){

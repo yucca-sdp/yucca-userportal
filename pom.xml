@@ -10,6 +10,7 @@
 	<modules>
 		<module>backoffice</module>
 		<module>userportal</module>
+		<module>intro</module>
 	</modules>
 	
 </project>

@@ -1,0 +1,45 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<div class="container container-md" role="main">
+    <div class='row  justify-content-center'>
+        <div class='col-10 col-md-8  box-shadowed main-panel'>
+            <h1>
+                <img src='assets/images/yucca-logo-light.png' alt="">
+                <div translate>request_work_area</div>
+            </h1>
+            <div class='main-panel-content'>
+
+                <p [innerHtml]=' "request_work_area_info" | translate'>
+
+                </p>
+                <ul class="nav selectable-tabs" role="tablist">
+                    <li class='col-4'>
+                        <a [routerLink]="" role="tab" data-toggle="tab" aria-controls="tab" aria-selected="true"
+                            (click)="setSelectedTab('citizen')" [ngClass]="{'active': selectedTab == 'citizen' }"
+                            translate>citizen</a>
+                    </li>
+                    <li class='col-4'>
+                        <a [routerLink]="" role="tab" data-toggle="tab" aria-controls="tab" aria-selected="true"
+                            (click)="setSelectedTab('company')" [ngClass]="{'active': selectedTab == 'company' }"
+                            translate>company</a>
+                    </li>
+                    <li class='col-4'>
+                        <a [routerLink]="" role="tab" data-toggle="tab" aria-controls="tab" aria-selected="true"
+                            (click)="setSelectedTab('pa')" [ngClass]="{'active': selectedTab == 'pa' }"><abbr
+                                title="Pubblica Amministrazione" translate>PA</abbr></a>
+                    </li>
+                </ul>
+                <div class="selectable-tab" *ngIf="selectedTab">
+                    <app-citizen *ngIf="selectedTab == 'citizen'"></app-citizen>
+                    <app-company *ngIf="selectedTab == 'company'"></app-company>
+                    <app-pa *ngIf="selectedTab == 'pa'"></app-pa>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

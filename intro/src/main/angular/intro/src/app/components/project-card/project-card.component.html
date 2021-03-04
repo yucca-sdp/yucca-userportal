@@ -1,0 +1,28 @@
+<!--
+ SPDX-License-Identifier: EUPL-1.2
+ (C) Copyright 2019 - 2021 Regione Piemonte
+-->
+
+<div class='project-card'>
+    <div class='base'>
+        <img src="assets/images/projects/{{project}}-cover.jpg" class='cover'>
+        <h3 class='intro'>
+            <span translate>
+                {{project +'_title'}}
+            </span>
+        </h3>
+    </div>
+    <div class="hover">
+        <div class='hover-content'>
+            <h3>
+                <span translate>
+                    {{project + '_title'}}
+                </span>
+            </h3>            
+            <div > 
+                <span [innerHtml] ="project +'_intro' | translate"></span>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -39,7 +39,7 @@ Gli autori della piattaforma Yucca sono:
 - [Alessandro Franceschetti](mailto:alessandro.franceschetti@csi.it)
 - [Claudio Parodi](mailto:claudio.parodi@csi.it)
 # Copyrights
-(C) Copyright 2019 Regione Piemonte
+(C) Copyright 2019 - 2021 Regione Piemonte
 # License
 Questo software è distribuito con licenza [EUPL-1.2-or-later](https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12)
 
